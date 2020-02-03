@@ -5,6 +5,7 @@ onready var TittlePanel = $TittlePanel
 onready var OkBtn = $OkBtn
 onready var CancelBtn = $CancelBtn
 var _animation = Animation.new()
+var PanelAbleToAppear = true
 
 func _ready():
 	pass
@@ -14,12 +15,15 @@ func _ready():
 	CancelBtn.hide()
 
 func _on_ActionBtn_pressed():
-	animation.play("PanelAppear")
-	yield(animation,"animation_finished")
-	TittlePanel.show()
-	TittleLabel.show()
-	OkBtn.show()
-	CancelBtn.show()
+	if PanelAbleToAppear:
+		animation.play("PanelAppear")
+		yield(animation,"animation_finished")
+		TittlePanel.show()
+		TittleLabel.show()
+		OkBtn.show()
+		CancelBtn.show()
+		PanelAbleToAppear = false
+	
 
 
 func _on_OkBtn_pressed():
@@ -28,6 +32,8 @@ func _on_OkBtn_pressed():
 	OkBtn.hide()
 	CancelBtn.hide()
 	animation.play("PanelDisappear")
+	yield(animation,"animation_finished")
+	PanelAbleToAppear = true
 
 
 func _on_CancelBtn_pressed():
@@ -36,3 +42,5 @@ func _on_CancelBtn_pressed():
 	OkBtn.hide()
 	CancelBtn.hide()
 	animation.play("PanelDisappear")
+	yield(animation,"animation_finished")
+	PanelAbleToAppear = true
