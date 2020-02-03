@@ -4,6 +4,7 @@ extends Node2D
 
 onready var hp = $Label
 onready var animation = $AnimatedSprite
+onready var sprite = $Sprite
 
 
 # Called when the node enters the scene tree for the first time.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Img Resources/Icons Images/thunderbolt.png" type="Texture" id=16]
 [ext_resource path="res://Img Resources/Icons Images/Shield.png" type="Texture" id=17]
 [ext_resource path="res://Img Resources/Icons Images/explosions.png" type="Texture" id=18]
+[ext_resource path="res://Scripts/BattleScene.gd" type="Script" id=19]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -36,6 +37,7 @@
 [sub_resource type="StyleBoxFlat" id=8]
 
 [node name="Battle" type="Node2D"]
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 320.0, 0.0 ],
 "_edit_vertical_guides_": [ 180.0, 0.0 ]
