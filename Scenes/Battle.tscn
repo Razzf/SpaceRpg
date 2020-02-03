@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Img Resources/Icons Images/Shield.png" type="Texture" id=17]
 [ext_resource path="res://Img Resources/Icons Images/explosions.png" type="Texture" id=18]
 [ext_resource path="res://Scripts/BattleScene.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/InfPAnel.gd" type="Script" id=20]
+[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=21]
+[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=22]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -36,12 +39,48 @@
 
 [sub_resource type="StyleBoxFlat" id=8]
 
+[sub_resource type="Animation" id=9]
+resource_name = "PanelAppear"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 7 ), Vector2( 40, 7 ), Vector2( 80, 7 ), Vector2( 80, 40 ), Vector2( 80, 80 ), Vector2( 80, 120 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "PanelDisappear"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 80, 120 ), Vector2( 80, 80 ), Vector2( 80, 40 ), Vector2( 80, 6 ), Vector2( 40, 6 ), Vector2( 2, 6 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxFlat" id=12]
+
 [node name="Battle" type="Node2D"]
 script = ExtResource( 19 )
 __meta__ = {
 "_edit_horizontal_guides_": [ 320.0, 0.0 ],
 "_edit_vertical_guides_": [ 180.0, 0.0 ]
 }
+
+[node name="ShipStats" type="Node2D" parent="."]
 
 [node name="BlackSpace" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
@@ -50,16 +89,10 @@ texture = ExtResource( 13 )
 [node name="Enemy" parent="." instance=ExtResource( 12 )]
 position = Vector2( 88, 100 )
 
-[node name="ShipStats" type="Node2D" parent="."]
-
 [node name="combat design 3" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.4 )
 position = Vector2( 90, 160 )
 texture = ExtResource( 6 )
-
-[node name="ShipWindow" type="Sprite" parent="."]
-position = Vector2( 90, 160 )
-texture = ExtResource( 5 )
 
 [node name="UI" type="Control" parent="."]
 self_modulate = Color( 1, 1, 1, 0.505882 )
@@ -115,6 +148,7 @@ __meta__ = {
 icons = [ ExtResource( 18 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ]
 
 [node name="UpDownBtns" type="VBoxContainer" parent="UI/ActionsContainer"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
 margin_left = 7.0
 margin_right = 30.0
 margin_bottom = 60.0
@@ -122,6 +156,7 @@ rect_min_size = Vector2( 23, 60 )
 custom_constants/separation = 32
 
 [node name="UpButton" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
 margin_right = 23.0
 margin_bottom = 14.0
 custom_styles/hover = ExtResource( 10 )
@@ -131,6 +166,7 @@ custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 
 [node name="DownButton" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
 margin_top = 46.0
 margin_right = 23.0
 margin_bottom = 60.0
@@ -141,6 +177,7 @@ custom_styles/disabled = SubResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 
 [node name="ActionBtn" type="Button" parent="UI/ActionsContainer"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
 margin_top = 14.0
 margin_right = 37.0
 margin_bottom = 46.0
@@ -151,5 +188,83 @@ custom_styles/focus = SubResource( 7 )
 custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = ExtResource( 1 )
 icon = ExtResource( 18 )
+
+[node name="InfPanel" type="Panel" parent="UI"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
+margin_left = 136.0
+margin_top = 155.0
+margin_right = 138.0
+margin_bottom = 161.0
+rect_scale = Vector2( -1, 1 )
+custom_styles/panel = ExtResource( 21 )
+script = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/InfPanel"]
+anims/PanelAppear = SubResource( 9 )
+anims/PanelDisappear = SubResource( 10 )
+
+[node name="TittlePanel" type="Panel" parent="UI/InfPanel"]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.666667 )
+margin_left = 38.0
+margin_top = -12.0
+margin_right = 78.0
+custom_styles/panel = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tittle" type="Label" parent="UI/InfPanel/TittlePanel"]
+margin_left = 37.0
+margin_top = 3.0
+margin_right = 71.0
+margin_bottom = 9.0
+rect_scale = Vector2( -1, 1 )
+custom_fonts/font = ExtResource( 22 )
+text = "aa"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OkBtn" type="Button" parent="UI/InfPanel"]
+margin_left = 31.0
+margin_top = 105.0
+margin_right = 48.0
+margin_bottom = 117.0
+rect_scale = Vector2( -1, 1 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 22 )
+text = "Ok"
+
+[node name="CancelBtn" type="Button" parent="UI/InfPanel"]
+margin_left = 63.0
+margin_top = 105.0
+margin_right = 92.0
+margin_bottom = 117.0
+rect_scale = Vector2( -1, 1 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 22 )
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShipWindow" type="Sprite" parent="."]
+position = Vector2( 90, 160 )
+texture = ExtResource( 5 )
 [connection signal="pressed" from="UI/ActionsContainer/UpDownBtns/UpButton" to="UI/ActionsContainer" method="_on_UpButton_pressed"]
 [connection signal="pressed" from="UI/ActionsContainer/UpDownBtns/DownButton" to="UI/ActionsContainer" method="_on_DownButton_pressed"]
+[connection signal="pressed" from="UI/ActionsContainer/ActionBtn" to="UI/InfPanel" method="_on_ActionBtn_pressed"]
+[connection signal="pressed" from="UI/InfPanel/OkBtn" to="UI/InfPanel" method="_on_OkBtn_pressed"]
+[connection signal="pressed" from="UI/InfPanel/CancelBtn" to="UI/InfPanel" method="_on_CancelBtn_pressed"]
