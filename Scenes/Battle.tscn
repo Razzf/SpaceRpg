@@ -1,16 +1,16 @@
 [gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://Recursos/Styles/upButton.tres" type="StyleBox" id=1]
-[ext_resource path="res://Recursos/Styles/normalbutton.tres" type="StyleBox" id=2]
-[ext_resource path="res://Recursos/Styles/UpPresedButton.tres" type="StyleBox" id=3]
-[ext_resource path="res://Recursos/Styles/hoverUpButton.tres" type="StyleBox" id=4]
+[ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
+[ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
+[ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=3]
+[ext_resource path="res://Resources/Styles/upButton.tres" type="StyleBox" id=4]
 [ext_resource path="res://Img Resources/Sprites and designs/ShipWindow.png" type="Texture" id=5]
 [ext_resource path="res://Img Resources/Sprites and designs/combat design 3.png" type="Texture" id=6]
-[ext_resource path="res://Recursos/Styles/downButton.tres" type="StyleBox" id=7]
-[ext_resource path="res://Recursos/Styles/HoverButton.tres" type="StyleBox" id=8]
-[ext_resource path="res://Recursos/Styles/hoverDownButton.tres" type="StyleBox" id=9]
-[ext_resource path="res://Recursos/Styles/DownPressedButton.tres" type="StyleBox" id=10]
-[ext_resource path="res://Recursos/Styles/pressedbutton.tres" type="StyleBox" id=11]
+[ext_resource path="res://Resources/Styles/downButton.tres" type="StyleBox" id=7]
+[ext_resource path="res://Resources/Styles/hoverDownButton.tres" type="StyleBox" id=8]
+[ext_resource path="res://Resources/Styles/DownPressedButton.tres" type="StyleBox" id=9]
+[ext_resource path="res://Resources/Styles/hoverUpButton.tres" type="StyleBox" id=10]
+[ext_resource path="res://Resources/Styles/UpPresedButton.tres" type="StyleBox" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -33,6 +33,8 @@ __meta__ = {
 "_edit_horizontal_guides_": [ 320.0, 0.0 ],
 "_edit_vertical_guides_": [ 180.0, 0.0 ]
 }
+
+[node name="ShipStats" type="Node2D" parent="."]
 
 [node name="combat design 3" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
@@ -59,26 +61,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="UI/TwoUpperBtns"]
+[node name="Button2" type="Button" parent="UI/TwoUpperBtns"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
-custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 11 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = ExtResource( 2 )
+custom_styles/normal = ExtResource( 1 )
 
-[node name="Button2" type="Button" parent="UI/TwoUpperBtns"]
+[node name="Button3" type="Button" parent="UI/TwoUpperBtns"]
 margin_top = 40.0
 margin_right = 32.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 32, 32 )
-custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 11 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = ExtResource( 2 )
+custom_styles/normal = ExtResource( 1 )
 
 [node name="ActionsContainer" type="CenterContainer" parent="UI"]
 margin_left = 134.0
@@ -99,18 +101,18 @@ custom_constants/separation = 32
 [node name="UpBtn" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
 margin_right = 23.0
 margin_bottom = 14.0
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
+custom_styles/hover = ExtResource( 10 )
+custom_styles/pressed = ExtResource( 11 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = ExtResource( 1 )
+custom_styles/normal = ExtResource( 4 )
 
 [node name="DownBtn" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
 margin_top = 46.0
 margin_right = 23.0
 margin_bottom = 60.0
-custom_styles/hover = ExtResource( 9 )
-custom_styles/pressed = ExtResource( 10 )
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 9 )
 custom_styles/focus = SubResource( 5 )
 custom_styles/disabled = SubResource( 6 )
 custom_styles/normal = ExtResource( 7 )
@@ -120,8 +122,8 @@ margin_top = 14.0
 margin_right = 37.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 37, 32 )
-custom_styles/hover = ExtResource( 8 )
-custom_styles/pressed = ExtResource( 11 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 7 )
 custom_styles/disabled = SubResource( 8 )
-custom_styles/normal = ExtResource( 2 )
+custom_styles/normal = ExtResource( 1 )
