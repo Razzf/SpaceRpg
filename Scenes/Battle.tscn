@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Scripts/InfPAnel.gd" type="Script" id=20]
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=21]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=22]
+[ext_resource path="res://Scripts/ShipStats.gd" type="Script" id=23]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -81,6 +82,7 @@ __meta__ = {
 }
 
 [node name="ShipStats" type="Node2D" parent="."]
+script = ExtResource( 23 )
 
 [node name="BlackSpace" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
