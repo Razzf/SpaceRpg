@@ -1,6 +1,6 @@
 extends Node2D
 
-const battle_units = preload("res://Resources/BattleUnits.tres")
+#const battle_units = preload("res://Resources/BattleUnits.tres")
 
 onready var hp = $Label
 onready var animation = $AnimatedSprite

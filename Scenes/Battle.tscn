@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Resources/Styles/DownPressedButton.tres" type="StyleBox" id=9]
 [ext_resource path="res://Resources/Styles/hoverUpButton.tres" type="StyleBox" id=10]
 [ext_resource path="res://Resources/Styles/UpPresedButton.tres" type="StyleBox" id=11]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Img Resources/BlackSpace.png" type="Texture" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -34,9 +36,17 @@ __meta__ = {
 "_edit_vertical_guides_": [ 180.0, 0.0 ]
 }
 
+[node name="BlackSpace" type="Sprite" parent="."]
+position = Vector2( 90, 160 )
+texture = ExtResource( 13 )
+
+[node name="Enemy" parent="." instance=ExtResource( 12 )]
+position = Vector2( 88, 100 )
+
 [node name="ShipStats" type="Node2D" parent="."]
 
 [node name="combat design 3" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.4 )
 position = Vector2( 90, 160 )
 texture = ExtResource( 6 )
 
