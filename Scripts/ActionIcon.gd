@@ -1,11 +1,13 @@
-extends Button
+extends CenterContainer
+
+onready var ActionButton = $ActionBtn
 
 export(Array, Image) var icons = []
 var index = 0
 
 
 func _ready():
-	icon = icons[index]
+	ActionButton.icon = icons[index]
 
 func _on_UpButton_pressed():
 	index = index - 1
@@ -14,7 +16,7 @@ func _on_UpButton_pressed():
 	if index <= -4 or index >= 4:
 		index = 0
 		
-	icon = icons[index]
+	ActionButton.icon = icons[index]
 
 func _on_DownButton_pressed():
 	index = index + 1
@@ -22,4 +24,7 @@ func _on_DownButton_pressed():
 	if index <= -4 or index >= 4:
 		index = 0
 		
-	icon = icons[index]
+	
+	
+		
+	ActionButton.icon = icons[index]

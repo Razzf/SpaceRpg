@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
@@ -13,6 +13,11 @@
 [ext_resource path="res://Resources/Styles/UpPresedButton.tres" type="StyleBox" id=11]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Img Resources/BlackSpace.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/ActionIcon.gd" type="Script" id=14]
+[ext_resource path="res://Img Resources/Icons Images/laser.png" type="Texture" id=15]
+[ext_resource path="res://Img Resources/Icons Images/thunderbolt.png" type="Texture" id=16]
+[ext_resource path="res://Img Resources/Icons Images/Shield.png" type="Texture" id=17]
+[ext_resource path="res://Img Resources/Icons Images/explosions.png" type="Texture" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -55,6 +60,7 @@ position = Vector2( 90, 160 )
 texture = ExtResource( 5 )
 
 [node name="UI" type="Control" parent="."]
+self_modulate = Color( 1, 1, 1, 0.505882 )
 margin_right = 180.0
 margin_bottom = 320.0
 __meta__ = {
@@ -62,6 +68,7 @@ __meta__ = {
 }
 
 [node name="TwoUpperBtns" type="VBoxContainer" parent="UI"]
+self_modulate = Color( 1, 1, 1, 0.54902 )
 margin_left = 14.0
 margin_top = 50.0
 margin_right = 46.0
@@ -72,6 +79,7 @@ __meta__ = {
 }
 
 [node name="Button2" type="Button" parent="UI/TwoUpperBtns"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
 margin_right = 32.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 32, 32 )
@@ -82,6 +90,7 @@ custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = ExtResource( 1 )
 
 [node name="Button3" type="Button" parent="UI/TwoUpperBtns"]
+self_modulate = Color( 1, 1, 1, 0.666667 )
 margin_top = 40.0
 margin_right = 32.0
 margin_bottom = 72.0
@@ -97,9 +106,11 @@ margin_left = 134.0
 margin_top = 199.0
 margin_right = 172.0
 margin_bottom = 259.0
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+icons = [ ExtResource( 18 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 16 ) ]
 
 [node name="UpDownBtns" type="VBoxContainer" parent="UI/ActionsContainer"]
 margin_left = 7.0
@@ -108,7 +119,7 @@ margin_bottom = 60.0
 rect_min_size = Vector2( 23, 60 )
 custom_constants/separation = 32
 
-[node name="UpBtn" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
+[node name="UpButton" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
 margin_right = 23.0
 margin_bottom = 14.0
 custom_styles/hover = ExtResource( 10 )
@@ -117,7 +128,7 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 
-[node name="DownBtn" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
+[node name="DownButton" type="Button" parent="UI/ActionsContainer/UpDownBtns"]
 margin_top = 46.0
 margin_right = 23.0
 margin_bottom = 60.0
@@ -137,3 +148,6 @@ custom_styles/pressed = ExtResource( 2 )
 custom_styles/focus = SubResource( 7 )
 custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = ExtResource( 1 )
+icon = ExtResource( 18 )
+[connection signal="pressed" from="UI/ActionsContainer/UpDownBtns/UpButton" to="UI/ActionsContainer" method="_on_UpButton_pressed"]
+[connection signal="pressed" from="UI/ActionsContainer/UpDownBtns/DownButton" to="UI/ActionsContainer" method="_on_DownButton_pressed"]
