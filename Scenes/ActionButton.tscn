@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
+[ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
+[ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=3]
+[ext_resource path="res://Scripts/ActionButton.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+[node name="ActionButton" type="Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -163.0
+margin_bottom = -308.0
+rect_min_size = Vector2( 17, 12 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/disabled = SubResource( 2 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="." to="." method="_on_pressed"]

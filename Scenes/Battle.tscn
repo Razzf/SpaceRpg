@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=21]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=22]
 [ext_resource path="res://Scripts/ShipStats.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/StatsContainer.gd" type="Script" id=24]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -232,7 +233,6 @@ __meta__ = {
 }
 
 [node name="OkBtn" type="Button" parent="UI/InfPanel"]
-visible = false
 margin_left = 31.0
 margin_top = 105.0
 margin_right = 48.0
@@ -245,6 +245,9 @@ custom_styles/disabled = SubResource( 12 )
 custom_styles/normal = ExtResource( 1 )
 custom_fonts/font = ExtResource( 22 )
 text = "Ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CancelBtn" type="Button" parent="UI/InfPanel"]
 visible = false
@@ -264,9 +267,56 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="StatsContainer" type="GridContainer" parent="UI"]
+margin_left = 15.0
+margin_top = 34.0
+margin_right = 169.0
+margin_bottom = 274.0
+mouse_filter = 2
+custom_constants/vseparation = 228
+custom_constants/hseparation = 93
+columns = 2
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlanetsLabel" type="Label" parent="UI/StatsContainer"]
+margin_right = 29.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 22 )
+text = "2324"
+
+[node name="ShieldLabel" type="Label" parent="UI/StatsContainer"]
+margin_left = 122.0
+margin_right = 151.0
+margin_bottom = 6.0
+custom_fonts/font = ExtResource( 22 )
+text = "2324ap"
+
+[node name="EnergyLabel" type="Label" parent="UI/StatsContainer"]
+margin_top = 234.0
+margin_right = 29.0
+margin_bottom = 240.0
+custom_fonts/font = ExtResource( 22 )
+text = "2324ad"
+
+[node name="ApLabel" type="Label" parent="UI/StatsContainer"]
+margin_left = 122.0
+margin_top = 234.0
+margin_right = 151.0
+margin_bottom = 240.0
+custom_fonts/font = ExtResource( 22 )
+custom_constants/line_spacing = 0
+text = "2324ap"
+
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
 texture = ExtResource( 5 )
+[connection signal="Ap_Changed" from="ShipStats" to="UI/StatsContainer" method="_on_ShipStats_Ap_Changed"]
+[connection signal="Energy_Changed" from="ShipStats" to="UI/StatsContainer" method="_on_ShipStats_Energy_Changed"]
+[connection signal="Shield_Changed" from="ShipStats" to="UI/StatsContainer" method="_on_ShipStats_Shield_Changed"]
+[connection signal="planets_Changed" from="ShipStats" to="UI/StatsContainer" method="_on_ShipStats_planets_Changed"]
 [connection signal="pressed" from="UI/ActionsContainer/UpDownBtns/UpButton" to="UI/ActionsContainer" method="_on_UpButton_pressed"]
 [connection signal="pressed" from="UI/ActionsContainer/UpDownBtns/DownButton" to="UI/ActionsContainer" method="_on_DownButton_pressed"]
 [connection signal="pressed" from="UI/ActionsContainer/ActionBtn" to="UI/InfPanel" method="_on_ActionBtn_pressed"]

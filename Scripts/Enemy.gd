@@ -2,20 +2,47 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
-export(int) var hp = 25 setget sethp
+export(int) var hp = 1200 setget sethp
 export(int) var damage = 4
 
 onready var hp_label = $Label
-onready var animation = $AnimatedSprite
+onready var animation = $AnimationPlayer
 onready var sprite = $Sprite
+
+
 
 signal dead
 signal end_turn
 
+func is_dead():
+	return hp <= 0
+	
+func attack():
+	animation.play("Attack")
+	yield(animation,"animation_finished")
+	emit_signal("end_turn")
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-func sethp(value):
+func deal_damage():
+	battle_units.ShipStats.shield -= damage
+	
+func take_damage(amount):
+	self.hp -= amount
+	if is_dead():
+		queue_free()
+		emit_signal("dead")
+	else:
+		animation.play("Shake")
 	pass
+	
+func sethp(value):
+	hp = value
+	if hp_label != null:
+		hp_label.text = str(hp) + "Hp"
+
+
+func _ready():
+	battle_units.Enemy = self
+	#animation.play("Idle")
+
+func _exit_tree():
+	battle_units.Enemy = null
