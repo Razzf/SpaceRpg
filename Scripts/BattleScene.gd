@@ -5,7 +5,6 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	battle_units.Enemy.animation.play("Idle")
-	battle_units.ShipStats.planets = 12
 	Start_Ship_Turn()
 
 func Start_Ship_Turn():

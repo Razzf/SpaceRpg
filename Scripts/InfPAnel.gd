@@ -9,7 +9,8 @@ var _animation = Animation.new()
 var PanelAbleToAppear = true
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
-onready var weapon = battle_units.ShipStats.get_child(0)
+onready var weapon = battle_units.ShipStats.find_node("Weapon", true, false)
+#onready var weapon = battle_units.ShipStats.find_node("Weapon", true, false)
 
 func _ready():
 	print(str(weapon))
@@ -19,19 +20,20 @@ func _ready():
 	OkBtn.hide()
 	CancelBtn.hide()
 	InfText.hide()
-
-func _on_ActionBtn_pressed():
 	if PanelAbleToAppear:
 		animation.play("PanelAppear")
 		yield(animation,"animation_finished")
 		TittlePanel.show()
 		TittleLabel.show()
 		InfText.show()
-		TittleLabel.text = weapon.name
-
+		TittleLabel.text = weapon._name
+	
 		OkBtn.show()
 		CancelBtn.show()
 		PanelAbleToAppear = false
+
+
+
 	
 
 
@@ -47,7 +49,7 @@ func _on_OkBtn_pressed():
 	var enemy = battle_units.Enemy
 	var ship = battle_units.ShipStats
 	if enemy != null and ship != null:
-		enemy.take_damage(ship.Weapon.power)
+		enemy.take_damage(weapon.power)
 		ship.energy -= 200
 		ship.ap -= 1
 		print("attacking")
