@@ -1,4 +1,4 @@
-extends GridContainer
+extends HBoxContainer
 
 onready var ShieldLabel = $ShieldLabel
 onready var EnergyLabel = $EnergyLabel

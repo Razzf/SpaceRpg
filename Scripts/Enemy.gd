@@ -2,6 +2,7 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
+
 export(int) var hp = 1200 setget sethp
 export(int) var damage = 4
 
@@ -32,7 +33,8 @@ func take_damage(amount):
 		emit_signal("dead")
 	else:
 		animation.play("Shake")
-	pass
+		yield(animation,"animation_finished")
+		animation.play("Idle")
 	
 func sethp(value):
 	hp = value
@@ -42,7 +44,6 @@ func sethp(value):
 
 func _ready():
 	battle_units.Enemy = self
-	#animation.play("Idle")
 
 func _exit_tree():
 	battle_units.Enemy = null

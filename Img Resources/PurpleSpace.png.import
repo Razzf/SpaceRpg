@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DownNormalButton.png-014dbb7d44fc1246287bb4dd90514089.stex"
+path="res://.import/PurpleSpace.png-7dfe1e0c152e9f155e5f5de677f54df6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Img Resources/Btns Images/DownNormalButton.png"
-dest_files=[ "res://.import/DownNormalButton.png-014dbb7d44fc1246287bb4dd90514089.stex" ]
+source_file="res://Img Resources/PurpleSpace.png"
+dest_files=[ "res://.import/PurpleSpace.png-7dfe1e0c152e9f155e5f5de677f54df6.stex" ]
 
 [params]
 

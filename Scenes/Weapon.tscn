@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Weapon.gd" type="Script" id=1]
+[ext_resource path="res://Img Resources/Icons Images/explosions.png" type="Texture" id=2]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource( 1 )
+icon_texure = ExtResource( 2 )
+type = 2
+
+[node name="Icon" type="Sprite" parent="."]
+position = Vector2( 0, 192 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
