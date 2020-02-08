@@ -5,6 +5,6 @@
 
 [node name="Shield Recover" instance=ExtResource( 2 )]
 icon_texture = ExtResource( 1 )
-cost = 100
+energy_cost = 100
 power = 100
 type = 0

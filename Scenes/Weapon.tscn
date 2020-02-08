@@ -6,7 +6,4 @@
 script = ExtResource( 1 )
 type = 2
 
-[node name="Icon" type="Sprite" parent="."]
-position = Vector2( 0, 192 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

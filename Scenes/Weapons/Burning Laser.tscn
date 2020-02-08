@@ -5,5 +5,5 @@
 
 [node name="Burning Laser" instance=ExtResource( 2 )]
 icon_texture = ExtResource( 1 )
-cost = 50
+energy_cost = 5
 power = 20

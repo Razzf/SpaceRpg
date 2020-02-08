@@ -2,15 +2,16 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
-# Called when the node enters the scene tree for the first time.
+onready var weaponSelector = $BattleUI/WeaponSelector
+
 func _ready():
 	battle_units.Enemy.animation.play("Idle")
 	Start_Ship_Turn()
 
 func Start_Ship_Turn():
-	var ship = battle_units.ShipStats
-	ship.ap = ship.max_ap
-	yield(ship, "end_turn")
+	var ship = battle_units.SpaceShip
+	var weapon = ship.equipped_weapon
+	yield(weaponSelector, "weapon_used")
 	Start_Enemy_Turn()
 	
 func Start_Enemy_Turn():
@@ -18,7 +19,7 @@ func Start_Enemy_Turn():
 	yield(enemy.animation, "animation_finished")
 	if enemy != null:
 		enemy.attack()
-		yield(enemy, "end_turn")
+		yield(enemy, "enemy_atacked")
 		enemy.animation.play("Idle")
 	Start_Ship_Turn()
 	

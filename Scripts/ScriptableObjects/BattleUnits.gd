@@ -1,5 +1,5 @@
 extends Resource
 class_name BattleUnits
 
-var ShipStats = null
+var SpaceShip = null
 var Enemy = null

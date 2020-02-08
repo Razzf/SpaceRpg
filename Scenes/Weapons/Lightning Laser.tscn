@@ -5,5 +5,5 @@
 
 [node name="Lightning Laser" instance=ExtResource( 2 )]
 icon_texture = ExtResource( 1 )
-cost = 250
+energy_cost = 290
 power = 280

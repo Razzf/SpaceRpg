@@ -13,7 +13,7 @@ onready var sprite = $Sprite
 
 
 signal dead
-signal end_turn
+signal enemy_atacked
 
 func is_dead():
 	return hp <= 0
@@ -21,10 +21,10 @@ func is_dead():
 func attack():
 	animation.play("Attack")
 	yield(animation,"animation_finished")
-	emit_signal("end_turn")
+	emit_signal("enemy_atacked")
 
 func deal_damage():
-	battle_units.ShipStats.shield -= damage
+	battle_units.SpaceShip.shield -= damage
 	
 func take_damage(amount):
 	self.hp -= amount
