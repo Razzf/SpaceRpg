@@ -2,16 +2,18 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
-onready var weaponSelector = $BattleUI/WeaponSelector
-
 func _ready():
 	battle_units.Enemy.animation.play("Idle")
 	Start_Ship_Turn()
 
 func Start_Ship_Turn():
+	var battleUI = battle_units.BattleUI
+	battleUI.actionBtns.show()
 	var ship = battle_units.SpaceShip
-	var weapon = ship.equipped_weapon
-	yield(weaponSelector, "weapon_used")
+	if ship != null:
+		yield(ship, "Energy_Changed")
+		Start_Enemy_Turn()
+	yield(battleUI, "turn_passed")
 	Start_Enemy_Turn()
 	
 func Start_Enemy_Turn():
@@ -22,9 +24,3 @@ func Start_Enemy_Turn():
 		yield(enemy, "enemy_atacked")
 		enemy.animation.play("Idle")
 	Start_Ship_Turn()
-	
-	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

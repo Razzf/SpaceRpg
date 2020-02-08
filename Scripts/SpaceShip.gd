@@ -30,7 +30,9 @@ func setEnergy(value):
 
 func update_equipped_weapon(w_index):
 	if find_node("Weapon", true, false) != null:
-		remove_child(get_node("Weapon"))
+		var weapon = get_node("Weapon")
+		remove_child(weapon)
+		weapon.free()
 		equipped_weapon = Weapons[w_index].instance()
 		add_child(equipped_weapon)
 	else:
@@ -41,9 +43,5 @@ func _ready():
 	update_equipped_weapon(0)
 	battle_units.SpaceShip = self
 	
-	
 func _exit_tree():
 	battle_units.SpaceShip = null
-
-
-

@@ -9,12 +9,18 @@ onready var weaponNamePanel = $DescriptionPanel/WeaponNamePanel
 onready var weaponNameLabel = $DescriptionPanel/WeaponNamePanel/WeaponNameLabel
 onready var weaponDescription = $DescriptionPanel/WeaponDescription
 onready var btns = $BtnsContainer
-
-signal weapon_used()
+onready var okBtn = $BtnsContainer/OkBtn
 
 func _ready():
-	weaponController.show()
-	panelAnimations.play("PanelAppear")
+	if battle_units.BattleUI != null:
+		battle_units.BattleUI.actionBtns.hide()
+		weaponController.show()
+		descriptionPanel.show()
+		panelAnimations.play("PanelAppear")
+		yield(panelAnimations,"animation_finished")
+		btns.show()
+		weaponNamePanel.show()
+		weaponDescription.show()
 
 func _on_OkBtn_pressed():
 	btns.hide()
@@ -24,14 +30,7 @@ func _on_OkBtn_pressed():
 	yield(panelAnimations,"animation_finished")
 	weaponController.hide()
 	descriptionPanel.hide()
-	var enemy = battle_units.Enemy
-	var ship = battle_units.SpaceShip
-	if enemy != null and ship != null:
-		var weapon = ship.equipped_weapon
-		enemy.take_damage(weapon.power)
-		ship.energy -= weapon.energy_cost
-		emit_signal("weapon_used")
-
+	queue_free()
 
 func _on_CancelBtn_pressed():
 	btns.hide()
@@ -41,6 +40,7 @@ func _on_CancelBtn_pressed():
 	yield(panelAnimations,"animation_finished")
 	weaponController.hide()
 	descriptionPanel.hide()
+	queue_free()
 
 
 func _on_Enemy_enemy_atacked():
@@ -54,3 +54,7 @@ func _on_Enemy_enemy_atacked():
 
 func _on_WeaponController_weapon_Changed():
 	weaponNameLabel.text = battle_units.SpaceShip.equipped_weapon._name
+	
+func _exit_tree():
+	if battle_units.BattleUI != null:
+		battle_units.BattleUI.actionBtns.show()

@@ -64,3 +64,5 @@ custom_fonts/font = ExtResource( 4 )
 text = "2000Sp"
 align = 1
 valign = 1
+[connection signal="Energy_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Energy_Changed"]
+[connection signal="Shield_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Shield_Changed"]

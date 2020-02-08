@@ -1,19 +1,11 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=1]
-[ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
-[ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=3]
+[ext_resource path="res://Scenes/BattleUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/WeaponSelector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Img Resources/Sprites and designs/combat design 4.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Img Resources/PurpleSpace.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/BattleScene.gd" type="Script" id=19]
-[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=22]
-
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxFlat" id=2]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource( 19 )
@@ -27,73 +19,14 @@ position = Vector2( 90, 160 )
 texture = ExtResource( 13 )
 
 [node name="Enemy" parent="." instance=ExtResource( 12 )]
-position = Vector2( 88, 100 )
+position = Vector2( 90, 100 )
 
 [node name="SpaceShip" parent="." instance=ExtResource( 4 )]
 
 [node name="combat design 3" type="Sprite" parent="."]
+visible = false
 self_modulate = Color( 1, 1, 1, 0.4 )
 position = Vector2( 90, 160 )
 texture = ExtResource( 6 )
 
-[node name="BattleUI" type="Control" parent="."]
-self_modulate = Color( 1, 1, 1, 0.505882 )
-margin_right = 180.0
-margin_bottom = 320.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ActiobButtons" type="HBoxContainer" parent="BattleUI"]
-visible = false
-margin_left = 4.0
-margin_top = 227.0
-margin_right = 176.0
-margin_bottom = 257.0
-custom_constants/separation = 11
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="btn" type="Button" parent="BattleUI/ActiobButtons"]
-margin_right = 50.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 50, 30 )
-custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = ExtResource( 2 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 22 )
-text = "Pass"
-
-[node name="ShoWeaponsBtn" type="Button" parent="BattleUI/ActiobButtons"]
-margin_left = 61.0
-margin_right = 111.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 50, 30 )
-custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = ExtResource( 2 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 22 )
-text = "Weapons"
-
-[node name="btn3" type="Button" parent="BattleUI/ActiobButtons"]
-margin_left = 122.0
-margin_right = 172.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 50, 30 )
-custom_styles/hover = ExtResource( 3 )
-custom_styles/pressed = ExtResource( 2 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = ExtResource( 1 )
-custom_fonts/font = ExtResource( 22 )
-text = "Run Away"
-
-[node name="WeaponSelector" parent="BattleUI" instance=ExtResource( 5 )]
-margin_top = 199.0
-margin_bottom = 307.0
-[connection signal="enemy_atacked" from="Enemy" to="BattleUI/WeaponSelector" method="_on_Enemy_enemy_atacked"]
+[node name="BattleUI" parent="." instance=ExtResource( 1 )]
