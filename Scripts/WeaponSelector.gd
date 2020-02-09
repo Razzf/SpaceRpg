@@ -29,7 +29,7 @@ func _on_OkBtn_pressed():
 	btns.hide()
 	weaponNamePanel.hide()
 	weaponDescription.hide()
-	panelAnimations.play("PanelDisappear")
+	panelAnimations.play_backwards("PanelAppear")
 	yield(panelAnimations,"animation_finished")
 	battle_units.SpaceShip.attack_enemy(battle_units.Enemy)
 	emit_signal("weapon_selected")
@@ -39,7 +39,7 @@ func _on_CancelBtn_pressed():
 	btns.hide()
 	weaponNamePanel.hide()
 	weaponDescription.hide()
-	panelAnimations.play("PanelDisappear")
+	panelAnimations.play_backwards("PanelAppear")
 	yield(panelAnimations,"animation_finished")
 	queue_free()
 

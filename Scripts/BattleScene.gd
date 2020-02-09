@@ -18,7 +18,10 @@ func Start_Enemy_Turn():
 	print("enemy_turn_start")
 	var enemy = battle_units.Enemy
 	if enemy != null:
+		print("checking")
+		enemy.animation.get_animation("Idle").set_loop(false)
 		yield(enemy.animation, "animation_finished")
+		enemy.animation.get_animation("Idle").set_loop(true)
 		enemy.attack()
 		yield(enemy, "enemy_atacked")
 		enemy.animation.play("Idle")

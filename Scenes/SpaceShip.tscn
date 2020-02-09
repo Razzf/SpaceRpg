@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/StatsContainer.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Img Resources/Sprites and designs/ShipWindow2.png" type="Texture" id=5]
+[ext_resource path="res://Img Resources/Sprites and designs/ShipWindow4weapons.png" type="Texture" id=5]
 
 [node name="SpaceShip" type="Node2D"]
 script = ExtResource( 1 )

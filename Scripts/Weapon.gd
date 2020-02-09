@@ -9,6 +9,8 @@ onready var _name = self.name
 onready var animation = $AnimationPlayer
 
 
+
+
 func set_energy_cost(value):
 	energy_cost = value
 	

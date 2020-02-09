@@ -22,7 +22,8 @@ func _on_RunAwayBtn_pressed():
 	
 func _ready():
 	battle_units.BattleUI = self
-	self.connect("turn_passed", get_parent(), "_on_BattleUI_turn_passed")
+# warning-ignore:return_value_discarded
+	self.connect("turn_passed", self.get_parent(), "_on_BattleUI_turn_passed")
 	
 func _exit_tree():
 	battle_units.BattleUI = null
