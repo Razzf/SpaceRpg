@@ -18,10 +18,11 @@ func _on_PassTurnBtn_pressed():
 
 func _on_RunAwayBtn_pressed():
 	actionBtns.hide()
-	pass # Replace with function body.
+	pass
 	
 func _ready():
 	battle_units.BattleUI = self
+	self.connect("turn_passed", get_parent(), "_on_BattleUI_turn_passed")
 	
 func _exit_tree():
 	battle_units.BattleUI = null

@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=2]
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=4]
 [ext_resource path="res://Scripts/WeaponSelector.gd" type="Script" id=5]
-[ext_resource path="res://Scenes/OkBtn.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://Scripts/WeaponController.gd" type="Script" id=8]
 
@@ -13,8 +12,11 @@
 
 [sub_resource type="StyleBoxFlat" id=2]
 
-[sub_resource type="Animation" id=3]
-resource_name = "PanelAppear"
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+
+[sub_resource type="Animation" id=5]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_size")
@@ -29,8 +31,7 @@ tracks/0/keys = {
 "values": [ Vector2( 2, 7 ), Vector2( 77, 7 ), Vector2( 135, 7 ), Vector2( 135, 40 ), Vector2( 135, 72 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "PanelDisappear"
+[sub_resource type="Animation" id=6]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_size")
 tracks/0/interp = 1
@@ -44,13 +45,13 @@ tracks/0/keys = {
 "values": [ Vector2( 135, 86 ), Vector2( 135, 47 ), Vector2( 135, 25 ), Vector2( 135, 6 ), Vector2( 73, 6 ), Vector2( 2, 6 ) ]
 }
 
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="StyleBoxFlat" id=6]
-
 [sub_resource type="StyleBoxEmpty" id=7]
 
 [sub_resource type="StyleBoxFlat" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxFlat" id=10]
 
 [node name="WeaponSelector" type="Container"]
 margin_right = 180.0
@@ -61,6 +62,7 @@ __meta__ = {
 }
 
 [node name="BtnsContainer" type="HBoxContainer" parent="."]
+visible = false
 margin_left = 80.0
 margin_top = 92.0
 margin_right = 128.0
@@ -82,18 +84,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OkBtn" parent="BtnsContainer" instance=ExtResource( 6 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
+[node name="OkBtn" type="Button" parent="BtnsContainer"]
 margin_left = 33.0
 margin_right = 50.0
 margin_bottom = 12.0
+rect_min_size = Vector2( 17, 12 )
+custom_styles/hover = ExtResource( 1 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = ExtResource( 4 )
+custom_fonts/font = ExtResource( 7 )
+text = "Ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DescriptionPanel" type="Panel" parent="."]
+visible = false
 margin_left = 147.0
 margin_top = 18.0
-margin_right = 282.0
-margin_bottom = 90.0
+margin_right = 149.0
+margin_bottom = 25.0
 rect_scale = Vector2( -1, 1 )
 custom_styles/panel = ExtResource( 3 )
 __meta__ = {
@@ -101,10 +113,11 @@ __meta__ = {
 }
 
 [node name="PanelAnimation" type="AnimationPlayer" parent="DescriptionPanel"]
-anims/PanelAppear = SubResource( 3 )
-anims/PanelDisappear = SubResource( 4 )
+anims/PanelAppear = SubResource( 5 )
+anims/PanelDisappear = SubResource( 6 )
 
 [node name="WeaponNamePanel" type="Panel" parent="DescriptionPanel"]
+visible = false
 margin_left = 54.0
 margin_top = -14.0
 margin_right = 129.0
@@ -127,6 +140,7 @@ __meta__ = {
 }
 
 [node name="WeaponDescription" type="RichTextLabel" parent="DescriptionPanel"]
+visible = false
 margin_left = 132.0
 margin_top = 3.0
 margin_right = 247.0
@@ -139,6 +153,7 @@ __meta__ = {
 }
 
 [node name="WeaponController" type="CenterContainer" parent="."]
+visible = false
 margin_left = 131.0
 margin_top = 11.0
 margin_right = 168.0
@@ -162,8 +177,8 @@ margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 2 )
-custom_styles/focus = SubResource( 5 )
-custom_styles/disabled = SubResource( 6 )
+custom_styles/focus = SubResource( 7 )
+custom_styles/disabled = SubResource( 8 )
 custom_styles/normal = ExtResource( 4 )
 
 [node name="DownButton" type="Button" parent="WeaponController/UpDownBtns"]
@@ -173,8 +188,8 @@ margin_bottom = 84.0
 rect_min_size = Vector2( 25, 25 )
 custom_styles/hover = ExtResource( 1 )
 custom_styles/pressed = ExtResource( 2 )
-custom_styles/focus = SubResource( 7 )
-custom_styles/disabled = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+custom_styles/disabled = SubResource( 10 )
 custom_styles/normal = ExtResource( 4 )
 
 [node name="WeaponIcon" type="Panel" parent="WeaponController"]

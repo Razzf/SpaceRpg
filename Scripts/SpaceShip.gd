@@ -18,6 +18,7 @@ const Weapons = [
 	
 signal Shield_Changed(value)
 signal Energy_Changed(value)
+signal weapon_used
 
 func setShield(value):
 	shield = clamp(value, 0, max_shield)
@@ -38,6 +39,12 @@ func update_equipped_weapon(w_index):
 	else:
 		equipped_weapon = Weapons[w_index]
 		add_child(equipped_weapon)
+		
+func attack_enemy(_enemy):
+	if _enemy != null:
+		_enemy.take_damage(equipped_weapon.power)
+		self.energy -= equipped_weapon.energy_cost
+		emit_signal("weapon_used")
 
 func _ready():
 	update_equipped_weapon(0)

@@ -33,8 +33,6 @@ func take_damage(amount):
 		emit_signal("dead")
 	else:
 		animation.play("Shake")
-		yield(animation,"animation_finished")
-		animation.play("Idle")
 	
 func sethp(value):
 	hp = value
