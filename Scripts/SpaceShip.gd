@@ -1,7 +1,7 @@
 extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
-
+onready var animation = $AnimationPlayer
 var max_shield = 2000
 var shield = max_shield setget setShield
 
@@ -46,31 +46,9 @@ func update_equipped_weapon(w_index):
 		
 func attack_enemy(_enemy):
 	if _enemy != null:
-		var explosion1 = equipped_weapon.explosion.instance()
-		var explosion2 = equipped_weapon.explosion.instance()
-		var explosion3 = equipped_weapon.explosion.instance()
-		var explosion4 = equipped_weapon.explosion.instance()
-		var explosion5 = equipped_weapon.explosion.instance()
-		_enemy.add_child(explosion1)
-		explosion1.global_position = Vector2(80,80)
-		yield(get_tree().create_timer(.2),"timeout")
-		_enemy.add_child(explosion2)
-		explosion2.global_position = Vector2(95,95)
-		yield(get_tree().create_timer(.2),"timeout")
-		_enemy.add_child(explosion3)
-		explosion3.global_position = Vector2(120,120)
-		yield(get_tree().create_timer(.2),"timeout")
-		_enemy.add_child(explosion4)
-		explosion4.global_position = Vector2(80,135)
-		yield(get_tree().create_timer(.2),"timeout")
-		_enemy.add_child(explosion5)
-		explosion5.global_position = Vector2(60,120)
-		yield(get_tree().create_timer(.2),"timeout")
-		
-		
-		
-		
-		
+		animation.play("attack")
+		get_node("Weapon").trigger_counter = 0
+		get_node("Weapon").add_child(preload("res://Scenes/Explosion.tscn").instance())
 		_enemy.take_damage(equipped_weapon.power)
 		self.energy -= equipped_weapon.energy_cost
 		emit_signal("weapon_used")

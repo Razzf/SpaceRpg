@@ -29,6 +29,8 @@ func deal_damage():
 func take_damage(amount):
 	self.hp -= amount
 	if is_dead():
+		animation.play("Shake")
+		yield(animation,"animation_finished")
 		queue_free()
 		emit_signal("dead")
 	else:

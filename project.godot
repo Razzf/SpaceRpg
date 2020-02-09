@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "BattleUnits",
 "language": "GDScript",
 "path": "res://Scripts/ScriptableObjects/BattleUnits.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://Scripts/Weapon.gd"
 } ]
 _global_script_class_icons={
-"BattleUnits": ""
+"BattleUnits": "",
+"Weapon": ""
 }
 
 [application]
