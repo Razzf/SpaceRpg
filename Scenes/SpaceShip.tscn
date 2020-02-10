@@ -83,6 +83,7 @@ align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 3.94
 anims/attack = SubResource( 1 )
 [connection signal="Energy_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Shield_Changed"]
