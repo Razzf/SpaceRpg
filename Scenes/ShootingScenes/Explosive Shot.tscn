@@ -5,6 +5,12 @@
 
 [node name="Explosive Shot" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-max_explosions = 4
+max_explosions = 5
 spawn_range_x = 15.888
-spawn_range_y = 14.486
+spawn_range_y = 20.842
+
+[node name="animExplosion" parent="." index="0"]
+playback_speed = 3.1
+
+[node name="Sprite" parent="." index="1"]
+frame = 0

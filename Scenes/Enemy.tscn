@@ -14,10 +14,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.5, 0.7, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 12 ), Vector2( 0, 10 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 18 ), Vector2( 0, 16 ), Vector2( 0, 14 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:scale")
@@ -26,10 +26,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.4, 0.5, 0.7, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.6, 1.6 ), Vector2( 1.5, 1.5 ), Vector2( 1, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 2, 2 ), Vector2( 1.9, 1.9 ), Vector2( 1.7, 1.7 ), Vector2( 1, 1 ) ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -76,7 +76,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 3.8147e-06, -5.96046e-08 ), Vector2( -9, 10 ), Vector2( 14, 12 ), Vector2( -12, -11 ), Vector2( 17, -11 ), Vector2( 1.19209e-07, -1.19209e-07 ) ]
+"values": [ Vector2( 3.8147e-06, -5.96046e-08 ), Vector2( -4.23342, 0.864052 ), Vector2( 6.05569, 6.04177 ), Vector2( -6.8362, -4.64456 ), Vector2( 7.06961, -3.45292 ), Vector2( 1.19209e-07, -1.19209e-07 ) ]
 }
 
 [node name="Enemy" type="Node2D"]
