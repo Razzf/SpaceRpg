@@ -7,16 +7,16 @@ var load_scene = preload("res://Scenes/WeaponSelector.tscn")
 
 signal turn_passed
 
-func _on_ShowWeaponsBtn_pressed():
+func _on_ShowWeaponsBtn_pressed() -> void:
 	actionBtns.hide()
 	weaponSelector = load_scene.instance()
 	add_child(weaponSelector)
 
-func _on_PassTurnBtn_pressed():
+func _on_PassTurnBtn_pressed() -> void:
 	actionBtns.hide()
 	emit_signal("turn_passed")
 
-func _on_RunAwayBtn_pressed():
+func _on_RunAwayBtn_pressed() -> void:
 	actionBtns.hide()
 	pass
 	

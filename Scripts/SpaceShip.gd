@@ -1,7 +1,7 @@
 extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
-onready var animation = $AnimationPlayer
+onready var animation : AnimationPlayer = $AnimationPlayer
 var max_shield = 2000
 var shield = max_shield setget setShield
 
@@ -32,7 +32,7 @@ func setEnergy(value):
 	emit_signal("Energy_Changed", energy)
 	
 
-func update_equipped_weapon(w_index):
+func update_equipped_weapon(w_index) -> void:
 	if find_node("Weapon", true, false) != null:
 		var weapon = get_node("Weapon")
 		remove_child(weapon)
@@ -44,18 +44,18 @@ func update_equipped_weapon(w_index):
 		equipped_weapon = Weapons[w_index]
 		add_child(equipped_weapon)
 		
-func attack_enemy(_enemy):
+func attack_enemy(_enemy) -> void:
 	if _enemy != null:
 		animation.play("attack")
-		get_node("Weapon").trigger_counter = 0
-		get_node("Weapon").add_child(preload("res://Scenes/Explosion.tscn").instance())
+		equipped_weapon.trigger_counter = 0
+		equipped_weapon.add_child(equipped_weapon.shooting_scene.instance())
 		_enemy.take_damage(equipped_weapon.power)
 		self.energy -= equipped_weapon.energy_cost
 		emit_signal("weapon_used")
 
 func _ready():
 	update_equipped_weapon(0)
-	print(equipped_weapon)
+	print(equipped_weapon._name)
 	battle_units.SpaceShip = self
 	
 func _exit_tree():

@@ -1,4 +1,5 @@
 extends Node2D
+class_name Enemy
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
@@ -6,27 +7,25 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 export(int) var hp = 1200 setget sethp
 export(int) var damage = 4
 
-onready var hp_label = $Label
-onready var animation = $AnimationPlayer
-onready var sprite = $Sprite
-
-
+onready var hp_label : Label = $Label
+onready var animation : AnimationPlayer = $AnimationPlayer
+onready var sprite : Sprite = $Sprite
 
 signal dead
 signal enemy_atacked
 
-func is_dead():
+func is_dead() -> bool:
 	return hp <= 0
 	
-func attack():
+func attack() -> void:
 	animation.play("Attack")
 	yield(animation,"animation_finished")
 	emit_signal("enemy_atacked")
 
-func deal_damage():
+func deal_damage() -> void:
 	battle_units.SpaceShip.shield -= damage
 	
-func take_damage(amount):
+func take_damage(amount) -> void:
 	self.hp -= amount
 	if is_dead():
 		animation.play("Shake")

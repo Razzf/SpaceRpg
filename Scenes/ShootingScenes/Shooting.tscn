@@ -1,7 +1,25 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Img Resources/Frames Images/new explosion frames.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/WeaponAnimScripts/Explosion.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Shooting
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [sub_resource type="Animation" id=1]
 resource_name = "Explosion"
@@ -17,7 +35,7 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
-"method": "_add_another_explosion"
+"method": "_add_another_shot"
 }, {
 "args": [  ],
 "method": "queue_free"
@@ -36,8 +54,9 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 5 ]
 }
 
-[node name="Explosions" type="Node2D"]
-script = ExtResource( 2 )
+[node name="Shooting" type="Node2D"]
+script = SubResource( 2 )
+max_explosions = 2
 
 [node name="animExplosion" type="AnimationPlayer" parent="."]
 autoplay = "Explosion"
@@ -47,4 +66,4 @@ anims/Explosion = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 6
-frame = 5
+frame = 4

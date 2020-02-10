@@ -15,12 +15,24 @@ _global_script_classes=[ {
 "path": "res://Scripts/ScriptableObjects/BattleUnits.gd"
 }, {
 "base": "Node2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Scripts/Enemy.gd"
+}, {
+"base": "Node2D",
+"class": "Shooting",
+"language": "GDScript",
+"path": "res://Scripts/WeaponAnimScripts/Shooting.gd"
+}, {
+"base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://Scripts/Weapon.gd"
 } ]
 _global_script_class_icons={
 "BattleUnits": "",
+"Enemy": "",
+"Shooting": "",
 "Weapon": ""
 }
 
