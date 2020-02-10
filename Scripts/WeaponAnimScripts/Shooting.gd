@@ -24,11 +24,12 @@ func _ready():
 			enemy_position_y + y_range_rounded)
 		)
 func _add_another_shot():
-	if self.get_parent() != null:
-		print(get_parent())
-		get_parent().trigger_counter = get_parent().trigger_counter + 1
+	var weapon = battle_units.SpaceShip.equipped_weapon
+	var enemy = battle_units.Enemy
+	if weapon != null and enemy != null:
+		weapon.trigger_counter = weapon.trigger_counter + 1
 		print(battle_units.SpaceShip.equipped_weapon.trigger_counter)
-		if get_parent().trigger_counter < max_explosions:
-			get_parent().add_child(shooting.instance())
+		if weapon.trigger_counter < max_explosions:
+			enemy.add_child(shooting.instance())
 		
 		
