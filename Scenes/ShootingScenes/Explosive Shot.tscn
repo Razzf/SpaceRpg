@@ -11,9 +11,9 @@ spawn_range_x = 15.888
 spawn_range_y = 20.842
 
 [node name="animExplosion" parent="." index="0"]
-playback_speed = 6.04
+playback_speed = 7.0
 
 [node name="Sprite" parent="." index="1"]
-self_modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 1, 1, 1, 0.884633 )
 texture = ExtResource( 3 )
 frame = 0
