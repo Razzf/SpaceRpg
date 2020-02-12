@@ -46,15 +46,14 @@ func update_equipped_weapon(w_index) -> void:
 		
 func attack_enemy(_enemy) -> void:
 	if _enemy != null:
-		var i = 0
 		var explosions = equipped_weapon.shooting_scene.instance()
-		equipped_weapon.trigger_counter = 0
-		_enemy.add_child(explosions)
-		_enemy.take_damage(equipped_weapon.power)
 		for i in range(explosions.max_explosions):
 			animation.play("attack")
 			yield(animation,"animation_finished")
-		
+			if i == 0:
+				equipped_weapon.trigger_counter = 0
+				_enemy.add_child(explosions)
+				_enemy.take_damage(equipped_weapon.power)
 		self.energy -= equipped_weapon.energy_cost
 		emit_signal("weapon_used")
 
