@@ -15,8 +15,6 @@ func _ready():
 	if enemy != null:
 		var enemy_position_x = enemy.global_position.x
 		var enemy_position_y = enemy.global_position.y
-		print(x_range_rounded)
-		print(spawn_range_y)
 		self.global_position = Vector2(
 			rand_range(enemy_position_x - x_range_rounded,
 			enemy_position_y + x_range_rounded),
@@ -28,7 +26,6 @@ func _add_another_shot():
 	var enemy = battle_units.Enemy
 	if weapon != null and enemy != null:
 		weapon.trigger_counter = weapon.trigger_counter + 1
-		print(battle_units.SpaceShip.equipped_weapon.trigger_counter)
 		if weapon.trigger_counter < max_explosions:
 			enemy.add_child(shooting.instance())
 		

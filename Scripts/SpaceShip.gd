@@ -38,7 +38,6 @@ func update_equipped_weapon(w_index) -> void:
 		remove_child(weapon)
 		weapon.free()
 		equipped_weapon = Weapons[w_index].instance()
-		print(Weapons[w_index])
 		add_child(equipped_weapon)
 	else:
 		equipped_weapon = Weapons[w_index]
@@ -54,12 +53,12 @@ func attack_enemy(_enemy) -> void:
 				equipped_weapon.trigger_counter = 0
 				_enemy.add_child(explosions)
 				_enemy.take_damage(equipped_weapon.power)
+				print("caca")
 		self.energy -= equipped_weapon.energy_cost
 		emit_signal("weapon_used")
 
 func _ready():
 	update_equipped_weapon(0)
-	print(equipped_weapon._name)
 	battle_units.SpaceShip = self
 	
 func _exit_tree():

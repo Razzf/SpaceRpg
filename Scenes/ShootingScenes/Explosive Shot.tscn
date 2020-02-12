@@ -6,9 +6,9 @@
 
 [node name="Explosive Shot" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
-max_explosions = 4
-spawn_range_x = 15.888
-spawn_range_y = 20.842
+max_explosions = 8
+spawn_range_x = 30.933
+spawn_range_y = 28.814
 
 [node name="animExplosion" parent="." index="0"]
 playback_speed = 7.0

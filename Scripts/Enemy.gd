@@ -3,13 +3,14 @@ class_name Enemy
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
-
+var max_hp = 1200
 export(int) var hp = 1200 setget sethp
 export(int) var damage = 4
 
 onready var hp_label : Label = $Label
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
+onready var progressbar : ProgressBar = $ProgressBar
 
 signal dead
 signal enemy_atacked
@@ -33,10 +34,15 @@ func take_damage(amount) -> void:
 		queue_free()
 		emit_signal("dead")
 	else:
+		print("only shake")
 		animation.play("Shake")
 	
 func sethp(value):
 	hp = value
+	if progressbar != null:
+		var pvalue
+		pvalue = (100 * hp) / max_hp
+		progressbar.value = pvalue
 	if hp_label != null:
 		hp_label.text = str(hp) + "Hp"
 

@@ -48,7 +48,6 @@ __meta__ = {
 }
 
 [node name="BtnsContainer" type="HBoxContainer" parent="."]
-visible = false
 margin_left = 80.0
 margin_top = 92.0
 margin_right = 128.0
@@ -87,11 +86,10 @@ __meta__ = {
 }
 
 [node name="DescriptionPanel" type="Panel" parent="."]
-visible = false
 margin_left = 147.0
 margin_top = 18.0
 margin_right = 282.0
-margin_bottom = 25.0
+margin_bottom = 90.0
 rect_scale = Vector2( -1, 1 )
 custom_styles/panel = ExtResource( 3 )
 __meta__ = {
@@ -102,7 +100,6 @@ __meta__ = {
 anims/PanelAppear = SubResource( 5 )
 
 [node name="WeaponNamePanel" type="Panel" parent="DescriptionPanel"]
-visible = false
 margin_left = 54.0
 margin_top = -14.0
 margin_right = 129.0
@@ -125,20 +122,18 @@ __meta__ = {
 }
 
 [node name="WeaponDescription" type="RichTextLabel" parent="DescriptionPanel"]
-visible = false
 margin_left = 132.0
 margin_top = 3.0
 margin_right = 247.0
 margin_bottom = 69.0
 rect_scale = Vector2( -1, 1 )
 custom_fonts/normal_font = ExtResource( 7 )
-text = "dadaadadasdadsadadsaddaddasdaasadddasdadadasddadsasadadsdaadaaddaddasdaas"
+text = "dadaadadasdadsadadsaddaddasdaasadddasdadaddaaddadda"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="WeaponController" type="CenterContainer" parent="."]
-visible = false
 margin_left = 131.0
 margin_top = 11.0
 margin_right = 168.0

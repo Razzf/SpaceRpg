@@ -67,7 +67,7 @@ tracks/2/keys = {
 
 [node name="Shooting" type="Node2D"]
 script = SubResource( 1 )
-max_explosions = 2
+max_explosions = 3
 spawn_range_x = 23.729
 spawn_range_y = 39.407
 

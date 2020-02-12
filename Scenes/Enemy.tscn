@@ -105,3 +105,15 @@ playback_speed = 0.6
 anims/Attack = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 anims/Shake = SubResource( 3 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+margin_left = -29.0
+margin_top = -42.0
+margin_right = 49.0
+margin_bottom = -28.0
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
