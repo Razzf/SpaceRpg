@@ -19,12 +19,16 @@ func is_dead() -> bool:
 	return hp <= 0
 	
 func attack() -> void:
+	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
+	battle_units.SpaceShip.shield_hitted_sprites.show()
+	
 	animation.play("Attack")
 	yield(animation,"animation_finished")
 	emit_signal("enemy_atacked")
 
 func deal_damage() -> void:
 	battle_units.SpaceShip.shield -= damage
+	battle_units.SpaceShip.animation.play("Shield_Hitted")
 	
 func take_damage(amount) -> void:
 	self.hp -= amount

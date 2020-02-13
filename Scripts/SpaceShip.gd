@@ -2,6 +2,7 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var animation : AnimationPlayer = $AnimationPlayer
+onready var shield_hitted_sprites : Sprite = $Sprite
 var max_shield = 2000
 var shield = max_shield setget setShield
 
@@ -58,6 +59,9 @@ func attack(_enemy) -> void:
 		emit_signal("weapon_used")
 
 func _ready():
+	shield_hitted_sprites.hide()
+	
+	animation.play("Shield appear")
 	update_equipped_weapon(0)
 	battle_units.SpaceShip = self
 	
