@@ -15,22 +15,17 @@ func Start_Ship_Turn() -> void:
 	Start_Enemy_Turn()
 	
 func Start_Enemy_Turn() -> void:
-	print("enemy turn starts")
 	var enemy = battle_units.Enemy
 	if enemy != null:
-		print("enemy is something")
 		if enemy.animation.is_playing():
 			enemy.animation.get_animation("Idle").set_loop(false)
 			yield(enemy.animation, "animation_finished")
 		enemy.animation.get_animation("Idle").set_loop(true)
 		enemy.attack()
-		print("enemy attacking")
 		yield(enemy, "enemy_atacked")
 		enemy.animation.play("Idle")
 		var battleUI = battle_units.BattleUI
 		battleUI.actionBtns.show()
-	else:
-		print("enemy is nothing")
 	Start_Ship_Turn()
 
 func _on_BattleUI_turn_passed() -> void:

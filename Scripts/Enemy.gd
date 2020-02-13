@@ -34,7 +34,6 @@ func take_damage(amount) -> void:
 		queue_free()
 		emit_signal("dead")
 	else:
-		print("only shake")
 		animation.play("Shake")
 	
 func sethp(value):

@@ -14,24 +14,32 @@ var down_index = 2
 func _ready():
 	var ship = battle_units.SpaceShip
 	if ship != null:
-		var weapon = ship.Weapons[index].instance()
 		var upperWeapon = ship.Weapons[up_index].instance()
 		var lowerWeapon = ship.Weapons[down_index].instance()
-
+		
 		UpperButton.icon = upperWeapon.icon_texture
 		LowerButton.icon = lowerWeapon.icon_texture
-		weaponIcon.texture = weapon.icon_texture
+		weaponIcon.texture = battle_units.SpaceShip.equipped_weapon.icon_texture
+		battle_units.SpaceShip.equipped_weapon.description = "nalgas \n" + "Power: " + str(battle_units.SpaceShip.equipped_weapon.power)+ "\n" + "Energy Cost: " + str(battle_units.SpaceShip.equipped_weapon.energy_cost)
+		print("weapon updated and desc added")
 		
-		weapon.free()
 		upperWeapon.free()
 		lowerWeapon.free()
+		
 
 func _on_UpButton_pressed(): #Moves the weapons downwards
 	update_weapon_selector(downwards)
-	
+	var weapon = battle_units.SpaceShip.equipped_weapon
+	weapon.description = "nalgas \n" + "Power: " + str(weapon.power)+ "\n" + "Energy Cost: " + str(weapon.energy_cost)
+	print("weapon description added")
+	emit_signal("weapon_Changed")
 
 func _on_DownButton_pressed(): #moves the weapons upwards
 	update_weapon_selector(upwards)
+	var weapon = battle_units.SpaceShip.equipped_weapon
+	weapon.description = "nalgas \n" + "Power: " + str(weapon.power) + "\n" + "Energy Cost: " + str(weapon.energy_cost)
+	print("weapon description added")
+	emit_signal("weapon_Changed")
 
 func update_weapon_selector(trace): #func that moves the weapon positions up or down
 	var ship = battle_units.SpaceShip
@@ -65,7 +73,6 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 	
 			ship.update_equipped_weapon(index)
 			weapon = ship.equipped_weapon
-			emit_signal("weapon_Changed")
 			weaponIcon.texture = weapon.icon_texture
 
 

@@ -8,7 +8,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack"
-length = 0.5
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("ShipWindow:frame")
 tracks/0/interp = 1
@@ -16,10 +16,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 0 ]
+"values": [ 0, 1, 2, 3, 4, 0, 0 ]
 }
 
 [node name="SpaceShip" type="Node2D"]
@@ -83,7 +83,7 @@ align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 3.0
+playback_speed = 3.8
 anims/attack = SubResource( 1 )
 [connection signal="Energy_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Shield_Changed"]

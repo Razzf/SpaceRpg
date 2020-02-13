@@ -13,6 +13,9 @@ onready var btns = $BtnsContainer
 signal weapon_selected
 
 func _ready():
+	var weapon = battle_units.SpaceShip.equipped_weapon
+	weaponNameLabel.text = str(battle_units.SpaceShip.equipped_weapon._name)
+	weaponDescription.text = weapon.description
 	if battle_units.BattleUI != null:
 		battle_units.BattleUI.actionBtns.hide()
 		weaponController.show()
@@ -20,6 +23,7 @@ func _ready():
 		descriptionPanel.show()
 		yield(panelAnimations,"animation_finished")
 		btns.show()
+		print("text about to apear")
 		weaponNameLabel.show()
 		weaponNamePanel.show()
 		weaponDescription.show()
@@ -31,7 +35,7 @@ func _on_OkBtn_pressed():
 	weaponDescription.hide()
 	panelAnimations.play_backwards("PanelAppear")
 	yield(panelAnimations,"animation_finished")
-	battle_units.SpaceShip.attack_enemy(battle_units.Enemy)
+	battle_units.SpaceShip.attack(battle_units.Enemy)
 	emit_signal("weapon_selected")
 	queue_free()
 
@@ -44,4 +48,7 @@ func _on_CancelBtn_pressed():
 	queue_free()
 
 func _on_WeaponController_weapon_Changed():
-	weaponNameLabel.text = battle_units.SpaceShip.equipped_weapon._name
+	var weapon = battle_units.SpaceShip.equipped_weapon
+	if weapon != null:
+		weaponNameLabel.text = str(battle_units.SpaceShip.equipped_weapon._name)
+		weaponDescription.text = weapon.description

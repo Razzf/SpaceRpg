@@ -48,6 +48,7 @@ __meta__ = {
 }
 
 [node name="BtnsContainer" type="HBoxContainer" parent="."]
+visible = false
 margin_left = 80.0
 margin_top = 92.0
 margin_right = 128.0
@@ -100,6 +101,7 @@ __meta__ = {
 anims/PanelAppear = SubResource( 5 )
 
 [node name="WeaponNamePanel" type="Panel" parent="DescriptionPanel"]
+visible = false
 margin_left = 54.0
 margin_top = -14.0
 margin_right = 129.0

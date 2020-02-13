@@ -43,7 +43,7 @@ func update_equipped_weapon(w_index) -> void:
 		equipped_weapon = Weapons[w_index]
 		add_child(equipped_weapon)
 		
-func attack_enemy(_enemy) -> void:
+func attack(_enemy) -> void:
 	if _enemy != null:
 		var explosions = equipped_weapon.shooting_scene.instance()
 		for i in range(explosions.max_explosions):
@@ -53,8 +53,8 @@ func attack_enemy(_enemy) -> void:
 				equipped_weapon.trigger_counter = 0
 				_enemy.add_child(explosions)
 				_enemy.take_damage(equipped_weapon.power)
-				print("caca")
 		self.energy -= equipped_weapon.energy_cost
+		battle_units.SpaceShip = self
 		emit_signal("weapon_used")
 
 func _ready():

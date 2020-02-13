@@ -8,6 +8,7 @@ export(int) var power = null
 export(int, "Deffensive", "Passive", "Offensive") var type = null
 onready var _name = self.name
 var trigger_counter = 0
+var description = null
 
 func set_energy_cost(value):
 	energy_cost = value
