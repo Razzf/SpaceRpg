@@ -4,10 +4,9 @@
 [ext_resource path="res://Img Resources/Icons Images/explosions.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/WeaponScripts/Explosive Bullets.gd" type="Script" id=3]
 
-
 [node name="Explosive Bullets" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 icon_texture = ExtResource( 2 )
 energy_cost = 200
-power = 200
+power = 160
 type = 1

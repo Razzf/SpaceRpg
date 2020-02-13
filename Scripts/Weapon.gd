@@ -8,7 +8,7 @@ export(int) var power = null
 export(int, "Deffensive", "Passive", "Offensive") var type = null
 onready var _name = self.name
 var trigger_counter = 0
-var description = null
+var description : String
 
 func set_energy_cost(value):
 	energy_cost = value
@@ -16,5 +16,9 @@ func set_energy_cost(value):
 func _ready():
 	name = "Weapon"
 
+func get_description() -> String:
+	return description + "\n" + "Power: " + str(
+		power)+ "\n" + "Energy Cost: " + str(
+		energy_cost) + "\n\n\n\n Use this weapon?"
 	
 

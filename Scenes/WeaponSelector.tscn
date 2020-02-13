@@ -124,6 +124,7 @@ __meta__ = {
 }
 
 [node name="WeaponDescription" type="RichTextLabel" parent="DescriptionPanel"]
+visible = false
 margin_left = 132.0
 margin_top = 3.0
 margin_right = 247.0

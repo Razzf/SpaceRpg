@@ -14,8 +14,8 @@ signal weapon_selected
 
 func _ready():
 	var weapon = battle_units.SpaceShip.equipped_weapon
-	weaponNameLabel.text = str(battle_units.SpaceShip.equipped_weapon._name)
-	weaponDescription.text = weapon.description
+	weaponNameLabel.text = weapon._name
+	weaponDescription.text = weapon.get_description()
 	if battle_units.BattleUI != null:
 		battle_units.BattleUI.actionBtns.hide()
 		weaponController.show()
@@ -23,7 +23,6 @@ func _ready():
 		descriptionPanel.show()
 		yield(panelAnimations,"animation_finished")
 		btns.show()
-		print("text about to apear")
 		weaponNameLabel.show()
 		weaponNamePanel.show()
 		weaponDescription.show()
@@ -50,5 +49,5 @@ func _on_CancelBtn_pressed():
 func _on_WeaponController_weapon_Changed():
 	var weapon = battle_units.SpaceShip.equipped_weapon
 	if weapon != null:
-		weaponNameLabel.text = str(battle_units.SpaceShip.equipped_weapon._name)
-		weaponDescription.text = weapon.description
+		weaponNameLabel.text = weapon._name
+		weaponDescription.text = weapon.get_description()
