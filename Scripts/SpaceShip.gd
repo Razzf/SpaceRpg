@@ -60,7 +60,7 @@ func attack(_enemy) -> void:
 
 func _ready():
 	shield_hitted_sprites.hide()
-	
+	yield(get_tree().create_timer(.2), "timeout")
 	animation.play("Shield appear")
 	update_equipped_weapon(0)
 	battle_units.SpaceShip = self

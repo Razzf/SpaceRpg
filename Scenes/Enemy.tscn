@@ -47,7 +47,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-length = 1.5
+length = 1.8
 loop = true
 step = 0.3
 tracks/0/type = "value"
