@@ -10,7 +10,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shield appear"
-length = 1.9
+length = 2.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("ShieldBarrier:frame")
 tracks/0/interp = 1
@@ -18,10 +18,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -73,7 +73,8 @@ script = ExtResource( 1 )
 self_modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( 90, 160 )
 texture = ExtResource( 6 )
-hframes = 10
+hframes = 12
+frame = 10
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
@@ -133,16 +134,16 @@ align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 3.0
+playback_speed = 3.6
 "anims/Shield appear" = SubResource( 1 )
 anims/Shield_Hitted = SubResource( 2 )
 anims/attack = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 90, 112 )
+self_modulate = Color( 1, 1, 1, 0.180392 )
+position = Vector2( 90, 122 )
 texture = ExtResource( 7 )
 hframes = 10
-frame = 9
+frame = 4
 [connection signal="Energy_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Shield_Changed"]

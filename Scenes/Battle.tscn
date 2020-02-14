@@ -19,14 +19,13 @@ position = Vector2( 90, 160 )
 texture = ExtResource( 13 )
 
 [node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 89, 110 )
 
 [node name="Enemy" parent="Position2D" instance=ExtResource( 12 )]
-position = Vector2( 90, 100 )
 
 [node name="SpaceShip" parent="." instance=ExtResource( 4 )]
 
 [node name="combat design 3" type="Sprite" parent="."]
-visible = false
 self_modulate = Color( 1, 1, 1, 0.4 )
 position = Vector2( 90, 160 )
 texture = ExtResource( 6 )

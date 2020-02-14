@@ -15,12 +15,18 @@ func _ready():
 	if enemy != null:
 		var enemy_position_x = enemy.global_position.x
 		var enemy_position_y = enemy.global_position.y
-		self.global_position = Vector2(
-			rand_range(enemy_position_x - x_range_rounded,
-			enemy_position_y + x_range_rounded),
-			rand_range(enemy_position_x - y_range_rounded,
-			enemy_position_y + y_range_rounded)
-		)
+		
+		var randx = rand_range(enemy_position_x - x_range_rounded,
+		enemy_position_x + x_range_rounded)
+		var randy = rand_range(enemy_position_y - y_range_rounded,
+		enemy_position_y + y_range_rounded)
+		
+		print(randx)
+		print(randy)
+			
+			
+		self.global_position = Vector2(randx, randy)
+		
 func _add_another_shot():
 	var weapon = battle_units.SpaceShip.equipped_weapon
 	var enemy = battle_units.Enemy
