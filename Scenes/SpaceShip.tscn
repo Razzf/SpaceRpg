@@ -25,7 +25,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-length = 0.7
+length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -33,10 +33,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:self_modulate")
@@ -45,7 +45,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5, 0.7 ),
+"times": PoolRealArray( 0, 0.7, 1.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.180392 ), Color( 1, 1, 1, 0.180392 ), Color( 1, 1, 1, 0 ) ]
@@ -133,16 +133,16 @@ align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 3.6
+playback_speed = 3.0
 "anims/Shield appear" = SubResource( 1 )
 anims/Shield_Hitted = SubResource( 2 )
 anims/attack = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.180392 )
+self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 90, 112 )
 texture = ExtResource( 7 )
-hframes = 7
-frame = 5
+hframes = 10
+frame = 9
 [connection signal="Energy_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Shield_Changed"]
