@@ -65,6 +65,9 @@ custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.0666667, 0.337255, 0.109804, 1 )
+custom_colors/font_color_hover = Color( 0.0666667, 0.337255, 0.109804, 1 )
+custom_colors/font_color_pressed = Color( 0.0666667, 0.337255, 0.109804, 1 )
 text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -81,6 +84,9 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = ExtResource( 4 )
 custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.0666667, 0.337255, 0.109804, 1 )
+custom_colors/font_color_hover = Color( 0.0666667, 0.337255, 0.109804, 1 )
+custom_colors/font_color_pressed = Color( 0.0666667, 0.337255, 0.109804, 1 )
 text = "Ok"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -118,6 +124,7 @@ margin_right = 141.0
 margin_bottom = 9.0
 rect_scale = Vector2( -1, 1 )
 custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.0666667, 0.337255, 0.109804, 1 )
 text = "aa"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -131,6 +138,10 @@ margin_right = 247.0
 margin_bottom = 69.0
 rect_scale = Vector2( -1, 1 )
 custom_fonts/normal_font = ExtResource( 7 )
+custom_colors/default_color = Color( 0.0666667, 0.337255, 0.109804, 1 )
+custom_colors/selection_color = Color( 0.0666667, 0.337255, 0.109804, 0 )
+custom_colors/font_color_selected = Color( 0.0666667, 0.337255, 0.109804, 0 )
+custom_colors/font_color_shadow = Color( 0.0666667, 0.337255, 0.109804, 0 )
 text = "dadaadadasdadsadadsaddaddasdaasadddasdadaddaaddadda"
 __meta__ = {
 "_edit_use_anchors_": false

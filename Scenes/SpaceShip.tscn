@@ -140,9 +140,9 @@ anims/attack = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.180392 )
-position = Vector2( 90, 141 )
-scale = Vector2( 1, 0.88125 )
+position = Vector2( 90, 144 )
 texture = ExtResource( 7 )
 hframes = 10
+frame = 2
 [connection signal="Energy_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Shield_Changed"]

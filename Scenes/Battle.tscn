@@ -36,6 +36,7 @@ texture = ExtResource( 6 )
 margin_top = 210.0
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
+visible = false
 margin_top = -3.0
 margin_right = 180.0
 margin_bottom = 22.0
