@@ -65,8 +65,10 @@ func attack(_enemy) -> void:
 		self.energy -= equipped_weapon.energy_cost
 		battle_units.SpaceShip = self
 		emit_signal("weapon_used")
+		print("weapon used")
 
 func _ready():
+	battle_units.SpaceShip = self
 	print("movin this")
 	
 
@@ -75,7 +77,7 @@ func _ready():
 	yield(get_tree().create_timer(.2), "timeout")
 	animation.play("Shield appear")
 	update_equipped_weapon(0)
-	battle_units.SpaceShip = self
+	
 	
 func _exit_tree():
 	battle_units.SpaceShip = null

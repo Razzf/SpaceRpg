@@ -12,15 +12,16 @@ var up_index = 1
 var down_index = 2
 
 func _ready():
-	var ship = battle_units.SpaceShip
-	var weapon = ship.equipped_weapon
-	if ship != null and weapon != null:
+	
+	if battle_units.SpaceShip != null and battle_units.SpaceShip.equipped_weapon != null:
+		var ship = battle_units.SpaceShip
+		var weapon = ship.equipped_weapon
 		var upperWeapon = ship.Weapons[up_index].instance()
 		var lowerWeapon = ship.Weapons[down_index].instance()
 		
 		UpperButton.texture = upperWeapon.icon_texture
 		LowerButton.texture = lowerWeapon.icon_texture
-		weaponIcon.texture = battle_units.SpaceShip.equipped_weapon.icon_texture
+		weaponIcon.texture = weapon.icon_texture
 		upperWeapon.free()
 		lowerWeapon.free()
 		

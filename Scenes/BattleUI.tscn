@@ -1,88 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=2]
-[ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=3]
-[ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=4]
 [ext_resource path="res://Scripts/BattleUI.gd" type="Script" id=5]
-
-[sub_resource type="StyleBoxEmpty" id=1]
-
-[sub_resource type="StyleBoxFlat" id=2]
-
-[sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxFlat" id=4]
 
 [node name="BattleUI" type="Control"]
 self_modulate = Color( 1, 1, 1, 0.505882 )
-margin_top = 200.0
+margin_top = 210.0
 margin_right = 180.0
 margin_bottom = 320.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ActionButtons" type="GridContainer" parent="."]
-margin_left = 4.0
-margin_top = 26.0
-margin_right = 176.0
-margin_bottom = 66.0
-custom_constants/vseparation = 0
-custom_constants/hseparation = 11
-columns = 3
-
-[node name="PassTurnBtn" type="Button" parent="ActionButtons"]
-margin_right = 50.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 30 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = ExtResource( 2 )
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
-custom_colors/font_color = Color( 0.0666667, 0.337255, 0.109804, 1 )
-custom_colors/font_color_hover = Color( 0.0666667, 0.337255, 0.109804, 1 )
-custom_colors/font_color_pressed = Color( 0.0666667, 0.337255, 0.109804, 1 )
-text = "Pass"
-
-[node name="ShowWeaponsBtn" type="Button" parent="ActionButtons"]
-margin_left = 61.0
-margin_right = 111.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 40 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
-custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
-custom_styles/normal = ExtResource( 2 )
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0.0666667, 0.337255, 0.109804, 1 )
-custom_colors/font_color_hover = Color( 0.0666667, 0.337255, 0.109804, 1 )
-custom_colors/font_color_pressed = Color( 0.0666667, 0.337255, 0.109804, 1 )
-text = "Weapons"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RunAwayBtn" type="Button" parent="ActionButtons"]
-margin_left = 122.0
-margin_right = 172.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 50, 30 )
-custom_styles/hover = ExtResource( 4 )
-custom_styles/pressed = ExtResource( 3 )
-custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
-custom_styles/normal = ExtResource( 2 )
-custom_fonts/font = ExtResource( 1 )
-custom_colors/font_color = Color( 0.0666667, 0.337255, 0.109804, 1 )
-custom_colors/font_color_hover = Color( 0.0666667, 0.337255, 0.109804, 1 )
-custom_colors/font_color_pressed = Color( 0.0666667, 0.337255, 0.109804, 1 )
-text = "Run Away"
-[connection signal="pressed" from="ActionButtons/PassTurnBtn" to="." method="_on_PassTurnBtn_pressed"]
-[connection signal="pressed" from="ActionButtons/ShowWeaponsBtn" to="." method="_on_ShowWeaponsBtn_pressed"]
-[connection signal="pressed" from="ActionButtons/RunAwayBtn" to="." method="_on_RunAwayBtn_pressed"]

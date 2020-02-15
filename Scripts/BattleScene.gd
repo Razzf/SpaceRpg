@@ -3,17 +3,20 @@ extends Node2D
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
 func _ready():
-	VisualServer.set_default_clear_color(Color(.9,.1,.5,.7))
 	battle_units.Enemy.animation.play("Idle")
 	var battleUI = battle_units.BattleUI
-	battleUI.actionBtns.show()
 	Start_Ship_Turn()
 
 func Start_Ship_Turn() -> void:
+	print("shipstarting turn")
+	$BattleUI.add_child(preload("res://Scenes/ActionButtons.tscn").instance())
 	var ship = battle_units.SpaceShip
 	if ship != null:
+		print("waiting to start turn")
 		yield(ship, "weapon_used")
-	Start_Enemy_Turn()
+		print("enemy turn aboput to start")
+		Start_Enemy_Turn()
+	
 	
 func Start_Enemy_Turn() -> void:
 	var enemy = battle_units.Enemy
@@ -26,8 +29,7 @@ func Start_Enemy_Turn() -> void:
 		yield(enemy, "enemy_atacked")
 		enemy.animation.play("Idle")
 		var battleUI = battle_units.BattleUI
-		battleUI.actionBtns.show()
-	Start_Ship_Turn()
+		Start_Ship_Turn()
 
 func _on_BattleUI_turn_passed() -> void:
 	Start_Enemy_Turn()

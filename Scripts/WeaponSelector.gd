@@ -13,20 +13,21 @@ onready var btns = $BtnsContainer
 signal weapon_selected
 
 func _ready():
-	var weapon = battle_units.SpaceShip.equipped_weapon
-	weaponNameLabel.text = weapon._name
-	weaponDescription.text = weapon.get_description()
-	if battle_units.BattleUI != null:
-		battle_units.BattleUI.actionBtns.hide()
-		weaponController.show()
-		panelAnimations.play("PanelAppear")
-		descriptionPanel.show()
-		yield(panelAnimations,"animation_finished")
-		btns.show()
-		weaponNameLabel.show()
-		weaponNamePanel.show()
-		weaponDescription.show()
-		btns.show()
+	if battle_units.SpaceShip != null:
+		var weapon = battle_units.SpaceShip.equipped_weapon
+		weaponNameLabel.text = weapon._name
+		weaponDescription.text = weapon.get_description()
+		if battle_units.BattleUI != null:
+			#battle_units.BattleUI.actionBtns.hide()
+			weaponController.show()
+			panelAnimations.play("PanelAppear")
+			descriptionPanel.show()
+			yield(panelAnimations,"animation_finished")
+			btns.show()
+			weaponNameLabel.show()
+			weaponNamePanel.show()
+			weaponDescription.show()
+			btns.show()
 
 func _on_OkBtn_pressed():
 	btns.hide()
