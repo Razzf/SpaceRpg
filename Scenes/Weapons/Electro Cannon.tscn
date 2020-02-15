@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/WeaponScripts/Electro Cannon.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Weapons/Weapon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Img Resources/Icons Images/thunderbolt.png" type="Texture" id=3]
+[ext_resource path="res://Img Resources/Icons Images/thundergreen.png" type="Texture" id=3]
 
 [node name="Electro Cannon" instance=ExtResource( 2 )]
 script = ExtResource( 1 )

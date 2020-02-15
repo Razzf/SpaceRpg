@@ -1,7 +1,7 @@
 extends HBoxContainer
 
-onready var ShieldLabel = $ShieldLabel
-onready var EnergyLabel = $EnergyLabel
+onready var ShieldLabel = $ShieldLabelPanel/ShieldLabel
+onready var EnergyLabel = $EnergyLabelPanel/EnergyLabel
 
 func _ready():
 	pass # Replace with function body.

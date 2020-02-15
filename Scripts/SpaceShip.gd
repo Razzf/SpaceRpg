@@ -3,6 +3,8 @@ extends Node2D
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_hitted_sprites : Sprite = $Sprite
+onready var energyBar : ProgressBar = $ProgressBar
+onready var shieldBar : ProgressBar = $ProgressBar2
 var max_shield = 2000
 var shield = max_shield setget setShield
 
@@ -25,10 +27,16 @@ signal Energy_Changed(value)
 signal weapon_used
 
 func setShield(value):
+	var pvalue
+	pvalue = (100 * value) / max_shield
+	shieldBar.value = pvalue
 	shield = clamp(value, 0, max_shield)
 	emit_signal("Shield_Changed", shield)
 	
 func setEnergy(value):
+	var pvalue
+	pvalue = (100 * value) / max_energy
+	energyBar.value = pvalue
 	energy = clamp(value, 0, max_energy)
 	emit_signal("Energy_Changed", energy)
 	
@@ -59,6 +67,10 @@ func attack(_enemy) -> void:
 		emit_signal("weapon_used")
 
 func _ready():
+	print("movin this")
+	
+
+	
 	shield_hitted_sprites.hide()
 	yield(get_tree().create_timer(.2), "timeout")
 	animation.play("Shield appear")

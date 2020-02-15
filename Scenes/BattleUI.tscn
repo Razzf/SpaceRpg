@@ -24,19 +24,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ActionButtons" type="HBoxContainer" parent="."]
+[node name="ActionButtons" type="GridContainer" parent="."]
 margin_left = 4.0
 margin_top = 26.0
 margin_right = 176.0
-margin_bottom = 56.0
-custom_constants/separation = 11
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 66.0
+custom_constants/vseparation = 0
+custom_constants/hseparation = 11
+columns = 3
 
 [node name="PassTurnBtn" type="Button" parent="ActionButtons"]
 margin_right = 50.0
-margin_bottom = 30.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 50, 30 )
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )
@@ -53,8 +52,8 @@ text = "Pass"
 [node name="ShowWeaponsBtn" type="Button" parent="ActionButtons"]
 margin_left = 61.0
 margin_right = 111.0
-margin_bottom = 30.0
-rect_min_size = Vector2( 50, 30 )
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 40 )
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )
 custom_styles/focus = SubResource( 3 )
@@ -72,7 +71,7 @@ __meta__ = {
 [node name="RunAwayBtn" type="Button" parent="ActionButtons"]
 margin_left = 122.0
 margin_right = 172.0
-margin_bottom = 30.0
+margin_bottom = 40.0
 rect_min_size = Vector2( 50, 30 )
 custom_styles/hover = ExtResource( 4 )
 custom_styles/pressed = ExtResource( 3 )

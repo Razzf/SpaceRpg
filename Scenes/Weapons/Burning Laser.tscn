@@ -3,7 +3,6 @@
 [ext_resource path="res://Img Resources/Icons Images/LightningLaser.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Weapons/Weapon.tscn" type="PackedScene" id=2]
 
-
 [node name="Burning Laser" instance=ExtResource( 2 )]
 icon_texture = ExtResource( 1 )
 energy_cost = 5

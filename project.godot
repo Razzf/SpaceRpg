@@ -39,6 +39,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SpaceRpg"
+run/main_scene="res://Scenes/Battle.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -78,4 +79,5 @@ texture={
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.266667, 0.286275, 0.286275, 1 )
 environment/default_environment="res://default_env.tres"

@@ -2,8 +2,8 @@ extends CenterContainer
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var weaponIcon = $WeaponIcon/Sprite
-onready var UpperButton = $UpDownBtns/UpButton
-onready var LowerButton = $UpDownBtns/DownButton
+onready var UpperButton = $UpDownBtns/UpButton/icon
+onready var LowerButton = $UpDownBtns/DownButton/icon
 signal weapon_Changed()
 const upwards = -1
 const downwards = 1
@@ -18,8 +18,8 @@ func _ready():
 		var upperWeapon = ship.Weapons[up_index].instance()
 		var lowerWeapon = ship.Weapons[down_index].instance()
 		
-		UpperButton.icon = upperWeapon.icon_texture
-		LowerButton.icon = lowerWeapon.icon_texture
+		UpperButton.texture = upperWeapon.icon_texture
+		LowerButton.texture = lowerWeapon.icon_texture
 		weaponIcon.texture = battle_units.SpaceShip.equipped_weapon.icon_texture
 		upperWeapon.free()
 		lowerWeapon.free()
@@ -57,8 +57,8 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 			var upperWeapon = ship.Weapons[up_index].instance()
 			var lowerWeapon = ship.Weapons[down_index].instance()
 	
-			UpperButton.icon = upperWeapon.icon_texture
-			LowerButton.icon = lowerWeapon.icon_texture
+			UpperButton.texture = upperWeapon.icon_texture
+			LowerButton.texture = lowerWeapon.icon_texture
 			
 			upperWeapon.free()
 			lowerWeapon.free()

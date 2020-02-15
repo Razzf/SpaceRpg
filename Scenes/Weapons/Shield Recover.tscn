@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/WeaponScripts/Shield Recover.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Weapons/Weapon.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Img Resources/Icons Images/Shield.png" type="Texture" id=3]
+[ext_resource path="res://Img Resources/Icons Images/Shieldgreen.png" type="Texture" id=3]
 
 [node name="Shield Recover" instance=ExtResource( 2 )]
 script = ExtResource( 1 )

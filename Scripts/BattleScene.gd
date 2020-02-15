@@ -3,6 +3,7 @@ extends Node2D
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
 func _ready():
+	VisualServer.set_default_clear_color(Color(.9,.1,.5,.7))
 	battle_units.Enemy.animation.play("Idle")
 	var battleUI = battle_units.BattleUI
 	battleUI.actionBtns.show()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/StatsContainer.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Img Resources/Frames Images/ExplosiveBulletsModuleShooting2.png" type="Texture" id=5]
 [ext_resource path="res://Img Resources/Frames Images/shieldappear.png" type="Texture" id=6]
 [ext_resource path="res://Img Resources/Frames Images/shield_hitted.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=8]
+[ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=9]
+[ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shield appear"
@@ -87,28 +90,19 @@ type = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
 
 [node name="StatsContainer" type="HBoxContainer" parent="."]
-margin_left = 17.0
-margin_top = 58.0
-margin_right = 166.0
-margin_bottom = 65.0
+margin_left = 8.0
+margin_top = 50.0
+margin_right = 172.0
+margin_bottom = 64.0
 grow_horizontal = 2
 mouse_filter = 2
 size_flags_horizontal = 2
 size_flags_vertical = 2
-custom_constants/separation = 93
+custom_constants/separation = 96
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="EnergyLabel" type="Label" parent="StatsContainer"]
-margin_right = 28.0
-margin_bottom = 6.0
-rect_min_size = Vector2( 28, 6 )
-custom_fonts/font = ExtResource( 4 )
-text = "5555Ep"
-align = 1
-valign = 1
 
 [node name="ApLabel" type="Label" parent="StatsContainer"]
 visible = false
@@ -122,15 +116,48 @@ text = "2324ap"
 align = 1
 valign = 1
 
-[node name="ShieldLabel" type="Label" parent="StatsContainer"]
-margin_left = 121.0
-margin_right = 149.0
-margin_bottom = 6.0
+[node name="EnergyLabelPanel" type="Panel" parent="StatsContainer"]
+margin_right = 34.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 34, 14 )
+custom_styles/panel = ExtResource( 8 )
+
+[node name="EnergyLabel" type="Label" parent="StatsContainer/EnergyLabelPanel"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 30.0
+margin_bottom = 10.0
 rect_min_size = Vector2( 28, 6 )
 custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
+text = "3500Ep"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShieldLabelPanel" type="Panel" parent="StatsContainer"]
+margin_left = 130.0
+margin_right = 164.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 34, 14 )
+custom_styles/panel = ExtResource( 8 )
+
+[node name="ShieldLabel" type="Label" parent="StatsContainer/ShieldLabelPanel"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 30.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 28, 6 )
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
 text = "2000Sp"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 3.6
@@ -144,5 +171,37 @@ position = Vector2( 90, 144 )
 texture = ExtResource( 7 )
 hframes = 10
 frame = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+self_modulate = Color( 1, 1, 1, 0.376471 )
+margin_left = 28.0
+margin_top = 67.0
+margin_right = 164.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 136, 17 )
+rect_rotation = 90.0
+custom_styles/fg = ExtResource( 9 )
+custom_styles/bg = ExtResource( 10 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar2" type="ProgressBar" parent="."]
+self_modulate = Color( 1, 1, 1, 0.376471 )
+margin_left = 169.0
+margin_top = 67.0
+margin_right = 305.0
+margin_bottom = 84.0
+rect_min_size = Vector2( 136, 17 )
+rect_rotation = 90.0
+custom_styles/fg = ExtResource( 9 )
+custom_styles/bg = ExtResource( 10 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="Energy_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="StatsContainer" method="_on_SpaceShip_Shield_Changed"]
