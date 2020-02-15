@@ -12,25 +12,24 @@ func _on_ShowWeaponsBtn_pressed() -> void:
 	yield(animation,"animation_finished")
 	weaponSelector = load_scene.instance()
 	get_parent().add_child(weaponSelector)
+	queue_free()
 
 
 func _on_PassTurnBtn_pressed() -> void:
 	emit_signal("turn_passed")
 	animation.play_backwards("ActionBtnsAppear")
 	yield(animation,"animation_finished")
-	free()
+	queue_free()
 
 func _on_RunAwayBtn_pressed() -> void:
 	animation.play_backwards("ActionBtnsAppear")
 	yield(animation,"animation_finished")
-	free()
+	queue_free()
 	
 func _ready():
-	print("creating action btns")
-	yield(get_tree().create_timer(.5),"timeout")
 	animation.play("ActionBtnsAppear")
 # warning-ignore:return_value_discarded
 	self.connect("turn_passed", self.get_parent().get_parent(), "_on_BattleUI_turn_passed")
 	
 func _exit_tree():
-	print("saliendooo")
+	print("action bns saliendo")

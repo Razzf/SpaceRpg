@@ -20,9 +20,6 @@ func _ready():
 		enemy_position_x + x_range_rounded)
 		var randy = rand_range(enemy_position_y - y_range_rounded,
 		enemy_position_y + y_range_rounded)
-		
-		print(randx)
-		print(randy)
 			
 			
 		self.global_position = Vector2(randx, randy)

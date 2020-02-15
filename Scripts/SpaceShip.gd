@@ -65,11 +65,9 @@ func attack(_enemy) -> void:
 		self.energy -= equipped_weapon.energy_cost
 		battle_units.SpaceShip = self
 		emit_signal("weapon_used")
-		print("weapon used")
 
 func _ready():
 	battle_units.SpaceShip = self
-	print("movin this")
 	
 
 	

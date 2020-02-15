@@ -4,7 +4,6 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 
 func _ready():
 	battle_units.Enemy.animation.play("Idle")
-	var battleUI = battle_units.BattleUI
 	Start_Ship_Turn()
 
 func Start_Ship_Turn() -> void:
@@ -12,13 +11,13 @@ func Start_Ship_Turn() -> void:
 	$BattleUI.add_child(preload("res://Scenes/ActionButtons.tscn").instance())
 	var ship = battle_units.SpaceShip
 	if ship != null:
-		print("waiting to start turn")
 		yield(ship, "weapon_used")
-		print("enemy turn aboput to start")
+		print("enemy turn about to start")
 		Start_Enemy_Turn()
 	
 	
 func Start_Enemy_Turn() -> void:
+	print("enemy turn started")
 	var enemy = battle_units.Enemy
 	if enemy != null:
 		if enemy.animation.is_playing():
@@ -28,8 +27,8 @@ func Start_Enemy_Turn() -> void:
 		enemy.attack()
 		yield(enemy, "enemy_atacked")
 		enemy.animation.play("Idle")
-		var battleUI = battle_units.BattleUI
 		Start_Ship_Turn()
 
 func _on_BattleUI_turn_passed() -> void:
-	Start_Enemy_Turn()
+	var ship = battle_units.SpaceShip
+	ship.emit_signal("weapon_used")

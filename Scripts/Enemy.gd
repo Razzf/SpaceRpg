@@ -21,7 +21,6 @@ func is_dead() -> bool:
 func attack() -> void:
 	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
 	battle_units.SpaceShip.shield_hitted_sprites.show()
-	
 	animation.play("Attack")
 	yield(animation,"animation_finished")
 	emit_signal("enemy_atacked")

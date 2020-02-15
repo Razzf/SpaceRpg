@@ -4,7 +4,7 @@
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=2]
 [ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=4]
-[ext_resource path="res://Scenes/ActionButtons.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/ActionButtons.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
