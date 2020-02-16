@@ -27,16 +27,12 @@ signal Energy_Changed(value)
 signal weapon_used
 
 func setShield(value):
-	var pvalue
-	pvalue = (100 * value) / max_shield
-	shieldBar.value = pvalue
+
 	shield = clamp(value, 0, max_shield)
 	emit_signal("Shield_Changed", shield)
 	
 func setEnergy(value):
-	var pvalue
-	pvalue = (100 * value) / max_energy
-	energyBar.value = pvalue
+
 	energy = clamp(value, 0, max_energy)
 	emit_signal("Energy_Changed", energy)
 	

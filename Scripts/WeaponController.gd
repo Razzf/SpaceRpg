@@ -2,8 +2,8 @@ extends CenterContainer
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var weaponIcon = $WeaponIcon/Sprite
-onready var UpperButton = $UpDownBtns/UpButton/icon
-onready var LowerButton = $UpDownBtns/DownButton/icon
+onready var UpperButton = $UpDownBtns2/UpButton/icon
+onready var LowerButton = $UpDownBtns2/DownButton/icon
 signal weapon_Changed()
 const upwards = -1
 const downwards = 1
@@ -12,7 +12,7 @@ var up_index = 1
 var down_index = 2
 
 func _ready():
-	
+	$anim.play("Appear")
 	if battle_units.SpaceShip != null and battle_units.SpaceShip.equipped_weapon != null:
 		var ship = battle_units.SpaceShip
 		var weapon = ship.equipped_weapon
@@ -67,6 +67,9 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 			ship.update_equipped_weapon(index)
 			weapon = ship.equipped_weapon
 			weaponIcon.texture = weapon.icon_texture
+			
+func _exit_tree():
+	$anim.play_backwards("Appear")
 
 
 
