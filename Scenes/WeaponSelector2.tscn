@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=1]
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=2]
 [ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=4]
 [ext_resource path="res://Scripts/WeaponController.gd" type="Script" id=5]
 [ext_resource path="res://Img Resources/Icons Images/Shield.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/WeaponSelector2.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=8]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -16,9 +16,13 @@
 
 [sub_resource type="StyleBoxFlat" id=4]
 
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxFlat" id=7]
+
 [sub_resource type="Animation" id=5]
 resource_name = "Appear"
-length = 0.5
+length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 1
@@ -31,15 +35,101 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 20, 90 ), Vector2( 20, 80 ), Vector2( 20, 60 ), Vector2( 20, 40 ), Vector2( 20, 20 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("UpDownBtns2:custom_constants/separation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -20, -20, 40, 32 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UpDownBtns:custom_constants/separation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -10, -10, 90, 84 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UpDownBtns2:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_weaponSelector_outspreded"
+} ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Panel:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 35, 30 ), Vector2( 35, 5 ) ]
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 7 )
 
-[node name="WeaponController" type="CenterContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
+visible = false
+margin_left = 35.0
+margin_top = 5.0
+margin_right = 145.0
+margin_bottom = 19.0
+custom_styles/panel = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 107.0
+margin_bottom = 11.0
+custom_fonts/font = ExtResource( 8 )
+custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeaponController" type="Container" parent="."]
 margin_left = 20.0
-margin_top = 20.0
+margin_top = 90.0
 margin_right = 160.0
-margin_bottom = 71.0
+margin_bottom = 136.0
 rect_min_size = Vector2( 140, 0 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -47,16 +137,16 @@ __meta__ = {
 }
 
 [node name="UpDownBtns" type="HBoxContainer" parent="WeaponController"]
-margin_top = 10.0
-margin_right = 140.0
-margin_bottom = 40.0
+margin_left = -8.0
+margin_right = 148.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 140, 25 )
-custom_constants/separation = 82
+custom_constants/separation = -10
 alignment = 1
 
 [node name="UpButton" type="Button" parent="WeaponController/UpDownBtns"]
-margin_left = 1.0
-margin_right = 29.0
+margin_left = 55.0
+margin_right = 83.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 28, 30 )
 custom_styles/hover = ExtResource( 3 )
@@ -73,8 +163,8 @@ scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 
 [node name="DownButton" type="Button" parent="WeaponController/UpDownBtns"]
-margin_left = 111.0
-margin_right = 139.0
+margin_left = 73.0
+margin_right = 101.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 28, 30 )
 custom_styles/hover = ExtResource( 3 )
@@ -90,23 +180,24 @@ scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 
 [node name="UpDownBtns2" type="HBoxContainer" parent="WeaponController"]
-margin_top = 6.0
-margin_right = 140.0
-margin_bottom = 44.0
-rect_min_size = Vector2( 140, 25 )
-custom_constants/separation = 40
+margin_left = 15.0
+margin_right = 125.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 98, 25 )
+custom_constants/separation = -20
 alignment = 1
 
 [node name="UpButton" type="Button" parent="WeaponController/UpDownBtns2"]
-margin_left = 21.0
-margin_right = 50.0
+margin_left = 32.0
+margin_right = 65.0
 margin_bottom = 38.0
-rect_min_size = Vector2( 29, 38 )
+rect_min_size = Vector2( 33, 38 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = SubResource( 2 )
 custom_styles/normal = ExtResource( 2 )
+custom_constants/hseparation = 0
 align = 2
 expand_icon = true
 
@@ -115,10 +206,10 @@ position = Vector2( 19, 19 )
 texture = ExtResource( 6 )
 
 [node name="DownButton" type="Button" parent="WeaponController/UpDownBtns2"]
-margin_left = 90.0
-margin_right = 119.0
+margin_left = 45.0
+margin_right = 78.0
 margin_bottom = 38.0
-rect_min_size = Vector2( 29, 38 )
+rect_min_size = Vector2( 33, 38 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 3 )
@@ -127,16 +218,19 @@ custom_styles/normal = ExtResource( 2 )
 expand_icon = true
 
 [node name="icon" type="Sprite" parent="WeaponController/UpDownBtns2/DownButton"]
-position = Vector2( 10, 19 )
+position = Vector2( 14, 19 )
 texture = ExtResource( 6 )
 
-[node name="WeaponIcon" type="Panel" parent="WeaponController"]
+[node name="WeaponIcon" type="Button" parent="WeaponController"]
 margin_left = 47.0
-margin_top = 2.0
 margin_right = 93.0
-margin_bottom = 48.0
+margin_bottom = 46.0
 rect_min_size = Vector2( 46, 46 )
-custom_styles/panel = ExtResource( 1 )
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="WeaponController/WeaponIcon"]
 position = Vector2( 23, 23 )
@@ -148,3 +242,4 @@ anims/Appear = SubResource( 5 )
 [connection signal="pressed" from="WeaponController/UpDownBtns/DownButton" to="WeaponController" method="_on_DownButton_pressed"]
 [connection signal="pressed" from="WeaponController/UpDownBtns2/UpButton" to="WeaponController" method="_on_UpButton_pressed"]
 [connection signal="pressed" from="WeaponController/UpDownBtns2/DownButton" to="WeaponController" method="_on_DownButton_pressed"]
+[connection signal="pressed" from="WeaponController/WeaponIcon" to="WeaponController" method="_on_WeaponIcon_pressed"]

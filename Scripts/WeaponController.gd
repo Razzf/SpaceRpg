@@ -1,9 +1,11 @@
-extends CenterContainer
+extends Container
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var weaponIcon = $WeaponIcon/Sprite
 onready var UpperButton = $UpDownBtns2/UpButton/icon
 onready var LowerButton = $UpDownBtns2/DownButton/icon
+onready var weaponnamepanel = get_parent().get_node("Panel")
+onready var weaponName = get_parent().get_node("Panel/Label")
 signal weapon_Changed()
 const upwards = -1
 const downwards = 1
@@ -13,6 +15,8 @@ var down_index = 2
 
 func _ready():
 	$anim.play("Appear")
+	yield($anim,"animation_finished")
+	weaponnamepanel.show()
 	if battle_units.SpaceShip != null and battle_units.SpaceShip.equipped_weapon != null:
 		var ship = battle_units.SpaceShip
 		var weapon = ship.equipped_weapon
@@ -22,6 +26,7 @@ func _ready():
 		UpperButton.texture = upperWeapon.icon_texture
 		LowerButton.texture = lowerWeapon.icon_texture
 		weaponIcon.texture = weapon.icon_texture
+		weaponName.text = weapon._name
 		upperWeapon.free()
 		lowerWeapon.free()
 		
@@ -66,14 +71,22 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 	
 			ship.update_equipped_weapon(index)
 			weapon = ship.equipped_weapon
+			weaponnamepanel.show()
+			weaponName.text = weapon._name
 			weaponIcon.texture = weapon.icon_texture
 			
-func _exit_tree():
+func _weaponSelector_outspreded():
+	if $anim.get_playing_speed() == -1:
+		weaponnamepanel.hide()
+		print("se hideo")
+	else:
+		weaponnamepanel.show()
+		print("no se jaideo")
+			
+
+
+func _on_WeaponIcon_pressed():
 	$anim.play_backwards("Appear")
-
-
-
-
-	
-	
-
+	yield($anim, "animation_finished")
+	battle_units.SpaceShip.attack(battle_units.Enemy)
+	queue_free()
