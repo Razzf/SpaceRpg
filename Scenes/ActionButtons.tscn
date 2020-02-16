@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=2]
@@ -8,11 +8,7 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxFlat" id=2]
-
 [sub_resource type="StyleBoxEmpty" id=3]
-
-[sub_resource type="StyleBoxFlat" id=4]
 
 [sub_resource type="Animation" id=5]
 resource_name = "ActionBtnsAppear"
@@ -71,13 +67,14 @@ rect_min_size = Vector2( 50, 30 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
 custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
 custom_colors/font_color_hover = Color( 0.113725, 0.654902, 0.2, 1 )
 custom_colors/font_color_pressed = Color( 0.113725, 0.654902, 0.2, 1 )
+disabled = true
 text = "Pass"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -92,12 +89,13 @@ rect_min_size = Vector2( 50, 40 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
 custom_colors/font_color_hover = Color( 0.113725, 0.654902, 0.2, 1 )
 custom_colors/font_color_pressed = Color( 0.113725, 0.654902, 0.2, 1 )
+disabled = true
 text = "Weapons"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -111,12 +109,13 @@ rect_min_size = Vector2( 50, 30 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 custom_fonts/font = ExtResource( 1 )
 custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
 custom_colors/font_color_hover = Color( 0.113725, 0.654902, 0.2, 1 )
 custom_colors/font_color_pressed = Color( 0.113725, 0.654902, 0.2, 1 )
+disabled = true
 text = "Run Away"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=2]
 [ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=3]
@@ -10,15 +10,9 @@
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxFlat" id=2]
-
 [sub_resource type="StyleBoxEmpty" id=3]
 
-[sub_resource type="StyleBoxFlat" id=4]
-
 [sub_resource type="StyleBoxEmpty" id=6]
-
-[sub_resource type="StyleBoxFlat" id=7]
 
 [sub_resource type="Animation" id=5]
 resource_name = "Appear"
@@ -127,9 +121,9 @@ __meta__ = {
 
 [node name="WeaponController" type="Container" parent="."]
 margin_left = 20.0
-margin_top = 90.0
+margin_top = 20.0
 margin_right = 160.0
-margin_bottom = 136.0
+margin_bottom = 66.0
 rect_min_size = Vector2( 140, 0 )
 script = ExtResource( 5 )
 __meta__ = {
@@ -141,19 +135,20 @@ margin_left = -8.0
 margin_right = 148.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 140, 25 )
-custom_constants/separation = -10
+custom_constants/separation = 84
 alignment = 1
 
 [node name="UpButton" type="Button" parent="WeaponController/UpDownBtns"]
-margin_left = 55.0
-margin_right = 83.0
+margin_left = 8.0
+margin_right = 36.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 28, 30 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
+disabled = true
 align = 2
 expand_icon = true
 
@@ -163,15 +158,16 @@ scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 
 [node name="DownButton" type="Button" parent="WeaponController/UpDownBtns"]
-margin_left = 73.0
-margin_right = 101.0
+margin_left = 120.0
+margin_right = 148.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 28, 30 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
+disabled = true
 expand_icon = true
 
 [node name="icon" type="Sprite" parent="WeaponController/UpDownBtns/DownButton"]
@@ -184,20 +180,21 @@ margin_left = 15.0
 margin_right = 125.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 98, 25 )
-custom_constants/separation = -20
+custom_constants/separation = 32
 alignment = 1
 
 [node name="UpButton" type="Button" parent="WeaponController/UpDownBtns2"]
-margin_left = 32.0
-margin_right = 65.0
+margin_left = 6.0
+margin_right = 39.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 33, 38 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
-custom_styles/disabled = SubResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
 custom_constants/hseparation = 0
+disabled = true
 align = 2
 expand_icon = true
 
@@ -206,15 +203,16 @@ position = Vector2( 19, 19 )
 texture = ExtResource( 6 )
 
 [node name="DownButton" type="Button" parent="WeaponController/UpDownBtns2"]
-margin_left = 45.0
-margin_right = 78.0
+margin_left = 71.0
+margin_right = 104.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 33, 38 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 3 )
-custom_styles/disabled = SubResource( 4 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
+disabled = true
 expand_icon = true
 
 [node name="icon" type="Sprite" parent="WeaponController/UpDownBtns2/DownButton"]
@@ -229,8 +227,9 @@ rect_min_size = Vector2( 46, 46 )
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 6 )
-custom_styles/disabled = SubResource( 7 )
+custom_styles/disabled = ExtResource( 2 )
 custom_styles/normal = ExtResource( 2 )
+disabled = true
 
 [node name="Sprite" type="Sprite" parent="WeaponController/WeaponIcon"]
 position = Vector2( 23, 23 )

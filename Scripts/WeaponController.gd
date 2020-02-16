@@ -2,6 +2,11 @@ extends Container
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var weaponIcon = $WeaponIcon/Sprite
+onready var centerbtn = $WeaponIcon
+onready var upbtn = $UpDownBtns2/UpButton
+onready var downbtn = $UpDownBtns2/DownButton
+onready var upbtn2 = $UpDownBtns/UpButton
+onready var downbtn2 = $UpDownBtns/DownButton
 onready var UpperButton = $UpDownBtns2/UpButton/icon
 onready var LowerButton = $UpDownBtns2/DownButton/icon
 onready var weaponnamepanel = get_parent().get_node("Panel")
@@ -16,6 +21,12 @@ var down_index = 2
 func _ready():
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
+	upbtn.disabled = false
+	downbtn.disabled = false
+	downbtn2.disabled = false
+	upbtn2.disabled = false
+	centerbtn.disabled = false
+	
 	weaponnamepanel.show()
 	if battle_units.SpaceShip != null and battle_units.SpaceShip.equipped_weapon != null:
 		var ship = battle_units.SpaceShip
@@ -86,6 +97,11 @@ func _weaponSelector_outspreded():
 
 
 func _on_WeaponIcon_pressed():
+	upbtn.disabled = true
+	downbtn.disabled = true
+	downbtn2.disabled = true
+	upbtn2.disabled = true
+	centerbtn.disabled = true
 	$anim.play_backwards("Appear")
 	yield($anim, "animation_finished")
 	battle_units.SpaceShip.attack(battle_units.Enemy)
