@@ -13,7 +13,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shield appear"
-length = 2.2
+length = 4.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("ShieldBarrier:frame")
 tracks/0/interp = 1
@@ -21,10 +21,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.8, 1.1, 1.4, 1.7, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1, 4.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+"values": [ 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -76,7 +76,7 @@ script = ExtResource( 1 )
 self_modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( 90, 160 )
 texture = ExtResource( 6 )
-hframes = 12
+hframes = 13
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
@@ -100,10 +100,9 @@ self_modulate = Color( 1, 1, 1, 0.180392 )
 position = Vector2( 90, 144 )
 texture = ExtResource( 7 )
 hframes = 10
-frame = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color( 0, 0.627451, 0.0823529, 1 )
+modulate = Color( 0.796078, 0.827451, 0.215686, 1 )
 self_modulate = Color( 1, 1, 1, 0.654902 )
 margin_left = 11.0
 margin_top = 203.0
@@ -120,7 +119,7 @@ __meta__ = {
 }
 
 [node name="ProgressBar2" type="ProgressBar" parent="."]
-modulate = Color( 0, 0.627451, 0.0823529, 1 )
+modulate = Color( 0.12549, 0.854902, 0.819608, 1 )
 self_modulate = Color( 1, 1, 1, 0.654902 )
 margin_left = 152.0
 margin_top = 203.0
