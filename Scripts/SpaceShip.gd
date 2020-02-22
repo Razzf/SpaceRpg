@@ -3,13 +3,12 @@ extends Node2D
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_hitted_sprites : Sprite = $Sprite
-onready var energyBar : ProgressBar = $ProgressBar
-onready var shieldBar : ProgressBar = $ProgressBar2
+
 var max_shield = 2000
-var shield = max_shield setget setShield
+var shield setget setShield
 
 var max_energy = 3500
-var energy = max_energy setget setEnergy
+var energy setget setEnergy
 
 var equipped_weapon = null
 var equipped_weapon2 = null
@@ -32,6 +31,7 @@ func setShield(value):
 	emit_signal("Shield_Changed", shield)
 	
 func setEnergy(value):
+
 
 	energy = clamp(value, 0, max_energy)
 	emit_signal("Energy_Changed", energy)
@@ -64,6 +64,12 @@ func attack(_enemy) -> void:
 
 func _ready():
 	battle_units.SpaceShip = self
+	$Bar.initialize(max_energy)
+	$Bar2.initialize(max_shield)
+	energy = max_energy
+	shield = max_shield
+	emit_signal("Energy_Changed", energy)
+	emit_signal("Shield_Changed",shield)
 	
 
 	
