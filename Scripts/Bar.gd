@@ -1,7 +1,7 @@
 extends Node2D
 
 signal maximum_changed(maximum)
-export(String, "Shield", "Energy") var bar_type = null
+export(String, "Sp", "Ep") var bar_type = null
 
 var maximum = 2000
 var current_health = 0
@@ -13,7 +13,7 @@ func initialize(max_value):
 
 
 func animate_value(start, end):
-	$Tween.interpolate_property($TextureProgress, "value", start, end, 0.4, Tween.TRANS_QUINT, Tween.EASE_OUT)
+	$Tween.interpolate_property($TextureProgress, "value", start, end, 0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	$Tween.interpolate_method(self, "update_count_text", start, end, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
 	print("caca")

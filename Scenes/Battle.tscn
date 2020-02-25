@@ -50,7 +50,7 @@ position = Vector2( 90, 160 )
 texture = ExtResource( 13 )
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 89, 135 )
+position = Vector2( 89, 148 )
 
 [node name="Enemy" parent="Position2D" instance=ExtResource( 12 )]
 
@@ -65,6 +65,7 @@ texture = ExtResource( 6 )
 
 [node name="BattleUI" parent="." instance=ExtResource( 1 )]
 margin_top = 225.0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="HBoxContainer" parent="."]
 visible = false
@@ -99,6 +100,7 @@ rect_min_size = Vector2( 35, 25 )
 custom_styles/normal = ExtResource( 2 )
 
 [node name="AI panel" type="Control" parent="."]
+visible = false
 margin_top = 17.0
 margin_right = 181.0
 margin_bottom = 65.0

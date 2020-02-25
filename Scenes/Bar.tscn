@@ -9,7 +9,7 @@
 
 [node name="Bar" type="Node2D"]
 script = ExtResource( 1 )
-bar_type = "Energy"
+bar_type = "Shield"
 
 [node name="Panel" type="Panel" parent="."]
 margin_left = -16.0
@@ -40,10 +40,11 @@ __meta__ = {
 [node name="TextureProgress" type="ProgressBar" parent="."]
 margin_left = -8.0
 margin_top = -14.0
-margin_right = 133.0
-margin_bottom = 3.0
+margin_right = 134.0
+margin_bottom = 4.0
 rect_min_size = Vector2( 140, 17 )
 rect_rotation = 270.0
+rect_scale = Vector2( 1.01, 1.02 )
 rect_clip_content = true
 custom_styles/fg = ExtResource( 2 )
 custom_styles/bg = ExtResource( 3 )

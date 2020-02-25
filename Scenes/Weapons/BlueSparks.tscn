@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Weapons/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Img Resources/Icons Images/bluesparks.png" type="Texture" id=2]
+
+[node name="BlueSparks" instance=ExtResource( 1 )]
+icon_texture = ExtResource( 2 )
+energy_cost = 120
+power = 150
+type = 2

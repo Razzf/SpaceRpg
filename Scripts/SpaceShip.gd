@@ -18,7 +18,9 @@ var equipped_weapon4 = null
 const Weapons = [
 	preload("res://Scenes/Weapons/Explosive Bullets.tscn"),
 	preload("res://Scenes/Weapons/Shield Recover.tscn"),
-	preload("res://Scenes/Weapons/Electro Cannon.tscn")
+	preload("res://Scenes/Weapons/Electro Cannon.tscn"),
+	preload("res://Scenes/Weapons/BlueSparks.tscn"),
+	preload("res://Scenes/Weapons/Burning Laser.tscn")
 	]
 	
 signal Shield_Changed(value)
@@ -51,14 +53,17 @@ func update_equipped_weapon(w_index) -> void:
 func attack(_enemy) -> void:
 	if _enemy != null:
 		var explosions = equipped_weapon.shooting_scene.instance()
-		for i in range(explosions.max_explosions):
+		var maxexplos = explosions.max_explosions
+		
+		for i in range(maxexplos):
 			animation.play("attack")
+			#$AnimationPlayer2.play("shaking")
+			self.energy -= equipped_weapon.energy_cost/maxexplos
 			yield(animation,"animation_finished")
 			if i == 0:
 				equipped_weapon.trigger_counter = 0
 				_enemy.add_child(explosions)
 				_enemy.take_damage(equipped_weapon.power)
-		self.energy -= equipped_weapon.energy_cost
 		battle_units.SpaceShip = self
 		emit_signal("weapon_used")
 
@@ -74,7 +79,7 @@ func _ready():
 
 	
 	shield_hitted_sprites.hide()
-	yield(get_tree().create_timer(.2), "timeout")
+	yield(get_tree().create_timer(4), "timeout")
 	animation.play("Shield appear")
 	update_equipped_weapon(0)
 	
