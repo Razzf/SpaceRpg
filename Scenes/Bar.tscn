@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/Bar.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=2]
+[ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=3]
+[ext_resource path="res://Scripts/cacs.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=6]
+
+[node name="Bar" type="Node2D"]
+script = ExtResource( 1 )
+bar_type = "Shield"
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = -16.0
+margin_top = -14.0
+margin_right = 18.0
+margin_bottom = 9.53674e-07
+rect_min_size = Vector2( 34, 14 )
+rect_pivot_offset = Vector2( 17, 7 )
+custom_styles/panel = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 3.0
+margin_top = 4.0
+margin_right = 31.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 28, 6 )
+custom_fonts/font = ExtResource( 5 )
+text = "asda"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="ProgressBar" parent="."]
+margin_left = -8.0
+margin_top = -14.0
+margin_right = 134.0
+margin_bottom = 4.0
+rect_min_size = Vector2( 140, 17 )
+rect_rotation = 270.0
+rect_scale = Vector2( 1.01, 1.02 )
+rect_clip_content = true
+custom_styles/fg = ExtResource( 2 )
+custom_styles/bg = ExtResource( 3 )
+max_value = 2000.0
+value = 150.0
+percent_visible = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="maximum_changed" from="." to="TextureProgress" method="_on_Bar_maximum_changed"]
