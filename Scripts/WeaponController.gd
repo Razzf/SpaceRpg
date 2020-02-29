@@ -16,11 +16,13 @@ onready var weaponName = get_parent().get_node("Panel/Label")
 signal weapon_Changed()
 const upwards = -1
 const downwards = 1
-var index = 0
-var up_index = 1 
-var down_index = 3
-var upup_index = 2
-var downdown_index = 4
+
+var downdown_index = 0
+var down_index = 1
+var index = 2
+var up_index = 3
+var upup_index = 4
+
 
 var controllerapeared = false
 var inreact = false
@@ -74,17 +76,21 @@ func _ready():
 	weaponnamepanel.show()
 	if battle_units.SpaceShip != null and battle_units.SpaceShip.equipped_weapon != null:
 		var ship = battle_units.SpaceShip
+		
+		var dwnbt2 = ship.Weapons[downdown_index].instance()
+		var lowerWeapon = ship.Weapons[down_index].instance()
 		var weapon = ship.equipped_weapon
 		var upperWeapon = ship.Weapons[up_index].instance()
-		var lowerWeapon = ship.Weapons[down_index].instance()
 		var upbt2 = ship.Weapons[upup_index].instance()
-		var dwnbt2 = ship.Weapons[downdown_index].instance()
 		
-		UpperButton.texture = upperWeapon.icon_texture
-		upbtn2.texture = upbt2.icon_texture
 		downbtn2.texture = dwnbt2.icon_texture
 		LowerButton.texture = lowerWeapon.icon_texture
 		weaponIcon.texture = weapon.icon_texture
+		UpperButton.texture = upperWeapon.icon_texture
+		upbtn2.texture = upbt2.icon_texture
+		
+		
+		
 		
 		weaponName.text = weapon._name
 		upperWeapon.free()
@@ -106,39 +112,56 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 	if ship != null:
 		if ship.find_node("Weapon", true, false) != null:
 			var weapon = ship.get_node("Weapon")
+			downdown_index = downdown_index + 1 *(trace)
+			down_index = down_index + 1 * (trace)
 			index = index + 1 * (trace)
 			up_index = up_index + 1 * (trace)
-			down_index = down_index + 1 * (trace)
 			upup_index = upup_index + 1 *(trace)
-			downdown_index = down_index + 1 *(trace)
-			if index == ship.Weapons.size() * (trace):
+			if downdown_index  == ship.Weapons.size() * (trace):
+				downdown_index = 0
+				down_index = 1
+				index = 2
+				up_index = 3
+				upup_index = 4
+			elif down_index == ship.Weapons.size() * (trace):
+				downdown_index = 4
+				down_index = 0
+				index = 1
+				up_index = 2
+				upup_index = 3
+			elif index == ship.Weapons.size() * (trace):
+				downdown_index = 3
+				down_index = 4
 				index = 0
 				up_index = 1
 				upup_index = 2
-				down_index = 3
-				downdown_index =4
-				
 			elif up_index == ship.Weapons.size() * (trace):
+				downdown_index = 2
+				down_index = 3
 				index = 4
 				up_index = 0
 				upup_index = 1
+			elif upup_index == ship.Weapons.size() * (trace):
+				downdown_index = 1
 				down_index = 2
-				downdown_index = 3
-			elif down_index == ship.Weapons.size() * (trace):
 				index = 3
-				up_index = 1
-				upup_index =2
-				down_index = 4
-				downdown_index = 0
+				up_index = 4
+				upup_index = 0
 	
 			var upperWeapon = ship.Weapons[up_index].instance()
 			var lowerWeapon = ship.Weapons[down_index].instance()
+			var upupwep = ship.Weapons[upup_index].instance()
+			var dwdwwep = ship.Weapons[downdown_index].instance()
 	
 			UpperButton.texture = upperWeapon.icon_texture
 			LowerButton.texture = lowerWeapon.icon_texture
+			upbtn2.texture = upupwep.icon_texture
+			downbtn2.texture = dwdwwep.icon_texture
 			
 			upperWeapon.free()
 			lowerWeapon.free()
+			upupwep.free()
+			dwdwwep.free()
 	
 			ship.update_equipped_weapon(index)
 			weapon = ship.equipped_weapon
