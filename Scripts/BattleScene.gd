@@ -6,7 +6,7 @@ func _ready():
 	battle_units.Enemy.animation.play("Idle")
 	Start_Ship_Turn()
 
-	
+
 func Start_Ship_Turn() -> void:
 
 	$BattleUI.add_child(preload("res://Scenes/ActionButtons.tscn").instance())
@@ -22,9 +22,9 @@ func Start_Enemy_Turn() -> void:
 		if enemy.animation.is_playing():
 			enemy.animation.get_animation("Idle").set_loop(false)
 			yield(enemy.animation, "animation_finished")
-		enemy.animation.get_animation("Idle").set_loop(true)
 		enemy.attack()
 		yield(enemy, "enemy_atacked")
+		enemy.animation.get_animation("Idle").set_loop(true)
 		enemy.animation.play("Idle")
 		Start_Ship_Turn()
 

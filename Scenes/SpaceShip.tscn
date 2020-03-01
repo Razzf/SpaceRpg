@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/cacs.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
 [ext_resource path="res://Scenes/Bar2.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Bar1.gd" type="Script" id=12]
+[ext_resource path="res://Resources/Fonts/PixelFonwOutlt.tres" type="DynamicFont" id=13]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"
@@ -113,7 +114,6 @@ hframes = 13
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
-scale = Vector2( 1.01111, 1 )
 texture = ExtResource( 5 )
 hframes = 5
 
@@ -129,10 +129,11 @@ anims/Shield_Hitted = SubResource( 3 )
 anims/attack = SubResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.180392 )
+self_modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 90, 159 )
 texture = ExtResource( 7 )
 hframes = 10
+frame = 9
 
 [node name="Bar" type="Node2D" parent="."]
 position = Vector2( 19, 231 )
@@ -246,6 +247,22 @@ __meta__ = {
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 anims/shaking = SubResource( 5 )
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+margin_left = 43.0
+margin_top = 61.0
+margin_right = 140.0
+margin_bottom = 82.0
+custom_styles/panel = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 13 )
 [connection signal="Energy_Changed" from="." to="Bar" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="Bar2" method="_on_SpaceShip_Shield_Changed"]
 [connection signal="maximum_changed" from="Bar" to="Bar/TextureProgress" method="_on_Bar_maximum_changed"]

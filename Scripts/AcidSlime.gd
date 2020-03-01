@@ -18,7 +18,7 @@ func _ready():
 	var scl_track_idx = animashion.add_track(Animation.TYPE_VALUE)
 	var mtd_trac_index = animashion.add_track(Animation.TYPE_METHOD)
 	
-	animashion.length = 0.20
+	animashion.length = 0.25
 	animashion.step = 0
 	
 	animashion.track_set_path(mtd_trac_index, ".")
@@ -31,18 +31,18 @@ func _ready():
 	animashion.value_track_set_update_mode(scl_track_idx,animashion.UPDATE_CONTINUOUS )
 	animashion.track_set_interpolation_type(scl_track_idx,animashion.INTERPOLATION_LINEAR)
 	
-	animashion.track_insert_key(scl_track_idx, 0.0, Vector2(.2, .2))
-	animashion.track_insert_key(scl_track_idx, 0.05, Vector2(1, 1))
-	animashion.track_insert_key(scl_track_idx, 0.1, Vector2(1.7, 1.7))
-	animashion.track_insert_key(scl_track_idx, 0.15, Vector2(2.3, 2.3))
-	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(2.8, 2.8))
+	animashion.track_insert_key(scl_track_idx, 0.0, Vector2(.5, .5))
+	animashion.track_insert_key(scl_track_idx, 0.1, Vector2(1, 1))
+	animashion.track_insert_key(scl_track_idx, 0.15, Vector2(1.5, 1.5))
+	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(2, 2))
+	animashion.track_insert_key(scl_track_idx, 0.25, Vector2(2.5, 2.5))
 	
 	animashion.track_insert_key(mtd_trac_index, 0.19,
 	 {"method": "on_almost_dead", "args": []})
 	
 	animashion.track_insert_key(pos_track_idx, 0.0, Vector2(0, 0))
-	var rand_valx = rand_range(0, 30)
-	var rand_valy = rand_range(0,60)
+	var rand_valx = rand_range(0, 40)
+	var rand_valy = rand_range(0, 40)
 	var bit = round(rand_range(0, 1))
 	var bit2 = round(rand_range(0, 1))
 
@@ -62,7 +62,7 @@ func _ready():
 		trace = 1
 		
 	
-	animashion.track_insert_key(pos_track_idx, 0.20, Vector2(rand_valx * trace, rand_valy * trace2))
+	animashion.track_insert_key(pos_track_idx, 0.25, Vector2(rand_valx * trace, rand_valy * trace2))
 	
 	$AnimationPlayer.add_animation("caca", animashion)
 	$AnimationPlayer.play("caca")

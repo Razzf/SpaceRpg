@@ -7,11 +7,13 @@ var max_hp = 1200
 export(int) var hp = 1200 setget sethp
 export(int) var damage = 4
 var acid = preload("res://Scenes/AcidSlime.tscn")
+var prev_rand = 0
+var rand_val
 
-onready var hp_label : Label = $Label
+onready var hp_label : Label = $Sprite/Label
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
-onready var progressbar : ProgressBar = $ProgressBar
+onready var progressbar : ProgressBar = $Sprite/ProgressBar
 
 signal dead
 signal enemy_atacked
@@ -23,13 +25,14 @@ func attack() -> void:
 	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
 	battle_units.SpaceShip.shield_hitted_sprites.show()
 	
-	var bit = round(rand_range(0, 1))
+	#var bit = round(rand_range(0, 1))
+	var bit = 1
 
 	
 	if bit == 1:
-#		animation.play("Attack")
-#		yield(animation,"animation_finished")
-		for i in range(round(rand_range(0,6))):
+		animation.play("prepare")
+		yield(animation,"animation_finished")
+		for i in range(round(rand_range(3,6))):
 			
 			if battle_units.acidslime != null:
 				print("nu ma si habia acido :o")
@@ -60,43 +63,14 @@ func attack() -> void:
 			particles.global_position = battle_units.acidslime.final_pos
 			
 			yield(actual_acid, "dead")
+		animation.play_backwards("prepare")
+		yield(animation, "animation_finished")
 			
 	else:
-		for i in range(round(rand_range(0,6))):
 
-			if battle_units.acidslime != null:
-				print("nu ma si habia acido :o")
-				yield(battle_units.acidslime, "almost_dead")
-				var temp_acid = acid.instance()
-				self.add_child(temp_acid)
-				yield(temp_acid, "almost_dead")
-				print("termino la espera B)")
-			else:
-				print("no habia acido xddd")
-				var temp_acid = acid.instance()
-				self.add_child(temp_acid)
-				yield(temp_acid, "almost_dead")
-				
-			
-			var shield_hitted = preload("res://Scenes/ShieldHitted.tscn").instance()
-			var particles = preload("res://Scenes/Slimeparticles.tscn").instance()
-			var actual_acid = battle_units.acidslime
-			
-			if actual_acid != null:
-				print(str(battle_units.acidslime.final_pos))
-			else:
-				print("actual acid doesnt exist")
-			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
-			battle_units.SpaceShip.shield_barrier.add_child(particles)
-			battle_units.SpaceShip.shield -= battle_units.acidslime.power
-			shield_hitted.global_position = battle_units.acidslime.final_pos
-			particles.global_position = battle_units.acidslime.final_pos
-			
-			yield(actual_acid, "dead")
-			
-			
+		animation.play("Attack")
+		yield(animation,"animation_finished")
 
-	
 	emit_signal("enemy_atacked")
 
 func deal_damage() -> void:
@@ -129,13 +103,19 @@ func take_damage(amount) -> void:
 	animashion.track_insert_key(track_index, 0.0, Vector2(0, 0))
 	animashion.track_insert_key(track_index, 0.01, Vector2(0, 0))
 	
-	var rand_val = rand_range(0, 20)
+	rand_val = rand_range(0, 20)
+	
+	while abs(rand_val - prev_rand) < 5:
+		rand_val = rand_range(0, 20)
+		
 	
 	animashion.track_insert_key(track_index, 0.02, Vector2(rand_val - 10, -12))
 	animashion.track_insert_key(track_index, 0.05, Vector2(rand_val - 10, -12))
 	animashion.track_insert_key(track_index, 0.2, Vector2(0, 0))
 	
 	animation.add_animation("caca", animashion)
+	
+	prev_rand = rand_val
 	self.hp -= amount
 	if is_dead():
 		if animation.is_playing():
