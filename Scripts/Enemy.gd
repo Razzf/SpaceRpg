@@ -6,6 +6,7 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 var max_hp = 1200
 export(int) var hp = 1200 setget sethp
 export(int) var damage = 4
+var acid = preload("res://Scenes/AcidSlime.tscn")
 
 onready var hp_label : Label = $Label
 onready var animation : AnimationPlayer = $AnimationPlayer
@@ -22,21 +23,53 @@ func attack() -> void:
 	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
 	battle_units.SpaceShip.shield_hitted_sprites.show()
 	
-	var bit = round(rand_range(0, 1))
+	#var bit = round(rand_range(0, 1))
+	var bit = 1
 	
 	if bit == 1:
 #		animation.play("Attack")
 #		yield(animation,"animation_finished")
-		for i in range(5):
-			print("jajsjasjsajasjsajsj")
-			self.add_child(preload("res://Scenes/AcidSlime.tscn").instance())
-			yield(get_tree().create_timer(.5), "timeout")
+		for i in range(round(rand_range(0,6))):
+			
+			if battle_units.acidslime != null:
+				print("nu ma si habia acido :o")
+				yield(battle_units.acidslime, "almost_dead")
+				var temp_acid = acid.instance()
+				self.add_child(temp_acid)
+				yield(temp_acid, "almost_dead")
+				print("termino la espera B)")
+			else:
+				print("no habia acido xddd")
+				var temp_acid = acid.instance()
+				self.add_child(temp_acid)
+				yield(temp_acid, "almost_dead")
+				
+			
+			var shield_hitted = preload("res://Scenes/ShieldHitted.tscn").instance()
+			
+			var actual_acid = battle_units.acidslime
+			
+			if actual_acid != null:
+				print(str(battle_units.acidslime.final_pos))
+			else:
+				print("actual acid doesnt exist")
+			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
+			battle_units.SpaceShip.shield -= battle_units.acidslime.power
+			shield_hitted.global_position = battle_units.acidslime.final_pos
+			
+			yield(actual_acid, "dead")
+			
 	else:
-		print("cacaaaaaaaaaaaaaaaaaaa")
-		for i in range(5):
-			print("jajsjasjsajasjsajsj")
+		for i in range(round(rand_range(0,6))):
+
 			self.add_child(preload("res://Scenes/AcidSlime.tscn").instance())
-			yield(get_tree().create_timer(.5), "timeout")
+			yield(battle_units.acidslime, "dead")
+			var shield_hitted = preload("res://Scenes/ShieldHitted.tscn").instance()
+			print(battle_units.acidslime.final_pos)
+			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
+			battle_units.SpaceShip.shield -= battle_units.acidslime.power
+			shield_hitted.global_position = battle_units.acidslime.final_pos
+			
 			
 
 	
@@ -61,8 +94,7 @@ func take_damage(amount) -> void:
 	
 	animashion.value_track_set_update_mode(track_index2,animashion.UPDATE_CONTINUOUS )
 	animashion.track_set_interpolation_type(track_index2,animashion.INTERPOLATION_LINEAR)
-	print(track_index)
-	print(track_index2)
+
 	
 	animashion.track_insert_key(track_index2, 0.0, 5)
 	animashion.track_insert_key(track_index2, 0.01, 5)
@@ -85,10 +117,9 @@ func take_damage(amount) -> void:
 		if animation.is_playing():
 			animation.stop()
 			animation.play("caca")
-			print("CAAAKIMG")
+	
 		else:
 			animation.play("caca")
-			print("CAAAKIMG")
 			yield(animation, "animation_finished")
 			queue_free()
 		emit_signal("dead")
@@ -99,7 +130,6 @@ func take_damage(amount) -> void:
 			animation.play("caca")
 		else:
 			animation.play("caca")
-			print("CAAAKIMG")
 
 
 	

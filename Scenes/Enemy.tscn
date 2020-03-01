@@ -82,7 +82,6 @@ script = ExtResource( 3 )
 damage = 120
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0, -2.04815 )
 texture = ExtResource( 1 )
 hframes = 7
 frame = 4

@@ -3,6 +3,7 @@ extends Node2D
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_hitted_sprites : Sprite = $Sprite
+onready var shield_barrier = $ShieldBarrier
 
 var max_shield = 2000
 var shield setget setShield

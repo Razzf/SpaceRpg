@@ -113,6 +113,7 @@ hframes = 13
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
+scale = Vector2( 1.01111, 1 )
 texture = ExtResource( 5 )
 hframes = 5
 
@@ -132,7 +133,6 @@ self_modulate = Color( 1, 1, 1, 0.180392 )
 position = Vector2( 90, 159 )
 texture = ExtResource( 7 )
 hframes = 10
-frame = 2
 
 [node name="Bar" type="Node2D" parent="."]
 position = Vector2( 19, 231 )

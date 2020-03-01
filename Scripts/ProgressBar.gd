@@ -10,7 +10,7 @@ func initialize(max_valuee):
 
 
 func animate_value(start, end):
-	print("nwe caca")
+	pass
 	#$Tween.interpolate_property(self, "value", start, end, 0.5, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	#$Tween.start()
 

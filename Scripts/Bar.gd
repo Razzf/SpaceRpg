@@ -16,7 +16,6 @@ func animate_value(start, end):
 	$Tween.interpolate_property($TextureProgress, "value", start, end, 0.5, Tween.TRANS_EXPO, Tween.EASE_OUT)
 	$Tween.interpolate_method(self, "update_count_text", start, end, 0.5, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
-	print("caca")
 
 
 func update_count_text(value):

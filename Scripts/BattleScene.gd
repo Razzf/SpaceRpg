@@ -6,18 +6,17 @@ func _ready():
 	battle_units.Enemy.animation.play("Idle")
 	Start_Ship_Turn()
 
+	
 func Start_Ship_Turn() -> void:
-	print("shipstarting turn")
+
 	$BattleUI.add_child(preload("res://Scenes/ActionButtons.tscn").instance())
 	var ship = battle_units.SpaceShip
 	if ship != null:
 		yield(ship, "weapon_used")
-		print("enemy turn about to start")
 		Start_Enemy_Turn()
 	
 	
 func Start_Enemy_Turn() -> void:
-	print("enemy turn started")
 	var enemy = battle_units.Enemy
 	if enemy != null:
 		if enemy.animation.is_playing():

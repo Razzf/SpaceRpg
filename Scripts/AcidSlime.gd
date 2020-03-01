@@ -1,8 +1,13 @@
 extends Node2D
 
+const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
+
 
 export(int) var power
+var final_pos
 
+signal dead
+signal almost_dead
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,9 +15,12 @@ func _ready():
 	var animashion = Animation.new()
 	var pos_track_idx = animashion.add_track(Animation.TYPE_VALUE)
 	var scl_track_idx = animashion.add_track(Animation.TYPE_VALUE)
+	var mtd_trac_index = animashion.add_track(Animation.TYPE_METHOD)
+	
 	animashion.length = 0.20
 	animashion.step = 0
 	
+	animashion.track_set_path(mtd_trac_index, ".")
 	animashion.track_set_path(pos_track_idx, "Sprite:position")
 	animashion.track_set_path(scl_track_idx, "Sprite:scale")
 	
@@ -28,9 +36,11 @@ func _ready():
 	animashion.track_insert_key(scl_track_idx, 0.15, Vector2(2, 2))
 	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(2.4, 2.4))
 	
+	animashion.track_insert_key(mtd_trac_index, 0.19,
+	 {"method": "on_almost_dead", "args": []})
+	
 	animashion.track_insert_key(pos_track_idx, 0.0, Vector2(0, 0))
 	var rand_valx = rand_range(0, 30)
-	print(rand_valx)
 	var rand_valy = rand_range(0,60)
 	var bit = round(rand_range(0, 1))
 	var bit2 = round(rand_range(0, 1))
@@ -50,14 +60,28 @@ func _ready():
 	else:
 		trace = 1
 		
-	print(trace)
 	
-	animashion.track_insert_key(pos_track_idx, 0.20, Vector2(rand_valx * trace, 60 * trace2))
+	animashion.track_insert_key(pos_track_idx, 0.20, Vector2(rand_valx * trace, rand_valy * trace2))
 	
 	$AnimationPlayer.add_animation("caca", animashion)
 	$AnimationPlayer.play("caca")
+	final_pos = Vector2(self.global_position.x + rand_valx * trace,
+	self.global_position.y + rand_valy * trace2)
+	print("pupop, se creo un asidote jasja")
+	battle_units.acidslime = self
 	yield($AnimationPlayer, "animation_finished")
+	
 	queue_free()
+	
+	print("caca me mori")
+	
+	
+func _exit_tree():
+	battle_units.acidslime = null
+	emit_signal("dead")
+	
+func on_almost_dead():
+	emit_signal("almost_dead")
 	
 	
 	

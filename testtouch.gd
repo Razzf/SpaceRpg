@@ -12,6 +12,5 @@ func _ready():
 
 func _unhandled_input(event):
 	if event is InputEventScreenTouch:
-		print("cacaaaaas")
 		add_child(preload("res://Scenes/ShootingScenes/Explosive Shot.tscn").instance())
 		get_child(0).global_position = event.position

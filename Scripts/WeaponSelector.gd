@@ -11,7 +11,6 @@ onready var weaponDescription = $DescriptionPanel/WeaponDescription
 onready var btns = $BtnsContainer
 
 func _ready():
-	print("weapon selector created")
 	if battle_units.SpaceShip != null:
 		var weapon = battle_units.SpaceShip.equipped_weapon
 		weaponNameLabel.text = weapon._name

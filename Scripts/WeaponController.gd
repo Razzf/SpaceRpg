@@ -35,9 +35,9 @@ var init_posx
 
 func _input(event):
 	if event is InputEventScreenTouch:
-		print("asu")
+
 		if inreact:
-			print("caca")
+	
 			init_posx = event.position.x
 			# Start dragging if the click is on the sprite.
 			if !dragging and event.pressed:
@@ -49,14 +49,14 @@ func _input(event):
 
 	if event is InputEventScreenDrag and dragging and chanchange:
 		if (event.position.x - init_posx) > 40:
-			print("pa la derecha aaaaa")
+
 			update_weapon_selector(downwards)
 			chanchange = false
 			emit_signal("weapon_Changed")
 
 		
 		elif (init_posx - event.position.x) > 40:
-			print("pa la izquierda jasjasj")
+
 			update_weapon_selector(upwards)
 			chanchange = false
 			emit_signal("weapon_Changed")
@@ -88,7 +88,7 @@ func _ready():
 		weaponIcon.texture = weapon.icon_texture
 		UpperButton.texture = upperWeapon.icon_texture
 		upbtn2.texture = upbt2.icon_texture
-		print("cagaos")
+	
 		
 		
 		
@@ -173,10 +173,10 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 func _weaponSelector_outspreded():
 	if $anim.get_playing_speed() == -1:
 		weaponnamepanel.hide()
-		print("se hideo")
+
 	else:
 		weaponnamepanel.show()
-		print("no se jaideo")
+
 			
 
 
@@ -196,12 +196,12 @@ func _on_WeaponIcon_pressed():
 func _on_WeaponController_mouse_entered():
 	if controllerapeared:
 		inreact = true
-		print("caca lista")
+
 		
 
 
 func _on_WeaponController_mouse_exited():
-	print("salio")
+
 	if controllerapeared:
 		inreact = false
 		pass
@@ -210,16 +210,16 @@ func _on_WeaponController_mouse_exited():
 func _on_UpButton_mouse_entered():
 	if controllerapeared:
 		inreact = true
-		print("caca lista")
+
 
 
 func _on_WeaponIcon_mouse_entered():
 	if controllerapeared:
 		inreact = true
-		print("caca lista")
+
 
 
 func _on_DownButton_mouse_entered():
 	if controllerapeared:
 		inreact = true
-		print("caca lista")
+

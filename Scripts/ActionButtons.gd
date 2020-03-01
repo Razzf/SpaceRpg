@@ -36,7 +36,7 @@ func _ready():
 	self.connect("turn_passed", self.get_parent().get_parent(), "_on_BattleUI_turn_passed")
 	
 func _exit_tree():
-	print("action bns saliendo")
+	pass
 	
 func enoridsbtns(bulean):
 	$PassTurnBtn.disabled = bulean
