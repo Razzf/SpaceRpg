@@ -11,6 +11,7 @@ signal almost_dead
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	randomize()
 	var animashion = Animation.new()
 	var pos_track_idx = animashion.add_track(Animation.TYPE_VALUE)
@@ -30,11 +31,11 @@ func _ready():
 	animashion.value_track_set_update_mode(scl_track_idx,animashion.UPDATE_CONTINUOUS )
 	animashion.track_set_interpolation_type(scl_track_idx,animashion.INTERPOLATION_LINEAR)
 	
-	animashion.track_insert_key(scl_track_idx, 0.0, Vector2(1, 1))
-	animashion.track_insert_key(scl_track_idx, 0.05, Vector2(1.3, 1.3))
-	animashion.track_insert_key(scl_track_idx, 0.1, Vector2(1.6, 1.6))
-	animashion.track_insert_key(scl_track_idx, 0.15, Vector2(2, 2))
-	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(2.4, 2.4))
+	animashion.track_insert_key(scl_track_idx, 0.0, Vector2(.2, .2))
+	animashion.track_insert_key(scl_track_idx, 0.05, Vector2(1, 1))
+	animashion.track_insert_key(scl_track_idx, 0.1, Vector2(1.7, 1.7))
+	animashion.track_insert_key(scl_track_idx, 0.15, Vector2(2.3, 2.3))
+	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(2.8, 2.8))
 	
 	animashion.track_insert_key(mtd_trac_index, 0.19,
 	 {"method": "on_almost_dead", "args": []})
@@ -81,6 +82,7 @@ func _exit_tree():
 	emit_signal("dead")
 	
 func on_almost_dead():
+
 	emit_signal("almost_dead")
 	
 	

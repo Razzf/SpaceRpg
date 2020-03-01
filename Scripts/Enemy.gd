@@ -23,8 +23,8 @@ func attack() -> void:
 	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
 	battle_units.SpaceShip.shield_hitted_sprites.show()
 	
-	#var bit = round(rand_range(0, 1))
-	var bit = 1
+	var bit = round(rand_range(0, 1))
+
 	
 	if bit == 1:
 #		animation.play("Attack")
@@ -46,7 +46,7 @@ func attack() -> void:
 				
 			
 			var shield_hitted = preload("res://Scenes/ShieldHitted.tscn").instance()
-			
+			var particles = preload("res://Scenes/Slimeparticles.tscn").instance()
 			var actual_acid = battle_units.acidslime
 			
 			if actual_acid != null:
@@ -54,21 +54,45 @@ func attack() -> void:
 			else:
 				print("actual acid doesnt exist")
 			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
+			battle_units.SpaceShip.shield_barrier.add_child(particles)
 			battle_units.SpaceShip.shield -= battle_units.acidslime.power
 			shield_hitted.global_position = battle_units.acidslime.final_pos
+			particles.global_position = battle_units.acidslime.final_pos
 			
 			yield(actual_acid, "dead")
 			
 	else:
 		for i in range(round(rand_range(0,6))):
 
-			self.add_child(preload("res://Scenes/AcidSlime.tscn").instance())
-			yield(battle_units.acidslime, "dead")
+			if battle_units.acidslime != null:
+				print("nu ma si habia acido :o")
+				yield(battle_units.acidslime, "almost_dead")
+				var temp_acid = acid.instance()
+				self.add_child(temp_acid)
+				yield(temp_acid, "almost_dead")
+				print("termino la espera B)")
+			else:
+				print("no habia acido xddd")
+				var temp_acid = acid.instance()
+				self.add_child(temp_acid)
+				yield(temp_acid, "almost_dead")
+				
+			
 			var shield_hitted = preload("res://Scenes/ShieldHitted.tscn").instance()
-			print(battle_units.acidslime.final_pos)
+			var particles = preload("res://Scenes/Slimeparticles.tscn").instance()
+			var actual_acid = battle_units.acidslime
+			
+			if actual_acid != null:
+				print(str(battle_units.acidslime.final_pos))
+			else:
+				print("actual acid doesnt exist")
 			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
+			battle_units.SpaceShip.shield_barrier.add_child(particles)
 			battle_units.SpaceShip.shield -= battle_units.acidslime.power
 			shield_hitted.global_position = battle_units.acidslime.final_pos
+			particles.global_position = battle_units.acidslime.final_pos
+			
+			yield(actual_acid, "dead")
 			
 			
 
