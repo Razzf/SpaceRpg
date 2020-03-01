@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/AcidSlime.gd" type="Script" id=1]
+[ext_resource path="res://Img Resources/Icons Images/enemy attack.png" type="Texture" id=2]
+
+[node name="AcidSlime" type="Node2D"]
+script = ExtResource( 1 )
+power = 20
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

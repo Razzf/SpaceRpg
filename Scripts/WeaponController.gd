@@ -88,6 +88,7 @@ func _ready():
 		weaponIcon.texture = weapon.icon_texture
 		UpperButton.texture = upperWeapon.icon_texture
 		upbtn2.texture = upbt2.icon_texture
+		print("cagaos")
 		
 		
 		

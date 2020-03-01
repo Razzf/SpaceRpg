@@ -9,6 +9,7 @@ var shooting = load("res://Scripts/WeaponAnimScripts/Shooting.gd")
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
 func _ready():
+	battle_units.Enemy.take_damage(battle_units.SpaceShip.equipped_weapon.power)
 	var x_range_rounded = int(round(spawn_range_x))
 	var y_range_rounded = int(round(spawn_range_y))
 	var enemy = battle_units.Enemy
@@ -29,6 +30,7 @@ func _add_another_shot():
 	var enemy = battle_units.Enemy
 	if ship != null and enemy != null:
 		var weapon = battle_units.SpaceShip.equipped_weapon
+		#battle_units.Enemy.take_damage(battle_units.SpaceShip.equipped_weapon.power)
 		weapon.trigger_counter = weapon.trigger_counter + 1
 		if weapon.trigger_counter < max_explosions:
 			enemy.add_child(shooting.instance())

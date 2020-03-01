@@ -21,8 +21,25 @@ func is_dead() -> bool:
 func attack() -> void:
 	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
 	battle_units.SpaceShip.shield_hitted_sprites.show()
-	animation.play("Attack")
-	yield(animation,"animation_finished")
+	
+	var bit = round(rand_range(0, 1))
+	
+	if bit == 1:
+#		animation.play("Attack")
+#		yield(animation,"animation_finished")
+		for i in range(5):
+			print("jajsjasjsajasjsajsj")
+			self.add_child(preload("res://Scenes/AcidSlime.tscn").instance())
+			yield(get_tree().create_timer(.5), "timeout")
+	else:
+		print("cacaaaaaaaaaaaaaaaaaaa")
+		for i in range(5):
+			print("jajsjasjsajasjsajsj")
+			self.add_child(preload("res://Scenes/AcidSlime.tscn").instance())
+			yield(get_tree().create_timer(.5), "timeout")
+			
+
+	
 	emit_signal("enemy_atacked")
 
 func deal_damage() -> void:
@@ -30,14 +47,61 @@ func deal_damage() -> void:
 	battle_units.SpaceShip.animation.play("Shield_Hitted")
 	
 func take_damage(amount) -> void:
+	var animashion = Animation.new()
+	var track_index = animashion.add_track(Animation.TYPE_VALUE)
+	var track_index2 = animashion.add_track(Animation.TYPE_VALUE)
+	animashion.length = 0.25
+	animashion.step = 0
+	
+	animashion.track_set_path(track_index, "Sprite:position")
+	animashion.track_set_path(track_index2, "Sprite:frame")
+	
+	animashion.value_track_set_update_mode(track_index,animashion.UPDATE_CONTINUOUS )
+	animashion.track_set_interpolation_type(track_index,animashion.INTERPOLATION_LINEAR)
+	
+	animashion.value_track_set_update_mode(track_index2,animashion.UPDATE_CONTINUOUS )
+	animashion.track_set_interpolation_type(track_index2,animashion.INTERPOLATION_LINEAR)
+	print(track_index)
+	print(track_index2)
+	
+	animashion.track_insert_key(track_index2, 0.0, 5)
+	animashion.track_insert_key(track_index2, 0.01, 5)
+	animashion.track_insert_key(track_index2, 0.02, 6)
+	animashion.track_insert_key(track_index2, 0.03, 6)
+	animashion.track_insert_key(track_index2, 0.05, 5)
+	
+	animashion.track_insert_key(track_index, 0.0, Vector2(0, 0))
+	animashion.track_insert_key(track_index, 0.01, Vector2(0, 0))
+	
+	var rand_val = rand_range(0, 20)
+	
+	animashion.track_insert_key(track_index, 0.02, Vector2(rand_val - 10, -12))
+	animashion.track_insert_key(track_index, 0.05, Vector2(rand_val - 10, -12))
+	animashion.track_insert_key(track_index, 0.2, Vector2(0, 0))
+	
+	animation.add_animation("caca", animashion)
 	self.hp -= amount
 	if is_dead():
-		animation.play("Shake")
-		yield(animation,"animation_finished")
-		queue_free()
+		if animation.is_playing():
+			animation.stop()
+			animation.play("caca")
+			print("CAAAKIMG")
+		else:
+			animation.play("caca")
+			print("CAAAKIMG")
+			yield(animation, "animation_finished")
+			queue_free()
 		emit_signal("dead")
+
 	else:
-		animation.play("Shake")
+		if animation.is_playing():
+			animation.stop()
+			animation.play("caca")
+		else:
+			animation.play("caca")
+			print("CAAAKIMG")
+
+
 	
 func sethp(value):
 	hp = value

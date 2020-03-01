@@ -14,6 +14,5 @@ spawn_range_y = 19.143
 playback_speed = 6.7
 
 [node name="Sprite" parent="." index="1"]
-self_modulate = Color( 1, 1, 1, 1 )
 texture = ExtResource( 3 )
-frame = 0
+frame = 1
