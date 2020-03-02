@@ -5,6 +5,7 @@ onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_hitted_sprites : Sprite = $Sprite
 onready var shield_barrier = $ShieldBarrier
 
+
 var max_shield = 2000
 var shield setget setShield
 
@@ -79,6 +80,7 @@ func _ready():
 	$Bar2.initialize(max_shield)
 	energy = max_energy
 	shield = max_shield
+	battle_units.Enemy.hp = battle_units.Enemy.max_hp
 	emit_signal("Energy_Changed", energy)
 	emit_signal("Shield_Changed",shield)
 	

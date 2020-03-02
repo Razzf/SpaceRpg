@@ -1,0 +1,96 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=1]
+[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=4]
+[ext_resource path="res://Scripts/cacs.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Enemyinf.gd" type="Script" id=6]
+
+[node name="Enemyinf" type="Node2D"]
+show_behind_parent = true
+script = ExtResource( 6 )
+
+[node name="NamePanel" type="Panel" parent="."]
+show_behind_parent = true
+margin_left = 40.0
+margin_top = 67.0
+margin_right = 141.0
+margin_bottom = 83.0
+custom_styles/panel = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NameLabel" type="Label" parent="NamePanel"]
+margin_left = 3.0
+margin_top = 5.0
+margin_right = 98.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
+text = "Cthulu subordinate"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HpPAnel" type="Panel" parent="NamePanel"]
+show_behind_parent = true
+margin_left = 7.0
+margin_top = 53.0
+margin_right = 23.0
+margin_bottom = 68.0
+custom_styles/panel = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HpLabel" type="Label" parent="NamePanel/HpPAnel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 14.0
+margin_bottom = 12.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
+text = "Hp"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="ProgressBar" parent="."]
+self_modulate = Color( 0.270588, 1, 0.282353, 1 )
+margin_left = 63.215
+margin_top = 122.815
+margin_right = 133.215
+margin_bottom = 131.815
+custom_styles/fg = ExtResource( 4 )
+custom_styles/bg = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+percent_visible = false
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Label" parent="TextureProgress"]
+margin_left = 10.231
+margin_top = 1.09682
+margin_right = 58.231
+margin_bottom = 9.09682
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "1200/2000"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="maximum_changed" from="." to="TextureProgress" method="_on_Bar_maximum_changed"]

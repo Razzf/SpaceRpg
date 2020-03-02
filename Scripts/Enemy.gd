@@ -10,13 +10,15 @@ var acid = preload("res://Scenes/AcidSlime.tscn")
 var prev_rand = 0
 var rand_val
 
-onready var hp_label : Label = $Sprite/Label
+
+
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
-onready var progressbar : ProgressBar = $Sprite/ProgressBar
+
 
 signal dead
 signal enemy_atacked
+signal hp_changed(value)
 
 func is_dead() -> bool:
 	return hp <= 0
@@ -121,6 +123,7 @@ func take_damage(amount) -> void:
 		if animation.is_playing():
 			animation.stop()
 			animation.play("caca")
+			queue_free()
 	
 		else:
 			animation.play("caca")
@@ -139,16 +142,14 @@ func take_damage(amount) -> void:
 	
 func sethp(value):
 	hp = value
-	if progressbar != null:
-		var pvalue
-		pvalue = (100 * hp) / max_hp
-		progressbar.value = pvalue
-	if hp_label != null:
-		hp_label.text = str(hp) + "Hp"
+	emit_signal("hp_changed", value)
 
 
 func _ready():
 	battle_units.Enemy = self
+	$Sprite/Enemyinf.initialize(max_hp)
+
 
 func _exit_tree():
 	battle_units.Enemy = null
+	
