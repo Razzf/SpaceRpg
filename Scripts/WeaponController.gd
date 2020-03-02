@@ -24,8 +24,8 @@ var up_index = 3
 var upup_index = 4
 
 
-var controllerapeared = false
-var inreact = false
+var controllerapeared = true
+var inreact = true
 var chanchange = true
 
 

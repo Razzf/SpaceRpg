@@ -26,12 +26,14 @@ func is_dead() -> bool:
 func attack() -> void:
 	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
 	battle_units.SpaceShip.shield_hitted_sprites.show()
+	randomize()
+	randomize()
+	randomize()
 	
-	#var bit = round(rand_range(0, 1))
-	var bit = 1
+	var bit = round(rand_range(0, 2))
 
 	
-	if bit == 1:
+	if bit == 1 || bit == 2:
 		animation.play("prepare")
 		yield(animation,"animation_finished")
 		for i in range(round(rand_range(3,6))):
