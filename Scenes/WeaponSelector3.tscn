@@ -4,8 +4,26 @@
 [ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=3]
 [ext_resource path="res://Resources/Styles/pressedbutton.tres" type="StyleBox" id=4]
 [ext_resource path="res://Scripts/WeaponController.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/WeaponSelector2.gd" type="Script" id=7]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=8]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Node2D
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -91,7 +109,7 @@ tracks/5/keys = {
 }
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource( 7 )
+script = SubResource( 5 )
 
 [node name="Panel" type="Panel" parent="."]
 visible = false

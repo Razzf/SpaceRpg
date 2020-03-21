@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arm1.png-72dfd96d996c589c09ec838f845ce526.stex"
+path="res://.import/test tardi.png-271362969ea932d6332126820051b0d0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Img Resources/Frames Images/arm1.png"
-dest_files=[ "res://.import/arm1.png-72dfd96d996c589c09ec838f845ce526.stex" ]
+source_file="res://Img Resources/Sprites and designs/test tardi.png"
+dest_files=[ "res://.import/test tardi.png-271362969ea932d6332126820051b0d0.stex" ]
 
 [params]
 

@@ -88,7 +88,6 @@ func _ready():
 	
 	shield_hitted_sprites.hide()
 	update_equipped_weapon(2)
-	yield(get_tree().create_timer(4), "timeout")
 	animation.play("Shield appear")
 	
 	
