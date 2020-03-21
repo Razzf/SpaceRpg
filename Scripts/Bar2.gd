@@ -1,4 +1,4 @@
-extends "res://Scripts/Bar.gd"
+extends "res://Scripts/Fixed Scripts/Bar.gd"
 
 
 func _on_SpaceShip_Shield_Changed(value):

@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=5]
-[ext_resource path="res://Scripts/cacs.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/ProgressBar.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemyinf.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Styles/outbar.tres" type="StyleBox" id=9]
 
@@ -131,7 +131,7 @@ custom_styles/bg = ExtResource( 5 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 percent_visible = false
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

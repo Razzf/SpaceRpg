@@ -7,7 +7,7 @@
 [ext_resource path="res://Img Resources/Sprites and designs/combat design 4.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Img Resources/PurpleSpace.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/BattleScene.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/Fixed Scripts/BattleScene.gd" type="Script" id=19]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource( 19 )
