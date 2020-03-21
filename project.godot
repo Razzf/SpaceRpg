@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Bar",
+"language": "GDScript",
+"path": "res://Scripts/Fixed Scripts/Bar.gd"
+}, {
 "base": "Resource",
 "class": "BattleUnits",
 "language": "GDScript",
@@ -17,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Scripts/Enemy.gd"
+"path": "res://Scripts/Fixed Scripts/Enemy.gd"
 }, {
 "base": "Node2D",
 "class": "Shooting",
@@ -30,6 +35,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Weapon.gd"
 } ]
 _global_script_class_icons={
+"Bar": "",
 "BattleUnits": "",
 "Enemy": "",
 "Shooting": "",

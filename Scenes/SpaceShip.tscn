@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Scripts/SpaceShip.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/ProgressBar.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Fixed Scripts/SpaceShip.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Fixed Scripts/ProgressBar.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Img Resources/Frames Images/onlyshipwindowdesignnewwindow2.png" type="Texture" id=5]
@@ -12,6 +12,10 @@
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
 [ext_resource path="res://Scripts/Bar2.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Bar1.gd" type="Script" id=12]
+
+
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"
@@ -137,7 +141,7 @@ frame = 9
 [node name="Bar" type="Node2D" parent="."]
 position = Vector2( 19, 231 )
 script = ExtResource( 12 )
-bar_type = "Ep"
+value_type = "Ep"
 
 [node name="Panel" type="Panel" parent="Bar"]
 margin_left = -16.0
@@ -191,7 +195,6 @@ __meta__ = {
 [node name="Bar2" type="Node2D" parent="."]
 position = Vector2( 160, 231 )
 script = ExtResource( 11 )
-bar_type = "Sp"
 
 [node name="Panel" type="Panel" parent="Bar2"]
 margin_left = -16.0

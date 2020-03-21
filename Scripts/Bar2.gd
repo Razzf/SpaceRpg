@@ -1,5 +1,4 @@
-extends "res://Scripts/Fixed Scripts/Bar.gd"
-
+extends Bar
 
 func _on_SpaceShip_Shield_Changed(value):
 	animate_value(current_health, value)

@@ -141,6 +141,7 @@ func take_damage(amount) -> void:
 func sethp(value):
 	hp = value
 	emit_signal("hp_changed", value)
+	print("caca")
 
 
 func _ready():

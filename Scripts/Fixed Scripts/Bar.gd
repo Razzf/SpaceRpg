@@ -1,15 +1,15 @@
 extends Node2D
+class_name Bar
 
 signal maximum_changed(maximum)
-export(String, "Sp", "Ep") var bar_type = null
+export(String, "Sp", "Ep", "Hp") var value_type = null
 
-var maximum = 2000
+export(int) var maximum = 2000
 var current_health = 0
 
 func initialize(max_value):
 	maximum = max_value
 	emit_signal("maximum_changed", maximum)
-
 
 
 func animate_value(start, end):
@@ -19,6 +19,6 @@ func animate_value(start, end):
 
 
 func update_count_text(value):
-	$Panel/Label.text = str(round(value)) + str(bar_type)
+	$Panel/Label.text = str(round(value)) + str(value_type)
 
 

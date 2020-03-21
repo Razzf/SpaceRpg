@@ -2,10 +2,10 @@
 
 [ext_resource path="res://Img Resources/Frames Images/withe tulu frames.piskel.0w.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=2]
-[ext_resource path="res://Scripts/Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Fixed Scripts/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=5]
-[ext_resource path="res://Scripts/ProgressBar.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Fixed Scripts/ProgressBar.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemyinf.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Styles/outbar.tres" type="StyleBox" id=9]
 
@@ -158,5 +158,5 @@ playback_speed = 0.6
 anims/Attack = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 anims/prepare = SubResource( 3 )
-[connection signal="hp_changed" from="." to="Sprite/Enemyinf" method="on_enemyhp_changed"]
+[connection signal="hp_changed" from="." to="Sprite/Enemyinf" method="_on_Enemy_hp_changed"]
 [connection signal="maximum_changed" from="Sprite/Enemyinf" to="Sprite/Enemyinf/Panel2/TextureProgress" method="_on_Bar_maximum_changed"]
