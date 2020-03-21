@@ -36,7 +36,7 @@ func attack() -> void:
 	if bit == 1 || bit == 2:
 		animation.play("prepare")
 		yield(animation,"animation_finished")
-		for i in range(round(rand_range(3,6))):
+		for _i in range(round(rand_range(3,6))):
 			
 			if battle_units.acidslime != null:
 
@@ -113,7 +113,7 @@ func take_damage(amount) -> void:
 	animashion.track_insert_key(track_index, 0.05, Vector2(rand_val - 10, -12))
 	animashion.track_insert_key(track_index, 0.2, Vector2(0, 0))
 	
-	animation.add_animation("caca", animashion)
+	animashion = animation.add_animation("caca", animashion)
 	
 	prev_rand = rand_val
 	self.hp -= amount
