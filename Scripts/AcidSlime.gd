@@ -68,13 +68,9 @@ func _ready():
 	$AnimationPlayer.play("caca")
 	final_pos = Vector2(self.global_position.x + rand_valx * trace,
 	self.global_position.y + rand_valy * trace2)
-	print("pupop, se creo un asidote jasja")
 	battle_units.acidslime = self
 	yield($AnimationPlayer, "animation_finished")
-	
 	queue_free()
-	
-	print("caca me mori")
 	
 	
 func _exit_tree():

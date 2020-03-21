@@ -39,14 +39,14 @@ func attack() -> void:
 		for i in range(round(rand_range(3,6))):
 			
 			if battle_units.acidslime != null:
-				print("nu ma si habia acido :o")
+
 				yield(battle_units.acidslime, "almost_dead")
 				var temp_acid = acid.instance()
 				self.add_child(temp_acid)
 				yield(temp_acid, "almost_dead")
-				print("termino la espera B)")
+
 			else:
-				print("no habia acido xddd")
+
 				var temp_acid = acid.instance()
 				self.add_child(temp_acid)
 				yield(temp_acid, "almost_dead")
@@ -56,10 +56,6 @@ func attack() -> void:
 			var particles = preload("res://Scenes/Slimeparticles.tscn").instance()
 			var actual_acid = battle_units.acidslime
 			
-			if actual_acid != null:
-				print(str(battle_units.acidslime.final_pos))
-			else:
-				print("actual acid doesnt exist")
 			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
 			battle_units.SpaceShip.shield_barrier.add_child(particles)
 			battle_units.SpaceShip.shield -= battle_units.acidslime.power
