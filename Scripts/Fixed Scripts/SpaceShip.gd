@@ -5,7 +5,6 @@ onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_hitted_sprites : Sprite = $Sprite
 onready var shield_barrier = $ShieldBarrier
 
-
 var max_shield = 2000
 var shield setget setShield
 
@@ -30,17 +29,13 @@ signal Energy_Changed(value)
 signal weapon_used
 
 func setShield(value):
-
 	shield = clamp(value, 0, max_shield)
 	emit_signal("Shield_Changed", shield)
 	
 func setEnergy(value):
-
-
 	energy = clamp(value, 0, max_energy)
 	emit_signal("Energy_Changed", energy)
 	
-
 func update_equipped_weapon(w_index) -> void:
 	if find_node("Weapon", true, false) != null:
 		var weapon = get_node("Weapon")
@@ -56,21 +51,13 @@ func attack(_enemy) -> void:
 	if _enemy != null:
 		var explosions = equipped_weapon.shooting_scene.instance()
 		var maxexplos = explosions.max_explosions
-		
 		for i in range(maxexplos):
 			animation.play("attack")
-			#$AnimationPlayer2.play("shaking")
 			self.energy -= equipped_weapon.energy_cost/maxexplos
-			#_enemy.take_damage(equipped_weapon.power)
 			yield(animation,"animation_finished")
-			
-			
 			if i == 0:
 				equipped_weapon.trigger_counter = 0
 				_enemy.add_child(explosions)
-				
-				
-				
 		battle_units.SpaceShip = self
 		emit_signal("weapon_used")
 
@@ -83,14 +70,9 @@ func _ready():
 	battle_units.Enemy.hp = battle_units.Enemy.max_hp
 	emit_signal("Energy_Changed", energy)
 	emit_signal("Shield_Changed",shield)
-	
-
-	
 	shield_hitted_sprites.hide()
 	update_equipped_weapon(2)
 	animation.play("Shield appear")
-	
-	
 	
 func _exit_tree():
 	battle_units.SpaceShip = null

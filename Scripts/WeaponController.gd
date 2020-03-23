@@ -23,21 +23,17 @@ var index = 2
 var up_index = 3
 var upup_index = 4
 
-
 var controllerapeared = true
 var inreact = true
 var chanchange = true
 
-
 var dragging = false
-var click_radius = 80  # Size of the sprite
+var click_radius = 80
 var init_posx
 
 func _input(event):
 	if event is InputEventScreenTouch:
-
 		if inreact:
-	
 			init_posx = event.position.x
 			# Start dragging if the click is on the sprite.
 			if !dragging and event.pressed:
@@ -46,23 +42,19 @@ func _input(event):
 		if dragging and !event.pressed:
 			chanchange = true
 			dragging = false
-
+			
 	if event is InputEventScreenDrag and dragging and chanchange:
 		if (event.position.x - init_posx) > 40:
-
 			update_weapon_selector(downwards)
 			chanchange = false
 			emit_signal("weapon_Changed")
-
-		
+			
 		elif (init_posx - event.position.x) > 40:
-
+			
 			update_weapon_selector(upwards)
 			chanchange = false
 			emit_signal("weapon_Changed")
-
 			
-		
 func _ready():
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
@@ -88,10 +80,6 @@ func _ready():
 		weaponIcon.texture = weapon.icon_texture
 		UpperButton.texture = upperWeapon.icon_texture
 		upbtn2.texture = upbt2.icon_texture
-	
-		
-		
-		
 		
 		weaponName.text = weapon._name
 		upperWeapon.free()
@@ -99,15 +87,6 @@ func _ready():
 		upbt2.free()
 		dwnbt2.free()
 		
-
-func _on_UpButton_pressed():
-	pass
-	
-
-func _on_DownButton_pressed():
-	pass
-	
-
 func update_weapon_selector(trace): #func that moves the weapon positions up or down
 	var ship = battle_units.SpaceShip
 	if ship != null:
@@ -148,7 +127,7 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 				index = 3
 				up_index = 4
 				upup_index = 0
-	
+				
 			var upperWeapon = ship.Weapons[up_index].instance()
 			var lowerWeapon = ship.Weapons[down_index].instance()
 			var upupwep = ship.Weapons[upup_index].instance()
@@ -163,7 +142,7 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 			lowerWeapon.free()
 			upupwep.free()
 			dwdwwep.free()
-	
+			
 			ship.update_equipped_weapon(index)
 			weapon = ship.equipped_weapon
 			weaponnamepanel.show()
@@ -173,13 +152,10 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 func _weaponSelector_outspreded():
 	if $anim.get_playing_speed() == -1:
 		weaponnamepanel.hide()
-
+		
 	else:
 		weaponnamepanel.show()
-
-			
-
-
+		
 func _on_WeaponIcon_pressed():
 	upbtn.disabled = true
 	downbtn.disabled = true
@@ -191,34 +167,23 @@ func _on_WeaponIcon_pressed():
 	yield($anim, "animation_finished")
 	battle_units.SpaceShip.attack(battle_units.Enemy)
 	queue_free()
-
-
+	
 func _on_WeaponController_mouse_entered():
 	if controllerapeared:
 		inreact = true
-
 		
-
-
 func _on_WeaponController_mouse_exited():
-
 	if controllerapeared:
 		inreact = false
-		pass
-
-
+		
 func _on_UpButton_mouse_entered():
 	if controllerapeared:
 		inreact = true
-
-
-
+		
 func _on_WeaponIcon_mouse_entered():
 	if controllerapeared:
 		inreact = true
-
-
-
+		
 func _on_DownButton_mouse_entered():
 	if controllerapeared:
 		inreact = true

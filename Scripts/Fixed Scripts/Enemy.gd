@@ -7,6 +7,7 @@ var max_hp = 1200
 export(int) var hp = 1200 setget sethp
 export(int) var damage = 4
 var acid = preload("res://Scenes/AcidSlime.tscn")
+var slimeparts = preload("res://Scenes/Slimeparticles.tscn")
 var prev_rand = 0
 var rand_val
 
@@ -45,6 +46,7 @@ func attack() -> void:
 				self.add_child(temp_acid)
 				yield(temp_acid, "almost_dead")
 
+
 			else:
 
 				var temp_acid = acid.instance()
@@ -57,6 +59,7 @@ func attack() -> void:
 			var actual_acid = battle_units.acidslime
 			
 			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
+			particles.emitting = true
 			battle_units.SpaceShip.shield_barrier.add_child(particles)
 			battle_units.SpaceShip.shield -= battle_units.acidslime.power
 			shield_hitted.global_position = battle_units.acidslime.final_pos
