@@ -10,8 +10,10 @@
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=8]
 [ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=9]
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
-[ext_resource path="res://Scripts/Bar2.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/Bar1.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/ShieldBar.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/EnergyBar.gd" type="Script" id=12]
+
+
 
 
 

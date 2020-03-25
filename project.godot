@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Fixed Scripts/Enemy.gd"
 }, {
 "base": "Node2D",
+"class": "EnemyAction",
+"language": "GDScript",
+"path": "res://Scripts/EnemyAttackScripts/EnemyAction.gd"
+}, {
+"base": "Node2D",
 "class": "Shooting",
 "language": "GDScript",
 "path": "res://Scripts/WeaponAnimScripts/Shooting.gd"
@@ -38,6 +43,7 @@ _global_script_class_icons={
 "Bar": "",
 "BattleUnits": "",
 "Enemy": "",
+"EnemyAction": "",
 "Shooting": "",
 "Weapon": ""
 }
