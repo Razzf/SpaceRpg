@@ -4,10 +4,9 @@ class_name Enemy
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
 var max_hp = 1200
-export(int) var hp = 1200 setget sethp
+export(int) var hp setget sethp
 export(int) var damage = 4
 var acid = preload("res://Scenes/AcidSlime.tscn")
-var slimeparts = preload("res://Scenes/Slimeparticles.tscn")
 var prev_rand = 0
 var rand_val
 
@@ -28,8 +27,6 @@ func attack() -> void:
 	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
 	battle_units.SpaceShip.shield_hitted_sprites.show()
 	randomize()
-	randomize()
-	randomize()
 	
 	var bit = round(rand_range(0, 2))
 
@@ -38,34 +35,15 @@ func attack() -> void:
 		animation.play("prepare")
 		yield(animation,"animation_finished")
 		for _i in range(round(rand_range(3,6))):
-			
-			if battle_units.acidslime != null:
 
-				yield(battle_units.acidslime, "almost_dead")
-				var temp_acid = acid.instance()
-				self.add_child(temp_acid)
-				yield(temp_acid, "almost_dead")
+			var temp_acid = acid.instance()
+			self.add_child(temp_acid)
+			yield(temp_acid, "almost_dead")
 
+			battle_units.SpaceShip.take_damage(temp_acid.power, temp_acid.final_pos)
 
-			else:
+			yield(temp_acid, "dead")
 
-				var temp_acid = acid.instance()
-				self.add_child(temp_acid)
-				yield(temp_acid, "almost_dead")
-				
-			
-			var shield_hitted = preload("res://Scenes/ShieldHitted.tscn").instance()
-			var particles = preload("res://Scenes/Slimeparticles.tscn").instance()
-			var actual_acid = battle_units.acidslime
-			
-			battle_units.SpaceShip.shield_barrier.add_child(shield_hitted)
-			particles.emitting = true
-			battle_units.SpaceShip.shield_barrier.add_child(particles)
-			battle_units.SpaceShip.shield -= battle_units.acidslime.power
-			shield_hitted.global_position = battle_units.acidslime.final_pos
-			particles.global_position = battle_units.acidslime.final_pos
-			
-			yield(actual_acid, "dead")
 		animation.play_backwards("prepare")
 		yield(animation, "animation_finished")
 			
@@ -81,6 +59,51 @@ func deal_damage() -> void:
 	battle_units.SpaceShip.animation.play("Shield_Hitted")
 	
 func take_damage(amount) -> void:
+
+	create_random_shaking_animation(animation, "RndShaking")
+	
+	
+	self.hp -= amount
+	
+	if is_dead():
+		if animation.is_playing():
+			animation.stop()
+			animation.play("RndShaking")
+			yield(animation,"animation_finished")
+			queue_free()
+	
+		else:
+			animation.play("RndShaking")
+			yield(animation,"animation_finished")
+			queue_free()
+			
+		emit_signal("dead")
+
+	else:
+		if animation.is_playing():
+			animation.stop()
+			animation.play("RndShaking")
+		else:
+			animation.play("RndShaking")
+
+
+	
+func sethp(value):
+	hp = value
+	
+	emit_signal("hp_changed", value)
+	print("caca")
+
+
+func _ready():
+	battle_units.Enemy = self
+	$Sprite/HpBar.initialize(max_hp)
+
+
+func _exit_tree():
+	battle_units.Enemy = null
+
+func create_random_shaking_animation(animPlayerObj, animName):
 	var animashion = Animation.new()
 	var track_index = animashion.add_track(Animation.TYPE_VALUE)
 	var track_index2 = animashion.add_track(Animation.TYPE_VALUE)
@@ -110,48 +133,12 @@ func take_damage(amount) -> void:
 	
 	while abs(rand_val - prev_rand) < 5:
 		rand_val = rand_range(0, 20)
-		
+	prev_rand = rand_val
 	
 	animashion.track_insert_key(track_index, 0.02, Vector2(rand_val - 10, -12))
 	animashion.track_insert_key(track_index, 0.05, Vector2(rand_val - 10, -12))
 	animashion.track_insert_key(track_index, 0.2, Vector2(0, 0))
-	
-	animashion = animation.add_animation("caca", animashion)
-	
-	prev_rand = rand_val
-	self.hp -= amount
-	if is_dead():
-		if animation.is_playing():
-			animation.stop()
-			animation.play("caca")
-			queue_free()
-	
-		else:
-			animation.play("caca")
-			yield(animation, "animation_finished")
-			queue_free()
-		emit_signal("dead")
 
-	else:
-		if animation.is_playing():
-			animation.stop()
-			animation.play("caca")
-		else:
-			animation.play("caca")
+	animashion = animPlayerObj.add_animation(animName, animashion)
 
-
-	
-func sethp(value):
-	hp = value
-	emit_signal("hp_changed", value)
-	print("caca")
-
-
-func _ready():
-	battle_units.Enemy = self
-	$Sprite/Enemyinf.initialize(max_hp)
-
-
-func _exit_tree():
-	battle_units.Enemy = null
 	

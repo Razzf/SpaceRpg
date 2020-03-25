@@ -8,9 +8,12 @@ var final_pos
 
 signal dead
 signal almost_dead
+var can_free = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$SlimeParticles.hide()
+	$Sprite.show()
 
 	randomize()
 	var animashion = Animation.new()
@@ -68,17 +71,32 @@ func _ready():
 	$AnimationPlayer.play("caca")
 	final_pos = Vector2(self.global_position.x + rand_valx * trace,
 	self.global_position.y + rand_valy * trace2)
-	battle_units.acidslime = self
 	yield($AnimationPlayer, "animation_finished")
-	queue_free()
+	print("popo")
+	$Sprite.hide()
+	$SlimeParticles.show()
+	$SlimeParticles.emitting = true
+	$SlimeParticles.global_position = final_pos
+	
+	can_free = true
+	
+	
+	
+	
+	
 	
 	
 func _exit_tree():
-	battle_units.acidslime = null
 	emit_signal("dead")
+	print("smn almost dead")
+	
+func _process(delta):
+	if !$SlimeParticles.emitting and can_free:
+		queue_free()
+		can_free = false
+		
 	
 func on_almost_dead():
-
 	emit_signal("almost_dead")
 	
 	

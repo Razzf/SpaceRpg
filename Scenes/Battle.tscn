@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/BattleUI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=2]
 [ext_resource path="res://Scenes/AI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Img Resources/Sprites and designs/combat design 4.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Img Resources/PurpleSpace.png" type="Texture" id=13]
 [ext_resource path="res://Scripts/Fixed Scripts/BattleScene.gd" type="Script" id=19]
@@ -20,10 +18,10 @@ __meta__ = {
 position = Vector2( 90, 160 )
 texture = ExtResource( 13 )
 
-[node name="Position2D" type="Position2D" parent="."]
+[node name="EnemyPosition" type="Position2D" parent="."]
 position = Vector2( 89, 142 )
 
-[node name="Enemy" parent="Position2D" instance=ExtResource( 12 )]
+[node name="Enemy" parent="EnemyPosition" instance=ExtResource( 12 )]
 
 [node name="SpaceShip" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0.250343, 0.250351 )
@@ -31,44 +29,6 @@ position = Vector2( 0.250343, 0.250351 )
 [node name="AI" parent="." instance=ExtResource( 3 )]
 position = Vector2( 18.5317, 32.6743 )
 
-[node name="combat design 3" type="Sprite" parent="."]
-visible = false
-self_modulate = Color( 1, 1, 1, 0.4 )
-position = Vector2( 90, 160 )
-texture = ExtResource( 6 )
-
 [node name="BattleUI" parent="." instance=ExtResource( 1 )]
 margin_top = 225.0
 mouse_filter = 2
-
-[node name="VBoxContainer" type="HBoxContainer" parent="."]
-visible = false
-margin_top = -3.0
-margin_right = 180.0
-margin_bottom = 22.0
-custom_constants/separation = 20
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="VBoxContainer"]
-margin_left = 17.0
-margin_right = 52.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 35, 25 )
-custom_styles/normal = ExtResource( 2 )
-
-[node name="Button2" type="Button" parent="VBoxContainer"]
-margin_left = 72.0
-margin_right = 107.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 35, 25 )
-custom_styles/normal = ExtResource( 2 )
-
-[node name="Button3" type="Button" parent="VBoxContainer"]
-margin_left = 127.0
-margin_right = 162.0
-margin_bottom = 25.0
-rect_min_size = Vector2( 35, 25 )
-custom_styles/normal = ExtResource( 2 )

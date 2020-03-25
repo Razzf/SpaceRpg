@@ -2,7 +2,7 @@ extends Node2D
 
 signal maximum_changed(maximum)
 
-var maximum = 1200
+var maximum
 var current_health = 0
 
 func initialize(max_value):

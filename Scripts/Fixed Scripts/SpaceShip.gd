@@ -16,6 +16,8 @@ var equipped_weapon2 = null
 var equipped_weapon3 = null
 var equipped_weapon4 = null
 
+const hit_on_shield_resource = preload("res://Scenes/ShieldHitted.tscn")
+
 const Weapons = [
 	preload("res://Scenes/Weapons/BlueSparks.tscn"),
 	preload("res://Scenes/Weapons/Burning Laser.tscn"),
@@ -60,6 +62,14 @@ func attack(_enemy) -> void:
 				_enemy.add_child(explosions)
 		battle_units.SpaceShip = self
 		emit_signal("weapon_used")
+
+func take_damage(amount, hit_position):
+	if shield > 0:
+		shield -= amount
+		var hitOnShield = hit_on_shield_resource.instance()
+		$ShieldBarrier.add_child(hitOnShield)
+		hitOnShield.global_position = hit_position
+
 
 func _ready():
 	battle_units.SpaceShip = self

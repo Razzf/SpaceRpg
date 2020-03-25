@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Fixed Scripts/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Fixed Scripts/ProgressBar.gd" type="Script" id=2]
@@ -12,12 +12,6 @@
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
 [ext_resource path="res://Scripts/ShieldBar.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/EnergyBar.gd" type="Script" id=12]
-
-
-
-
-
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"
@@ -51,33 +45,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-length = 1.1
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 9 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0.180392 ), Color( 1, 1, 1, 0.180392 ), Color( 1, 1, 1, 0 ) ]
-}
-
-[sub_resource type="Animation" id=4]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("ShipWindow:frame")
@@ -92,7 +59,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "shaking"
 length = 0.2
 tracks/0/type = "value"
@@ -116,9 +83,11 @@ self_modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( 90, 180 )
 texture = ExtResource( 6 )
 hframes = 13
+frame = 12
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
+scale = Vector2( 1.01111, 1 )
 texture = ExtResource( 5 )
 hframes = 5
 
@@ -130,8 +99,7 @@ type = 2
 playback_speed = 3.6
 anims/Shakings = SubResource( 1 )
 "anims/Shield appear" = SubResource( 2 )
-anims/Shield_Hitted = SubResource( 3 )
-anims/attack = SubResource( 4 )
+anims/attack = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -250,7 +218,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="Bar2"]
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/shaking = SubResource( 5 )
+anims/shaking = SubResource( 4 )
 [connection signal="Energy_Changed" from="." to="Bar" method="_on_SpaceShip_Energy_Changed"]
 [connection signal="Shield_Changed" from="." to="Bar2" method="_on_SpaceShip_Shield_Changed"]
 [connection signal="maximum_changed" from="Bar" to="Bar/TextureProgress" method="_on_Bar_maximum_changed"]

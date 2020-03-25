@@ -8,5 +8,5 @@
 script = ExtResource( 3 )
 icon_texture = ExtResource( 2 )
 energy_cost = 200
-power = 40
+power = 30
 type = 1
