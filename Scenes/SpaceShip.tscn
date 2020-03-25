@@ -87,7 +87,6 @@ frame = 12
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
-scale = Vector2( 1.01111, 1 )
 texture = ExtResource( 5 )
 hframes = 5
 
@@ -108,12 +107,12 @@ texture = ExtResource( 7 )
 hframes = 10
 frame = 9
 
-[node name="Bar" type="Node2D" parent="."]
+[node name="EnergyBar" type="Node2D" parent="."]
 position = Vector2( 19, 231 )
 script = ExtResource( 12 )
 value_type = "Ep"
 
-[node name="Panel" type="Panel" parent="Bar"]
+[node name="Panel" type="Panel" parent="EnergyBar"]
 margin_left = -16.0
 margin_top = -14.0
 margin_right = 18.0
@@ -125,7 +124,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Bar/Panel"]
+[node name="Label" type="Label" parent="EnergyBar/Panel"]
 margin_left = 3.0
 margin_top = 4.0
 margin_right = 31.0
@@ -140,7 +139,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="ProgressBar" parent="Bar"]
+[node name="TextureProgress" type="ProgressBar" parent="EnergyBar"]
 self_modulate = Color( 0.917647, 1, 0.207843, 1 )
 margin_left = -8.0
 margin_top = -14.0
@@ -160,13 +159,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="Bar"]
+[node name="Tween" type="Tween" parent="EnergyBar"]
 
-[node name="Bar2" type="Node2D" parent="."]
+[node name="ShieldBar" type="Node2D" parent="."]
 position = Vector2( 160, 231 )
 script = ExtResource( 11 )
+value_type = "Sp"
 
-[node name="Panel" type="Panel" parent="Bar2"]
+[node name="Panel" type="Panel" parent="ShieldBar"]
 margin_left = -16.0
 margin_top = -14.0
 margin_right = 18.0
@@ -178,7 +178,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Bar2/Panel"]
+[node name="Label" type="Label" parent="ShieldBar/Panel"]
 margin_left = 3.0
 margin_top = 4.0
 margin_right = 31.0
@@ -193,7 +193,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="ProgressBar" parent="Bar2"]
+[node name="TextureProgress" type="ProgressBar" parent="ShieldBar"]
 self_modulate = Color( 0.407843, 1, 0.941176, 1 )
 margin_left = -8.0
 margin_top = -14.0
@@ -215,11 +215,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="Bar2"]
+[node name="Tween" type="Tween" parent="ShieldBar"]
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 anims/shaking = SubResource( 4 )
-[connection signal="Energy_Changed" from="." to="Bar" method="_on_SpaceShip_Energy_Changed"]
-[connection signal="Shield_Changed" from="." to="Bar2" method="_on_SpaceShip_Shield_Changed"]
-[connection signal="maximum_changed" from="Bar" to="Bar/TextureProgress" method="_on_Bar_maximum_changed"]
-[connection signal="maximum_changed" from="Bar2" to="Bar2/TextureProgress" method="_on_Bar_maximum_changed"]
+[connection signal="Energy_Changed" from="." to="EnergyBar" method="_on_SpaceShip_Energy_Changed"]
+[connection signal="Shield_Changed" from="." to="ShieldBar" method="_on_SpaceShip_Shield_Changed"]
+[connection signal="maximum_changed" from="EnergyBar" to="EnergyBar/TextureProgress" method="_on_Bar_maximum_changed"]
+[connection signal="maximum_changed" from="ShieldBar" to="ShieldBar/TextureProgress" method="_on_Bar_maximum_changed"]

@@ -14,7 +14,38 @@ var can_free = false
 func _ready():
 	$SlimeParticles.hide()
 	$Sprite.show()
+	
+	create_random_slime_anim()
 
+	
+	$AnimationPlayer.play("caca")
+	yield($AnimationPlayer, "animation_finished")
+	$Sprite.hide()
+	$SlimeParticles.show()
+	$SlimeParticles.emitting = true
+	$SlimeParticles.global_position = final_pos
+	
+	can_free = true
+	
+	
+	
+	
+	
+	
+	
+func _exit_tree():
+	emit_signal("dead")
+	print("smn almost dead")
+	
+func _process(_delta):
+	if !$SlimeParticles.emitting and can_free:
+		queue_free()
+		can_free = false
+
+func on_almost_dead():
+	emit_signal("almost_dead")
+	
+func create_random_slime_anim():
 	randomize()
 	var animashion = Animation.new()
 	var pos_track_idx = animashion.add_track(Animation.TYPE_VALUE)
@@ -66,40 +97,7 @@ func _ready():
 		
 	
 	animashion.track_insert_key(pos_track_idx, 0.25, Vector2(rand_valx * trace, rand_valy * trace2))
-	
 	$AnimationPlayer.add_animation("caca", animashion)
-	$AnimationPlayer.play("caca")
+	
 	final_pos = Vector2(self.global_position.x + rand_valx * trace,
 	self.global_position.y + rand_valy * trace2)
-	yield($AnimationPlayer, "animation_finished")
-	print("popo")
-	$Sprite.hide()
-	$SlimeParticles.show()
-	$SlimeParticles.emitting = true
-	$SlimeParticles.global_position = final_pos
-	
-	can_free = true
-	
-	
-	
-	
-	
-	
-	
-func _exit_tree():
-	emit_signal("dead")
-	print("smn almost dead")
-	
-func _process(delta):
-	if !$SlimeParticles.emitting and can_free:
-		queue_free()
-		can_free = false
-		
-	
-func on_almost_dead():
-	emit_signal("almost_dead")
-	
-	
-	
-	
-	

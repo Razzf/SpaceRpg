@@ -32,6 +32,7 @@ signal weapon_used
 
 func setShield(value):
 	shield = clamp(value, 0, max_shield)
+	print("mamasita")
 	emit_signal("Shield_Changed", shield)
 	
 func setEnergy(value):
@@ -65,7 +66,8 @@ func attack(_enemy) -> void:
 
 func take_damage(amount, hit_position):
 	if shield > 0:
-		shield -= amount
+		self.shield = shield - amount
+		print(shield)
 		var hitOnShield = hit_on_shield_resource.instance()
 		$ShieldBarrier.add_child(hitOnShield)
 		hitOnShield.global_position = hit_position
@@ -73,8 +75,8 @@ func take_damage(amount, hit_position):
 
 func _ready():
 	battle_units.SpaceShip = self
-	$Bar.initialize(max_energy)
-	$Bar2.initialize(max_shield)
+	$EnergyBar.initialize(max_energy)
+	$ShieldBar.initialize(max_shield)
 	energy = max_energy
 	shield = max_shield
 	battle_units.Enemy.hp = battle_units.Enemy.max_hp

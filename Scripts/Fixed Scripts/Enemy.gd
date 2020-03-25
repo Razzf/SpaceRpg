@@ -1,67 +1,12 @@
-extends Node2D
-class_name Enemy
+extends Enemy
 
-const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
-
-var max_hp = 1200
-export(int) var hp setget sethp
-export(int) var damage = 4
 var acid = preload("res://Scenes/AcidSlime.tscn")
 var prev_rand = 0
 var rand_val
 
-
-
-onready var animation : AnimationPlayer = $AnimationPlayer
-onready var sprite : Sprite = $Sprite
-
-
-signal dead
-signal enemy_atacked
-signal hp_changed(value)
-
-func is_dead() -> bool:
-	return hp <= 0
-	
-func attack() -> void:
-	battle_units.SpaceShip.shield_hitted_sprites.self_modulate = Color(0,0,0,0)
-	battle_units.SpaceShip.shield_hitted_sprites.show()
-	randomize()
-	
-	var bit = round(rand_range(0, 2))
-
-	
-	if bit == 1 || bit == 2:
-		animation.play("prepare")
-		yield(animation,"animation_finished")
-		for _i in range(round(rand_range(3,6))):
-
-			var temp_acid = acid.instance()
-			self.add_child(temp_acid)
-			yield(temp_acid, "almost_dead")
-
-			battle_units.SpaceShip.take_damage(temp_acid.power, temp_acid.final_pos)
-
-			yield(temp_acid, "dead")
-
-		animation.play_backwards("prepare")
-		yield(animation, "animation_finished")
-			
-	else:
-
-		animation.play("Attack")
-		yield(animation,"animation_finished")
-
-	emit_signal("enemy_atacked")
-
-func deal_damage() -> void:
-	battle_units.SpaceShip.shield -= damage
-	battle_units.SpaceShip.animation.play("Shield_Hitted")
-	
 func take_damage(amount) -> void:
 
 	create_random_shaking_animation(animation, "RndShaking")
-	
 	
 	self.hp -= amount
 	
@@ -87,21 +32,21 @@ func take_damage(amount) -> void:
 			animation.play("RndShaking")
 
 
-	
-func sethp(value):
-	hp = value
-	
-	emit_signal("hp_changed", value)
-	print("caca")
+func attack() -> void:
+	randomize()
+	animation.play("prepare")
+	yield(animation,"animation_finished")
+	for _i in range(round(rand_range(3,6))):
 
+		var temp_acid = acid.instance()
+		self.add_child(temp_acid)
+		yield(temp_acid, "almost_dead")
 
-func _ready():
-	battle_units.Enemy = self
-	$Sprite/HpBar.initialize(max_hp)
+		battle_units.SpaceShip.take_damage(temp_acid.power, temp_acid.final_pos)
 
-
-func _exit_tree():
-	battle_units.Enemy = null
+	animation.play_backwards("prepare")
+	yield(animation, "animation_finished")
+	emit_signal("enemy_atacked")
 
 func create_random_shaking_animation(animPlayerObj, animName):
 	var animashion = Animation.new()
@@ -140,5 +85,3 @@ func create_random_shaking_animation(animPlayerObj, animName):
 	animashion.track_insert_key(track_index, 0.2, Vector2(0, 0))
 
 	animashion = animPlayerObj.add_animation(animName, animashion)
-
-	
