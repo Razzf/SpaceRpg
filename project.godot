@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Scenes/gEnemy.gd"
+"path": "res://Scripts/Fixed Scripts/gEnemy.gd"
 }, {
 "base": "Node2D",
 "class": "EnemyAction",

@@ -7,6 +7,6 @@
 [node name="Explosive Bullets" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 icon_texture = ExtResource( 2 )
-energy_cost = 200
-power = 30
+energy_cost = 30
+power = 45
 type = 1

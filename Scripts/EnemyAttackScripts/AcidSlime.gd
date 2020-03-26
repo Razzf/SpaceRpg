@@ -71,7 +71,7 @@ func create_random_slime_anim():
 	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(2, 2))
 	animashion.track_insert_key(scl_track_idx, 0.25, Vector2(2.5, 2.5))
 	
-	animashion.track_insert_key(mtd_trac_index, 0.19,
+	animashion.track_insert_key(mtd_trac_index, 0.24,
 	 {"method": "on_almost_dead", "args": []})
 	
 	animashion.track_insert_key(pos_track_idx, 0.0, Vector2(0, 0))

@@ -12,7 +12,7 @@ onready var sprite : Sprite = $Sprite
 
 
 signal dead
-signal enemy_atacked
+signal enemy_attacked
 signal hp_changed(value)
 
 func is_dead() -> bool:
@@ -21,7 +21,7 @@ func is_dead() -> bool:
 func tackle() -> void:
 	animation.play("Attack")
 	yield(animation,"animation_finished")
-	emit_signal("enemy_atacked")
+	emit_signal("enemy_attacked")
 
 func deal_damage() -> void:
 	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y + 20))

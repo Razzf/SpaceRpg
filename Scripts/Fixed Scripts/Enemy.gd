@@ -46,7 +46,7 @@ func attack() -> void:
 
 	animation.play_backwards("prepare")
 	yield(animation, "animation_finished")
-	emit_signal("enemy_atacked")
+	emit_signal("enemy_attacked")
 
 func create_random_shaking_animation(animPlayerObj, animName):
 	var animashion = Animation.new()
