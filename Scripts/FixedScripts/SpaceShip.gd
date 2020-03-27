@@ -32,7 +32,6 @@ signal weapon_used
 
 func setShield(value):
 	shield = clamp(value, 0, max_shield)
-	print("mamasita")
 	emit_signal("Shield_Changed", shield)
 	
 func setEnergy(value):
@@ -63,7 +62,6 @@ func attack(_enemy) -> void:
 func take_damage(amount, hit_position):
 	if shield > 0:
 		self.shield = shield - amount
-		print(shield)
 		var hitOnShield = hit_on_shield_resource.instance()
 		$ShieldBarrier.add_child(hitOnShield)
 		hitOnShield.global_position = hit_position

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://Scripts/Fixed Scripts/SpaceShip.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Fixed Scripts/ProgressBar.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/FixedScripts/SpaceShip.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/FixedScripts/ProgressBar.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Weapon.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Img Resources/Frames Images/onlyshipwindowdesignnewwindow2.png" type="Texture" id=5]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
 [ext_resource path="res://Scripts/ShieldBar.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/EnergyBar.gd" type="Script" id=12]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"

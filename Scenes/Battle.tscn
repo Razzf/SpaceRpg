@@ -3,9 +3,9 @@
 [ext_resource path="res://Scenes/BattleUI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/AI.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/SpaceShip.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Cthulu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Img Resources/PurpleSpace.png" type="Texture" id=13]
-[ext_resource path="res://Scripts/Fixed Scripts/BattleScene.gd" type="Script" id=19]
+[ext_resource path="res://Scripts/FixedScripts/BattleScene.gd" type="Script" id=19]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource( 19 )
@@ -21,7 +21,7 @@ texture = ExtResource( 13 )
 [node name="EnemyPosition" type="Position2D" parent="."]
 position = Vector2( 89, 142 )
 
-[node name="Enemy" parent="EnemyPosition" instance=ExtResource( 12 )]
+[node name="Cthulu" parent="EnemyPosition" instance=ExtResource( 12 )]
 
 [node name="SpaceShip" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0.250343, 0.250351 )

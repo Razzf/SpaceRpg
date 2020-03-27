@@ -35,7 +35,6 @@ func _ready():
 	
 func _exit_tree():
 	emit_signal("dead")
-	print("smn almost dead")
 	
 func _process(_delta):
 	if !$SlimeParticles.emitting and can_free:

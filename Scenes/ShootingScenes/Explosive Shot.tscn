@@ -1,8 +1,11 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/WeaponAnimScripts/Explosive Shot.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Weapon/Shots/Explosive Shot.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ShootingScenes/Shooting.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Img Resources/Frames Images/new explosion frames (1).png" type="Texture" id=3]
+
+
+
 
 [node name="Explosive Shot" instance=ExtResource( 2 )]
 script = ExtResource( 1 )

@@ -1,11 +1,12 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scripts/Fixed Scripts/Bar.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/FixedScripts/Bar.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=2]
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=3]
-[ext_resource path="res://Scripts/Fixed Scripts/ProgressBar.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/FixedScripts/ProgressBar.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=6]
+
 
 
 

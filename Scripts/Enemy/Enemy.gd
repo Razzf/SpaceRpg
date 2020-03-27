@@ -34,8 +34,10 @@ func sethp(value):
 	emit_signal("hp_changed", value)
 
 func _ready():
+	print("enemigo creado")
 	battle_units.Enemy = self
 	$Sprite/HpBar.initialize(max_hp)
+	
 
 func _exit_tree():
 	battle_units.Enemy = null

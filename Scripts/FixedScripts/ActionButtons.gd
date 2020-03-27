@@ -3,7 +3,7 @@ extends Container
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var animation = $AnimationPlayer
 var weaponSelector = null
-var load_scene = preload("res://Scenes/WeaponSelector2.tscn")
+var load_scene = preload("res://Scenes/WeaponSelector.tscn")
 
 signal turn_passed
 

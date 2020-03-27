@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Bar",
 "language": "GDScript",
-"path": "res://Scripts/Fixed Scripts/Bar.gd"
+"path": "res://Scripts/FixedScripts/Bar.gd"
 }, {
 "base": "Resource",
 "class": "BattleUnits",
@@ -22,17 +22,12 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Scripts/Fixed Scripts/gEnemy.gd"
-}, {
-"base": "Node2D",
-"class": "EnemyAction",
-"language": "GDScript",
-"path": "res://Scripts/EnemyAttackScripts/EnemyAction.gd"
+"path": "res://Scripts/Enemy/Enemy.gd"
 }, {
 "base": "Node2D",
 "class": "Shooting",
 "language": "GDScript",
-"path": "res://Scripts/WeaponAnimScripts/Shooting.gd"
+"path": "res://Scripts/Weapon/Shots/Shooting.gd"
 }, {
 "base": "Node2D",
 "class": "Weapon",
@@ -43,7 +38,6 @@ _global_script_class_icons={
 "Bar": "",
 "BattleUnits": "",
 "Enemy": "",
-"EnemyAction": "",
 "Shooting": "",
 "Weapon": ""
 }
