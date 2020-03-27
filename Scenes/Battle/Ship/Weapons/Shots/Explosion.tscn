@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/Shots/Shot.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Images/Frames Images/new explosion frames (1).png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Battle/Ship/Weapon/Shots/Explosion.gd" type="Script" id=3]
+
+
+[node name="Explosive Shot" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+spawn_range_x = 19.429
+spawn_range_y = 19.143
+
+[node name="animExplosion" parent="." index="0"]
+playback_speed = 6.7
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )

@@ -12,27 +12,27 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Bar",
 "language": "GDScript",
-"path": "res://Scripts/FixedScripts/Bar.gd"
+"path": "res://Scripts/Battle/Control/Bar.gd"
 }, {
 "base": "Resource",
 "class": "BattleUnits",
 "language": "GDScript",
-"path": "res://Scripts/ScriptableObjects/BattleUnits.gd"
+"path": "res://Scripts/Resource/BattleUnits.gd"
 }, {
 "base": "Node2D",
 "class": "Enemy",
 "language": "GDScript",
-"path": "res://Scripts/Enemy/Enemy.gd"
+"path": "res://Scripts/Battle/Enemy/Enemy.gd"
 }, {
 "base": "Node2D",
 "class": "Shooting",
 "language": "GDScript",
-"path": "res://Scripts/Weapon/Shots/Shooting.gd"
+"path": "res://Scripts/Battle/Ship/Weapon/Shots/Shot.gd"
 }, {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
-"path": "res://Scripts/Weapon.gd"
+"path": "res://Scripts/Battle/Ship/Weapon/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Bar": "",
@@ -45,7 +45,7 @@ _global_script_class_icons={
 [application]
 
 config/name="SpaceRpg"
-run/main_scene="res://Scenes/Battle.tscn"
+run/main_scene="res://Scenes/Battle/Main.tscn"
 config/icon="res://icon.png"
 
 [display]
