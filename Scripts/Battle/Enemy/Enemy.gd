@@ -61,8 +61,6 @@ func take_damage(amount) -> void:
 			
 func sethp(value):
 	hp = value
-	if is_dead():
-		emit_signal("dead")
 	emit_signal("hp_changed", value)
 
 func create_random_shaking(animPlayerObj, animName):

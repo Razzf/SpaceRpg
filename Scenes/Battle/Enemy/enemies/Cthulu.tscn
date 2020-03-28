@@ -5,3 +5,9 @@
 
 [node name="Cthulu" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 3, -2 )
+
+[node name="HpBar" parent="Sprite" index="0"]
+position = Vector2( -3, -4 )

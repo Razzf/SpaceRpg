@@ -52,7 +52,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-length = 1.8
+length = 0.6
 loop = true
 step = 0.3
 tracks/0/type = "value"
@@ -62,10 +62,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -4 ), Vector2( 0, 0 ), Vector2( 0, -4 ), Vector2( 0, 0 ), Vector2( 0, -4 ), Vector2( 0, -1.58946e-06 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -4 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -85,7 +85,6 @@ tracks/0/keys = {
 }
 
 [node name="Enemy" type="Node2D"]
-position = Vector2( 3, 0 )
 script = ExtResource( 3 )
 max_hp = 1500
 
@@ -95,6 +94,7 @@ hframes = 2
 
 [node name="HpBar" type="Node2D" parent="Sprite"]
 self_modulate = Color( 1, 1, 1, 0.415686 )
+position = Vector2( 0, -5 )
 script = ExtResource( 8 )
 
 [node name="Panel2" type="Panel" parent="Sprite/HpBar"]

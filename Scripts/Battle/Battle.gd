@@ -21,8 +21,6 @@ func Start_Enemy_Turn() -> void:
 		if enemy.animation.is_playing():
 			enemy.animation.get_animation("Idle").set_loop(false)
 			yield(enemy.animation, "animation_finished")
-			
-
 		enemy.attack()
 		yield(enemy, "enemy_attacked")
 		enemy.animation.get_animation("Idle").set_loop(true)

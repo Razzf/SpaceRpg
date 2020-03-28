@@ -3,7 +3,6 @@ extends Enemy
 var acid = preload("res://Scenes/Battle/Enemy/attacks/AcidSlime.tscn")
 
 var attacks = { "0":funcref(self, "tackle"), "1":funcref(self, "trow_slimes") }
-var atcks_idx = ["0", "1"]
 
 func trow_slimes(_n) -> void:
 	randomize()
@@ -20,8 +19,6 @@ func trow_slimes(_n) -> void:
 
 func attack():
 	randomize()
-	
 	var index = round(rand_range(0,1))
-	
-	attacks[atcks_idx[index]].call_func(round(rand_range(0,6)))
+	attacks[str(int(index))].call_func(1)
 	
