@@ -29,9 +29,6 @@ func tackle(_n) -> void:
 func deal_p_damage() -> void:
 	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y + 20))
 
-func deal_s_damage() -> void:
-	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y))
-
 func take_damage(amount) -> void:
 
 	create_random_shaking(animation, "RndShaking")
@@ -43,15 +40,13 @@ func take_damage(amount) -> void:
 			animation.stop()
 			animation.play("RndShaking")
 			yield(animation,"animation_finished")
-			queue_free()
-	
 		else:
 			animation.play("RndShaking")
 			yield(animation,"animation_finished")
-			queue_free()
-			
+		
+		yield($Sprite/HpBar, "zero_hp")
 		emit_signal("dead")
-
+		queue_free()
 	else:
 		if animation.is_playing():
 			animation.stop()
@@ -60,8 +55,8 @@ func take_damage(amount) -> void:
 			animation.play("RndShaking")
 			
 func sethp(value):
-	hp = value
-	emit_signal("hp_changed", value)
+	hp = clamp(value, 0, max_hp)
+	emit_signal("hp_changed", hp)
 
 func create_random_shaking(animPlayerObj, animName):
 	var animashion = Animation.new()
