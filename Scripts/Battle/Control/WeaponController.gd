@@ -16,7 +16,7 @@ signal weapon_Changed()
 const upwards = -1
 const downwards = 1
 
-var WpnIdxs
+var WpnIdxs = [0, 1, 2, 3, 4]
 
 var downdown_index = 0
 var down_index = 1
@@ -59,53 +59,26 @@ func _ready():
 		lowerWeapon.free()
 		upbt2.free()
 		dwnbt2.free()
-		
-func update_weapon_selector(trace): #func that moves the weapon positions up or down
+			
+			
+func update_test(trace):
 	var ship = battle_units.SpaceShip
 	if ship != null:
 		if ship.find_node("Weapon", true, false) != null:
 			var weapon = ship.get_node("Weapon")
-			downdown_index = downdown_index + 1 *(trace)
-			down_index = down_index + 1 * (trace)
-			index = index + 1 * (trace)
-			up_index = up_index + 1 * (trace)
-			upup_index = upup_index + 1 *(trace)
-			if downdown_index  == ship.Weapons.size() * (trace):
-				downdown_index = 0
-				down_index = 1
-				index = 2
-				up_index = 3
-				upup_index = 4
-			elif down_index == ship.Weapons.size() * (trace):
-				downdown_index = 4
-				down_index = 0
-				index = 1
-				up_index = 2
-				upup_index = 3
-			elif index == ship.Weapons.size() * (trace):
-				downdown_index = 3
-				down_index = 4
-				index = 0
-				up_index = 1
-				upup_index = 2
-			elif up_index == ship.Weapons.size() * (trace):
-				downdown_index = 2
-				down_index = 3
-				index = 4
-				up_index = 0
-				upup_index = 1
-			elif upup_index == ship.Weapons.size() * (trace):
-				downdown_index = 1
-				down_index = 2
-				index = 3
-				up_index = 4
-				upup_index = 0
+			if trace == 1:
+				WpnIdxs.push_back(WpnIdxs.front())
+				WpnIdxs.pop_front()
+			else:
+				WpnIdxs.push_front(WpnIdxs.back())
+				WpnIdxs.pop_back()
 				
-			var upperWeapon = ship.Weapons[up_index].instance()
-			var lowerWeapon = ship.Weapons[down_index].instance()
-			var upupwep = ship.Weapons[upup_index].instance()
-			var dwdwwep = ship.Weapons[downdown_index].instance()
-	
+			var dwdwwep = ship.Weapons[WpnIdxs[0]].instance()
+			var lowerWeapon = ship.Weapons[WpnIdxs[1]].instance()
+			var upperWeapon = ship.Weapons[WpnIdxs[3]].instance()
+			var upupwep = ship.Weapons[WpnIdxs[4]].instance()
+			
+		
 			UpperButton.texture = upperWeapon.icon_texture
 			LowerButton.texture = lowerWeapon.icon_texture
 			upbtn2.texture = upupwep.icon_texture
@@ -116,16 +89,14 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 			upupwep.free()
 			dwdwwep.free()
 			
-			ship.update_equipped_weapon(index)
+			ship.update_equipped_weapon(WpnIdxs[2])
 			weapon = ship.equipped_weapon
 			$NamePanel.show()
 			$NamePanel/NameLabel.text = weapon._name
 			weaponIcon.texture = weapon.icon_texture
-			
-func update_test():
-	pass
-	
-			
+		
+		
+
 func _weaponSelector_outspreded():
 	if $anim.get_playing_speed() == -1:
 		$NamePanel.hide()
@@ -154,12 +125,12 @@ func _gui_input(event):
 
 	if event is InputEventScreenDrag and dragging and chanchange:
 		if (event.position.x - init_posx) > 40:
-			update_weapon_selector(downwards)
+			update_test(downwards)
 			chanchange = false
 			print("caca")
 			emit_signal("weapon_Changed")
 			
 		elif (init_posx - event.position.x) > 40:
-			update_weapon_selector(upwards)
+			update_test(upwards)
 			chanchange = false
 			emit_signal("weapon_Changed")
