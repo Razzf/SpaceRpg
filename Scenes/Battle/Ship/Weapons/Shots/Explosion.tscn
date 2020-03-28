@@ -4,7 +4,6 @@
 [ext_resource path="res://Resources/Images/Frames Images/new explosion frames (1).png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Battle/Ship/Weapon/Shots/Explosion.gd" type="Script" id=3]
 
-
 [node name="Explosive Shot" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 spawn_range_x = 19.429

@@ -1,7 +1,7 @@
 extends Node2D
 class_name Weapon
 
-enum types {DEFENSIVE_TYPE, PASSIVE_TYPE, OFFENSIVE_TYPE}
+enum {DEFENSIVE_TYPE, PASSIVE_TYPE, OFFENSIVE_TYPE}
 export(Texture) var icon_texture = null
 export(int) var energy_cost = null setget set_energy_cost
 export(int) var power = null
