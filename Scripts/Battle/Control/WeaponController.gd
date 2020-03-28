@@ -1,4 +1,4 @@
-extends Container
+extends Control
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var weaponIcon = $WeaponIcon/Sprite
@@ -11,11 +11,12 @@ onready var upbtn2 = $UpDownBtns/UpButton/icon
 onready var downbtn2 = $UpDownBtns/DownButton/icon
 onready var UpperButton = $UpDownBtns2/UpButton/icon
 onready var LowerButton = $UpDownBtns2/DownButton/icon
-onready var weaponnamepanel = get_parent().get_node("Panel")
-onready var weaponName = get_parent().get_node("Panel/Label")
+
 signal weapon_Changed()
 const upwards = -1
 const downwards = 1
+
+var WpnIdxs
 
 var downdown_index = 0
 var down_index = 1
@@ -31,41 +32,13 @@ var dragging = false
 var click_radius = 80
 var init_posx
 
-func _input(event):
-	if event is InputEventScreenTouch:
-		if inreact:
-			init_posx = event.position.x
-			# Start dragging if the click is on the sprite.
-			if !dragging and event.pressed:
-				dragging = true
-		# Stop dragging if the button is released.
-		if dragging and !event.pressed:
-			chanchange = true
-			dragging = false
-			
-	if event is InputEventScreenDrag and dragging and chanchange:
-		if (event.position.x - init_posx) > 40:
-			update_weapon_selector(downwards)
-			chanchange = false
-			emit_signal("weapon_Changed")
-			
-		elif (init_posx - event.position.x) > 40:
-			
-			update_weapon_selector(upwards)
-			chanchange = false
-			emit_signal("weapon_Changed")
-			
 func _ready():
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
 	controllerapeared = true
-	upbtn.disabled = false
-	downbtn.disabled = false
-	lowerbtn2.disabled = false
-	upperbtn2.disabled = false
 	centerbtn.disabled = false
 	
-	weaponnamepanel.show()
+	$NamePanel.show()
 	if battle_units.SpaceShip != null and battle_units.SpaceShip.equipped_weapon != null:
 		var ship = battle_units.SpaceShip
 		
@@ -81,7 +54,7 @@ func _ready():
 		UpperButton.texture = upperWeapon.icon_texture
 		upbtn2.texture = upbt2.icon_texture
 		
-		weaponName.text = weapon._name
+		$NamePanel/NameLabel.text = weapon._name
 		upperWeapon.free()
 		lowerWeapon.free()
 		upbt2.free()
@@ -145,46 +118,48 @@ func update_weapon_selector(trace): #func that moves the weapon positions up or 
 			
 			ship.update_equipped_weapon(index)
 			weapon = ship.equipped_weapon
-			weaponnamepanel.show()
-			weaponName.text = weapon._name
+			$NamePanel.show()
+			$NamePanel/NameLabel.text = weapon._name
 			weaponIcon.texture = weapon.icon_texture
+			
+func update_test():
+	pass
+	
 			
 func _weaponSelector_outspreded():
 	if $anim.get_playing_speed() == -1:
-		weaponnamepanel.hide()
-		
+		$NamePanel.hide()
 	else:
-		weaponnamepanel.show()
+		$NamePanel.show()
 		
 func _on_WeaponIcon_pressed():
-	upbtn.disabled = true
-	downbtn.disabled = true
-	lowerbtn2.disabled = true
-	upperbtn2.disabled = true
 	centerbtn.disabled = true
 	controllerapeared = false
 	$anim.play_backwards("Appear")
 	yield($anim, "animation_finished")
 	battle_units.SpaceShip.attack(battle_units.Enemy)
 	queue_free()
-	
-func _on_WeaponController_mouse_entered():
-	if controllerapeared:
-		inreact = true
-		
-func _on_WeaponController_mouse_exited():
-	if controllerapeared:
-		inreact = false
-		
-func _on_UpButton_mouse_entered():
-	if controllerapeared:
-		inreact = true
-		
-func _on_WeaponIcon_mouse_entered():
-	if controllerapeared:
-		inreact = true
-		
-func _on_DownButton_mouse_entered():
-	if controllerapeared:
-		inreact = true
 
+
+func _gui_input(event):
+	
+	if event is InputEventScreenTouch:
+		init_posx = event.position.x
+		if !dragging and event.pressed:
+			dragging = true
+
+		if dragging and !event.pressed:
+			chanchange = true
+			dragging = false
+
+	if event is InputEventScreenDrag and dragging and chanchange:
+		if (event.position.x - init_posx) > 40:
+			update_weapon_selector(downwards)
+			chanchange = false
+			print("caca")
+			emit_signal("weapon_Changed")
+			
+		elif (init_posx - event.position.x) > 40:
+			update_weapon_selector(upwards)
+			chanchange = false
+			emit_signal("weapon_Changed")
