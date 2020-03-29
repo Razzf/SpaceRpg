@@ -182,12 +182,16 @@ margin_right = 93.0
 margin_bottom = 46.0
 rect_min_size = Vector2( 46, 46 )
 rect_pivot_offset = Vector2( 23, 23 )
+mouse_filter = 1
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
 custom_styles/disabled = ExtResource( 3 )
 custom_styles/normal = ExtResource( 3 )
 disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Sprite" type="Sprite" parent="WeaponIcon"]
 position = Vector2( 23, 23 )

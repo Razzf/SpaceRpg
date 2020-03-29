@@ -5,10 +5,8 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 signal weapon_Changed()
 
 var controllerapeared = true
-var chanchange = false
-var init_posx
 
-var dragging = false
+var init_posx
 
 onready var wpn_icons = [$UpDownBtns/UpButton/icon, $UpDownBtns2/UpButton/icon, $WeaponIcon/Sprite,
 				$UpDownBtns2/DownButton/icon,$UpDownBtns/DownButton/icon]
@@ -27,7 +25,6 @@ func update_weapons(upwards:bool = true) -> void:
 		if !upwards:
 			ship.Weapons.push_front(ship.Weapons.back())
 			ship.Weapons.pop_back()
-			print("upkwargs")
 		else:
 			ship.Weapons.push_back(ship.Weapons.front())
 			ship.Weapons.pop_front()
@@ -38,10 +35,8 @@ func update_weapons(upwards:bool = true) -> void:
 			extra_weapon.queue_free()
 			
 		ship.update_equipped_weapon(2)
-		
 		var weapon = ship.equipped_weapon
 		$WeaponIcon/Sprite.texture = weapon.icon_texture
-		
 		$NamePanel.show()
 		$NamePanel/NameLabel.text = weapon._name
 
@@ -65,9 +60,11 @@ func _gui_input(event):
 
 	if event is InputEventScreenDrag:
 		var difference = event.position.x - init_posx
-		if difference >= 30:
+		if difference >= 28:
 			init_posx = event.position.x
 			update_weapons(false)
-		if difference <= -30:
+			emit_signal("weapon_Changed")
+		if difference <= -28:
 			init_posx = event.position.x
 			update_weapons()
+			emit_signal("weapon_Changed")

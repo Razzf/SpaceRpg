@@ -21,7 +21,6 @@ func is_dead() -> bool:
 	return hp <= 0
 	
 func tackle(_n) -> void:
-	print("POPOSOTAAAA")
 	animation.play("Attack")
 	yield(animation,"animation_finished")
 	emit_signal("enemy_attacked")

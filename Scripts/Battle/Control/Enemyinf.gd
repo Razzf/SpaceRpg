@@ -9,10 +9,8 @@ var current_health = 0
 func initialize(max_value):
 	maximum = max_value
 	emit_signal("maximum_changed", maximum)
-	print("inicializando barra de hp:", max_value)
 
 func animate_value(start, end):
-	print("animando barra de vida del enemigo")
 	$Tween.interpolate_property($Panel2/TextureProgress, "value", start, end, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.interpolate_method(self, "update_count_text", start, end, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	$Tween.start()
@@ -33,6 +31,5 @@ func update_count_text(value):
 func _on_Enemy_hp_changed(value):
 	
 	animate_value(current_health, value)
-	print(value)
 	update_count_text(value)
 	current_health = value
