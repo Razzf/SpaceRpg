@@ -25,11 +25,16 @@ _global_script_classes=[ {
 "path": "res://Scripts/Battle/Enemy/Enemy.gd"
 }, {
 "base": "Node2D",
-"class": "Shooting",
+"class": "ShipModule",
+"language": "GDScript",
+"path": "res://Scripts/Battle/Ship/Module.gd"
+}, {
+"base": "Node2D",
+"class": "Shot",
 "language": "GDScript",
 "path": "res://Scripts/Battle/Ship/Weapon/Shots/Shot.gd"
 }, {
-"base": "Node2D",
+"base": "ShipModule",
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://Scripts/Battle/Ship/Weapon/Weapon.gd"
@@ -38,7 +43,8 @@ _global_script_class_icons={
 "Bar": "",
 "BattleUnits": "",
 "Enemy": "",
-"Shooting": "",
+"ShipModule": "",
+"Shot": "",
 "Weapon": ""
 }
 

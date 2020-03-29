@@ -51,12 +51,10 @@ func update_equipped_weapon(w_index) -> void:
 		
 func attack(_enemy) -> void:
 	if _enemy != null:
-		var explosion = equipped_weapon.shooting_scene.instance()
-		_enemy.add_child(explosion)
+		equipped_weapon.shoot_to(_enemy)
 		animation.play("attack")
 		self.energy -= equipped_weapon.energy_cost
 		yield(animation,"animation_finished")
-		battle_units.SpaceShip = self
 		emit_signal("weapon_used")
 
 func take_damage(amount, hit_position):

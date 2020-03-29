@@ -1,4 +1,4 @@
-extends Shooting
+extends Shot
 
 	
 

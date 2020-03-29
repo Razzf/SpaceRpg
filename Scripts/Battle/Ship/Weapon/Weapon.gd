@@ -1,24 +1,29 @@
-extends Node2D
+extends ShipModule
 class_name Weapon
 
-enum {DEFENSIVE_TYPE, PASSIVE_TYPE, OFFENSIVE_TYPE}
-export(Texture) var icon_texture = null
-export(int) var energy_cost = null setget set_energy_cost
-export(int) var power = null
-export(int, "Deffensive", "Passive", "Offensive") var type = null
-onready var _name = self.name
+enum {TRIGGER_TYPE, LASER_TYPE}
+export(int, "Trigger", "Laser") var weapon_type
+export(int) var fire_rate
+export(int) var accuracy
+export(int) var damage
 var trigger_counter = 0
-var description : String
 
-func set_energy_cost(value):
-	energy_cost = value
-	
+export(PackedScene) var shot_scene
+
 func _ready():
 	name = "Weapon"
 
-func get_description() -> String:
-	return description + "\n" + "Power: " + str(
-		power)+ "\n" + "Energy Cost: " + str(
-		energy_cost) + "\n\n\n\n Use this weapon?"
+func shoot_to(_enemy):
+	print("cacaaa")
+	print(weapon_type," ", TRIGGER_TYPE)
 	
+	if weapon_type == TRIGGER_TYPE:
+		print("simn es triger")
+		for _i in range(fire_rate):
+			var shot = shot_scene.instance()
+			_enemy.add_child(shot)
+			_enemy.take_damage(damage)
+			yield(shot, "tree_exited")
+		
+
 

@@ -1,5 +1,5 @@
 extends Node2D
-class_name Shooting
+class_name Shot
 
 export(float, 0, 50) var spawn_range_x
 export(float, 0, 50) var spawn_range_y
