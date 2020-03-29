@@ -99,6 +99,8 @@ func create_random_shaking(animPlayerObj, animName):
 func _ready():
 	battle_units.Enemy = self
 	$Sprite/HpBar.initialize(max_hp)
+	print($Sprite.texture.get_width())
+	print($Sprite.texture.get_height())
 	
 
 

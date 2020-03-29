@@ -89,12 +89,13 @@ script = ExtResource( 3 )
 max_hp = 1500
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 3, 0 )
 texture = ExtResource( 1 )
 hframes = 2
 
 [node name="HpBar" type="Node2D" parent="Sprite"]
 self_modulate = Color( 1, 1, 1, 0.415686 )
-position = Vector2( 0, -5 )
+position = Vector2( -3.12844, -3.71182 )
 script = ExtResource( 8 )
 
 [node name="Panel2" type="Panel" parent="Sprite/HpBar"]
