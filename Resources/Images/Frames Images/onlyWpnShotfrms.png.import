@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/onlyshipwindowdesignnewwindow2.png-351da822d8a591d72945bcc7a2e73798.stex"
+path="res://.import/onlyWpnShotfrms.png-1bc86c143f5e49dacb8067ecdba04d1b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/Frames Images/onlyshipwindowdesignnewwindow2.png"
-dest_files=[ "res://.import/onlyshipwindowdesignnewwindow2.png-351da822d8a591d72945bcc7a2e73798.stex" ]
+source_file="res://Resources/Images/Frames Images/onlyWpnShotfrms.png"
+dest_files=[ "res://.import/onlyWpnShotfrms.png-1bc86c143f5e49dacb8067ecdba04d1b.stex" ]
 
 [params]
 

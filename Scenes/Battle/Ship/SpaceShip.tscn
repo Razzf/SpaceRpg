@@ -1,10 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Battle/Ship/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Battle/Control/ProgressBar.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Battle/Ship/Weapon/Weapon.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Resources/Images/Frames Images/onlyshipwindowdesignnewwindow2.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Images/Sprites and designs/lastwdwdesign.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Images/Frames Images/shieldappear.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Images/Frames Images/shield_hitted.png" type="Texture" id=7]
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=8]
@@ -44,21 +44,6 @@ tracks/0/keys = {
 "values": [ 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 }
 
-[sub_resource type="Animation" id=3]
-length = 0.8
-tracks/0/type = "value"
-tracks/0/path = NodePath("ShipWindow:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 0, 0 ]
-}
-
 [sub_resource type="Animation" id=4]
 resource_name = "shaking"
 length = 0.2
@@ -83,22 +68,18 @@ self_modulate = Color( 1, 1, 1, 0.0784314 )
 position = Vector2( 90, 180 )
 texture = ExtResource( 6 )
 hframes = 13
-frame = 12
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
 texture = ExtResource( 5 )
-hframes = 5
 
 [node name="Weapon" type="Node2D" parent="."]
 script = ExtResource( 3 )
-type = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 3.6
 anims/Shakings = SubResource( 1 )
 "anims/Shield appear" = SubResource( 2 )
-anims/attack = SubResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0 )

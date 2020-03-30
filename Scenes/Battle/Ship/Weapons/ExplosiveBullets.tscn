@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Images/Icons Images/explosions.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Battle/Ship/Weapon/Explosive Bullets.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/Weapon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/Shots/Explosion.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Images/Frames Images/FireRifleWpnModule.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/Shots/RifleFiring.tscn" type="PackedScene" id=6]
 
 [node name="Explosive Bullets" instance=ExtResource( 3 )]
 script = ExtResource( 2 )
@@ -15,5 +17,9 @@ fire_rate = 12
 precision = 0.493
 damage = 20
 shot_scene = ExtResource( 4 )
-spawn_range_x = 20.745
-spawn_range_y = 25.0
+weapon_module = ExtResource( 5 )
+firing_of_module = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+texture = ExtResource( 5 )
+hframes = 2

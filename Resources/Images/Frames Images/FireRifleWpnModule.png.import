@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ExplosiveBulletsModuleShooting2.png-df76cf7cc77e7621b831ac00a3a6676d.stex"
+path="res://.import/FireRifleWpnModule.png-f23d8961b0efa3e347911306b4a0ce7a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/Frames Images/ExplosiveBulletsModuleShooting2.png"
-dest_files=[ "res://.import/ExplosiveBulletsModuleShooting2.png-df76cf7cc77e7621b831ac00a3a6676d.stex" ]
+source_file="res://Resources/Images/Frames Images/FireRifleWpnModule.png"
+dest_files=[ "res://.import/FireRifleWpnModule.png-f23d8961b0efa3e347911306b4a0ce7a.stex" ]
 
 [params]
 

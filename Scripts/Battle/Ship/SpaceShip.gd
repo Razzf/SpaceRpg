@@ -53,9 +53,6 @@ func update_equipped_weapon(w_index) -> void:
 func attack(_enemy) -> void:
 	if _enemy != null:
 		equipped_weapon.shoot_to(_enemy)
-		animation.play("attack")
-		self.energy -= equipped_weapon.energy_cost
-		yield(animation,"animation_finished")
 		yield(equipped_weapon, "on_used")
 		emit_signal("end_turn")
 		
