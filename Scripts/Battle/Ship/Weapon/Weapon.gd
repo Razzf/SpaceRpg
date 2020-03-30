@@ -16,7 +16,7 @@ func _ready():
 func shoot_to(_enemy):
 	print("cacaaa")
 	print(weapon_type," ", TRIGGER_TYPE)
-	
+
 	if weapon_type == TRIGGER_TYPE:
 		print("simn es triger")
 		for _i in range(fire_rate):
@@ -26,24 +26,21 @@ func shoot_to(_enemy):
 			
 			var max_y = _enemy.get_node("Sprite").texture.get_height()/2
 			var max_x = _enemy.get_node("Sprite").texture.get_width()/4
-			var rand_x = rand_range(0,0)
-			var rand_y = rand_range(0,max_y)
-			print(rand_x, " ", rand_y)
-			shot.global_position += Vector2(rand_x * abs(precision - 1),
-			rand_y * abs(precision - 1))
+			var rand_x = rand_range(-max_x,max_x) * abs(precision - 1)
+			var rand_y = rand_range(-max_y,max_y) * abs(precision - 1)
+			
+			var rand_vector2 = Vector2(rand_x, rand_y)
+
+			shot.global_position += rand_vector2
 
 			var hip = sqrt(pow(rand_x, 2) + pow(rand_y, 2))
+			print(hip)
 
 			var max_hip = sqrt(pow(max_x, 2) + pow(max_y, 2))
 
-			var hip_diff = max_hip - hip
-
 			var accuracy = 1 - (hip / max_hip)
 
-			print(accuracy)
-
 			_enemy.take_damage(damage * accuracy)
-
 
 			yield(shot, "tree_exited")
 

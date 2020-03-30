@@ -47,6 +47,7 @@ tracks/2/keys = {
 
 [node name="animExplosion" type="AnimationPlayer" parent="."]
 autoplay = "Explosion"
+playback_speed = 2.0
 anims/Explosion = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
