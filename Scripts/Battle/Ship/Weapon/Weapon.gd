@@ -4,9 +4,11 @@ class_name Weapon
 enum {TRIGGER_TYPE, LASER_TYPE}
 export(int, "Trigger", "Laser") var weapon_type
 export(int) var fire_rate
-export(float, .01, 1) var precision
+export(float, 0, 1) var precision
 export(int) var damage
 var trigger_counter = 0
+
+signal on_used
 
 export(PackedScene) var shot_scene
 
@@ -22,6 +24,7 @@ func shoot_to(_enemy):
 		for _i in range(fire_rate):
 			var shot = shot_scene.instance()
 			_enemy.add_child(shot)
+			trigger_counter = trigger_counter + 1
 			
 			
 			var max_y = _enemy.get_node("Sprite").texture.get_height()/2
@@ -34,13 +37,17 @@ func shoot_to(_enemy):
 			shot.global_position += rand_vector2
 
 			var hip = sqrt(pow(rand_x, 2) + pow(rand_y, 2))
-			print(hip)
 
 			var max_hip = sqrt(pow(max_x, 2) + pow(max_y, 2))
 
 			var accuracy = 1 - (hip / max_hip)
 
 			_enemy.take_damage(damage * accuracy)
+			
+			
+			if trigger_counter == fire_rate:
+				print("jue el triger")
+				emit_signal("on_used")
 
 			yield(shot, "tree_exited")
 

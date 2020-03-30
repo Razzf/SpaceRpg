@@ -11,7 +11,7 @@ func Start_Ship_Turn() -> void:
 	$MainControl.add_child(preload("res://Scenes/Battle/Control/ActionButtons.tscn").instance())
 	var ship = battle_units.SpaceShip
 	if ship != null:
-		yield(ship, "weapon_used")
+		yield(ship, "end_turn")
 		Start_Enemy_Turn()
 	
 	
@@ -29,4 +29,4 @@ func Start_Enemy_Turn() -> void:
 
 func _on_BattleUI_turn_passed() -> void:
 	var ship = battle_units.SpaceShip
-	ship.emit_signal("weapon_used")
+	ship.emit_signal("end_turn")

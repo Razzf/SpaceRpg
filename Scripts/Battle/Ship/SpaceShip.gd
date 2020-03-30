@@ -16,6 +16,8 @@ var equipped_weapon2 = null
 var equipped_weapon3 = null
 var equipped_weapon4 = null
 
+signal end_turn
+
 const hit_on_shield_resource = preload("res://Scenes/Battle/Ship/ShieldHitted.tscn")
 
 const Weapons = [
@@ -28,7 +30,6 @@ const Weapons = [
 	
 signal Shield_Changed(value)
 signal Energy_Changed(value)
-signal weapon_used
 
 func setShield(value):
 	shield = clamp(value, 0, max_shield)
@@ -55,7 +56,9 @@ func attack(_enemy) -> void:
 		animation.play("attack")
 		self.energy -= equipped_weapon.energy_cost
 		yield(animation,"animation_finished")
-		emit_signal("weapon_used")
+		yield(equipped_weapon, "on_used")
+		emit_signal("end_turn")
+		
 
 func take_damage(amount, hit_position):
 	if shield > 0:
