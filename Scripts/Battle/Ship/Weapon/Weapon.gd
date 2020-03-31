@@ -12,7 +12,7 @@ var trigger_counter = 0
 
 signal on_used
 
-export(PackedScene) var shot_scene
+export(Array, PackedScene) var shot_scenes
 
 func _ready():
 	name = "Weapon"
@@ -20,7 +20,11 @@ func _ready():
 func shoot_to(_enemy):
 	if weapon_type == TRIGGER_TYPE:
 		for _i in range(fire_rate):
-			var shot = shot_scene.instance()
+			var shot = shot_scenes[0].instance()
+			self.get_node("AnimationPlayer").play("recoil")
+			var fire = shot_scenes[1].instance()
+			fire.z_index = -1
+			self.get_node("NozzlePosition").add_child(fire)
 			_enemy.add_child(shot)
 			battle_units.SpaceShip.energy -= energy_cost
 			trigger_counter = trigger_counter + 1

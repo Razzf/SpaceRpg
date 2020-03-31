@@ -2,7 +2,6 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var animation : AnimationPlayer = $AnimationPlayer
-onready var shield_hitted_sprites : Sprite = $Sprite
 onready var shield_barrier = $ShieldBarrier
 
 var max_shield = 2000
@@ -40,15 +39,17 @@ func setEnergy(value):
 	emit_signal("Energy_Changed", energy)
 	
 func update_equipped_weapon(w_index) -> void:
-	if find_node("Weapon", true, false) != null:
-		var weapon = get_node("Weapon")
-		remove_child(weapon)
+	var weapon = $Modules/Position2D.find_node("Weapon", true, false)
+	print(weapon)
+	if weapon != null:
+		$Modules/Position2D.remove_child(weapon)
 		weapon.free()
 		equipped_weapon = Weapons[w_index].instance()
-		add_child(equipped_weapon)
+		$Modules/Position2D.add_child(equipped_weapon)
 	else:
-		equipped_weapon = Weapons[w_index]
-		add_child(equipped_weapon)
+		equipped_weapon = Weapons[w_index].instance()
+		$Modules/Position2D.add_child(equipped_weapon)
+		
 		
 func attack(_enemy) -> void:
 	if _enemy != null:
@@ -74,8 +75,6 @@ func _ready():
 	battle_units.Enemy.hp = battle_units.Enemy.max_hp
 	emit_signal("Energy_Changed", energy)
 	emit_signal("Shield_Changed",shield)
-	shield_hitted_sprites.hide()
-	update_equipped_weapon(2)
 	animation.play("Shield appear")
 	
 func _exit_tree():

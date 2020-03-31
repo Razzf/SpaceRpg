@@ -16,6 +16,7 @@ __meta__ = {
 
 [node name="PurpleSpace" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
+z_index = -2
 texture = ExtResource( 1 )
 
 [node name="EnemyPosition" type="Position2D" parent="."]
