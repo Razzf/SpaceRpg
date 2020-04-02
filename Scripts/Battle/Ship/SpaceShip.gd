@@ -20,7 +20,7 @@ const Weapons = [
 	preload("res://Scenes/Battle/Ship/Weapons/BlueSparks.tscn"),
 	preload("res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn"),
 	preload("res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn"),
-	preload("res://Scenes/Battle/Ship/Weapons/ShieldRecover.tscn"),
+	preload("res://Scenes/Battle/Ship/Weapons/LightningLaser.tscn"),
 	preload("res://Scenes/Battle/Ship/Weapons/ElectroCannon.tscn"),
 	]
 	

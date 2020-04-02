@@ -13,6 +13,9 @@ var description : String
 func set_energy_cost(value):
 	energy_cost = value
 
+func _ready():
+	name = "Weapon"
+
 func get_description() -> String:
 	return description + "\n" + "Power: " + str(
 		energy_cost) + "\n\n\n\n Use this weapon?"

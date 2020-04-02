@@ -50,6 +50,7 @@ func _weaponSelector_outspreded():
 		$NamePanel.show()
 
 func _on_WeaponIcon_pressed():
+	
 	$WeaponIcon.disabled = true
 	controllerapeared = false
 	$anim.play_backwards("Appear")
@@ -60,7 +61,6 @@ func _on_WeaponIcon_pressed():
 func _gui_input(event):
 	if event is InputEventScreenTouch:
 		init_posx = event.position.x
-
 	if event is InputEventScreenDrag:
 		var difference = event.position.x - init_posx
 		var weapon = battle_units.SpaceShip.equipped_weapon
