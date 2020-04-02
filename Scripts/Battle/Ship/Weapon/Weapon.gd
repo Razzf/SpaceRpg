@@ -16,6 +16,12 @@ export(Array, PackedScene) var shot_scenes
 
 func _ready():
 	name = "Weapon"
+	if $AnimationPlayer.has_animation("rotappear"):
+		$AnimationPlayer.play("rotappear")
+	else:
+		$AnimationPlayer.play("appear")
+	
+	
 
 func shoot_to(_enemy):
 	if weapon_type == TRIGGER_TYPE:
@@ -43,4 +49,18 @@ func shoot_to(_enemy):
 			yield(shot, "tree_exited")
 	elif weapon_type == LASER_TYPE:
 		pass
+		
+
+func withdraw():
+	if $AnimationPlayer.has_animation("rotdisappear"):
+		$AnimationPlayer.play("rotdisappear")
+		print("cacota")
+		yield($AnimationPlayer, "animation_finished")
+	else:
+		$AnimationPlayer.play_backwards("appear")
+		print("caquta")
+		yield($AnimationPlayer, "animation_finished")
+
+	
+	
 

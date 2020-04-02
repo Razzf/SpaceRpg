@@ -36,6 +36,7 @@ func update_weapons(upwards:bool = true) -> void:
 			
 		ship.update_equipped_weapon(2)
 		var weapon = ship.equipped_weapon
+		print(weapon._name)
 		$WeaponIcon/Sprite.texture = weapon.icon_texture
 		$NamePanel.show()
 		$NamePanel/NameLabel.text = weapon._name

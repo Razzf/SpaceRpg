@@ -5,6 +5,3 @@
 
 [node name="BlueSparks" instance=ExtResource( 2 )]
 icon_texture = ExtResource( 1 )
-energy_cost = 120
-power = 150
-type = 2

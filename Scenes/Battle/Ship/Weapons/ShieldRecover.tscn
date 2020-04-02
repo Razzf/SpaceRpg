@@ -1,10 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Resources/Images/Icons Images/Shield.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Battle/Ship/Weapon/Shield Recover.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/Weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Images/Icons Images/Shield.png" type="Texture" id=2]
 
-[node name="Shield Recover" type="Node2D"]
-script = ExtResource( 2 )
-icon_texture = ExtResource( 1 )
-energy_cost = 100
-power = 100
+[node name="ShieldRecover" instance=ExtResource( 1 )]
+icon_texture = ExtResource( 2 )

@@ -11,9 +11,6 @@ var max_energy = 3500
 var energy setget setEnergy
 
 var equipped_weapon = null
-var equipped_weapon2 = null
-var equipped_weapon3 = null
-var equipped_weapon4 = null
 
 signal end_turn
 
@@ -22,7 +19,7 @@ const hit_on_shield_resource = preload("res://Scenes/Battle/Ship/ShieldHitted.ts
 const Weapons = [
 	preload("res://Scenes/Battle/Ship/Weapons/BlueSparks.tscn"),
 	preload("res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn"),
-	preload("res://Scenes/Battle/Ship/Weapons/ExplosiveBullets.tscn"),
+	preload("res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn"),
 	preload("res://Scenes/Battle/Ship/Weapons/ShieldRecover.tscn"),
 	preload("res://Scenes/Battle/Ship/Weapons/ElectroCannon.tscn"),
 	]
@@ -39,16 +36,14 @@ func setEnergy(value):
 	emit_signal("Energy_Changed", energy)
 	
 func update_equipped_weapon(w_index) -> void:
-	var weapon = $Modules/Position2D.find_node("Weapon", true, false)
-	print(weapon)
-	if weapon != null:
-		$Modules/Position2D.remove_child(weapon)
-		weapon.free()
-		equipped_weapon = Weapons[w_index].instance()
-		$Modules/Position2D.add_child(equipped_weapon)
+	if equipped_weapon != null:
+		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
+		wpnanim.play("rotdisappear")
+		$Modules/Position2D.add_child(Weapons[w_index].instance())
+		equipped_weapon = self.get_node("Modules/Position2D").get_child(1)
 	else:
-		equipped_weapon = Weapons[w_index].instance()
-		$Modules/Position2D.add_child(equipped_weapon)
+		$Modules/Position2D.add_child(Weapons[w_index].instance())
+		equipped_weapon = self.get_node("Modules/Position2D/Weapon")
 		
 		
 func attack(_enemy) -> void:
@@ -79,3 +74,4 @@ func _ready():
 	
 func _exit_tree():
 	battle_units.SpaceShip = null
+	
