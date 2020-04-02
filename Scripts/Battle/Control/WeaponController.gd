@@ -19,20 +19,20 @@ func _ready():
 	controllerapeared = true
 	$WeaponIcon.disabled = false
 	$NamePanel.show()
-	update_weapons()
+	update_module()
 
-func update_weapons(upwards:bool = true) -> void:
+func update_module(upwards:bool = true) -> void:
 	var ship = battle_units.SpaceShip
 	if ship != null:
 		if !upwards:
-			ship.Weapons.push_front(ship.Weapons.back())
-			ship.Weapons.pop_back()
+			ship.actual_module.push_front(ship.actual_module.back())
+			ship.actual_module.pop_back()
 		else:
-			ship.Weapons.push_back(ship.Weapons.front())
-			ship.Weapons.pop_front()
+			ship.actual_module.push_back(ship.actual_module.front())
+			ship.actual_module.pop_front()
 			
-		for w_idx in range(0, ship.Weapons.size()):
-			var extra_weapon = ship.Weapons[w_idx].instance()
+		for w_idx in range(0, ship.actual_module.size()):
+			var extra_weapon = ship.actual_module[w_idx].instance()
 			wpn_icons[w_idx].texture = extra_weapon.icon_texture
 			extra_weapon.queue_free()
 			
@@ -68,9 +68,9 @@ func _gui_input(event):
 		if !wpn_anim.is_playing():
 			if difference >= (100-sensitivity):
 				init_posx = event.position.x
-				update_weapons(false)
+				update_module(false)
 				emit_signal("weapon_Changed")
 			if difference <= - (100-sensitivity):
 				init_posx = event.position.x
-				update_weapons()
+				update_module()
 				emit_signal("weapon_Changed")

@@ -1,4 +1,4 @@
-extends Container
+extends Control
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 onready var animation = $AnimationPlayer

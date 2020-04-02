@@ -49,17 +49,6 @@ func shoot_to(_enemy):
 			yield(shot, "tree_exited")
 	elif weapon_type == LASER_TYPE:
 		pass
-		
-
-func withdraw():
-	if $AnimationPlayer.has_animation("rotdisappear"):
-		$AnimationPlayer.play("rotdisappear")
-		print("cacota")
-		yield($AnimationPlayer, "animation_finished")
-	else:
-		$AnimationPlayer.play_backwards("appear")
-		print("caquta")
-		yield($AnimationPlayer, "animation_finished")
 
 	
 	

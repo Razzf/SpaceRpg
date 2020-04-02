@@ -17,6 +17,3 @@ shot_scenes = [ ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="Sprite" parent="." index="0"]
 offset = Vector2( -28, -28 )
-
-[node name="AnimationPlayer" parent="." index="1"]
-playback_speed = 2.0

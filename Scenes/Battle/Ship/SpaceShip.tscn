@@ -1,15 +1,20 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Battle/Ship/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Battle/Control/ProgressBar.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/ElectroCannon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
 [ext_resource path="res://Resources/Images/Sprites and designs/lastwdwdesign.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Images/Frames Images/shieldappear.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=8]
 [ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=9]
 [ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
 [ext_resource path="res://Scripts/Battle/Control/ShieldBar.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Battle/Control/EnergyBar.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/LightningLaser.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/BlueSparks.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"
@@ -60,7 +65,11 @@ tracks/0/keys = {
 
 [node name="SpaceShip" type="Node2D"]
 script = ExtResource( 1 )
-usable_modules = 4
+usable_modules = 2
+module_1 = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
+module_2 = [ ExtResource( 13 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ) ]
+module_3 = [ null, null, null, null, null ]
+module_4 = [ null, null, null, null, null ]
 
 [node name="ShieldBarrier" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.0784314 )
