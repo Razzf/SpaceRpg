@@ -83,6 +83,7 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+sensitivity = 51.662
 
 [node name="NamePanel" type="Panel" parent="."]
 visible = false

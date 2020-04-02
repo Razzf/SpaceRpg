@@ -137,7 +137,7 @@ offset = Vector2( -28, -28 )
 hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 0.5
+playback_speed = 2.0
 anims/appear = SubResource( 1 )
 anims/recoil = SubResource( 2 )
 anims/rotappear = SubResource( 4 )

@@ -1,39 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/Weapon.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Images/Icons Images/explosions.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/Shots/Explosion.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/Shots/RifleFiring.tscn" type="PackedScene" id=4]
-
-[sub_resource type="Animation" id=1]
-resource_name = "appear"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 40, 40 ), Vector2( 20, 20 ), Vector2( 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 0.15
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
 
 [node name="BlastingCannon" instance=ExtResource( 1 )]
 icon_texture = ExtResource( 2 )
@@ -45,10 +15,8 @@ damage = 40
 shot_scenes = [ ExtResource( 3 ), ExtResource( 4 ) ]
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0, 0 )
+position = Vector2( 40, 40 )
 offset = Vector2( -28, -28 )
 
 [node name="AnimationPlayer" parent="." index="1"]
-playback_speed = 0.5
-anims/appear = SubResource( 1 )
-anims/recoil = SubResource( 2 )
+playback_speed = 2.0

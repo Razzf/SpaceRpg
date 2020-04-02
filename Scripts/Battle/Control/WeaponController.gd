@@ -4,6 +4,8 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 
 signal weapon_Changed()
 
+export(float, 0.1, 100) var sensitivity 
+
 var controllerapeared = true
 
 var init_posx
@@ -61,11 +63,14 @@ func _gui_input(event):
 
 	if event is InputEventScreenDrag:
 		var difference = event.position.x - init_posx
-		if difference >= 28:
-			init_posx = event.position.x
-			update_weapons(false)
-			emit_signal("weapon_Changed")
-		if difference <= -28:
-			init_posx = event.position.x
-			update_weapons()
-			emit_signal("weapon_Changed")
+		var weapon = battle_units.SpaceShip.equipped_weapon
+		var wpn_anim = weapon.find_node("AnimationPlayer", true, false)
+		if !wpn_anim.is_playing():
+			if difference >= (100-sensitivity):
+				init_posx = event.position.x
+				update_weapons(false)
+				emit_signal("weapon_Changed")
+			if difference <= - (100-sensitivity):
+				init_posx = event.position.x
+				update_weapons()
+				emit_signal("weapon_Changed")
