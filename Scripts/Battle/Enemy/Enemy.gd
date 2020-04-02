@@ -6,7 +6,7 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 export(int)var max_hp
 export(int) var physical_damage
 export(int) var special_damage
-var hp setget sethp
+var hp  setget sethp
 var rand_val
 var prev_rand = 0
 
@@ -99,6 +99,8 @@ func create_random_shaking(animPlayerObj, animName):
 func _ready():
 	battle_units.Enemy = self
 	$Sprite/HpBar.initialize(max_hp)
+	self.hp = max_hp
+	print("se inicializo con:", max_hp)
 	print($Sprite.texture.get_width())
 	print($Sprite.texture.get_height())
 	

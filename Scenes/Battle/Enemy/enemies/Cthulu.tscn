@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Battle/Enemy/Enemy.tscn" type="PackedScene" id=1]
 
 [node name="Cthulu" instance=ExtResource( 1 )]
-max_hp = 1600
+max_hp = 1601
 physical_damage = 120
 
 [node name="Sprite" parent="." index="0"]

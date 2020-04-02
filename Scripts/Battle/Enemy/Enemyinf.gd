@@ -9,6 +9,7 @@ var current_health = 0
 func initialize(max_value):
 	maximum = max_value
 	emit_signal("maximum_changed", maximum)
+	print("se realizo la inicializacion con:", max_value)
 
 func animate_value(start, end):
 	$Tween.interpolate_property($Panel2/TextureProgress, "value", start, end, 1, Tween.TRANS_LINEAR, Tween.EASE_OUT)

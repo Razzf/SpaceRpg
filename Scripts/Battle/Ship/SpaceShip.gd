@@ -4,10 +4,15 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_barrier = $ShieldBarrier
 
-var max_shield = 2000
+export(int, 1 ,4) var usable_modules
+export(Array, PackedScene) var module_1
+export(Array, PackedScene) var module_2
+export(Array, PackedScene) var module_3
+export(Array, PackedScene) var module_4
+export(int) var max_shield = 2000
 var shield setget setShield
 
-var max_energy = 3500
+export(int) var max_energy = 3500
 var energy setget setEnergy
 
 var equipped_weapon = null
@@ -30,10 +35,12 @@ signal Energy_Changed(value)
 func setShield(value):
 	shield = clamp(value, 0, max_shield)
 	emit_signal("Shield_Changed", shield)
+	print("se emitio la senal de cambio del valor de escudo")
 	
 func setEnergy(value):
 	energy = clamp(value, 0, max_energy)
 	emit_signal("Energy_Changed", energy)
+	print("se emitio la senal de cambio del valor de energia")
 	
 func update_equipped_weapon(w_index) -> void:
 	if equipped_weapon != null:
@@ -41,6 +48,7 @@ func update_equipped_weapon(w_index) -> void:
 		wpnanim.play("rotdisappear")
 		$Modules/Position2D.add_child(Weapons[w_index].instance())
 		equipped_weapon = self.get_node("Modules/Position2D").get_child(1)
+
 	else:
 		$Modules/Position2D.add_child(Weapons[w_index].instance())
 		equipped_weapon = self.get_node("Modules/Position2D/Weapon")
@@ -65,11 +73,11 @@ func _ready():
 	battle_units.SpaceShip = self
 	$EnergyBar.initialize(max_energy)
 	$ShieldBar.initialize(max_shield)
-	energy = max_energy
-	shield = max_shield
-	battle_units.Enemy.hp = battle_units.Enemy.max_hp
-	emit_signal("Energy_Changed", energy)
-	emit_signal("Shield_Changed",shield)
+	self.energy = max_energy
+	self.shield = max_shield
+#	battle_units.Enemy.hp = battle_units.Enemy.max_hp
+#	emit_signal("Energy_Changed", energy)
+#	emit_signal("Shield_Changed",shield)
 	animation.play("Shield appear")
 	
 func _exit_tree():
