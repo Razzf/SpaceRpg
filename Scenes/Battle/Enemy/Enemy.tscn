@@ -88,7 +88,8 @@ position = Vector2( 3, 0 )
 texture = ExtResource( 1 )
 hframes = 2
 
-[node name="HpBar" parent="Sprite" instance=ExtResource( 2 )]
+[node name="Bar" parent="Sprite" instance=ExtResource( 2 )]
+position = Vector2( -3, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 0.6

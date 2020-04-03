@@ -28,8 +28,8 @@ var load_scene = preload("res://Scenes/Battle/Control/WeaponSelector.tscn")
 const hit_on_shield_resource = preload("res://Scenes/Battle/Ship/ShieldHitted.tscn")
 
 	
-signal Shield_Changed(value)
-signal Energy_Changed(value)
+signal Shield_changed(value)
+signal Energy_changed(value)
 
 func setModule_idx(value):
 	module_idx = value
@@ -43,11 +43,11 @@ func setModule_idx(value):
 
 func setShield(value):
 	shield = clamp(value, 0, max_shield)
-	emit_signal("Shield_Changed", shield)
+	emit_signal("Shield_changed", shield)
 	
 func setEnergy(value):
 	energy = clamp(value, 0, max_energy)
-	emit_signal("Energy_Changed", energy)
+	emit_signal("Energy_changed", energy)
 	
 func update_equipped_weapon(w_index) -> void:
 	if equipped_weapon != null:
@@ -137,3 +137,4 @@ func _ready():
 func _exit_tree():
 	battle_units.SpaceShip = null
 	
+

@@ -1,24 +1,8 @@
 extends Node2D
 
 signal zero_hp
-
-export(Texture) var over
-export(Color) var over_tint
-export(Texture) var progress
-export(Color) var progress_tint
-export(Texture) var under
-export(Color) var under_tint
-
 var maximum
 var current_health = 0
-
-func _ready():
-	$TextureProgress.texture_over = over
-	$TextureProgress.tint_over = over_tint
-	$TextureProgress.texture_progress = progress
-	$TextureProgress.tint_progress = progress_tint
-	$TextureProgress.texture_under = under
-	$TextureProgress.tint_under = under_tint
 
 func initialize(max_value):
 	maximum = max_value
@@ -42,7 +26,7 @@ func update_count_text(value):
 		$TextureProgress.tint_progress = Color.green
 
 
-func _on_Enemy_hp_changed(value):
+func _on_value_changed(value):
 	print("popo de la buena... mmmmmmm")
 	animate_value(current_health, value)
 	update_count_text(value)

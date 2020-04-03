@@ -1,20 +1,16 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Battle/Ship/SpaceShip.gd" type="Script" id=1]
-[ext_resource path="res://Scripts/Battle/Control/ProgressBar.gd" type="Script" id=2]
+[ext_resource path="res://Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/ElectroCannon.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Resources/Images/overbar.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Images/Sprites and designs/LasterWindowDesign.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Images/Frames Images/shieldappear.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=8]
-[ext_resource path="res://Resources/Images/overbar.png" type="Texture" id=9]
-[ext_resource path="res://Scripts/Battle/Control/ShieldBar.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/Battle/Control/EnergyBar.gd" type="Script" id=12]
+[ext_resource path="res://Resources/Images/shipbar.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/LightningLaser.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlueSparks.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Resources/Images/shipbar.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"
@@ -47,22 +43,6 @@ tracks/0/keys = {
 "values": [ 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "shaking"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("ShipWindow:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.01111, 1 ), Vector2( 1, 1 ) ]
-}
-
 [node name="SpaceShip" type="Node2D"]
 script = ExtResource( 1 )
 usable_modules = 4
@@ -70,12 +50,6 @@ module_1 = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource
 module_2 = [ ExtResource( 13 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ) ]
 module_3 = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
 module_4 = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ) ]
-
-[node name="ShieldBarrier" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.0784314 )
-position = Vector2( 90, 180 )
-texture = ExtResource( 6 )
-hframes = 13
 
 [node name="Modules" type="Node2D" parent="."]
 position = Vector2( 90, 160 )
@@ -92,122 +66,61 @@ position = Vector2( -75, -100 )
 [node name="Position2D4" type="Position2D" parent="Modules"]
 position = Vector2( 75, -100 )
 
+[node name="ShieldBarrier" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.0784314 )
+position = Vector2( 90, 180 )
+texture = ExtResource( 6 )
+hframes = 13
+
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
 texture = ExtResource( 5 )
+
+[node name="ShieldBar" parent="." instance=ExtResource( 2 )]
+position = Vector2( 22, 212 )
+
+[node name="TextureProgress" parent="ShieldBar" index="0"]
+margin_left = -12.0
+margin_top = -4.0
+margin_right = 68.0
+margin_bottom = 15.0
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 8 )
+fill_mode = 1
+
+[node name="Label" parent="ShieldBar/TextureProgress" index="0"]
+margin_left = 1.0
+margin_top = 4.0
+margin_right = 79.0
+margin_bottom = 15.0
+
+[node name="EnergyBar" parent="." instance=ExtResource( 2 )]
+position = Vector2( 123, 214 )
+
+[node name="TextureProgress" parent="EnergyBar" index="0"]
+margin_left = 47.0
+margin_top = -6.0
+margin_right = 127.0
+margin_bottom = 13.0
+rect_scale = Vector2( -1, 1 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 8 )
+fill_mode = 1
+
+[node name="Label" parent="EnergyBar/TextureProgress" index="0"]
+margin_left = 79.0
+margin_top = 4.0
+margin_right = 157.0
+margin_bottom = 15.0
+rect_scale = Vector2( -1, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 3.6
 anims/Shakings = SubResource( 1 )
 "anims/Shield appear" = SubResource( 2 )
+[connection signal="Energy_changed" from="." to="EnergyBar" method="_on_value_changed"]
+[connection signal="Shield_changed" from="." to="ShieldBar" method="_on_value_changed"]
 
-[node name="EnergyBar" type="Node2D" parent="."]
-position = Vector2( 19, 231 )
-script = ExtResource( 12 )
-value_type = "Ep"
+[editable path="ShieldBar"]
 
-[node name="TextureProgress" type="TextureProgress" parent="EnergyBar"]
-margin_left = -9.0
-margin_top = -23.0
-margin_right = 71.0
-margin_bottom = -4.0
-rect_min_size = Vector2( 80, 19 )
-rect_scale = Vector2( 1.004, 1.05 )
-rect_clip_content = true
-max_value = 2000.0
-value = 150.0
-texture_over = ExtResource( 9 )
-texture_progress = ExtResource( 16 )
-fill_mode = 1
-tint_progress = Color( 0.964706, 0.964706, 0.254902, 0.545098 )
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="EnergyBar"]
-margin_left = 30.0
-margin_top = -8.0
-margin_right = 64.0
-margin_bottom = 6.0
-rect_min_size = Vector2( 34, 14 )
-rect_pivot_offset = Vector2( 17, 7 )
-custom_styles/panel = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="EnergyBar/Panel"]
-margin_left = 3.0
-margin_top = 4.0
-margin_right = 31.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 28, 6 )
-custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
-text = "asda"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="EnergyBar"]
-
-[node name="ShieldBar" type="Node2D" parent="."]
-position = Vector2( 160, 231 )
-script = ExtResource( 11 )
-value_type = "Sp"
-
-[node name="TextureProgress" type="TextureProgress" parent="ShieldBar"]
-self_modulate = Color( 0.407843, 1, 0.941176, 1 )
-margin_left = -8.0
-margin_top = -14.0
-margin_right = 133.0
-margin_bottom = 3.0
-rect_min_size = Vector2( 140, 17 )
-rect_rotation = 270.0
-rect_scale = Vector2( 1.005, 1.02 )
-rect_clip_content = true
-max_value = 2000.0
-value = 150.0
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Panel" type="Panel" parent="ShieldBar"]
-margin_left = -16.0
-margin_top = -14.0
-margin_right = 18.0
-margin_bottom = 9.53674e-07
-rect_min_size = Vector2( 34, 14 )
-rect_pivot_offset = Vector2( 17, 7 )
-custom_styles/panel = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="ShieldBar/Panel"]
-margin_left = 3.0
-margin_top = 4.0
-margin_right = 31.0
-margin_bottom = 10.0
-rect_min_size = Vector2( 28, 6 )
-custom_fonts/font = ExtResource( 4 )
-custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
-text = "asda"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Tween" type="Tween" parent="ShieldBar"]
-
-[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
-anims/shaking = SubResource( 3 )
-[connection signal="Energy_Changed" from="." to="EnergyBar" method="_on_SpaceShip_Energy_Changed"]
-[connection signal="Shield_Changed" from="." to="ShieldBar" method="_on_SpaceShip_Shield_Changed"]
-[connection signal="maximum_changed" from="EnergyBar" to="EnergyBar/TextureProgress" method="_on_Bar_maximum_changed"]
-[connection signal="maximum_changed" from="ShieldBar" to="ShieldBar/TextureProgress" method="_on_Bar_maximum_changed"]
+[editable path="EnergyBar"]
