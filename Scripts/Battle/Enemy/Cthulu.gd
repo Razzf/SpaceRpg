@@ -18,6 +18,7 @@ func trow_slimes(_n) -> void:
 	emit_signal("enemy_attacked")
 
 func attack():
+	
 	randomize()
 	var index = round(rand_range(0,1))
 	attacks[str(int(index))].call_func(1)

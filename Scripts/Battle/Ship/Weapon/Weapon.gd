@@ -30,11 +30,12 @@ func shoot_to(_enemy):
 			self.get_node("AnimationPlayer").play("recoil")
 			var fire = shot_scenes[1].instance()
 			fire.z_index = -1
-			self.get_node("NozzlePosition").add_child(fire)
+			self.get_node("Sprite/NozzlePosition").add_child(fire)
 			_enemy.add_child(shot)
 			battle_units.SpaceShip.energy -= energy_cost
 			trigger_counter = trigger_counter + 1
 			if trigger_counter == fire_rate:
+				yield(fire, "tree_exited")
 				emit_signal("on_used")
 			var max_y = _enemy.get_node("Sprite").texture.get_height()/2
 			var max_x = _enemy.get_node("Sprite").texture.get_width()/4
@@ -46,7 +47,10 @@ func shoot_to(_enemy):
 			var max_hip = sqrt(pow(max_x, 2) + pow(max_y, 2))
 			var accuracy = 1 - (hip / max_hip)
 			_enemy.take_damage(damage * accuracy)
-			yield(shot, "tree_exited")
+			if _i < fire_rate -1:
+				print("mm cacaaaaaaAAAAA")
+				yield(shot, "tree_exited")
+				
 	elif weapon_type == LASER_TYPE:
 		pass
 

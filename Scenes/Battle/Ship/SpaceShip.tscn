@@ -65,11 +65,11 @@ tracks/0/keys = {
 
 [node name="SpaceShip" type="Node2D"]
 script = ExtResource( 1 )
-usable_modules = 2
+usable_modules = 4
 module_1 = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
 module_2 = [ ExtResource( 13 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ) ]
-module_3 = [ null, null, null, null, null ]
-module_4 = [ null, null, null, null, null ]
+module_3 = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
+module_4 = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ) ]
 
 [node name="ShieldBarrier" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.0784314 )
@@ -81,16 +81,16 @@ hframes = 13
 position = Vector2( 90, 160 )
 
 [node name="Position2D" type="Position2D" parent="Modules"]
-position = Vector2( 55, 58 )
+position = Vector2( 75, 70 )
 
 [node name="Position2D2" type="Position2D" parent="Modules"]
-position = Vector2( -54, 58 )
+position = Vector2( -75, 70 )
 
 [node name="Position2D3" type="Position2D" parent="Modules"]
-position = Vector2( -58, -85 )
+position = Vector2( -75, -100 )
 
 [node name="Position2D4" type="Position2D" parent="Modules"]
-position = Vector2( 59, -86 )
+position = Vector2( 75, -100 )
 
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )

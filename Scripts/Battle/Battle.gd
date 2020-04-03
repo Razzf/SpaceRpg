@@ -3,6 +3,8 @@ extends Node2D
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
 func _ready():
+	yield(get_tree().create_timer(4), "timeout")
+	print("que peo cachorros")
 	battle_units.Enemy.animation.play("Idle")
 	Start_Ship_Turn()
 

@@ -98,6 +98,8 @@ func create_random_shaking(animPlayerObj, animName):
 
 func _ready():
 	battle_units.Enemy = self
+	yield(get_tree().create_timer(4), "timeout")
+	print("que peo cachorros")
 	$Sprite/HpBar.initialize(max_hp)
 	self.hp = max_hp
 	print("se inicializo con:", max_hp)
