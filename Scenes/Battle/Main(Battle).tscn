@@ -32,5 +32,5 @@ position = Vector2( 0.250343, 0.250351 )
 position = Vector2( 18.5317, 32.6743 )
 
 [node name="MainControl" parent="." instance=ExtResource( 5 )]
-margin_top = 225.0
+margin_top = 233.0
 mouse_filter = 2

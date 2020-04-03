@@ -4,17 +4,17 @@
 [ext_resource path="res://Scripts/Battle/Control/ProgressBar.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/ElectroCannon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Resources/Images/Sprites and designs/lastwdwdesign.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Images/Sprites and designs/LasterWindowDesign.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Images/Frames Images/shieldappear.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=8]
-[ext_resource path="res://Resources/Styles/colorbar.tres" type="StyleBox" id=9]
-[ext_resource path="res://Resources/Styles/backcolorbar.tres" type="StyleBox" id=10]
+[ext_resource path="res://Resources/Images/overbar.png" type="Texture" id=9]
 [ext_resource path="res://Scripts/Battle/Control/ShieldBar.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Battle/Control/EnergyBar.gd" type="Script" id=12]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/LightningLaser.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlueSparks.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Resources/Images/shipbar.png" type="Texture" id=16]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"
@@ -106,11 +106,30 @@ position = Vector2( 19, 231 )
 script = ExtResource( 12 )
 value_type = "Ep"
 
+[node name="TextureProgress" type="TextureProgress" parent="EnergyBar"]
+margin_left = -9.0
+margin_top = -23.0
+margin_right = 71.0
+margin_bottom = -4.0
+rect_min_size = Vector2( 80, 19 )
+rect_scale = Vector2( 1.004, 1.05 )
+rect_clip_content = true
+max_value = 2000.0
+value = 150.0
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 16 )
+fill_mode = 1
+tint_progress = Color( 0.964706, 0.964706, 0.254902, 0.545098 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Panel" type="Panel" parent="EnergyBar"]
-margin_left = -16.0
-margin_top = -14.0
-margin_right = 18.0
-margin_bottom = 9.53674e-07
+margin_left = 30.0
+margin_top = -8.0
+margin_right = 64.0
+margin_bottom = 6.0
 rect_min_size = Vector2( 34, 14 )
 rect_pivot_offset = Vector2( 17, 7 )
 custom_styles/panel = ExtResource( 8 )
@@ -133,8 +152,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureProgress" type="ProgressBar" parent="EnergyBar"]
-self_modulate = Color( 0.917647, 1, 0.207843, 1 )
+[node name="Tween" type="Tween" parent="EnergyBar"]
+
+[node name="ShieldBar" type="Node2D" parent="."]
+position = Vector2( 160, 231 )
+script = ExtResource( 11 )
+value_type = "Sp"
+
+[node name="TextureProgress" type="TextureProgress" parent="ShieldBar"]
+self_modulate = Color( 0.407843, 1, 0.941176, 1 )
 margin_left = -8.0
 margin_top = -14.0
 margin_right = 133.0
@@ -143,22 +169,12 @@ rect_min_size = Vector2( 140, 17 )
 rect_rotation = 270.0
 rect_scale = Vector2( 1.005, 1.02 )
 rect_clip_content = true
-custom_styles/fg = ExtResource( 9 )
-custom_styles/bg = ExtResource( 10 )
 max_value = 2000.0
 value = 150.0
-percent_visible = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Tween" type="Tween" parent="EnergyBar"]
-
-[node name="ShieldBar" type="Node2D" parent="."]
-position = Vector2( 160, 231 )
-script = ExtResource( 11 )
-value_type = "Sp"
 
 [node name="Panel" type="Panel" parent="ShieldBar"]
 margin_left = -16.0
@@ -183,28 +199,6 @@ custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
 text = "asda"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureProgress" type="ProgressBar" parent="ShieldBar"]
-self_modulate = Color( 0.407843, 1, 0.941176, 1 )
-margin_left = -8.0
-margin_top = -14.0
-margin_right = 133.0
-margin_bottom = 3.0
-rect_min_size = Vector2( 140, 17 )
-rect_rotation = 270.0
-rect_scale = Vector2( 1.005, 1.02 )
-rect_clip_content = true
-custom_styles/fg = ExtResource( 9 )
-custom_styles/bg = ExtResource( 10 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-max_value = 2000.0
-value = 150.0
-percent_visible = false
-script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

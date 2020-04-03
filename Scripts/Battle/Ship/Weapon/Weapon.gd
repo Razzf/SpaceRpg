@@ -31,12 +31,11 @@ func shoot_to(_enemy):
 			var fire = shot_scenes[1].instance()
 			fire.z_index = -1
 			self.get_node("Sprite/NozzlePosition").add_child(fire)
+			yield(fire, "tree_exiting")
 			_enemy.add_child(shot)
 			battle_units.SpaceShip.energy -= energy_cost
 			trigger_counter = trigger_counter + 1
-			if trigger_counter == fire_rate:
-				yield(fire, "tree_exited")
-				emit_signal("on_used")
+			
 			var max_y = _enemy.get_node("Sprite").texture.get_height()/2
 			var max_x = _enemy.get_node("Sprite").texture.get_width()/4
 			var rand_x = rand_range(-max_x,max_x) * abs(precision - 1)
@@ -50,6 +49,10 @@ func shoot_to(_enemy):
 			if _i < fire_rate -1:
 				print("mm cacaaaaaaAAAAA")
 				yield(shot, "tree_exited")
+			else:
+				yield(shot, "tree_exited")
+				emit_signal("on_used")
+				
 				
 	elif weapon_type == LASER_TYPE:
 		pass

@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Battle/Enemy/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Battle/Enemy/Cthulu.gd" type="Script" id=2]
 
 [node name="Cthulu" instance=ExtResource( 1 )]
 z_index = -6
+script = ExtResource( 2 )
 max_hp = 2500
 physical_damage = 120
 
