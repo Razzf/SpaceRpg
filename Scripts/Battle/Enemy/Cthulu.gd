@@ -21,5 +21,5 @@ func attack():
 	
 	randomize()
 	var index = round(rand_range(0,1))
-	attacks[str(int(index))].call_func(1)
+	attacks[str(int(index))].call_func(8)
 	

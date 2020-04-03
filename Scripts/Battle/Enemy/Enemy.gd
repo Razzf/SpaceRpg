@@ -43,7 +43,7 @@ func take_damage(amount) -> void:
 			animation.play("RndShaking")
 			yield(animation,"animation_finished")
 		
-		yield($Sprite/HpBar, "zero_hp")
+		yield($Sprite/Bar, "zero_hp")
 		emit_signal("dead")
 		queue_free()
 	else:
@@ -98,8 +98,6 @@ func create_random_shaking(animPlayerObj, animName):
 
 func _ready():
 	battle_units.Enemy = self
-	yield(get_tree().create_timer(4), "timeout")
-	print("que peo cachorros")
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
 	print("se inicializo con:", max_hp)

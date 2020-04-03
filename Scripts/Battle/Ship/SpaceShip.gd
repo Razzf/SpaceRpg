@@ -125,8 +125,6 @@ func take_damage(amount, hit_position):
 
 
 func _ready():
-	yield(get_tree().create_timer(4), "timeout")
-	print("que peo cachorros")
 	battle_units.SpaceShip = self
 	$EnergyBar.initialize(max_energy)
 	$ShieldBar.initialize(max_shield)

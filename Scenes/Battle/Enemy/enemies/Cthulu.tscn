@@ -17,6 +17,9 @@ offset = Vector2( 3, -1 )
 
 [node name="Bar" parent="Sprite" index="0"]
 position = Vector2( -36, -42 )
+changeable_color = true
+visibility = 0.5
+Trans_type = 6
 
 [node name="TextureProgress" parent="Sprite/Bar" index="0"]
 texture_over = ExtResource( 4 )

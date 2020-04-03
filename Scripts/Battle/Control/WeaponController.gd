@@ -40,14 +40,17 @@ func update_module(upwards:bool = true) -> void:
 		var weapon = ship.equipped_weapon
 		print(weapon._name)
 		$WeaponIcon/Sprite.texture = weapon.icon_texture
-		$NamePanel.show()
 		$NamePanel/NameLabel.text = weapon._name
 
 func _weaponSelector_outspreded():
 	if $anim.get_playing_speed() == -1:
 		$NamePanel.hide()
+		$PassBtn.hide()
+		$RunBtn.hide()
 	else:
 		$NamePanel.show()
+		$PassBtn.show()
+		$RunBtn.show()
 
 func _on_WeaponIcon_pressed():
 	

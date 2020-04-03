@@ -12,8 +12,6 @@ var page = 0
 
 # Functions
 func _ready():
-	yield(get_tree().create_timer(4), "timeout")
-	print("que peo cachorros")
 	$AnimationPlayer.play("panelappear")
 	yield($AnimationPlayer,"animation_finished")
 	$AnimationPlayer.play("Idle")

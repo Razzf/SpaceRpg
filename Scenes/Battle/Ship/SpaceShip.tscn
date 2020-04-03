@@ -78,6 +78,9 @@ texture = ExtResource( 5 )
 
 [node name="ShieldBar" parent="." instance=ExtResource( 2 )]
 position = Vector2( 22, 212 )
+custom_color = Color( 0.00784314, 0.905882, 1, 1 )
+visibility = 0.5
+Trans_type = 2
 
 [node name="TextureProgress" parent="ShieldBar" index="0"]
 margin_left = -12.0
@@ -89,6 +92,7 @@ texture_progress = ExtResource( 8 )
 fill_mode = 1
 
 [node name="Label" parent="ShieldBar/TextureProgress" index="0"]
+visible = false
 margin_left = 1.0
 margin_top = 4.0
 margin_right = 79.0
@@ -96,6 +100,9 @@ margin_bottom = 15.0
 
 [node name="EnergyBar" parent="." instance=ExtResource( 2 )]
 position = Vector2( 123, 214 )
+custom_color = Color( 0.992157, 1, 0, 1 )
+visibility = 0.5
+Trans_type = 2
 
 [node name="TextureProgress" parent="EnergyBar" index="0"]
 margin_left = 47.0
@@ -108,6 +115,7 @@ texture_progress = ExtResource( 8 )
 fill_mode = 1
 
 [node name="Label" parent="EnergyBar/TextureProgress" index="0"]
+visible = false
 margin_left = 79.0
 margin_top = 4.0
 margin_right = 157.0

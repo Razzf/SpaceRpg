@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=2]
@@ -7,10 +7,15 @@
 [ext_resource path="res://Scripts/Battle/Control/WeaponController.gd" type="Script" id=5]
 [ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=6]
 
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxFlat" id=4]
+
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Appear"
+length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
 tracks/0/interp = 1
@@ -18,10 +23,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 20, 90 ), Vector2( 20, 80 ), Vector2( 20, 60 ), Vector2( 20, 40 ), Vector2( 20, 20 ) ]
+"values": [ Vector2( 20, 90 ), Vector2( 20, 20 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("UpDownBtns2:custom_constants/separation")
@@ -68,10 +73,34 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.8, 0.9 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0.7, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 15, 10 ), Vector2( 15, -15 ) ]
+"values": [ Vector2( 15, 10 ), Vector2( 15, -18 ), Vector2( 15, -15 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("RunBtn:rect_position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.7, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 5 ), Vector2( 0, 33 ), Vector2( 0, 32 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("PassBtn:rect_position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.7, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 120, 5 ), Vector2( 120, 35 ), Vector2( 120, 32 ) ]
 }
 
 [node name="WeaponController" type="Control"]
@@ -81,16 +110,47 @@ margin_right = 20.0
 margin_bottom = 90.0
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_horizontal_guides_": [ 25.0 ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 67.0, 113.0 ]
 }
 sensitivity = 51.662
+
+[node name="PassBtn" type="Button" parent="."]
+visible = false
+margin_left = 120.0
+margin_top = 6.0327
+margin_right = 140.0
+margin_bottom = 24.0327
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RunBtn" type="Button" parent="."]
+visible = false
+margin_top = 5.96386
+margin_right = 20.0
+margin_bottom = 23.9639
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NamePanel" type="Panel" parent="."]
 visible = false
 margin_left = 15.0
-margin_top = 10.0
+margin_top = 9.03614
 margin_right = 125.0
-margin_bottom = 24.0
+margin_bottom = 23.0361
 custom_styles/panel = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
