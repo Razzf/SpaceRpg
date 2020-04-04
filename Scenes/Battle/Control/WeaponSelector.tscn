@@ -260,4 +260,6 @@ scale = Vector2( 1.3, 1.3 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
 anims/Appear = SubResource( 2 )
+[connection signal="pressed" from="PassBtn" to="." method="_on_PassBtn_pressed"]
+[connection signal="pressed" from="RunBtn" to="." method="_on_RunBtn_pressed"]
 [connection signal="pressed" from="WeaponIcon" to="." method="_on_WeaponIcon_pressed"]

@@ -16,4 +16,5 @@ damage = 120
 shot_scenes = [ ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="Sprite" parent="." index="0"]
-offset = Vector2( -28, -28 )
+rotation = -3.14159
+offset = Vector2( -32, -15 )

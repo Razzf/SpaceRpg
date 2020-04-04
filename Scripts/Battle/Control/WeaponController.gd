@@ -77,3 +77,16 @@ func _gui_input(event):
 				init_posx = event.position.x
 				update_module()
 				emit_signal("weapon_Changed")
+
+
+func _on_PassBtn_pressed():
+	$WeaponIcon.disabled = true
+	controllerapeared = false
+	$anim.play_backwards("Appear")
+	yield($anim, "animation_finished")
+	queue_free()
+	battle_units.SpaceShip.wea()
+
+
+func _on_RunBtn_pressed():
+	pass # Replace with function body.

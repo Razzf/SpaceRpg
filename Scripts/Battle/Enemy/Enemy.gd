@@ -9,6 +9,8 @@ export(int) var special_damage
 var hp  setget sethp
 var rand_val
 var prev_rand = 0
+var init_posx
+export(float, 0.1, 100.00)  var swipe_sensitiviy 
 
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
@@ -16,6 +18,7 @@ onready var sprite : Sprite = $Sprite
 signal dead
 signal enemy_attacked
 signal hp_changed(value)
+signal swiped(dir)
 
 func is_dead() -> bool:
 	return hp <= 0
@@ -98,11 +101,12 @@ func create_random_shaking(animPlayerObj, animName):
 
 func _ready():
 	battle_units.Enemy = self
+	animation.play("Idle")
+	print("me hice caca")
+	self.connect("swiped",get_parent().get_parent(),"change_target")
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
-	print("se inicializo con:", max_hp)
-	print($Sprite.texture.get_width())
-	print($Sprite.texture.get_height())
+	print(swipe_sensitiviy)
 	
 
 
@@ -110,4 +114,23 @@ func _ready():
 func _exit_tree():
 	battle_units.Enemy = null
 
+
+
+
+func _on_Area2D_input_event(_viewport, event, _shape_idx):
+	if event is InputEventScreenTouch:
+		init_posx = event.position.x
+	if event is InputEventScreenDrag:
+		var difference = event.position.x - init_posx
+		print(difference)
+		if difference >= (20):
+			init_posx = event.position.x
+			$AnimationPlayer.play("swiping_right")
+			yield($AnimationPlayer, "animation_finished")
+			emit_signal("swiped")
+		if difference <= - (20):
+			init_posx = event.position.x
+			$AnimationPlayer.play("swiping_left")
+			emit_signal("swiped", false)
+			
 
