@@ -20,6 +20,7 @@ func _ready():
 		enemy_instances.append(load(enemy_scenes.front()).instance())
 	
 	$EnemyPos.add_child(enemy_instances.front())
+	print(battle_units.Enemy.name)
 
 	
 	
@@ -50,18 +51,19 @@ func _on_BattleUI_turn_passed() -> void:
 	ship.emit_signal("end_turn")
 
 func change_target(right:bool = true) -> void:
+	print("me cambie el panial ")
 	if !right:
 		enemy_instances.push_front(enemy_instances.back())
 		enemy_instances.pop_back()
 		$EnemyPos.remove_child($EnemyPos.get_child(0))
 		$EnemyPos.add_child(enemy_instances.front())
-		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_left")
+		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_right")
 	else:
 		enemy_instances.push_back(enemy_instances.front())
 		enemy_instances.pop_front()
 		$EnemyPos.remove_child($EnemyPos.get_child(0))
 		$EnemyPos.add_child(enemy_instances.front())
-		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_right")
+		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_left")
 	
 
 func list_files_in_directory(path):
