@@ -36,8 +36,23 @@ func Start_Enemy_Turn() -> void:
 		if enemy.animation.is_playing():
 			enemy.animation.get_animation("Idle").set_loop(false)
 			yield(enemy.animation, "animation_finished")
-		enemy.attack()
-		yield(enemy, "enemy_attacked")
+		for _i in range(3):
+			var _enemy = battle_units.Enemy
+			if _enemy.animation.is_playing():
+				print("si tenia :C")
+				yield(_enemy.animation, "animation_finished")
+				print(_enemy.name,": attacking")
+				_enemy.attack()
+				yield(_enemy, "enemy_attacked")
+				change_target()
+			else:
+				print("no tenia anim :O")
+				print(_enemy.name,": attacking")
+				_enemy.attack()
+				yield(_enemy, "enemy_attacked")
+				change_target()
+				
+		change_target()
 		enemy.animation.get_animation("Idle").set_loop(true)
 		enemy.animation.play("Idle")
 		Start_Ship_Turn()
@@ -59,7 +74,8 @@ func change_target(right:bool = true) -> void:
 		
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_right")
 		yield(battle_units.Enemy.animation, "animation_finished")
-		battle_units.Enemy.animation.play("Idle")
+		print("termino de swipearse")
+		#battle_units.Enemy.animation.play("Idle")
 	else:
 		enemy_instances.push_back(enemy_instances.front())
 		enemy_instances.pop_front()
@@ -70,7 +86,8 @@ func change_target(right:bool = true) -> void:
 		print("el enemigo actual es: ", battle_units.Enemy.name)
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_left")
 		yield(battle_units.Enemy.animation, "animation_finished")
-		battle_units.Enemy.animation.play("Idle")
+		print("termino de swipearse")
+		#battle_units.Enemy.animation.play("Idle")
 	
 
 func list_files_in_directory(path):

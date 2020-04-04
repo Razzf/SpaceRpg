@@ -25,8 +25,8 @@ func is_dead() -> bool:
 	return hp <= 0
 	
 func tackle(_n) -> void:
-	animation.play("Attack")
-	yield(animation,"animation_finished")
+	self.animation.play("Attack")
+	yield(self.animation,"animation_finished")
 	emit_signal("enemy_attacked")
 
 func deal_p_damage() -> void:
@@ -128,6 +128,7 @@ func _exit_tree():
 
 func attack():
 	tackle(1)
+	print("smn kk con pan")
 
 func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventScreenTouch:
