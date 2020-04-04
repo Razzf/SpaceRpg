@@ -4,7 +4,14 @@
 [ext_resource path="res://Resources/Images/Frames Images/AIscreen.png" type="Texture" id=2]
 
 [node name="badai" instance=ExtResource( 1 )]
+max_hp = 1200
+physical_damage = 80
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 hframes = 3
+
+[node name="Bar" parent="Sprite" index="0"]
+visibility = 0.5
+
+[editable path="Sprite/Bar"]

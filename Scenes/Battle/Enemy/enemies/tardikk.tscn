@@ -4,6 +4,13 @@
 [ext_resource path="res://Resources/Images/Frames Images/pixeltardigrado.png" type="Texture" id=2]
 
 [node name="tardi kk" instance=ExtResource( 1 )]
+max_hp = 3000
+physical_damage = 200
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
+
+[node name="Bar" parent="Sprite" index="0"]
+visibility = 0.5
+
+[editable path="Sprite/Bar"]

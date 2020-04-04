@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Images/Frames Images/Cthulu1FRAME.piskel.0w (1).png" type="Texture" id=1]
 [ext_resource path="res://Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Battle/Enemy/Enemy.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Images/enemyprogbar.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Images/enemycoverbar.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 55, 68 )
@@ -80,7 +82,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -8 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 resource_name = "swiping_left"
 length = 0.3
 tracks/0/type = "value"
@@ -120,7 +122,21 @@ texture = ExtResource( 1 )
 hframes = 2
 
 [node name="Bar" parent="Sprite" instance=ExtResource( 2 )]
-position = Vector2( -3, 0 )
+position = Vector2( -34, -45 )
+changeable_color = true
+
+[node name="TextureProgress" parent="Sprite/Bar" index="0"]
+margin_right = 72.0
+margin_bottom = 13.0
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 4 )
+tint_progress = Color( 1, 1, 1, 0.47451 )
+
+[node name="Label" parent="Sprite/Bar/TextureProgress" index="0"]
+margin_left = 2.0
+margin_top = 3.0
+margin_right = 70.0
+margin_bottom = 11.0
 
 [node name="Area2D" type="Area2D" parent="Sprite"]
 
@@ -133,6 +149,9 @@ playback_speed = 0.6
 anims/Attack = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/prepare = SubResource( 4 )
-anims/swiping_left = SubResource( 5 )
+anims/swiping_left = SubResource( 7 )
 anims/swiping_right = SubResource( 6 )
+[connection signal="hp_changed" from="." to="Sprite/Bar" method="_on_value_changed"]
 [connection signal="input_event" from="Sprite/Area2D" to="." method="_on_Area2D_input_event"]
+
+[editable path="Sprite/Bar"]
