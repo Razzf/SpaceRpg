@@ -33,13 +33,6 @@ signal Energy_changed(value)
 
 func setModule_idx(value):
 	module_idx = value
-#	if module_idx == usable_modules:
-#		print("out of range")
-#		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-#		wpnanim.play("rotdisappear")
-#		emit_signal("end_turn")
-#		module_idx = 0
-#		actual_module = modules[module_idx]
 
 func setShield(value):
 	shield = clamp(value, 0, max_shield)
@@ -89,7 +82,6 @@ func attack(_enemy) -> void:
 			equipped_weapon = null
 			module_idx = module_idx + 1
 			actual_module = modules[module_idx]
-			print("the actual module is:", actual_module)
 			var wpnselector = load_scene.instance()
 			get_parent().get_node("MainControl").add_child(wpnselector)
 	else:
@@ -103,7 +95,6 @@ func attack(_enemy) -> void:
 			
 			module_idx = 0
 			actual_module = modules[module_idx]
-			print("mmm caca")
 
 func wea():
 	if module_idx < usable_modules-1:
@@ -113,7 +104,6 @@ func wea():
 		equipped_weapon = null
 		module_idx = module_idx + 1
 		actual_module = modules[module_idx]
-		print("the actual module is:", actual_module)
 		var wpnselector = load_scene.instance()
 		get_parent().get_node("MainControl").add_child(wpnselector)
 	else:

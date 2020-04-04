@@ -43,7 +43,6 @@ func update_count_text(value):
 
 
 func _on_Enemy_hp_changed(value):
-	print("popo de la buena... mmmmmmm")
 	animate_value(current_health, value)
 	update_count_text(value)
 	current_health = value

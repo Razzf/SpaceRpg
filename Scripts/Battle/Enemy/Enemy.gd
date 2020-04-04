@@ -10,7 +10,8 @@ var hp  setget sethp
 var rand_val
 var prev_rand = 0
 var init_posx
-export(float, 0.1, 100.00)  var swipe_sensitiviy 
+export(float, 0.1, 100.00)  var swipe_sensitiviy
+var canchange
 
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
@@ -32,8 +33,11 @@ func deal_p_damage() -> void:
 	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y + 20))
 
 func take_damage(amount) -> void:
+	print("enemy tacking damage")
 
 	create_random_shaking(animation, "RndShaking")
+	if animation.has_animation("RndShaking"):
+		print("smn si la tiene")
 	
 	self.hp -= amount
 	
@@ -52,6 +56,7 @@ func take_damage(amount) -> void:
 	else:
 		if animation.is_playing():
 			animation.stop()
+			print("about to play rndm shaking")
 			animation.play("RndShaking")
 		else:
 			animation.play("RndShaking")
@@ -101,36 +106,45 @@ func create_random_shaking(animPlayerObj, animName):
 
 func _ready():
 	battle_units.Enemy = self
-	animation.play("Idle")
-	print("me hice caca")
+	
 	self.connect("swiped",get_parent().get_parent(),"change_target")
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
-	print(swipe_sensitiviy)
 	
+	
+func _enter_tree():
+	battle_units.Enemy = self
+	if animation != null:
+		if !animation.is_playing():
+			animation.get_animation("Idle").set_loop(true)
+			animation.play("Idle")
+			print("playing idle")
 
-
+	canchange = true
 	
 func _exit_tree():
+	print("el nodo enemy salio")
 	battle_units.Enemy = null
 
-
-
+func attack():
+	tackle(1)
 
 func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventScreenTouch:
 		init_posx = event.position.x
 	if event is InputEventScreenDrag:
 		var difference = event.position.x - init_posx
-		print(difference)
-		if difference >= (20):
+		if difference >= (20) and canchange:
+			canchange = false
 			init_posx = event.position.x
 			$AnimationPlayer.play("swiping_right")
 			yield($AnimationPlayer, "animation_finished")
 			emit_signal("swiped")
-		if difference <= - (20):
+		if difference <= - (20) and canchange:
+			canchange = false
 			init_posx = event.position.x
 			$AnimationPlayer.play("swiping_left")
+			yield($AnimationPlayer, "animation_finished")
 			emit_signal("swiped", false)
 			
 

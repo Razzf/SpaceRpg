@@ -6,7 +6,6 @@
 [ext_resource path="res://Resources/Images/enemycoverbar.png" type="Texture" id=4]
 
 [node name="Cthulu" instance=ExtResource( 1 )]
-z_index = -6
 script = ExtResource( 2 )
 max_hp = 2500
 physical_damage = 120

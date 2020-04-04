@@ -7,21 +7,17 @@ var enemy_instances = []
 
 func _ready():
 	Start_Ship_Turn()
-	var max_enemies = 2
+	var max_enemies = 3
 	var enemy_names = list_files_in_directory(enemies_dir)
-	print("caca")
 	for enemy_name in enemy_names:
-		print("dentro de la caca")
 		var dirtoappend = enemies_dir + enemy_name
-		print(dirtoappend)
 		enemy_scenes.append(dirtoappend)
 	for _i in max_enemies:
+		randomize()
 		enemy_scenes.shuffle()
 		enemy_instances.append(load(enemy_scenes.front()).instance())
-	
 	$EnemyPos.add_child(enemy_instances.front())
-	print(battle_units.Enemy.name)
-
+	print("el primer enemigo es: ", battle_units.Enemy.name)
 	
 	
 
@@ -51,18 +47,25 @@ func _on_BattleUI_turn_passed() -> void:
 	ship.emit_signal("end_turn")
 
 func change_target(right:bool = true) -> void:
-	print("me cambie el panial ")
 	if !right:
 		enemy_instances.push_front(enemy_instances.back())
 		enemy_instances.pop_back()
-		$EnemyPos.remove_child($EnemyPos.get_child(0))
+		
+		$EnemyPos.remove_child(battle_units.Enemy)
 		$EnemyPos.add_child(enemy_instances.front())
+		print("el enemigo actual es: ", battle_units.Enemy.name)
+		print(enemy_instances[0].name, enemy_instances[1].name, enemy_instances[2].name )
+		print("there are ", enemy_instances.size(), " enemies")
+		
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_right")
 	else:
 		enemy_instances.push_back(enemy_instances.front())
 		enemy_instances.pop_front()
-		$EnemyPos.remove_child($EnemyPos.get_child(0))
+		
+		$EnemyPos.remove_child(battle_units.Enemy)
 		$EnemyPos.add_child(enemy_instances.front())
+		
+		print("el enemigo actual es: ", battle_units.Enemy.name)
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_left")
 	
 

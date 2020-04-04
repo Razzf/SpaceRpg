@@ -80,7 +80,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -8 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=5]
 resource_name = "swiping_left"
 length = 0.3
 tracks/0/type = "value"
@@ -96,8 +96,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -140, 0 ) ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "swiping_right"
+[sub_resource type="Animation" id=6]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -129,10 +128,11 @@ position = Vector2( -3, 0 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 playback_speed = 0.6
 anims/Attack = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/prepare = SubResource( 4 )
-anims/swiping_left = SubResource( 6 )
-anims/swiping_right = SubResource( 5 )
+anims/swiping_left = SubResource( 5 )
+anims/swiping_right = SubResource( 6 )
 [connection signal="input_event" from="Sprite/Area2D" to="." method="_on_Area2D_input_event"]
