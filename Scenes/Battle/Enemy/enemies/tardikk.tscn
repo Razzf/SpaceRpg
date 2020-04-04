@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Battle/Enemy/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Images/Sprites and designs/test tardi.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Images/Frames Images/pixeltardigrado.png" type="Texture" id=2]
 
 [node name="tardi kk" instance=ExtResource( 1 )]
 

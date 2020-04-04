@@ -58,6 +58,8 @@ func change_target(right:bool = true) -> void:
 		print("there are ", enemy_instances.size(), " enemies")
 		
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_right")
+		yield(battle_units.Enemy.animation, "animation_finished")
+		battle_units.Enemy.animation.play("Idle")
 	else:
 		enemy_instances.push_back(enemy_instances.front())
 		enemy_instances.pop_front()
@@ -67,6 +69,8 @@ func change_target(right:bool = true) -> void:
 		
 		print("el enemigo actual es: ", battle_units.Enemy.name)
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_left")
+		yield(battle_units.Enemy.animation, "animation_finished")
+		battle_units.Enemy.animation.play("Idle")
 	
 
 func list_files_in_directory(path):

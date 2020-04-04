@@ -116,8 +116,8 @@ func _enter_tree():
 	battle_units.Enemy = self
 	if animation != null:
 		if !animation.is_playing():
-			animation.get_animation("Idle").set_loop(true)
-			animation.play("Idle")
+			self.animation.get_animation("Idle").set_loop(true)
+			self.animation.play("Idle")
 			print("playing idle")
 
 	canchange = true
