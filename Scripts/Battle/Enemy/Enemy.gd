@@ -133,19 +133,23 @@ func attack():
 func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventScreenTouch:
 		init_posx = event.position.x
+		print("popo agarre el primero")
 	if event is InputEventScreenDrag:
-		var difference = event.position.x - init_posx
-		if difference >= (20) and canchange:
-			canchange = false
-			init_posx = event.position.x
-			$AnimationPlayer.play("swiping_right")
-			yield($AnimationPlayer, "animation_finished")
-			emit_signal("swiped")
-		if difference <= - (20) and canchange:
-			canchange = false
-			init_posx = event.position.x
-			$AnimationPlayer.play("swiping_left")
-			yield($AnimationPlayer, "animation_finished")
-			emit_signal("swiped", false)
+		if event.position.x != null:
+			var difference = event.position.x - init_posx
+			if difference >= (30) and canchange:
+				canchange = false
+				init_posx = event.position.x
+				emit_signal("swiped")
+			if difference <= - (30) and canchange:
+				canchange = false
+				init_posx = event.position.x
+				emit_signal("swiped", false)
+				
+func ready_to_show():
+	if animation.get_playing_speed() == -1:
+		self.hide()
+	else:
+		self.show()
 			
 

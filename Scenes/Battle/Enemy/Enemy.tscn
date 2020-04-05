@@ -84,7 +84,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "swiping_left"
-length = 0.3
+length = 0.2
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
@@ -95,11 +96,26 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( -140, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( -160, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.19 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ready_to_show"
+} ]
 }
 
 [sub_resource type="Animation" id=6]
-length = 0.3
+length = 0.2
+step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
@@ -110,7 +126,21 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 140, 0 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 160, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.19 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ready_to_show"
+} ]
 }
 
 [node name="Enemy" type="Node2D"]
@@ -118,6 +148,7 @@ z_index = -3
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -152, 0 )
 texture = ExtResource( 1 )
 hframes = 2
 
