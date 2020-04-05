@@ -5,6 +5,8 @@ const enemies_dir = "res://Scenes/Battle/Enemy/enemies/"
 var enemy_scenes = []
 var enemy_instances = []
 
+signal change_finished
+
 func _ready():
 	Start_Ship_Turn()
 	var max_enemies = 3
@@ -40,6 +42,7 @@ func Start_Enemy_Turn() -> void:
 		for _i in range(3):
 			var _enemy = battle_units.Enemy
 			if _enemy.animation.is_playing():
+				print(_enemy.animation.get_playing_speed())
 				print("si tenia :C")
 				yield(_enemy.animation, "animation_finished")
 				print("ya no tiene :D")
@@ -48,6 +51,7 @@ func Start_Enemy_Turn() -> void:
 				yield(_enemy, "enemy_attacked")
 				if _i < 2:
 					change_target()
+					yield(self,"change_finished")
 					print("mmmHOLAAAAAAAAAAA")
 			else:
 				print("no tenia anim :O")
@@ -56,9 +60,10 @@ func Start_Enemy_Turn() -> void:
 				yield(_enemy, "enemy_attacked")
 				if _i < 2:
 					change_target()
+					yield(self,"change_finished")
 					print("mmmHOLAAAAAAAAAAA")
 				
-		change_target()
+		#change_target()
 		enemy.animation.get_animation("Idle").set_loop(true)
 		enemy.animation.play("Idle")
 		Start_Ship_Turn()
@@ -83,6 +88,7 @@ func change_target(right:bool = true) -> void:
 		battle_units.Enemy.show()
 		yield(battle_units.Enemy.animation, "animation_finished")
 		print("termino de swipearse")
+		emit_signal("change_finished")
 		#battle_units.Enemy.animation.play("Idle")
 	else:
 		enemy_instances.push_back(enemy_instances.front())
@@ -98,6 +104,7 @@ func change_target(right:bool = true) -> void:
 		battle_units.Enemy.show()
 		yield(battle_units.Enemy.animation, "animation_finished")
 		print("termino de swipearse")
+		emit_signal("change_finished")
 		#battle_units.Enemy.animation.play("Idle")
 	
 

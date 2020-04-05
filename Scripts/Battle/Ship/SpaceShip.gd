@@ -48,11 +48,11 @@ func update_equipped_weapon(w_index) -> void:
 		wpnanim.play("rotdisappear")
 		var temp_wpn = actual_module[w_index].instance()
 		if module_idx == 1:
-			temp_wpn.get_node("Sprite").set_scale(Vector2(-1,1))
+			temp_wpn.set_scale(Vector2(-1,1))
 		elif module_idx == 2:
-			temp_wpn.get_node("Sprite").set_scale(Vector2(-1,-1))
+			temp_wpn.set_scale(Vector2(-1,-1))
 		elif module_idx == 3:
-			temp_wpn.get_node("Sprite").set_scale(Vector2(1,-1))
+			temp_wpn.set_scale(Vector2(1,-1))
 		$Modules.get_child(module_idx).add_child(temp_wpn)
 		#$Modules/Position2D.add_child(Weapons[w_index].instance())
 		equipped_weapon = self.get_node("Modules").get_child(module_idx).get_child(1)
@@ -60,11 +60,11 @@ func update_equipped_weapon(w_index) -> void:
 	else:
 		var temp_wpn = actual_module[w_index].instance()
 		if module_idx == 1:
-			temp_wpn.get_node("Sprite").set_scale(Vector2(-1,1))
+			temp_wpn.set_scale(Vector2(-1,1))
 		elif module_idx == 2:
-			temp_wpn.get_node("Sprite").set_scale(Vector2(-1,-1))
+			temp_wpn.set_scale(Vector2(-1,-1))
 		elif module_idx == 3:
-			temp_wpn.get_node("Sprite").set_scale(Vector2(1,-1))
+			temp_wpn.set_scale(Vector2(1,-1))
 		$Modules.get_child(module_idx).add_child(temp_wpn)
 		equipped_weapon = self.get_node("Modules").get_child(module_idx).get_child(0)
 		print("esta es el arma equipada", equipped_weapon)
@@ -77,7 +77,7 @@ func attack(_enemy) -> void:
 			equipped_weapon.shoot_to(_enemy)
 			yield(equipped_weapon, "on_used")		
 			var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-			wpnanim.play("rotdisappear")
+			wpnanim.play_backwards("appear")
 			yield(equipped_weapon, "tree_exiting")
 			equipped_weapon = null
 			module_idx = module_idx + 1
@@ -89,7 +89,7 @@ func attack(_enemy) -> void:
 			equipped_weapon.shoot_to(_enemy)
 			yield(equipped_weapon, "on_used")
 			var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-			wpnanim.play("rotdisappear")
+			wpnanim.play_backwards("appear")
 			equipped_weapon = null
 			emit_signal("end_turn")
 			
@@ -99,7 +99,7 @@ func attack(_enemy) -> void:
 func wea():
 	if module_idx < usable_modules-1:
 		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-		wpnanim.play("rotdisappear")
+		wpnanim.play_backwards("appear")
 		yield(equipped_weapon, "tree_exiting")
 		equipped_weapon = null
 		module_idx = module_idx + 1
@@ -108,7 +108,7 @@ func wea():
 		get_parent().get_node("MainControl").add_child(wpnselector)
 	else:
 		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-		wpnanim.play("rotdisappear")
+		wpnanim.play_backwards("appear")
 		equipped_weapon = null
 		emit_signal("end_turn")
 		module_idx = 0

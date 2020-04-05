@@ -13,6 +13,8 @@ var init_posx
 export(float, 0.1, 100.00)  var swipe_sensitiviy
 var canchange
 
+var first_pressed = false
+
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
 
@@ -134,16 +136,22 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventScreenTouch:
 		init_posx = event.position.x
 		print("popo agarre el primero")
-	if event is InputEventScreenDrag:
-		if event.position.x != null:
-			var difference = event.position.x - init_posx
+		first_pressed = true
+	if event is InputEventScreenDrag and first_pressed:
+		var dragposx = event.position.x
+		if dragposx != null:
+			var difference = dragposx - init_posx
 			if difference >= (30) and canchange:
 				canchange = false
-				init_posx = event.position.x
+				first_pressed = false
+#				animation.play("swiping_right")
+#				yield(animation,"animation_finished")
 				emit_signal("swiped")
 			if difference <= - (30) and canchange:
 				canchange = false
-				init_posx = event.position.x
+				first_pressed = false
+#				animation.play("swiping_left")
+#				yield(animation,"animation_finished")
 				emit_signal("swiped", false)
 				
 func ready_to_show():
