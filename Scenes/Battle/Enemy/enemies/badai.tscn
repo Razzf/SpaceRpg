@@ -1,16 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Battle/Enemy/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Resources/Images/Frames Images/AIscreen.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Images/Frames Images/badaias.png" type="Texture" id=2]
 
 [node name="badai" instance=ExtResource( 1 )]
 visible = true
-max_hp = 1200
+max_hp = 5000
 physical_damage = 80
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, 0 )
 texture = ExtResource( 2 )
-hframes = 3
 
 [editable path="Sprite/Bar"]

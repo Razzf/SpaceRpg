@@ -21,7 +21,7 @@ func _ready():
 		self.set_scale(Vector2(self.get_scale().x, -1))
 		
 		pass
-	$SlimeParticles.hide()
+	$SparksParticles.hide()
 	$Sprite.show()
 	
 	create_random_slime_anim()
@@ -44,14 +44,14 @@ func _exit_tree():
 	emit_signal("dead")
 	
 func _process(_delta):
-	if !$SlimeParticles.emitting and can_free:
+	if !$SparksParticles.emitting and can_free:
 		queue_free()
 		can_free = false
 
 func on_almost_dead():
-	$SlimeParticles.show()
-	$SlimeParticles.emitting = true
-	$SlimeParticles.position = final_pos
+	$SparksParticles.show()
+	$SparksParticles.emitting = true
+	$SparksParticles.position = final_pos
 	emit_signal("almost_dead")
 	
 func create_random_slime_anim():

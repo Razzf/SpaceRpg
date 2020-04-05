@@ -17,10 +17,9 @@ func trow_slimes(_n) -> void:
 	yield(animation, "animation_finished")
 	emit_signal("enemy_attacked")
 
-#func attack():
-#	tackle()
-#
-#	randomize()
-#	var index = round(rand_range(0,1))
-#	attacks[str(int(index))].call_func(8)
+func attack():
+
+	randomize()
+	#var index = round(rand_range(0,1))
+	attacks[str(int(1))].call_func(6)
 	

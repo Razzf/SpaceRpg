@@ -6,8 +6,7 @@ onready var richtext = $Panel/RichTextLabel
 
 var dialog = [
 	"Hi!, im the AI unit asigned to you in this travel.",
-	"I'm here to guide you through your space travel.",
-	"This enemy is called, 'Cthulhu Soldier', it can hit your ship or throw explosive slime, be careful!."]
+	"I'm here to guide you through your space travel."]
 var page = 0
 
 # Functions
