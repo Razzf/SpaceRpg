@@ -16,10 +16,7 @@ export(Array, PackedScene) var shot_scenes
 
 func _ready():
 	name = "Weapon"
-	if $AnimationPlayer.has_animation("rotappear"):
-		$AnimationPlayer.play("rotappear")
-	else:
-		$AnimationPlayer.play("appear")
+	$AnimationPlayer.play("rotappear")
 	
 	
 
@@ -55,6 +52,10 @@ func shoot_to(_enemy):
 				
 	elif weapon_type == LASER_TYPE:
 		pass
+	
+func outspread():
+	if $AnimationPlayer.get_playing_speed() < 0:
+		queue_free()
 
 	
 	

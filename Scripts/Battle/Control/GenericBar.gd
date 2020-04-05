@@ -12,6 +12,8 @@ export(int, "Linear", "Sine", "Quint", "Quart", "Quad", "expo", "Elastic", "Cubi
 export(String, "Hp", "Sp", "Ep") var value_type
 
 func _ready():
+	if value_type == "Sp" || value_type == "Ep":
+		$TextureProgress/Label.self_modulate.a = visibility
 	if !changeable_color:
 		custom_color.a = visibility
 		$TextureProgress.tint_progress = custom_color

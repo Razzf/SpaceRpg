@@ -12,6 +12,6 @@ texture = ExtResource( 2 )
 hframes = 3
 
 [node name="Bar" parent="Sprite" index="0"]
-visibility = 0.5
+value_type = "Hp"
 
 [editable path="Sprite/Bar"]
