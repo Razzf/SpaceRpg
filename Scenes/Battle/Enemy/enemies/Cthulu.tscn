@@ -10,11 +10,11 @@ physical_damage = 120
 swipe_sensitiviy = 69.523
 
 [node name="Sprite" parent="." index="0"]
+position = Vector2( 0, 0 )
 offset = Vector2( 3, -1 )
 
 [node name="Bar" parent="Sprite" index="0"]
 position = Vector2( -36, -42 )
-visibility = 0.5
 Trans_type = 6
 
 [node name="TextureProgress" parent="Sprite/Bar" index="0"]

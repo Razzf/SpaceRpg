@@ -2,6 +2,7 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
+export(float, 0, 50) var dis_range
 
 export(int) var power
 var final_pos
@@ -12,7 +13,14 @@ var can_free = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	yield(get_tree().create_timer(1), "timeout")
+	if get_parent().get_parent().get_parent().get_scale().x == -1:
+		print("se supone quwe va a cambiar la escala X :o")
+		self.set_scale(Vector2(-1, self.get_scale().y))
+	if get_parent().get_parent().get_parent().get_scale().y == -1:
+		print("se supone quwe va a cambiar la escala Y :o")
+		self.set_scale(Vector2(self.get_scale().x, -1))
+		
+		pass
 	$SlimeParticles.hide()
 	$Sprite.show()
 	
@@ -22,9 +30,7 @@ func _ready():
 	$AnimationPlayer.play("caca")
 	yield($AnimationPlayer, "animation_finished")
 	$Sprite.hide()
-	$SlimeParticles.show()
-	$SlimeParticles.emitting = true
-	$SlimeParticles.global_position = final_pos
+	
 	
 	can_free = true
 	
@@ -43,6 +49,9 @@ func _process(_delta):
 		can_free = false
 
 func on_almost_dead():
+	$SlimeParticles.show()
+	$SlimeParticles.emitting = true
+	$SlimeParticles.position = final_pos
 	emit_signal("almost_dead")
 	
 func create_random_slime_anim():
@@ -65,18 +74,21 @@ func create_random_slime_anim():
 	animashion.value_track_set_update_mode(scl_track_idx,animashion.UPDATE_CONTINUOUS )
 	animashion.track_set_interpolation_type(scl_track_idx,animashion.INTERPOLATION_LINEAR)
 	
-	animashion.track_insert_key(scl_track_idx, 0.0, Vector2(.5, .5))
-	animashion.track_insert_key(scl_track_idx, 0.1, Vector2(1, 1))
-	animashion.track_insert_key(scl_track_idx, 0.15, Vector2(1.5, 1.5))
-	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(2, 2))
-	animashion.track_insert_key(scl_track_idx, 0.25, Vector2(2.5, 2.5))
+	animashion.track_insert_key(scl_track_idx, 0.0, Vector2(1, 1))
+	animashion.track_insert_key(scl_track_idx, 0.1, Vector2(.8, .8))
+	animashion.track_insert_key(scl_track_idx, 0.15, Vector2(.5, .5))
+	animashion.track_insert_key(scl_track_idx, 0.2, Vector2(.2, .2))
+	animashion.track_insert_key(scl_track_idx, 0.25, Vector2(.1, .1))
 	
-	animashion.track_insert_key(mtd_trac_index, 0.24,
+	animashion.track_insert_key(mtd_trac_index, 0.2,
 	 {"method": "on_almost_dead", "args": []})
 	
 	animashion.track_insert_key(pos_track_idx, 0.0, Vector2(0, 0))
-	var rand_valx = rand_range(0, 40)
-	var rand_valy = rand_range(0, 40)
+	
+	#var reference_point = Vector2(90 - self.global_position.x, 150 - self.global_position.y)
+	var reference_point = Vector2(battle_units.Enemy.global_position.x - self.global_position.x, battle_units.Enemy.global_position.y - self.global_position.y)
+	var rand_valx = rand_range(0, dis_range)
+	var rand_valy = rand_range(0, dis_range)
 	var bit = round(rand_range(0, 1))
 	var bit2 = round(rand_range(0, 1))
 
@@ -96,8 +108,10 @@ func create_random_slime_anim():
 		trace = 1
 		
 	
-	animashion.track_insert_key(pos_track_idx, 0.25, Vector2(rand_valx * trace, rand_valy * trace2))
+	final_pos = Vector2(reference_point.x + rand_valx * trace,
+	reference_point.y + rand_valy * trace2)
+	
+	animashion.track_insert_key(pos_track_idx, 0.25, Vector2(final_pos.x, final_pos.y))
 	$AnimationPlayer.add_animation("caca", animashion)
 	
-	final_pos = Vector2(self.global_position.x + rand_valx * trace,
-	self.global_position.y + rand_valy * trace2)
+	

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Battle/Enemy/attacks/AcidSlime.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Resources/Images/Icons Images/thunderbolt.png" type="Texture" id=2]
+[ext_resource path="res://ElectroBall.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Images/sparksframes.png" type="Texture" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[node name="ElectroBall" instance=ExtResource( 1 )]
+show_behind_parent = true
+position = Vector2( 0, 0 )
+script = ExtResource( 3 )
+dis_range = 27.172
+power = 0
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="SlimeParticles" parent="." index="2"]
+material = SubResource( 1 )
+amount = 8
+lifetime = 0.2
+speed_scale = 0.4
+texture = ExtResource( 4 )

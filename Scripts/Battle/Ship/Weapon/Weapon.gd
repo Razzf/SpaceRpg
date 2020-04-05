@@ -3,8 +3,8 @@ class_name Weapon
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
-enum {TRIGGER_TYPE, LASER_TYPE}
-export(int, "Trigger", "Laser") var weapon_type
+enum {TRIGGER_TYPE, LASER_TYPE, ENERGY_TYPE}
+export(int, "Trigger", "Laser", "Energy") var weapon_type
 export(int) var fire_rate
 export(float, 0, 1) var precision
 export(int) var damage
@@ -52,10 +52,31 @@ func shoot_to(_enemy):
 				
 	elif weapon_type == LASER_TYPE:
 		pass
+	elif weapon_type == ENERGY_TYPE:
+		for _i in range(fire_rate):
+			var shot = shot_scenes[0].instance()
+			self.get_node("AnimationPlayer").play("recoil")
+			self.get_node("Sprite/NozzlePosition").add_child(shot)
+			yield(shot, "almost_dead")
+			battle_units.SpaceShip.energy -= energy_cost
+			trigger_counter = trigger_counter + 1
+			
+			_enemy.take_damage(damage)
+			if _i < fire_rate -1:
+				#yield(shot, "almost_dead")
+				pass
+			else:
+				yield(shot, "tree_exited")
+				emit_signal("on_used")
+		
 	
 func outspread():
 	if $AnimationPlayer.get_playing_speed() < 0:
 		queue_free()
+
+func other_shot():
+	pass
+	
 
 	
 	

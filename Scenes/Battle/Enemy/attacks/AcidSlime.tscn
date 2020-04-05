@@ -7,7 +7,8 @@
 resource_name = "asd"
 
 [sub_resource type="ParticlesMaterial" id=2]
-lifetime_randomness = 1.0
+render_priority = 1
+lifetime_randomness = 0.24
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -17,13 +18,20 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 80.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 5.0
-scale_random = 1.0
-color = Color( 0.741176, 1, 0.709804, 1 )
+angle = 342.9
+angle_random = 1.0
+scale = 0.2
+scale_random = 0.4
+anim_speed = 1.0
+anim_offset = 1.0
+anim_offset_random = 1.0
 
 [node name="AcidSlime" type="Node2D"]
-position = Vector2( 0, 6 )
+position = Vector2( 104, 154 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 power = 20
 
 [node name="Sprite" type="Sprite" parent="."]
