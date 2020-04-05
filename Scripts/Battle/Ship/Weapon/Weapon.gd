@@ -47,9 +47,9 @@ func shoot_to(_enemy):
 			var accuracy = 1 - (hip / max_hip)
 			_enemy.take_damage(damage * accuracy)
 			if _i < fire_rate -1:
-				yield(shot, "tree_exited")
+				yield(fire, "tree_exited")
 			else:
-				yield(shot, "tree_exited")
+				yield(fire, "tree_exited")
 				emit_signal("on_used")
 				
 				

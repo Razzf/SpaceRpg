@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Battle/Ship/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Bar.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Resources/Images/Frames Images/shieldappear.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Images/shipbar.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=10]
+[ext_resource path="res://Resources/Images/undershipbar.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/LightningLaser.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlueSparks.tscn" type="PackedScene" id=15]
@@ -76,59 +78,68 @@ hframes = 13
 position = Vector2( 90, 160 )
 texture = ExtResource( 5 )
 
-[node name="ShieldBar" parent="." instance=ExtResource( 2 )]
-position = Vector2( 22, 212 )
-custom_color = Color( 0.00784314, 0.905882, 1, 1 )
-visibility = 0.5
-Trans_type = 2
-
-[node name="TextureProgress" parent="ShieldBar" index="0"]
-margin_left = -12.0
-margin_top = -4.0
-margin_right = 68.0
-margin_bottom = 15.0
-texture_over = ExtResource( 4 )
-texture_progress = ExtResource( 8 )
-fill_mode = 1
-
-[node name="Label" parent="ShieldBar/TextureProgress" index="0"]
-visible = false
-margin_left = 1.0
-margin_top = 4.0
-margin_right = 79.0
-margin_bottom = 15.0
-
 [node name="EnergyBar" parent="." instance=ExtResource( 2 )]
+show_behind_parent = true
 position = Vector2( 123, 214 )
 custom_color = Color( 0.992157, 1, 0, 1 )
 visibility = 0.5
 Trans_type = 2
+value_type = "Ep"
 
 [node name="TextureProgress" parent="EnergyBar" index="0"]
 margin_left = 47.0
-margin_top = -6.0
+margin_top = 2.0
 margin_right = 127.0
 margin_bottom = 13.0
 rect_scale = Vector2( -1, 1 )
+texture_under = ExtResource( 11 )
 texture_over = ExtResource( 4 )
 texture_progress = ExtResource( 8 )
 fill_mode = 1
 
 [node name="Label" parent="EnergyBar/TextureProgress" index="0"]
-visible = false
-margin_left = 79.0
-margin_top = 4.0
-margin_right = 157.0
-margin_bottom = 15.0
+show_behind_parent = true
+margin_left = 80.0
+margin_top = -10.0
+margin_right = 126.0
+margin_bottom = 10.0
 rect_scale = Vector2( -1, 1 )
+custom_styles/normal = ExtResource( 10 )
+text = "2000hp
+"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 3.6
 anims/Shakings = SubResource( 1 )
 "anims/Shield appear" = SubResource( 2 )
+
+[node name="ShieldBar" parent="." instance=ExtResource( 2 )]
+show_behind_parent = true
+position = Vector2( 11, 216 )
+custom_color = Color( 0.00392157, 0.882353, 1, 1 )
+visibility = 0.5
+Trans_type = 4
+value_type = "Sp"
+
+[node name="TextureProgress" parent="ShieldBar" index="0"]
+margin_right = 80.0
+margin_bottom = 11.0
+texture_under = ExtResource( 11 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 8 )
+
+[node name="Label" parent="ShieldBar/TextureProgress" index="0"]
+show_behind_parent = true
+margin_left = 40.0
+margin_top = -10.0
+margin_right = 80.0
+margin_bottom = 10.0
+custom_styles/normal = ExtResource( 10 )
+text = "2000hp
+"
 [connection signal="Energy_changed" from="." to="EnergyBar" method="_on_value_changed"]
 [connection signal="Shield_changed" from="." to="ShieldBar" method="_on_value_changed"]
 
-[editable path="ShieldBar"]
-
 [editable path="EnergyBar"]
+
+[editable path="ShieldBar"]

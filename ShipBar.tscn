@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/Images/overbar.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Images/shipbar.png" type="Texture" id=4]
+[ext_resource path="res://ShipBar.gd" type="Script" id=5]
+[ext_resource path="res://Resources/Images/undershipbar.png" type="Texture" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[node name="ShipBar" type="Node2D"]
+position = Vector2( 22, 212 )
+script = ExtResource( 5 )
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_left = -12.0
+margin_top = 4.0
+margin_right = 68.0
+margin_bottom = 15.0
+texture_under = ExtResource( 6 )
+texture_over = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+fill_mode = 1
+tint_under = Color( 0.223529, 0.223529, 0.223529, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="TextureProgress"]
+show_behind_parent = true
+margin_left = 44.0
+margin_top = -8.0
+margin_right = 79.0
+margin_bottom = 7.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="TextureProgress/Panel"]
+margin_left = 2.0
+margin_top = 1.0
+margin_right = 34.0
+margin_bottom = 13.0
+custom_fonts/font = ExtResource( 1 )
+text = "2000Sp"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
