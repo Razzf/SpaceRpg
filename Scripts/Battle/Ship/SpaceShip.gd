@@ -67,7 +67,6 @@ func update_equipped_weapon(w_index) -> void:
 			temp_wpn.set_scale(Vector2(1,-1))
 		$Modules.get_child(module_idx).add_child(temp_wpn)
 		equipped_weapon = self.get_node("Modules").get_child(module_idx).get_child(0)
-		print("esta es el arma equipada", equipped_weapon)
 		
 		
 func attack(_enemy) -> void:

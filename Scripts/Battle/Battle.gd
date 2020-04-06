@@ -20,8 +20,7 @@ func _ready():
 		enemy_instances.append(load(enemy_scenes.front()).instance())
 	$EnemyPos.add_child(enemy_instances.front())
 	battle_units.Enemy.show()
-	print("el primer enemigo es: ", battle_units.Enemy.name)
-	
+
 	
 
 
@@ -42,26 +41,24 @@ func Start_Enemy_Turn() -> void:
 		for _i in range(3):
 			var _enemy = battle_units.Enemy
 			if _enemy.animation.is_playing():
-				print(_enemy.animation.get_playing_speed())
-				print("si tenia :C")
+
 				yield(_enemy.animation, "animation_finished")
-				print("ya no tiene :D")
-				print(_enemy.name,": attacking")
+
 				_enemy.attack()
 				yield(_enemy, "enemy_attacked")
 				if _i < 2:
 					change_target()
 					yield(self,"change_finished")
-					print("mmmHOLAAAAAAAAAAA")
+
 			else:
-				print("no tenia anim :O")
-				print(_enemy.name,": attacking")
+	
+	
 				_enemy.attack()
 				yield(_enemy, "enemy_attacked")
 				if _i < 2:
 					change_target()
 					yield(self,"change_finished")
-					print("mmmHOLAAAAAAAAAAA")
+
 				
 		#change_target()
 		enemy.animation.get_animation("Idle").set_loop(true)
@@ -80,14 +77,12 @@ func change_target(right:bool = true) -> void:
 		yield(battle_units.Enemy.animation, "animation_finished")
 		$EnemyPos.remove_child(battle_units.Enemy)
 		$EnemyPos.add_child(enemy_instances.front())
-		print("el enemigo actual es: ", battle_units.Enemy.name)
-		print(enemy_instances[0].name, enemy_instances[1].name, enemy_instances[2].name )
-		print("there are ", enemy_instances.size(), " enemies")
+
 		
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_right")
 		battle_units.Enemy.show()
 		yield(battle_units.Enemy.animation, "animation_finished")
-		print("termino de swipearse")
+
 		emit_signal("change_finished")
 		#battle_units.Enemy.animation.play("Idle")
 	else:
@@ -99,11 +94,10 @@ func change_target(right:bool = true) -> void:
 		$EnemyPos.remove_child(battle_units.Enemy)
 		$EnemyPos.add_child(enemy_instances.front())
 		
-		print("el enemigo actual es: ", battle_units.Enemy.name)
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_left")
 		battle_units.Enemy.show()
 		yield(battle_units.Enemy.animation, "animation_finished")
-		print("termino de swipearse")
+
 		emit_signal("change_finished")
 		#battle_units.Enemy.animation.play("Idle")
 	

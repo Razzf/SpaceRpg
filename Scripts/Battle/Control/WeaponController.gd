@@ -38,7 +38,6 @@ func update_module(upwards:bool = true) -> void:
 			
 		ship.update_equipped_weapon(2)
 		var weapon = ship.equipped_weapon
-		print("equipped_weapon", weapon._name)
 		$WeaponIcon/Sprite.texture = weapon.icon_texture
 		$NamePanel/NameLabel.text = weapon._name
 
@@ -58,7 +57,6 @@ func _on_WeaponIcon_pressed():
 	controllerapeared = false
 	$anim.play_backwards("Appear")
 	yield($anim, "animation_finished")
-	print("the enemy that bill be attacked is: ", battle_units.Enemy.name)
 	battle_units.SpaceShip.attack(battle_units.Enemy)
 	queue_free()
 

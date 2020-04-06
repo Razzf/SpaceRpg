@@ -15,7 +15,7 @@ var canchange
 
 var first_pressed = false
 
-onready var animation : AnimationPlayer = $AnimationPlayer
+onready var animation = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
 
 signal dead
@@ -35,11 +35,8 @@ func deal_p_damage() -> void:
 	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y + 20))
 
 func take_damage(amount) -> void:
-	print("enemy tacking damage")
-
 	create_random_shaking(animation, "RndShaking")
-	if animation.has_animation("RndShaking"):
-		print("smn si la tiene")
+
 	
 	self.hp -= amount
 	
@@ -58,7 +55,6 @@ func take_damage(amount) -> void:
 	else:
 		if animation.is_playing():
 			animation.stop()
-			print("about to play rndm shaking")
 			animation.play("RndShaking")
 		else:
 			animation.play("RndShaking")
@@ -116,11 +112,8 @@ func _ready():
 	
 func _enter_tree():
 	battle_units.Enemy = self
-	if animation != null:
-		if !animation.is_playing():
-			self.animation.get_animation("Idle").set_loop(true)
-			self.animation.play("Idle")
-			print("playing idle")
+	yield(self,"ready")
+	self.get_node("AnimationPlayer").play("Idle")
 
 	canchange = true
 	
@@ -130,12 +123,11 @@ func _exit_tree():
 
 func attack():
 	tackle(1)
-	print("smn kk con pan")
+
 
 func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventScreenTouch:
 		init_posx = event.position.x
-		print("popo agarre el primero")
 		first_pressed = true
 	if event is InputEventScreenDrag and first_pressed:
 		var dragposx = event.position.x
