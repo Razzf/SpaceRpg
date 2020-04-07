@@ -4,6 +4,9 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 const enemies_dir = "res://Scenes/Battle/Enemy/enemies/"
 var enemy_scenes = []
 var enemy_instances = []
+var first_pressed
+var init_posx
+var canchange
 
 signal change_finished
 
@@ -118,3 +121,21 @@ func list_files_in_directory(path):
 	dir.list_dir_end()
 
 	return files
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if event is InputEventScreenTouch:
+		init_posx = event.position.x
+		first_pressed = true
+	if event is InputEventScreenDrag and first_pressed:
+		var dragposx = event.position.x
+		if dragposx != null:
+			var difference = dragposx - init_posx
+			if difference >= (30) and battle_units.Enemy.canchange:
+				canchange = false
+				first_pressed = false
+				change_target()
+			if difference <= - (30) and battle_units.Enemy.canchange:
+				canchange = false
+				first_pressed = false
+				change_target(false)
