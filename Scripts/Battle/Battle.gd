@@ -25,11 +25,14 @@ func _ready():
 	$EnemyPos.add_child(temp_init_enemy)
 	
 	for _i in range(max_enemies):
+		print("yeaa ", _i)
 		battle_units.Enemy.animation.play("roar")
 		yield(battle_units.Enemy.animation, "animation_finished")
-		if _i < 2:
+		if _i < range(max_enemies).size() -1:
 			change_target(true)
-			yield(self, "change_finished")
+			yield(self,"change_finished")
+		else:
+			battle_units.Enemy.animation.play("Idle")
 	can_idle = true
 	Start_Ship_Turn()
 		
@@ -97,7 +100,10 @@ func change_target(right:bool = true) -> void:
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_right")
 		yield(battle_units.Enemy.animation, "animation_finished")
 		emit_signal("change_finished")
-		#battle_units.Enemy.animation.play("Idle")
+		if can_idle:
+			battle_units.Enemy.animation.play("Idle")
+
+		#
 	else:
 		if battle_units.Enemy != null:
 			battle_units.Enemy.animation.play("swiping_right")
@@ -109,7 +115,8 @@ func change_target(right:bool = true) -> void:
 		$EnemyPos.get_child(0).get_node("AnimationPlayer").play_backwards("swiping_left")
 		yield(battle_units.Enemy.animation, "animation_finished")
 		emit_signal("change_finished")
-		#battle_units.Enemy.animation.play("Idle")
+		if can_idle:
+			battle_units.Enemy.animation.play("Idle")
 	
 
 func list_files_in_directory(path):
