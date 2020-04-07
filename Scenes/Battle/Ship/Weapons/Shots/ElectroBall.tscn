@@ -9,6 +9,7 @@ resource_name = "asd"
 
 [node name="ElectroBall" type="Node2D"]
 show_behind_parent = true
+z_index = -1
 script = ExtResource( 3 )
 dis_range = 27.172
 

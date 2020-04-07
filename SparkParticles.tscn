@@ -22,14 +22,16 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle = 342.9
 angle_random = 1.0
-scale = 0.5
+scale = 0.3
 scale_random = 1.0
 anim_speed = 2.0
 anim_speed_random = 1.0
 
 [node name="SlimeParticles" type="Particles2D"]
 material = SubResource( 1 )
+emitting = false
 lifetime = 0.2
+one_shot = true
 speed_scale = 0.4
 explosiveness = 1.0
 process_material = SubResource( 2 )

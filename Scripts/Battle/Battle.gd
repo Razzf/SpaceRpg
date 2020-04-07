@@ -17,12 +17,21 @@ func _ready():
 	for enemy_name in enemy_names:
 		var dirtoappend = enemies_dir + enemy_name
 		enemy_scenes.append(dirtoappend)
-	for _i in max_enemies:
+	for _i in range(max_enemies):
 		randomize()
 		enemy_scenes.shuffle()
-		enemy_instances.append(load(enemy_scenes.front()).instance())
-	$EnemyPos.add_child(enemy_instances.front())
-	battle_units.Enemy.show()
+		var enemy = load(enemy_scenes[range(max_enemies).size() - _i - 1]).instance()
+		$EnemyPos.add_child(enemy)
+		enemy.animation.play_backwards("swiping_left")
+		yield(enemy.animation, "animation_finished")
+		enemy.animation.play("roar")
+		yield(enemy.animation, "animation_finished")
+		if _i < range(max_enemies).size() -1:
+			print("caca")
+			enemy.animation.play("swiping_right")
+			yield(enemy.animation, "animation_finished")
+
+
 
 	
 
