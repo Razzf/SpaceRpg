@@ -79,7 +79,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -8 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "roar"
 length = 0.6
 tracks/0/type = "value"
@@ -107,8 +107,7 @@ tracks/1/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ), Vector2( 1.3, 1.3 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "swiping_left"
+[sub_resource type="Animation" id=5]
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
@@ -138,7 +137,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.2
 step = 0.01
 tracks/0/type = "value"
@@ -169,6 +168,7 @@ tracks/1/keys = {
 }
 
 [node name="Enemy" type="Node2D"]
+visible = false
 z_index = -3
 script = ExtResource( 3 )
 
@@ -204,9 +204,9 @@ playback_speed = 0.6
 anims/Attack = SubResource( 1 )
 anims/Idle = SubResource( 2 )
 anims/prepare = SubResource( 3 )
-anims/roar = SubResource( 6 )
-anims/swiping_left = SubResource( 4 )
-anims/swiping_right = SubResource( 5 )
+anims/roar = SubResource( 4 )
+anims/swiping_left = SubResource( 5 )
+anims/swiping_right = SubResource( 6 )
 [connection signal="hp_changed" from="." to="Sprite/Bar" method="_on_value_changed"]
 
 [editable path="Sprite/Bar"]

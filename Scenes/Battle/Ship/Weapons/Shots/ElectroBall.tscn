@@ -20,8 +20,6 @@ texture = ExtResource( 2 )
 anims/asd = SubResource( 1 )
 
 [node name="SparksParticles" parent="." instance=ExtResource( 1 )]
-emitting = false
-one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

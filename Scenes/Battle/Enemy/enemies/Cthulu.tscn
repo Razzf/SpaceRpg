@@ -10,7 +10,6 @@ physical_damage = 120
 swipe_sensitiviy = 69.523
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0, 0 )
 offset = Vector2( 3, -1 )
 
 [node name="Bar" parent="Sprite" index="0"]

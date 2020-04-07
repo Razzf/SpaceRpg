@@ -21,7 +21,6 @@ onready var sprite : Sprite = $Sprite
 signal dead
 signal enemy_attacked
 signal hp_changed(value)
-signal swiped(dir)
 
 func is_dead() -> bool:
 	return hp <= 0
@@ -104,8 +103,6 @@ func create_random_shaking(animPlayerObj, animName):
 
 func _ready():
 	battle_units.Enemy = self
-	
-	self.connect("swiped",get_parent().get_parent(),"change_target")
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
 	

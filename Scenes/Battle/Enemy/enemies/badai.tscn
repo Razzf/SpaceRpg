@@ -8,7 +8,6 @@ max_hp = 5000
 physical_damage = 80
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0, 0 )
 texture = ExtResource( 2 )
 
 [editable path="Sprite/Bar"]
