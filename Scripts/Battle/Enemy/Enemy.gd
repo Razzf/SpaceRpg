@@ -12,7 +12,7 @@ var prev_rand = 0
 var init_posx
 export(float, 0.1, 100.00)  var swipe_sensitiviy
 var canchange
-
+var hit_counter = 0
 var first_pressed = false
 
 onready var animation = $AnimationPlayer
@@ -33,7 +33,9 @@ func tackle(_n) -> void:
 func deal_p_damage() -> void:
 	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y + 20))
 
-func take_damage(amount) -> void:
+func take_damage(amount, times) -> void:
+	hit_counter = hit_counter + 1
+	
 	create_random_shaking(animation, "RndShaking")
 
 	
@@ -57,6 +59,14 @@ func take_damage(amount) -> void:
 			animation.play("RndShaking")
 		else:
 			animation.play("RndShaking")
+			
+	if hit_counter == times:
+		if animation.is_playing():
+			yield(animation, "animation_finished")
+			animation.play("Idle")
+			print("idleOOO")
+			hit_counter = 0
+
 			
 func sethp(value):
 	hp = clamp(value, 0, max_hp)

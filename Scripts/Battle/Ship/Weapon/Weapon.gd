@@ -42,7 +42,7 @@ func shoot_to(_enemy):
 			var hip = sqrt(pow(rand_x, 2) + pow(rand_y, 2))
 			var max_hip = sqrt(pow(max_x, 2) + pow(max_y, 2))
 			var accuracy = 1 - (hip / max_hip)
-			_enemy.take_damage(damage * accuracy)
+			_enemy.take_damage(damage * accuracy, fire_rate)
 			if _i < fire_rate -1:
 				yield(fire, "tree_exited")
 			else:
@@ -61,7 +61,7 @@ func shoot_to(_enemy):
 			battle_units.SpaceShip.energy -= energy_cost
 			trigger_counter = trigger_counter + 1
 			
-			_enemy.take_damage(damage)
+			_enemy.take_damage(damage, fire_rate)
 			if _i < fire_rate -1:
 				#yield(shot, "almost_dead")
 				pass
