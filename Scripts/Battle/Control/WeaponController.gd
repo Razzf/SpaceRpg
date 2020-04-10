@@ -58,7 +58,10 @@ func _on_WeaponIcon_pressed():
 	$anim.play_backwards("Appear")
 	yield($anim, "animation_finished")
 	battle_units.SpaceShip.attack(battle_units.Enemy)
-	queue_free()
+	yield(battle_units.SpaceShip.equipped_weapon, "on_used")
+	$anim.play("Appear")
+	yield($anim, "animation_finished")
+	$WeaponIcon.disabled = false
 
 func _gui_input(event):
 	if event is InputEventScreenTouch:
@@ -68,14 +71,16 @@ func _gui_input(event):
 		var weapon = battle_units.SpaceShip.equipped_weapon
 		var wpn_anim = weapon.find_node("AnimationPlayer", true, false)
 		if !wpn_anim.is_playing():
-			if difference >= (100-sensitivity):
-				init_posx = event.position.x
-				update_module(false)
-				emit_signal("weapon_Changed")
-			if difference <= - (100-sensitivity):
-				init_posx = event.position.x
-				update_module()
-				emit_signal("weapon_Changed")
+			var dragposx = event.position.x 
+			if dragposx != null:
+				if difference >= (100-sensitivity):
+					init_posx = event.position.x
+					update_module(false)
+					emit_signal("weapon_Changed")
+				if difference <= - (100-sensitivity):
+					init_posx = event.position.x
+					update_module()
+					emit_signal("weapon_Changed")
 
 
 func _on_PassBtn_pressed():

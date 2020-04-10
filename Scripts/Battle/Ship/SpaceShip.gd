@@ -53,44 +53,24 @@ func update_equipped_weapon(w_index) -> void:
 		$Weapons.get_child(module_idx).add_child(temp_wpn)
 		equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(1)
 
-	else:
-		var temp_wpn = weapons[w_index].instance()
-		if module_idx == 1:
-			temp_wpn.set_scale(Vector2(-1,1))
-		elif module_idx == 2:
-			temp_wpn.set_scale(Vector2(-1,-1))
-		elif module_idx == 3:
-			temp_wpn.set_scale(Vector2(1,-1))
-		$Weapons.get_child(module_idx).add_child(temp_wpn)
-		equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(0)
 
 		
-#func attack(_enemy) -> void:
-#
-#	if module_idx < usable_modules-1:
-#		if _enemy != null:
-#			equipped_weapon.shoot_to(_enemy)
-#			yield(equipped_weapon, "on_used")		
-#			var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-#			#wpnanim.play_backwards("appear")
-#			#yield(equipped_weapon, "tree_exiting")
-#			equipped_weapon = null
-#			module_idx = module_idx + 1
-#			actual_module = modules[module_idx]
-#			var wpnselector = load_scene.instance()
-#			get_parent().get_node("MainControl").add_child(wpnselector)
-#	else:
-#		if _enemy != null:
-#			equipped_weapon.shoot_to(_enemy)
-#			yield(equipped_weapon, "on_used")
-#			var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-#			wpnanim.play_backwards("appear")
-#			equipped_weapon = null
-#			emit_signal("end_turn")
-#
-#			module_idx = 0
-#			actual_module = modules[module_idx]
-#
+func attack(_enemy) -> void:
+
+	if module_idx < usable_modules-1:
+		if _enemy != null:
+			equipped_weapon.shoot_to(_enemy)
+			yield(equipped_weapon, "on_used")
+			
+			module_idx = module_idx + 1
+			equipped_weapon = $Weapons.get_child(module_idx).get_node("Weapon")
+			print("el mdlue_idx es: ", module_idx)
+			if module_idx == usable_modules:
+				equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
+				print("reinicio")
+				module_idx = 0
+
+
 #func wea():
 #	if module_idx < usable_modules-1:
 #		var wpnanim = equipped_weapon.get_node("AnimationPlayer")

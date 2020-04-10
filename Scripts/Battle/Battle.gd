@@ -132,20 +132,8 @@ func list_files_in_directory(path):
 	return files
 
 
-func _on_Area2D_input_event(_viewport, event, _shape_idx):
-	if event is InputEventScreenTouch:
-		if event.pressed:
-			init_posx = event.position.x
-			first_pressed = true
-	if event is InputEventScreenDrag and first_pressed:
-		var dragposx = event.position.x
-		if dragposx != null:
-			var difference = dragposx - init_posx
-			if difference >= (30) and battle_units.Enemy.canchange:
-				canchange = false
-				first_pressed = false
-				change_target()
-			if difference <= - (30) and battle_units.Enemy.canchange:
-				canchange = false
-				first_pressed = false
-				change_target(false)
+func _on_SwipeDetector_swiped(direction):
+	if direction == Vector2.RIGHT:
+		change_target()
+	elif direction == Vector2.LEFT:
+		change_target(false)
