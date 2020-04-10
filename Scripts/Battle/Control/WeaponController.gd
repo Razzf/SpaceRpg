@@ -25,14 +25,14 @@ func update_module(upwards:bool = true) -> void:
 	var ship = battle_units.SpaceShip
 	if ship != null:
 		if !upwards:
-			ship.actual_module.push_front(ship.actual_module.back())
-			ship.actual_module.pop_back()
+			ship.weapons.push_front(ship.weapons.back())
+			ship.weapons.pop_back()
 		else:
-			ship.actual_module.push_back(ship.actual_module.front())
-			ship.actual_module.pop_front()
+			ship.weapons.push_back(ship.weapons.front())
+			ship.weapons.pop_front()
 			
-		for w_idx in range(0, ship.actual_module.size()):
-			var extra_weapon = ship.actual_module[w_idx].instance()
+		for w_idx in range(0, ship.weapons.size()):
+			var extra_weapon = ship.weapons[w_idx].instance()
 			wpn_icons[w_idx].texture = extra_weapon.icon_texture
 			extra_weapon.queue_free()
 			

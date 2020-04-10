@@ -48,25 +48,22 @@ tracks/0/keys = {
 [node name="SpaceShip" type="Node2D"]
 script = ExtResource( 1 )
 usable_modules = 4
-module_1 = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
-module_2 = [ ExtResource( 13 ), ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ) ]
-module_3 = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
-module_4 = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 13 ) ]
+weapons = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
 
-[node name="Modules" type="Node2D" parent="."]
+[node name="Weapons" type="Node2D" parent="."]
 position = Vector2( 90, 160 )
 
-[node name="Position2D" type="Position2D" parent="Modules"]
-position = Vector2( 75, 70 )
+[node name="WpnPos1" type="Position2D" parent="Weapons"]
+position = Vector2( 82, 65 )
 
-[node name="Position2D2" type="Position2D" parent="Modules"]
-position = Vector2( -75, 70 )
+[node name="WpnPos2" type="Position2D" parent="Weapons"]
+position = Vector2( -82, 65 )
 
-[node name="Position2D3" type="Position2D" parent="Modules"]
-position = Vector2( -75, -100 )
+[node name="WpnPos3" type="Position2D" parent="Weapons"]
+position = Vector2( -80, -100 )
 
-[node name="Position2D4" type="Position2D" parent="Modules"]
-position = Vector2( 75, -100 )
+[node name="WpnPos4" type="Position2D" parent="Weapons"]
+position = Vector2( 80, -100 )
 
 [node name="ShieldBarrier" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.0784314 )

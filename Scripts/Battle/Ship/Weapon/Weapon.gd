@@ -16,7 +16,6 @@ export(Array, PackedScene) var shot_scenes
 
 func _ready():
 	name = "Weapon"
-	$AnimationPlayer.play("rotappear")
 	
 	
 
@@ -42,7 +41,7 @@ func shoot_to(_enemy):
 			var hip = sqrt(pow(rand_x, 2) + pow(rand_y, 2))
 			var max_hip = sqrt(pow(max_x, 2) + pow(max_y, 2))
 			var accuracy = 1 - (hip / max_hip)
-			_enemy.take_damage(damage * accuracy, fire_rate)
+			_enemy.take_damage(damage * accuracy)
 			if _i < fire_rate -1:
 				yield(fire, "tree_exited")
 			else:
@@ -61,7 +60,7 @@ func shoot_to(_enemy):
 			battle_units.SpaceShip.energy -= energy_cost
 			trigger_counter = trigger_counter + 1
 			
-			_enemy.take_damage(damage, fire_rate)
+			_enemy.take_damage(damage)
 			if _i < fire_rate -1:
 				#yield(shot, "almost_dead")
 				pass
@@ -70,12 +69,7 @@ func shoot_to(_enemy):
 				emit_signal("on_used")
 		
 	
-func outspread():
-	if $AnimationPlayer.get_playing_speed() < 0:
-		queue_free()
 
-func other_shot():
-	pass
 	
 
 	

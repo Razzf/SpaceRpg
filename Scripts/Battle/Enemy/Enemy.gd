@@ -12,8 +12,8 @@ var prev_rand = 0
 var init_posx
 export(float, 0.1, 100.00)  var swipe_sensitiviy
 var canchange
-var hit_counter = 0
-var first_pressed = false
+var can_idle = true
+
 
 onready var animation = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
@@ -21,9 +21,6 @@ onready var sprite : Sprite = $Sprite
 signal dead
 signal enemy_attacked
 signal hp_changed(value)
-
-func is_dead() -> bool:
-	return hp <= 0
 	
 func tackle(_n) -> void:
 	self.animation.play("Attack")
@@ -33,12 +30,9 @@ func tackle(_n) -> void:
 func deal_p_damage() -> void:
 	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y + 20))
 
-func take_damage(amount, times) -> void:
-	hit_counter = hit_counter + 1
+func take_damage(amount) -> void:
 	
 	create_random_shaking(animation, "RndShaking")
-
-	
 	self.hp -= amount
 	
 	if is_dead():
@@ -60,12 +54,12 @@ func take_damage(amount, times) -> void:
 		else:
 			animation.play("RndShaking")
 			
-	if hit_counter == times:
+	if can_idle:
+		can_idle = false
 		if animation.is_playing():
 			yield(animation, "animation_finished")
 			animation.play("Idle")
-			print("idleOOO")
-			hit_counter = 0
+			can_idle = true
 
 			
 func sethp(value):
@@ -120,7 +114,8 @@ func _ready():
 func _enter_tree():
 	battle_units.Enemy = self
 	yield(self,"ready")
-	self.get_node("AnimationPlayer").play("Idle")
+	self.animation.play("Idle")
+	print("entro al tree")
 
 	canchange = true
 	
@@ -137,5 +132,8 @@ func ready_to_show():
 		self.hide()
 	else:
 		self.show()
+
+func is_dead() -> bool:
+	return hp <= 0
 			
 

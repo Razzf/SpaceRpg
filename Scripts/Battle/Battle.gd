@@ -25,7 +25,6 @@ func _ready():
 	$EnemyPos.add_child(temp_init_enemy)
 	
 	for _i in range(max_enemies):
-		print("yeaa ", _i)
 		battle_units.Enemy.animation.play("roar")
 		yield(battle_units.Enemy.animation, "animation_finished")
 		if _i < range(max_enemies).size() -1:
@@ -60,33 +59,29 @@ func Start_Enemy_Turn() -> void:
 		for _i in range(3):
 			var _enemy = battle_units.Enemy
 			if _enemy.animation.is_playing():
-
 				yield(_enemy.animation, "animation_finished")
-
 				_enemy.attack()
 				yield(_enemy, "enemy_attacked")
 				if _i < 2:
 					change_target()
 					yield(self,"change_finished")
-
 			else:
-	
-	
 				_enemy.attack()
 				yield(_enemy, "enemy_attacked")
 				if _i < 2:
 					change_target()
 					yield(self,"change_finished")
-
-				
-		#change_target()
 		enemy.animation.get_animation("Idle").set_loop(true)
 		enemy.animation.play("Idle")
 		Start_Ship_Turn()
 
+
+
 func _on_BattleUI_turn_passed() -> void:
 	var ship = battle_units.SpaceShip
 	ship.emit_signal("end_turn")
+
+
 
 func change_target(right:bool = true) -> void:
 	if !right:
@@ -142,7 +137,6 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx):
 		if event.pressed:
 			init_posx = event.position.x
 			first_pressed = true
-			print("oye siiiii")
 	if event is InputEventScreenDrag and first_pressed:
 		var dragposx = event.position.x
 		if dragposx != null:
