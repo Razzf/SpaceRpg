@@ -82,13 +82,6 @@ func _on_PassBtn_pressed():
 
 
 func _on_RunBtn_pressed():
-	$PassBtn.disabled = true
-	$RunBtn.disabled = true
-	$WeaponIcon.disabled = true
-	controllerapeared = false
-	$anim.play_backwards("Appear")
-	yield($anim, "animation_finished")
-	queue_free()
 	battle_units.SpaceShip.wea()
 
 

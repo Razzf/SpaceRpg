@@ -73,23 +73,16 @@ func attack(_enemy) -> void:
 			equipped_weapon = $Weapons.get_child(module_idx).get_node("Weapon")
 
 
-#func wea():
-#	if module_idx < usable_modules-1:
-#		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-#		wpnanim.play_backwards("appear")
-#		yield(equipped_weapon, "tree_exiting")
-#		equipped_weapon = null
-#		module_idx = module_idx + 1
-#		actual_module = modules[module_idx]
-#		var wpnselector = load_scene.instance()
-#		get_parent().get_node("MainControl").add_child(wpnselector)
-#	else:
-#		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-#		wpnanim.play_backwards("appear")
-#		equipped_weapon = null
-#		emit_signal("end_turn")
-#		module_idx = 0
-#		actual_module = modules[module_idx]
+func wea():
+	if module_idx < usable_modules:
+		module_idx = module_idx + 1
+		if module_idx == usable_modules:
+			equipped_weapon = null
+			module_idx = 0
+			emit_signal("end_turn")
+			return
+		equipped_weapon = $Weapons.get_child(module_idx).get_node("Weapon")
+
 #
 
 func take_damage(amount, hit_position):
