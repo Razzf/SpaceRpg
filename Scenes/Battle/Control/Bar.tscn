@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/Battle/Control/GenericBar.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Scripts/Battle/Control/GenericBar.gd" type="Script" id=2]
 
 [node name="Bar" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="TextureProgress" type="TextureProgress" parent="."]
 margin_right = 40.0
@@ -16,7 +16,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="TextureProgress"]
 margin_right = 40.0
 margin_bottom = 14.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 align = 1
 valign = 1
 __meta__ = {
