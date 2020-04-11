@@ -4,16 +4,22 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 
 signal weapon_Changed()
 
-export(float, 0.1, 100) var sensitivity 
+export(float, 0.01, 1) var touch_sensitivity
+export(bool) var reiterative
+var init_vec = Vector2.ZERO
+var swipe_direction = Vector2.ZERO
+var swipe_length = Vector2.ZERO
+var fixed_sens
+var can_swipe = false
+signal swiped(direction)
 
 var controllerapeared = true
-
-var init_posx
 
 onready var wpn_icons = [$UpDownBtns/UpButton/icon, $UpDownBtns2/UpButton/icon, $WeaponIcon/Sprite,
 				$UpDownBtns2/DownButton/icon,$UpDownBtns/DownButton/icon]
 	
 func _ready():
+	fixed_sens = 101 - ((touch_sensitivity) * 100)
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
 	controllerapeared = true
@@ -63,25 +69,6 @@ func _on_WeaponIcon_pressed():
 	yield($anim, "animation_finished")
 	$WeaponIcon.disabled = false
 
-func _gui_input(event):
-	if event is InputEventScreenTouch:
-		init_posx = event.position.x
-	if event is InputEventScreenDrag:
-		var difference = event.position.x - init_posx
-		var weapon = battle_units.SpaceShip.equipped_weapon
-		var wpn_anim = weapon.find_node("AnimationPlayer", true, false)
-		if !wpn_anim.is_playing():
-			var dragposx = event.position.x 
-			if dragposx != null:
-				if difference >= (100-sensitivity):
-					init_posx = event.position.x
-					update_module(false)
-					emit_signal("weapon_Changed")
-				if difference <= - (100-sensitivity):
-					init_posx = event.position.x
-					update_module()
-					emit_signal("weapon_Changed")
-
 
 func _on_PassBtn_pressed():
 	$PassBtn.disabled = true
@@ -102,3 +89,32 @@ func _on_RunBtn_pressed():
 	yield($anim, "animation_finished")
 	queue_free()
 	battle_units.SpaceShip.wea()
+
+
+func _gui_input(event):
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			init_vec = event.position
+			can_swipe = true
+		else:
+			can_swipe = false
+		
+	if event is InputEventScreenDrag and can_swipe:
+		
+		swipe_direction = init_vec.direction_to(event.position).round()
+		swipe_length =  init_vec.distance_to(event.position)
+		print(swipe_length)
+		if !battle_units.SpaceShip.equipped_weapon.get_node("AnimationPlayer").is_playing():
+			if swipe_length >= fixed_sens:
+				if reiterative:
+					init_vec = event.position
+				else:
+					can_swipe = false
+				emit_signal("swiped", swipe_direction)
+				if swipe_direction == Vector2.RIGHT:
+					update_module(false)
+					emit_signal("weapon_Changed")
+				elif swipe_direction == Vector2.LEFT:
+					update_module()
+					emit_signal("weapon_Changed")
+

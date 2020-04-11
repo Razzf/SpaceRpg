@@ -115,7 +115,7 @@ texture = ExtResource( 3 )
 hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-playback_speed = 2.0
+playback_speed = 3.0
 anims/Idle = SubResource( 1 )
 anims/blink = SubResource( 2 )
 anims/panelappear = SubResource( 3 )

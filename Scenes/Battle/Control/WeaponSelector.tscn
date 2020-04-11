@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/Fonts/PixelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Resources/Styles/HoverButton.tres" type="StyleBox" id=2]
@@ -9,11 +9,15 @@
 [ext_resource path="res://Resources/Images/pass.png" type="Texture" id=7]
 [ext_resource path="res://Resources/Images/runawayicon.png" type="Texture" id=8]
 
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 1.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -101,26 +105,58 @@ tracks/6/keys = {
 "update": 0,
 "values": [ Vector2( 120, 5 ), Vector2( 120, 35 ), Vector2( 120, 32 ) ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("AttackBtn:rect_position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.7, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 54, 8 ), Vector2( 54, -38 ), Vector2( 54, -32 ) ]
+}
 
 [node name="WeaponController" type="Control"]
 margin_left = 20.0
-margin_top = 90.0
+margin_top = 20.0
 margin_right = 20.0
-margin_bottom = 90.0
+margin_bottom = 20.0
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 25.0 ],
+"_edit_horizontal_guides_": [ 25.0, -19.0 ],
 "_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ 67.0, 113.0 ]
 }
-sensitivity = 51.662
+touch_sensitivity = 0.757
+reiterative = true
+
+[node name="AttackBtn" type="Button" parent="."]
+visible = false
+margin_left = 54.0
+margin_top = 8.0
+margin_right = 87.0
+margin_bottom = 24.0
+custom_styles/hover = ExtResource( 2 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.113725, 0.654902, 0.2, 1 )
+text = "Attack"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PassBtn" type="Button" parent="."]
 visible = false
+modulate = Color( 0.113725, 0.654902, 0.2, 1 )
 margin_left = 120.0
-margin_top = 5.11094
+margin_top = 5.0
 margin_right = 144.0
-margin_bottom = 29.111
+margin_bottom = 29.0001
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
@@ -133,10 +169,11 @@ __meta__ = {
 
 [node name="RunBtn" type="Button" parent="."]
 visible = false
+modulate = Color( 0.113725, 0.654902, 0.2, 1 )
 margin_left = -4.0
-margin_top = 5.10354
+margin_top = 5.0
 margin_right = 20.0
-margin_bottom = 29.1035
+margin_bottom = 29.0
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = SubResource( 1 )
@@ -150,9 +187,9 @@ __meta__ = {
 [node name="NamePanel" type="Panel" parent="."]
 visible = false
 margin_left = 15.0
-margin_top = 9.89646
+margin_top = 10.0
 margin_right = 125.0
-margin_bottom = 23.8964
+margin_bottom = 23.9999
 custom_styles/panel = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -176,15 +213,15 @@ margin_left = -8.0
 margin_right = 148.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 140, 25 )
-custom_constants/separation = -10
+custom_constants/separation = 39
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="UpButton" type="Panel" parent="UpDownBtns"]
-margin_left = 55.0
-margin_right = 83.0
+margin_left = 30.0
+margin_right = 58.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 28, 30 )
 mouse_filter = 2
@@ -195,8 +232,8 @@ position = Vector2( 16, 15 )
 scale = Vector2( 0.8, 0.8 )
 
 [node name="DownButton" type="Panel" parent="UpDownBtns"]
-margin_left = 73.0
-margin_right = 101.0
+margin_left = 97.0
+margin_right = 125.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 28, 30 )
 mouse_filter = 2
@@ -211,15 +248,15 @@ margin_left = 15.0
 margin_right = 125.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 98, 25 )
-custom_constants/separation = -20
+custom_constants/separation = 36
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="UpButton" type="Panel" parent="UpDownBtns2"]
-margin_left = 32.0
-margin_right = 65.0
+margin_left = 4.0
+margin_right = 37.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 33, 38 )
 mouse_filter = 2
@@ -229,8 +266,8 @@ custom_styles/panel = ExtResource( 6 )
 position = Vector2( 19, 19 )
 
 [node name="DownButton" type="Panel" parent="UpDownBtns2"]
-margin_left = 45.0
-margin_right = 78.0
+margin_left = 73.0
+margin_right = 106.0
 margin_bottom = 38.0
 rect_min_size = Vector2( 33, 38 )
 mouse_filter = 2
@@ -248,7 +285,7 @@ rect_pivot_offset = Vector2( 23, 23 )
 mouse_filter = 1
 custom_styles/hover = ExtResource( 2 )
 custom_styles/pressed = ExtResource( 4 )
-custom_styles/focus = SubResource( 3 )
+custom_styles/focus = SubResource( 2 )
 custom_styles/disabled = ExtResource( 3 )
 custom_styles/normal = ExtResource( 3 )
 disabled = true
@@ -261,7 +298,7 @@ position = Vector2( 23, 23 )
 scale = Vector2( 1.3, 1.3 )
 
 [node name="anim" type="AnimationPlayer" parent="."]
-anims/Appear = SubResource( 4 )
+anims/Appear = SubResource( 3 )
 [connection signal="pressed" from="PassBtn" to="." method="_on_PassBtn_pressed"]
 [connection signal="pressed" from="RunBtn" to="." method="_on_RunBtn_pressed"]
 [connection signal="pressed" from="WeaponIcon" to="." method="_on_WeaponIcon_pressed"]
