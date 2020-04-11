@@ -57,18 +57,20 @@ func update_equipped_weapon(w_index) -> void:
 		
 func attack(_enemy) -> void:
 
-	if module_idx < usable_modules-1:
+	if module_idx < usable_modules:
+		print("caquita", module_idx)
 		if _enemy != null:
 			equipped_weapon.shoot_to(_enemy)
 			yield(equipped_weapon, "on_used")
-			
 			module_idx = module_idx + 1
-			equipped_weapon = $Weapons.get_child(module_idx).get_node("Weapon")
-		
+			
 			if module_idx == usable_modules:
-				equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
-		
+				equipped_weapon = null
 				module_idx = 0
+				emit_signal("end_turn")
+				return
+			
+			equipped_weapon = $Weapons.get_child(module_idx).get_node("Weapon")
 
 
 #func wea():
