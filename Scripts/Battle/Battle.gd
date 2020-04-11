@@ -2,8 +2,7 @@
 extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
-const enemies_dir = "res://Scenes/Battle/Enemy/enemies/"
-var enemy_paths = []
+const enemies_path = "res://Scenes/Battle/Enemy/enemies/"
 var enemy_instances = []
 var first_pressed
 var init_posx
@@ -14,14 +13,15 @@ signal change_finished
 
 func _ready():
 	var max_enemies = 3
-	var enemy_names = list_files_in_directory(enemies_dir)
+	var enemy_names = list_files_in_directory(enemies_path)
 	
-	for i in range(max_enemies):
-		var dirtoappend = enemies_dir + enemy_names[i]
-		enemy_paths.append(dirtoappend)
-		enemy_instances.append(load(enemy_paths[i]).instance())
+	for _i in range(max_enemies):
+		randomize()
+		enemy_names.shuffle()
+		var enemy_path = enemies_path + enemy_names.front()
+		enemy_instances.append(load(enemy_path).instance())
 
-	yield(get_tree().create_timer(2), "timeout")
+	#yield(get_tree().create_timer(2), "timeout")
 	
 	for _i in range(max_enemies):
 		change_target(true)
