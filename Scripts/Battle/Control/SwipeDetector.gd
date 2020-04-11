@@ -25,7 +25,6 @@ func _on_SwipeDetector_gui_input(event):
 		
 		swipe_direction = init_vec.direction_to(event.position).round()
 		swipe_length =  init_vec.distance_to(event.position)
-		print(swipe_length)
 		
 		if swipe_length >= fixed_sens:
 			if reiterative:
@@ -33,4 +32,3 @@ func _on_SwipeDetector_gui_input(event):
 			else:
 				can_swipe = false
 			emit_signal("swiped", swipe_direction)
-			print("swipeo")

@@ -14,10 +14,10 @@ var can_free = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if get_parent().get_parent().get_parent().get_scale().x == -1:
-		print("se supone quwe va a cambiar la escala X :o")
+
 		self.set_scale(Vector2(-1, self.get_scale().y))
 	if get_parent().get_parent().get_parent().get_scale().y == -1:
-		print("se supone quwe va a cambiar la escala Y :o")
+
 		self.set_scale(Vector2(self.get_scale().x, -1))
 		
 		pass

@@ -64,10 +64,10 @@ func attack(_enemy) -> void:
 			
 			module_idx = module_idx + 1
 			equipped_weapon = $Weapons.get_child(module_idx).get_node("Weapon")
-			print("el mdlue_idx es: ", module_idx)
+		
 			if module_idx == usable_modules:
 				equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
-				print("reinicio")
+		
 				module_idx = 0
 
 

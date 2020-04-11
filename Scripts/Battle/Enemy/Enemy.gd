@@ -109,6 +109,7 @@ func _ready():
 	battle_units.Enemy = self
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
+	print("el enemigo se creo")
 	
 	
 func _enter_tree():

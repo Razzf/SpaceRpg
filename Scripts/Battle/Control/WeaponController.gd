@@ -103,7 +103,6 @@ func _gui_input(event):
 		
 		swipe_direction = init_vec.direction_to(event.position).round()
 		swipe_length =  init_vec.distance_to(event.position)
-		print(swipe_length)
 		if !battle_units.SpaceShip.equipped_weapon.get_node("AnimationPlayer").is_playing():
 			if swipe_length >= fixed_sens:
 				if reiterative:
