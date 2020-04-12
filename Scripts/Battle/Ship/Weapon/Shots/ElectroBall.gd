@@ -86,7 +86,7 @@ func create_random_slime_anim():
 	animashion.track_insert_key(pos_track_idx, 0.0, Vector2(0, 0))
 	
 	#var reference_point = Vector2(90 - self.global_position.x, 150 - self.global_position.y)
-	var reference_point = Vector2(battle_units.Enemy.global_position.x - self.global_position.x, battle_units.Enemy.global_position.y - self.global_position.y)
+	var reference_point = Vector2(battle_units.Enemies.actual_enemy.global_position.x - self.global_position.x, battle_units.Enemies.actual_enemy.global_position.y - self.global_position.y)
 	var rand_valx = rand_range(0, dis_range)
 	var rand_valy = rand_range(0, dis_range)
 	var bit = round(rand_range(0, 1))

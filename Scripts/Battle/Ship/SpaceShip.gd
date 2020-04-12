@@ -40,6 +40,7 @@ func setEnergy(value):
 	emit_signal("Energy_changed", energy)
 	
 func update_equipped_weapon(w_index) -> void:
+	print("equipedweapon:", equipped_weapon)
 	if equipped_weapon != null:
 		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
 		wpnanim.play("rotdisappear")
@@ -51,6 +52,7 @@ func update_equipped_weapon(w_index) -> void:
 		elif module_idx == 3:
 			temp_wpn.set_scale(Vector2(1,-1))
 		$Weapons.get_child(module_idx).add_child(temp_wpn)
+		print("este es el weapn: ", self.get_node("Weapons").get_child(module_idx).get_child(1))
 		equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(1)
 
 
@@ -100,7 +102,6 @@ func _ready():
 	self.energy = max_energy
 	self.shield = max_shield
 	animation.play("Shield appear")
-	yield(get_tree().create_timer(2), "timeout")
 	for i in range(usable_modules):
 		var weapon_to_add = weapons.front().instance()
 		if i == 1:
@@ -111,6 +112,7 @@ func _ready():
 			weapon_to_add.set_scale(Vector2(1,-1))
 		$Weapons.get_child(i).add_child(weapon_to_add)
 	equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
+	print("ya hay arma y es esta:", equipped_weapon)
 		
 		
 	

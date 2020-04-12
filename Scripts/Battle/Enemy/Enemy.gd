@@ -19,13 +19,13 @@ onready var animation = $AnimationPlayer
 onready var sprite : Sprite = $Sprite
 
 signal dead
-signal enemy_attacked
+signal attacked
 signal hp_changed(value)
 	
 func tackle(_n) -> void:
 	self.animation.play("Attack")
 	yield(self.animation,"animation_finished")
-	emit_signal("enemy_attacked")
+	emit_signal("attacked")
 
 func deal_p_damage() -> void:
 	battle_units.SpaceShip.take_damage(physical_damage, Vector2(global_position.x, global_position.y + 20))
@@ -106,14 +106,14 @@ func create_random_shaking(animPlayerObj, animName):
 
 
 func _ready():
-	battle_units.Enemy = self
+
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
 	print("el enemigo se creo")
 	
 	
 func _enter_tree():
-	battle_units.Enemy = self
+	self.connect("enemy_attacked", get_parent().get_parent(), "on_enemy_attacked")
 	yield(self,"ready")
 	self.animation.play("Idle")
 	print("entro al tree")
@@ -122,7 +122,7 @@ func _enter_tree():
 	
 func _exit_tree():
 	print("el nodo enemy salio")
-	battle_units.Enemy = null
+
 
 func attack():
 	tackle(1)

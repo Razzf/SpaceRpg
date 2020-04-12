@@ -64,7 +64,7 @@ func _on_WeaponIcon_pressed():
 	controllerapeared = false
 	$anim.play_backwards("Appear")
 	yield($anim, "animation_finished")
-	battle_units.SpaceShip.attack(battle_units.Enemy)
+	battle_units.SpaceShip.attack(battle_units.Enemies.actual_enemy)
 	yield(battle_units.SpaceShip.equipped_weapon, "on_used")
 	$anim.play("Appear")
 	yield($anim, "animation_finished")
@@ -117,7 +117,7 @@ func disappear():
 	appear()
 	
 func appear():
-	yield(battle_units.Enemy, "end_turn")
+	yield(battle_units.Enemies, "end_turn")
 	$anim.play("Appear")
 	disappear()
 
