@@ -27,28 +27,38 @@ func initialize():
 	controllerapeared = true
 	$WeaponIcon.disabled = false
 	$NamePanel.show()
-	update_module()
+	update_weapon()
 	
 
-func update_module(upwards:bool = true) -> void:
+func rotate_weapons(right:bool = true) -> void:
 	var ship = battle_units.SpaceShip
 	if ship != null:
-		if !upwards:
+		if !right:
 			ship.weapons.push_front(ship.weapons.back())
 			ship.weapons.pop_back()
 		else:
 			ship.weapons.push_back(ship.weapons.front())
 			ship.weapons.pop_front()
 			
+		
+			
+		
+
+func update_weapon():
+	var ship = battle_units.SpaceShip
+	if ship != null:
 		for w_idx in range(0, ship.weapons.size()):
 			var extra_weapon = ship.weapons[w_idx].instance()
 			wpn_icons[w_idx].texture = extra_weapon.icon_texture
 			extra_weapon.queue_free()
-			
-		ship.update_equipped_weapon(2)
+
+		ship.update_equipped_weapon()
 		var weapon = ship.equipped_weapon
+
 		$WeaponIcon/Sprite.texture = weapon.icon_texture
 		$NamePanel/NameLabel.text = weapon._name
+		
+
 
 func _weaponSelector_outspreded():
 	if $anim.get_playing_speed() == -1:
@@ -99,6 +109,7 @@ func _gui_input(event):
 		
 		swipe_direction = init_vec.direction_to(event.position).round()
 		swipe_length =  init_vec.distance_to(event.position)
+		#print(battle_units.SpaceShip.equipped_weapon._name)
 		if !battle_units.SpaceShip.equipped_weapon.get_node("AnimationPlayer").is_playing():
 			if swipe_length >= fixed_sens:
 				if reiterative:
@@ -107,8 +118,10 @@ func _gui_input(event):
 					can_swipe = false
 				emit_signal("swiped", swipe_direction)
 				if swipe_direction == Vector2.RIGHT:
-					update_module(false)
+					rotate_weapons(false)
+					update_weapon()
 					emit_signal("weapon_Changed")
 				elif swipe_direction == Vector2.LEFT:
-					update_module()
+					rotate_weapons()
+					update_weapon()
 					emit_signal("weapon_Changed")

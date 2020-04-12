@@ -16,6 +16,8 @@ var module_idx = 0 setget setModule_idx
 export(int) var max_energy = 3500
 var energy setget setEnergy
 
+signal weapon_updated
+
 
 
 
@@ -38,13 +40,12 @@ func setEnergy(value):
 	energy = clamp(value, 0, max_energy)
 	emit_signal("Energy_changed", energy)
 	
-func update_equipped_weapon(w_index) -> void:
-	print("se quiere actualizar....checando")
+func update_equipped_weapon() -> void:
+
 	if equipped_weapon != null:
-		print("actualizando wepon xd")
 		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
 		wpnanim.play("rotdisappear")
-		var temp_wpn = weapons[w_index].instance()
+		var temp_wpn = weapons[2].instance()
 		if module_idx == 1:
 			temp_wpn.set_scale(Vector2(-1,1))
 		elif module_idx == 2:
@@ -52,8 +53,11 @@ func update_equipped_weapon(w_index) -> void:
 		elif module_idx == 3:
 			temp_wpn.set_scale(Vector2(1,-1))
 		$Weapons.get_child(module_idx).add_child(temp_wpn)
-		#print("este es el weapn: ", self.get_node("Weapons").get_child(module_idx).get_child(1))
+
 		equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(1)
+		print(equipped_weapon._name)
+		emit_signal("weapon_updated")
+		
 
 
 		
@@ -63,10 +67,18 @@ func attack(_enemy) -> void:
 		if _enemy != null:
 			equipped_weapon.shoot_to(_enemy)
 			yield(equipped_weapon, "on_used")
+			
 			module_idx = module_idx + 1
+			if module_idx < usable_modules:
+				equipped_weapon = $Weapons.get_child(module_idx).get_child(0)
+				update_equipped_weapon()
+				yield(self,"weapon_updated")
 			if module_idx == usable_modules:
 				equipped_weapon = $Weapons/WpnPos1.get_child(0)
 				module_idx = 0
+				update_equipped_weapon()
+				yield(self,"weapon_updated")
+				
 				emit_signal("end_turn")
 				return
 			
@@ -76,6 +88,8 @@ func attack(_enemy) -> void:
 func wea():
 	if module_idx < usable_modules:
 		module_idx = module_idx + 1
+		if module_idx < usable_modules:
+				update_equipped_weapon()
 		if module_idx == usable_modules:
 			equipped_weapon = $Weapons/WpnPos1.get_child(0)
 			print("eta e el arma equipa: ", equipped_weapon) 
