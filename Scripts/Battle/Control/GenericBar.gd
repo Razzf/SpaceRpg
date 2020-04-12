@@ -1,4 +1,4 @@
-extends Node2D
+extends TextureProgress
 
 signal zero_hp
 var maximum
@@ -13,34 +13,34 @@ export(String, "Hp", "Sp", "Ep") var value_type
 
 func _ready():
 	if value_type == "Sp" || value_type == "Ep":
-		$TextureProgress/Label.self_modulate.a = visibility
+		$Label.self_modulate.a = visibility
 	if !changeable_color:
 		custom_color.a = visibility
-		$TextureProgress.tint_progress = custom_color
+		self.tint_progress = custom_color
 
 
 func initialize(max_value):
 	maximum = max_value
-	$TextureProgress.max_value = maximum
+	self.max_value = maximum
 
 func animate_value(start, end):
-	$Tween.interpolate_property($TextureProgress, "value", start, end, 1, Trans_type, Tween.EASE_OUT)
+	$Tween.interpolate_property(self, "value", start, end, 1, Trans_type, Tween.EASE_OUT)
 	$Tween.interpolate_method(self, "update_count_text", start, end, 1, Trans_type, Tween.EASE_OUT)
 	$Tween.start()
 	
 
 func update_count_text(value):
-	$TextureProgress/Label.text = str(round(value)) + value_type + "\n"
+	$Label.text = str(round(value)) + value_type + "\n"
 	if value == 0:
 		emit_signal("zero_hp")
 	
 	if changeable_color:
 		if value < maximum/4:
-			$TextureProgress.tint_progress = Color( 1, 0, 0, visibility)
+			self.tint_progress = Color( 1, 0, 0, visibility)
 		elif value < maximum/2:
-			$TextureProgress.tint_progress = Color( 1, 1, 0, visibility)
+			self.tint_progress = Color( 1, 1, 0, visibility)
 		else:
-			$TextureProgress.tint_progress = Color( 0, 1, 0, visibility)
+			self.tint_progress = Color( 0, 1, 0, visibility)
 
 
 func _on_value_changed(value):

@@ -11,11 +11,13 @@ signal change_finished
 signal end_turn
 signal enemy_died
 signal all_died
+signal all_appeared
 
 var actual_enemy = null
 
 
 func _ready():
+	battle_units.Enemies = self
 	
 	var enemy_names = list_files_in_directory(enemies_path)
 	
@@ -36,7 +38,8 @@ func _ready():
 			actual_enemy = $EnemyPos.get_child(0)
 			actual_enemy.animation.play("Idle")
 	can_idle = true
-	battle_units.Enemies = self
+	
+	emit_signal("all_appeared")
 
 func change_actual_enemy(right:bool = true) -> void:
 	if !right:
@@ -71,13 +74,14 @@ func change_actual_enemy(right:bool = true) -> void:
 func attack_secuence():
 	can_idle = false
 	for i in range(max_enemies):
-		print("atacando")
-		actual_enemy.attack()
-		yield(actual_enemy, "attacked")
-		change_actual_enemy()
-		yield(self, "change_finished")
-		if i == max_enemies:
-			emit_signal("end_turn")
+		if actual_enemy != null:
+			print(actual_enemy.name, "atacando")
+			actual_enemy.attack()
+			yield(actual_enemy, "attacked")
+			change_actual_enemy()
+			yield(self, "change_finished")
+			if i == max_enemies:
+				emit_signal("end_turn")
 	
 func on_enemy_attacked():
 	attacks_counter = attacks_counter + 1

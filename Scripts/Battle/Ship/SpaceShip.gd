@@ -65,10 +65,8 @@ func attack(_enemy) -> void:
 			equipped_weapon.shoot_to(_enemy)
 			yield(equipped_weapon, "on_used")
 			module_idx = module_idx + 1
-			print("el moduleidx es: ", module_idx)
 			if module_idx == usable_modules:
 				equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
-				print("eta e el arma: ", equipped_weapon)
 				module_idx = 0
 				emit_signal("end_turn")
 				return
@@ -80,7 +78,7 @@ func wea():
 	if module_idx < usable_modules:
 		module_idx = module_idx + 1
 		if module_idx == usable_modules:
-			equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
+			equipped_weapon = $Weapons/WpnPos1.get_child(0)
 			print("eta e el arma equipa: ", equipped_weapon) 
 			module_idx = 0
 			emit_signal("end_turn")
@@ -99,11 +97,19 @@ func take_damage(amount, hit_position):
 
 func _ready():
 	battle_units.SpaceShip = self
-	$EnergyBar.initialize(max_energy)
-	$ShieldBar.initialize(max_shield)
+	$ShipUI/EnergyBar.initialize(max_energy)
+	$ShipUI/ShieldBar.initialize(max_shield)
 	self.energy = max_energy
 	self.shield = max_shield
 	animation.play("Shield appear")
+	
+		
+		
+	
+func _exit_tree():
+	battle_units.SpaceShip = null
+
+func equip_all_weapons():
 	for i in range(usable_modules):
 		var weapon_to_add = weapons.front().instance()
 		if i == 1:
@@ -114,10 +120,10 @@ func _ready():
 			weapon_to_add.set_scale(Vector2(1,-1))
 		$Weapons.get_child(i).add_child(weapon_to_add)
 	equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
-		
-		
-	
-func _exit_tree():
-	battle_units.SpaceShip = null
+
+func initialize_combat():
+	equip_all_weapons()
+	$ShipUI/WeaponSelector.initialize()
+
 	
 

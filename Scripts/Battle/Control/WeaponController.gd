@@ -17,10 +17,9 @@ var controllerapeared = true
 
 onready var wpn_icons = [$UpDownBtns/UpButton/icon, $UpDownBtns2/UpButton/icon, $WeaponIcon/Sprite,
 				$UpDownBtns2/DownButton/icon,$UpDownBtns/DownButton/icon]
-	
+
 func _ready():
 	fixed_sens = 101 - ((touch_sensitivity) * 100)
-	
 
 func initialize():
 	$anim.play("Appear")

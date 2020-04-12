@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Battle/Ship/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Battle/Control/Bar.tscn" type="PackedScene" id=2]
@@ -8,7 +8,8 @@
 [ext_resource path="res://Resources/Images/Frames Images/shieldappear.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Images/shipbar.png" type="Texture" id=8]
-[ext_resource path="res://Resources/Styles/panel.tres" type="StyleBox" id=10]
+[ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=9]
+[ext_resource path="res://WeaponSelector2.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/Images/undershipbar.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/LightningLaser.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn" type="PackedScene" id=14]
@@ -47,8 +48,17 @@ tracks/0/keys = {
 
 [node name="SpaceShip" type="Node2D"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ 91.0 ]
+}
 usable_modules = 4
 weapons = [ ExtResource( 7 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 3 ), ExtResource( 13 ) ]
+
+[node name="ShieldBarrier" type="Sprite" parent="."]
+self_modulate = Color( 1, 1, 1, 0.0784314 )
+position = Vector2( 90, 180 )
+texture = ExtResource( 6 )
+hframes = 13
 
 [node name="Weapons" type="Node2D" parent="."]
 position = Vector2( 90, 160 )
@@ -65,81 +75,73 @@ position = Vector2( -80, -100 )
 [node name="WpnPos4" type="Position2D" parent="Weapons"]
 position = Vector2( 80, -100 )
 
-[node name="ShieldBarrier" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0.0784314 )
-position = Vector2( 90, 180 )
-texture = ExtResource( 6 )
-hframes = 13
-
 [node name="ShipWindow" type="Sprite" parent="."]
 position = Vector2( 90, 160 )
 texture = ExtResource( 5 )
-
-[node name="EnergyBar" parent="." instance=ExtResource( 2 )]
-show_behind_parent = true
-position = Vector2( 123, 214 )
-custom_color = Color( 0.992157, 1, 0, 1 )
-visibility = 0.5
-Trans_type = 2
-value_type = "Ep"
-
-[node name="TextureProgress" parent="EnergyBar" index="0"]
-margin_left = 47.0
-margin_top = 2.0
-margin_right = 127.0
-margin_bottom = 13.0
-rect_scale = Vector2( -1, 1 )
-texture_under = ExtResource( 11 )
-texture_over = ExtResource( 4 )
-texture_progress = ExtResource( 8 )
-fill_mode = 1
-tint_under = Color( 0.427451, 0.427451, 0.427451, 1 )
-
-[node name="Label" parent="EnergyBar/TextureProgress" index="0"]
-show_behind_parent = true
-margin_left = 80.0
-margin_top = -10.0
-margin_right = 126.0
-margin_bottom = 10.0
-rect_scale = Vector2( -1, 1 )
-custom_styles/normal = ExtResource( 10 )
-text = "2000hp
-"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 3.6
 anims/Shakings = SubResource( 1 )
 "anims/Shield appear" = SubResource( 2 )
 
-[node name="ShieldBar" parent="." instance=ExtResource( 2 )]
+[node name="ShipUI" type="Control" parent="."]
+margin_right = 180.0
+margin_bottom = 320.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnergyBar" parent="ShipUI" instance=ExtResource( 2 )]
 show_behind_parent = true
-position = Vector2( 11, 216 )
+margin_left = 11.0
+margin_top = 216.0
+margin_right = 91.0
+margin_bottom = 227.0
+texture_under = ExtResource( 11 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 8 )
+fill_mode = 1
+tint_under = Color( 0.352941, 0.352941, 0.352941, 1 )
+tint_progress = Color( 0.92549, 1, 0.054902, 0.576471 )
+custom_color = Color( 0.992157, 1, 0, 1 )
+visibility = 0.5
+Trans_type = 2
+value_type = "Ep"
+
+[node name="Label" parent="ShipUI/EnergyBar" index="0"]
+show_behind_parent = true
+margin_left = 50.0
+margin_top = 5.0
+margin_right = 80.0
+margin_bottom = 21.0
+custom_styles/normal = ExtResource( 9 )
+text = "asad"
+
+[node name="ShieldBar" parent="ShipUI" instance=ExtResource( 2 )]
+show_behind_parent = true
+margin_left = 171.0
+margin_top = 216.0
+margin_right = 251.0
+margin_bottom = 227.0
+rect_scale = Vector2( -1, 1 )
+texture_under = ExtResource( 11 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 8 )
+fill_mode = 1
+tint_under = Color( 1, 1, 1, 0.117647 )
+tint_progress = Color( 0, 0.917647, 1, 0.419608 )
 custom_color = Color( 0.00392157, 0.882353, 1, 1 )
 visibility = 0.5
 Trans_type = 4
 value_type = "Sp"
 
-[node name="TextureProgress" parent="ShieldBar" index="0"]
-margin_right = 80.0
-margin_bottom = 11.0
-texture_under = ExtResource( 11 )
-texture_over = ExtResource( 4 )
-texture_progress = ExtResource( 8 )
-fill_mode = 1
-tint_under = Color( 0.427451, 0.427451, 0.427451, 1 )
+[node name="WeaponSelector" parent="ShipUI" instance=ExtResource( 10 )]
+[connection signal="Energy_changed" from="." to="ShipUI/EnergyBar" method="_on_value_changed"]
+[connection signal="Shield_changed" from="." to="ShipUI/ShieldBar" method="_on_value_changed"]
 
-[node name="Label" parent="ShieldBar/TextureProgress" index="0"]
-show_behind_parent = true
-margin_left = 40.0
-margin_top = -10.0
-margin_right = 80.0
-margin_bottom = 10.0
-custom_styles/normal = ExtResource( 10 )
-text = "2000hp
-"
-[connection signal="Energy_changed" from="." to="EnergyBar" method="_on_value_changed"]
-[connection signal="Shield_changed" from="." to="ShieldBar" method="_on_value_changed"]
+[editable path="ShipUI/EnergyBar"]
 
-[editable path="EnergyBar"]
+[editable path="ShipUI/ShieldBar"]
 
-[editable path="ShieldBar"]
+[editable path="ShipUI/WeaponSelector"]
