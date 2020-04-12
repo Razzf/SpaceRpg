@@ -21,7 +21,6 @@ var energy setget setEnergy
 
 signal end_turn
 
-var load_scene = preload("res://Scenes/Battle/Control/WeaponSelector.tscn")
 const hit_on_shield_resource = preload("res://Scenes/Battle/Ship/ShieldHitted.tscn")
 
 	

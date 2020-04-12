@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/Battle/Ship/Weapon/Shots/SparkParticles.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Battle/Ship/SparkParticles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Images/Icons Images/thunderbolt.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Battle/Ship/Weapon/Shots/ElectroBall.gd" type="Script" id=3]
+
 
 
 

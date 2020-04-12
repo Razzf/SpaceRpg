@@ -26,10 +26,3 @@ func Start_Enemies_Turn() -> void:
 		enemies.attack_secuence()
 		yield(enemies, "end_turn")
 		Start_Ship_Turn()
-
-
-
-func _on_BattleUI_turn_passed() -> void:
-	var ship = battle_units.SpaceShip
-	ship.emit_signal("end_turn")
-

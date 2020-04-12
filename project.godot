@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "Bar",
-"language": "GDScript",
-"path": "res://Scripts/Battle/Control/Bar.gd"
-}, {
 "base": "Resource",
 "class": "BattleUnits",
 "language": "GDScript",
@@ -40,7 +35,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/Battle/Ship/Weapon/Weapon.gd"
 } ]
 _global_script_class_icons={
-"Bar": "",
 "BattleUnits": "",
 "Enemy": "",
 "ShipModule": "",

@@ -78,9 +78,10 @@ func attack_secuence():
 			print(actual_enemy.name, "atacando")
 			actual_enemy.attack()
 			yield(actual_enemy, "attacked")
-			change_actual_enemy()
-			yield(self, "change_finished")
-			if i == max_enemies - 1:
+			if i < max_enemies - 1:
+				change_actual_enemy()
+				yield(self, "change_finished")
+			else:
 				print("se emitio la senal del end_turn enemigo")
 				emit_signal("end_turn")
 	

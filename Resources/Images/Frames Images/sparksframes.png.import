@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/yellowbar.png-12a2249d088a6733d8dc179af147be6e.stex"
+path="res://.import/sparksframes.png-8d188e1787cc43fa30f87236db9f37a7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Resources/Images/yellowbar.png"
-dest_files=[ "res://.import/yellowbar.png-12a2249d088a6733d8dc179af147be6e.stex" ]
+source_file="res://Resources/Images/Frames Images/sparksframes.png"
+dest_files=[ "res://.import/sparksframes.png-8d188e1787cc43fa30f87236db9f37a7.stex" ]
 
 [params]
 
