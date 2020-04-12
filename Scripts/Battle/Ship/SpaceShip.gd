@@ -66,7 +66,7 @@ func attack(_enemy) -> void:
 			yield(equipped_weapon, "on_used")
 			module_idx = module_idx + 1
 			if module_idx == usable_modules:
-				equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
+				equipped_weapon = $Weapons/WpnPos1.get_child(0)
 				module_idx = 0
 				emit_signal("end_turn")
 				return

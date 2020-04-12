@@ -110,14 +110,7 @@ func _ready():
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
 
-	
-	
 func _enter_tree():
-	if not self.is_connected("attacked", get_parent().get_parent(), "on_enemy_attacked"):
-		self.connect("attacked", get_parent().get_parent(), "on_enemy_attacked")
-	
-
-
 	canchange = true
 	
 func _exit_tree():

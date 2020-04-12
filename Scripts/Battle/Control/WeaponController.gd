@@ -28,7 +28,6 @@ func initialize():
 	$WeaponIcon.disabled = false
 	$NamePanel.show()
 	update_module()
-	disappear()
 	
 
 func update_module(upwards:bool = true) -> void:
@@ -113,14 +112,3 @@ func _gui_input(event):
 				elif swipe_direction == Vector2.LEFT:
 					update_module()
 					emit_signal("weapon_Changed")
-
-func disappear():
-	yield(battle_units.SpaceShip, "end_turn")
-	$anim.play_backwards("Appear")
-	appear()
-	
-func appear():
-	yield(battle_units.Enemies, "end_turn")
-	$anim.play("Appear")
-	disappear()
-

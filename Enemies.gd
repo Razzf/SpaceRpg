@@ -80,13 +80,15 @@ func attack_secuence():
 			yield(actual_enemy, "attacked")
 			change_actual_enemy()
 			yield(self, "change_finished")
-			if i == max_enemies:
+			if i == max_enemies - 1:
+				print("se emitio la senal del end_turn enemigo")
 				emit_signal("end_turn")
 	
-func on_enemy_attacked():
-	attacks_counter = attacks_counter + 1
-	if attacks_counter == max_enemies:
-		emit_signal("end_turn")
+#func on_enemy_attacked():
+#	attacks_counter = attacks_counter + 1
+#	if attacks_counter == max_enemies:
+#		emit_signal("end_turn")
+#		attacks_counter = 0
 
 func list_files_in_directory(path):
 	var files = []
