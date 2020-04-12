@@ -20,6 +20,9 @@ onready var wpn_icons = [$UpDownBtns/UpButton/icon, $UpDownBtns2/UpButton/icon, 
 	
 func _ready():
 	fixed_sens = 101 - ((touch_sensitivity) * 100)
+	
+
+func initialize():
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
 	controllerapeared = true
@@ -27,6 +30,7 @@ func _ready():
 	$NamePanel.show()
 	update_module()
 	disappear()
+	
 
 func update_module(upwards:bool = true) -> void:
 	var ship = battle_units.SpaceShip

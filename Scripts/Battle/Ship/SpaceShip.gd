@@ -40,8 +40,9 @@ func setEnergy(value):
 	emit_signal("Energy_changed", energy)
 	
 func update_equipped_weapon(w_index) -> void:
-	print("equipedweapon:", equipped_weapon)
+	print("se quiere actualizar....checando")
 	if equipped_weapon != null:
+		print("actualizando wepon xd")
 		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
 		wpnanim.play("rotdisappear")
 		var temp_wpn = weapons[w_index].instance()
@@ -52,7 +53,7 @@ func update_equipped_weapon(w_index) -> void:
 		elif module_idx == 3:
 			temp_wpn.set_scale(Vector2(1,-1))
 		$Weapons.get_child(module_idx).add_child(temp_wpn)
-		print("este es el weapn: ", self.get_node("Weapons").get_child(module_idx).get_child(1))
+		#print("este es el weapn: ", self.get_node("Weapons").get_child(module_idx).get_child(1))
 		equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(1)
 
 
@@ -60,14 +61,14 @@ func update_equipped_weapon(w_index) -> void:
 func attack(_enemy) -> void:
 
 	if module_idx < usable_modules:
-		print("caquita", module_idx)
 		if _enemy != null:
 			equipped_weapon.shoot_to(_enemy)
 			yield(equipped_weapon, "on_used")
 			module_idx = module_idx + 1
-			
+			print("el moduleidx es: ", module_idx)
 			if module_idx == usable_modules:
-				equipped_weapon = null
+				equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
+				print("eta e el arma: ", equipped_weapon)
 				module_idx = 0
 				emit_signal("end_turn")
 				return
@@ -79,7 +80,8 @@ func wea():
 	if module_idx < usable_modules:
 		module_idx = module_idx + 1
 		if module_idx == usable_modules:
-			equipped_weapon = null
+			equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
+			print("eta e el arma equipa: ", equipped_weapon) 
 			module_idx = 0
 			emit_signal("end_turn")
 			return
@@ -112,7 +114,6 @@ func _ready():
 			weapon_to_add.set_scale(Vector2(1,-1))
 		$Weapons.get_child(i).add_child(weapon_to_add)
 	equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
-	print("ya hay arma y es esta:", equipped_weapon)
 		
 		
 	

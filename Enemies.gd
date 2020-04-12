@@ -4,7 +4,7 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 const enemies_path = "res://Scenes/Battle/Enemy/enemies/"
 var enemy_instances = []
 var can_idle
-var attacks_counter
+var attacks_counter = 0
 var max_enemies = 3
 
 signal change_finished
@@ -25,7 +25,7 @@ func _ready():
 		var enemy_path = enemies_path + enemy_names.front()
 		enemy_instances.append(load(enemy_path).instance())
 
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(.5), "timeout")
 	
 	for _i in range(max_enemies):
 		change_actual_enemy()
@@ -71,6 +71,7 @@ func change_actual_enemy(right:bool = true) -> void:
 func attack_secuence():
 	can_idle = false
 	for i in range(max_enemies):
+		print("atacando")
 		actual_enemy.attack()
 		yield(actual_enemy, "attacked")
 		change_actual_enemy()

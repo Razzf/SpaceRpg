@@ -15,7 +15,7 @@ func trow_slimes(_n) -> void:
 		battle_units.SpaceShip.take_damage(temp_acid.power, temp_acid.final_pos)
 	animation.play_backwards("prepare")
 	yield(animation, "animation_finished")
-	emit_signal("enemy_attacked")
+	emit_signal("attacked")
 
 func attack():
 

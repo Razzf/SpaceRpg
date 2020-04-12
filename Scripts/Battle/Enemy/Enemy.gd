@@ -109,19 +109,19 @@ func _ready():
 
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
-	print("el enemigo se creo")
+
 	
 	
 func _enter_tree():
-	self.connect("enemy_attacked", get_parent().get_parent(), "on_enemy_attacked")
-	yield(self,"ready")
-	self.animation.play("Idle")
-	print("entro al tree")
+	if not self.is_connected("attacked", get_parent().get_parent(), "on_enemy_attacked"):
+		self.connect("attacked", get_parent().get_parent(), "on_enemy_attacked")
+	
+
 
 	canchange = true
 	
 func _exit_tree():
-	print("el nodo enemy salio")
+	pass
 
 
 func attack():
