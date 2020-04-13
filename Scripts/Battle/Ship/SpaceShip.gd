@@ -43,20 +43,21 @@ func setEnergy(value):
 func update_equipped_weapon() -> void:
 
 	if equipped_weapon != null:
-		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-		wpnanim.play("rotdisappear")
-		var temp_wpn = weapons[2].instance()
-		if module_idx == 1:
-			temp_wpn.set_scale(Vector2(-1,1))
-		elif module_idx == 2:
-			temp_wpn.set_scale(Vector2(-1,-1))
-		elif module_idx == 3:
-			temp_wpn.set_scale(Vector2(1,-1))
-		$Weapons.get_child(module_idx).add_child(temp_wpn)
+		if not equipped_weapon.is_empty:
+			var wpnanim = equipped_weapon.get_node("AnimationPlayer")
+			wpnanim.play("rotdisappear")
+			var temp_wpn = weapons[2].instance()
+			if module_idx == 1:
+				temp_wpn.set_scale(Vector2(-1,1))
+			elif module_idx == 2:
+				temp_wpn.set_scale(Vector2(-1,-1))
+			elif module_idx == 3:
+				temp_wpn.set_scale(Vector2(1,-1))
+			$Weapons.get_child(module_idx).add_child(temp_wpn)
 
-		equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(1)
-		print(equipped_weapon._name)
-		emit_signal("weapon_updated")
+			equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(1)
+			print(equipped_weapon._name)
+			emit_signal("weapon_updated")
 		
 
 

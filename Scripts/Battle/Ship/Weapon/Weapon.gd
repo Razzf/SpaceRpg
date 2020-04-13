@@ -8,6 +8,7 @@ export(int, "Trigger", "Laser", "Energy") var weapon_type
 export(int) var fire_rate
 export(float, 0, 1) var precision
 export(int) var damage
+var is_empty = false
 var trigger_counter = 0
 
 signal on_used
