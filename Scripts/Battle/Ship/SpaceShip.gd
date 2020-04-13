@@ -5,8 +5,10 @@ onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_barrier = $ShieldBarrier
 
 export(int, 1 ,4) var usable_modules
-export(Array, PackedScene) var weapons
+export(Array, PackedScene) var default_wpn_scenes
 var equipped_weapon = null
+
+var weapons = []
 
 export(int) var max_shield = 2000
 var shield setget setShield
@@ -58,7 +60,21 @@ func update_equipped_weapon() -> void:
 			equipped_weapon = self.get_node("Weapons").get_child(module_idx).get_child(1)
 			print(equipped_weapon._name)
 			emit_signal("weapon_updated")
-		
+
+
+func update_weapon(new_weapon, idx:int = 0):
+	if equipped_weapon != null:
+		var wpnanim = equipped_weapon.get_node("AnimationPlayer")
+		wpnanim.play("rotdisappear")
+		match idx:
+			1:
+				new_weapon.set_scale(Vector2(-1,1))
+			2:
+				new_weapon.set_scale(Vector2(-1,-1))
+			3:
+				new_weapon.set_scale(Vector2(1,-1))
+		$Weapons.get_child(idx).add_child(new_weapon)
+		equipped_weapon = $Weapons.get_child(idx).get_child(1)
 
 
 		
@@ -110,6 +126,16 @@ func take_damage(amount, hit_position):
 
 
 func _ready():
+	print("ready")
+	for i in range(5):
+		var weapon_path = default_wpn_scenes[i]
+		weapons.append(weapon_path.instance())
+		print(weapons[i])
+	
+
+
+
+
 	battle_units.SpaceShip = self
 	$ShipUI/EnergyBar.initialize(max_energy)
 	$ShipUI/ShieldBar.initialize(max_shield)
@@ -123,21 +149,11 @@ func _ready():
 func _exit_tree():
 	battle_units.SpaceShip = null
 
-func equip_all_weapons():
-	for i in range(usable_modules):
-		var weapon_to_add = weapons.front().instance()
-		if i == 1:
-			weapon_to_add.set_scale(Vector2(-1,1))
-		elif i == 2:
-			weapon_to_add.set_scale(Vector2(-1,-1))
-		elif i == 3:
-			weapon_to_add.set_scale(Vector2(1,-1))
-		$Weapons.get_child(i).add_child(weapon_to_add)
-	equipped_weapon = $Weapons/WpnPos1.get_node("Weapon")
+
+func initialize_default_weapons():
+	pass
 
 func initialize_combat():
-	equip_all_weapons()
 	$ShipUI/WeaponSelector.initialize()
 
 	
-

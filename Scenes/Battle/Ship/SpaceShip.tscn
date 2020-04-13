@@ -49,7 +49,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 91.0 ]
 }
 usable_modules = 4
-weapons = [ ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 7 ) ]
+default_wpn_scenes = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ) ]
 
 [node name="ShieldBarrier" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.0784314 )
@@ -136,6 +136,7 @@ value_type = "Sp"
 [node name="WeaponSelector" parent="ShipUI" instance=ExtResource( 10 )]
 [connection signal="Energy_changed" from="." to="ShipUI/EnergyBar" method="_on_value_changed"]
 [connection signal="Shield_changed" from="." to="ShipUI/ShieldBar" method="_on_value_changed"]
+[connection signal="weapon_Changed" from="ShipUI/WeaponSelector" to="." method="_on_WeaponSelector_weapon_Changed"]
 
 [editable path="ShipUI/EnergyBar"]
 
