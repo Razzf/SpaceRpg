@@ -23,13 +23,11 @@ func _ready():
 func appear():
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
-	$WeaponIcon.disabled = false
-	can_rotate = true
+	enable_use()
 	update_wpn_selector()
 
 func disappear():
-	$WeaponIcon.disabled = true
-	can_rotate = false
+	disable_use()
 	$anim.play_backwards("Appear")
 	yield($anim,"animation_finished")
 	
@@ -69,7 +67,7 @@ func _weaponSelector_outspreded():
 		$RunBtn.show()
 
 func _on_WeaponIcon_pressed():
-	disappear()
+	disable_use()
 	battle_units.SpaceShip.attack(battle_units.Enemies.actual_enemy)
 	
 
@@ -79,7 +77,18 @@ func _on_PassBtn_pressed():
 
 
 func _on_RunBtn_pressed():
-	battle_units.SpaceShip.wea()
+	battle_units.SpaceShip.pass_attack()
+	$RunBtn.disabled = true
+	yield(battle_units.SpaceShip, "weapon_updated")
+	$RunBtn.disabled = false
+
+func enable_use():
+	$WeaponIcon.disabled = false
+	can_rotate = true
+
+func disable_use():
+	$WeaponIcon.disabled = true
+	can_rotate = false
 
 
 func _gui_input(event):
@@ -131,5 +140,7 @@ func _gui_input(event):
 						rotate_weapons()
 						emit_signal("weapon_Changed")
 						update_wpn_selector()
+
+
 					
 	

@@ -5,7 +5,7 @@ const enemies_path = "res://Scenes/Battle/Enemy/enemies/"
 var enemy_instances = []
 var can_idle
 var attacks_counter = 0
-export(int) var max_enemies
+export(int, 1, 5) var max_enemies
 
 signal change_finished
 signal end_turn

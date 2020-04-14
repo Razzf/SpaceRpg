@@ -48,20 +48,31 @@ func _ready():
 
 func attack(_enemy) -> void:
 	if _enemy != null:
+		print("caca con pan y leche")
+		equipped_weapon.shoot_to(_enemy)
+		yield(equipped_weapon, "on_used")
+		remove_wpn_child()
+		yield(equipped_weapon, "tree_exited")
 		
-			equipped_weapon.shoot_to(_enemy)
-			yield(equipped_weapon, "on_used")
-			remove_wpn_child()
-			yield(equipped_weapon, "tree_exited")
-			
-			if !(actual_module.get_index() < usable_modules -1 ):
-				emit_signal("end_turn")
-				_change_wpn_module()
-				return
+		if !(actual_module.get_index() < usable_modules -1 ):
+			emit_signal("end_turn")
+			$ShipUI/WeaponSelector.disappear()
 			_change_wpn_module()
-			add_wpn_child()
-			$ShipUI/WeaponSelector.appear()
+			return
+		_change_wpn_module()
+		add_wpn_child()
+			
 
+func pass_attack():
+	remove_wpn_child()
+	yield(equipped_weapon, "tree_exited")
+	if !(actual_module.get_index() < usable_modules -1 ):
+		emit_signal("end_turn")
+		$ShipUI/WeaponSelector.disappear()
+		_change_wpn_module()
+		return
+	_change_wpn_module()
+	add_wpn_child()
 
 func take_damage(amount, hit_position):
 	if shield > 0:
@@ -104,6 +115,11 @@ func add_wpn_child():
 
 	actual_module.add_child(wpn_to_equip)
 	equipped_weapon = wpn_to_equip
+	var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
+	yield(wpnanim, "animation_finished")
+	emit_signal("weapon_updated")
+	print("caca")
+	$ShipUI/WeaponSelector.enable_use()
 	
 func _change_wpn_module(up:bool = true):
 	if !up:

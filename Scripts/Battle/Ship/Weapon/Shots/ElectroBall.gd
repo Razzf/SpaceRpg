@@ -23,6 +23,8 @@ func _ready():
 		pass
 	$SparksParticles.hide()
 	$Sprite.show()
+	if $AnimationPlayer.is_playing():
+		yield($AnimationPlayer, "animation_finished")
 	
 	create_random_slime_anim()
 
