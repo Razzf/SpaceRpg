@@ -50,12 +50,7 @@ func update_wpn_selector():
 		for w_idx in range(0, ship.weapons.size()):
 			var extra_weapon = ship.weapons[w_idx]
 			wpn_icons[w_idx].texture = extra_weapon.icon_texture
-
-		#ship.update_weapon()
-		var weapon = ship.equipped_weapon
-
-		#$NamePanel/NameLabel.text = weapon._name
-		
+		$NamePanel/NameLabel.text = ship.weapons.front().name
 
 
 func _weaponSelector_outspreded():
@@ -109,7 +104,6 @@ func _gui_input(event):
 		swipe_length =  init_vec.distance_to(event.position)
 		
 		var equipped_wpn = battle_units.SpaceShip.equipped_weapon
-		print(equipped_wpn._name)
 		var weapon_anim = equipped_wpn.find_node("AnimationPlayer", true, false)
 		
 		if weapon_anim != null:
@@ -137,10 +131,12 @@ func _gui_input(event):
 				emit_signal("swiped", swipe_direction)
 				if swipe_direction == Vector2.RIGHT:
 					rotate_weapons(false)
-					update_wpn_selector()
 					emit_signal("weapon_Changed")
+					update_wpn_selector()
+					
 				elif swipe_direction == Vector2.LEFT:
 					rotate_weapons()
-					update_wpn_selector()
 					emit_signal("weapon_Changed")
+					update_wpn_selector()
+					
 	

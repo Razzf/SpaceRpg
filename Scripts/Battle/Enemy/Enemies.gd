@@ -109,10 +109,11 @@ func list_files_in_directory(path):
 
 
 func _on_SwipeDetector_swiped(direction):
-	if direction == Vector2.RIGHT:
-		change_actual_enemy()
-	elif direction == Vector2.LEFT:
-		change_actual_enemy(false)
+	if max_enemies > 1:
+		if direction == Vector2.RIGHT:
+			change_actual_enemy()
+		elif direction == Vector2.LEFT:
+			change_actual_enemy(false)
 
 func _exit_tree():
 	battle_units.Enemies = null

@@ -9,15 +9,17 @@ export(int) var fire_rate
 export(float, 0, 1) var precision
 export(int) var damage
 export(bool) var is_empty = false
+
 var trigger_counter = 0
+
 
 signal on_used
 
 export(Array, PackedScene) var shot_scenes
 
-func _ready():
-	name = "Weapon"
-	
+#func _ready():
+#	name = "Weapon"
+#
 	
 
 func shoot_to(_enemy):
@@ -71,6 +73,7 @@ func shoot_to(_enemy):
 				
 
 func disappear():
+	print("me disapear")
 	get_parent().remove_child(self)
 	
 func _enter_tree():
