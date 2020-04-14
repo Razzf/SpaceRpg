@@ -9,6 +9,8 @@ export(Array, PackedScene) var default_wpn_scenes
 var equipped_weapon = null
 
 var weapons = []
+var actual_module
+onready var modules = $Weapons.get_children()
 
 export(int) var max_shield = 2000
 var shield setget setShield
@@ -19,6 +21,7 @@ export(int) var max_energy = 3500
 var energy setget setEnergy
 
 signal weapon_updated
+signal module_changed
 
 
 
@@ -43,36 +46,15 @@ func setEnergy(value):
 	emit_signal("Energy_changed", energy)
 
 func attack(_enemy) -> void:
-
+	
 	if module_idx < usable_modules:
 		if _enemy != null:
 			equipped_weapon.shoot_to(_enemy)
 			yield(equipped_weapon, "on_used")
-			var wpnanim = equipped_weapon.get_node("AnimationPlayer")
-			wpnanim.play("rotdisappear")
-			yield(wpnanim, "tree_exited")
-			
-
-			
-			module_idx = module_idx + 1
-			
-			_on_WeaponSelector_weapon_Changed(true)
-			
-
-
-#func wea():
-#	if module_idx < usable_modules:
-#		module_idx = module_idx + 1
-#		if module_idx < usable_modules:
-#				_on_WeaponSelector_weapon_Changed()
-#		if module_idx == usable_modules:
-#			equipped_weapon = $Weapons/WpnPos1.get_child(0)
-#			print("eta e el arma equipa: ", equipped_weapon) 
-#			module_idx = 0
-#			emit_signal("end_turn")
-#			return
-#		equipped_weapon = $Weapons.get_child(module_idx).get_node("Weapon")
-#
+			remove_wpn_child()
+			_change_wpn_module()
+			yield(equipped_weapon, "tree_exited")
+			add_wpn_child()
 
 
 func take_damage(amount, hit_position):
@@ -86,6 +68,7 @@ func take_damage(amount, hit_position):
 func _ready():
 	battle_units.SpaceShip = self
 	print("ready")
+	actual_module = modules.front()
 	initialize_default_weapons()
 	equipped_weapon = weapons.front()
 	
@@ -118,25 +101,41 @@ func initialize_combat():
 	
 
 
-func _on_WeaponSelector_weapon_Changed(attacked:bool = false):
-	print("quiero cambiarxd")
-	if equipped_weapon != null:
-		var wpn_to_remove = equipped_weapon
-		var wpn_to_equip = weapons.front()
+func _on_WeaponSelector_weapon_Changed():
+	remove_wpn_child()
+	add_wpn_child()
 		
-		if not wpn_to_remove.is_empty or !attacked:
-			var wpnanim = wpn_to_remove.get_node("AnimationPlayer")
-			wpnanim.play("rotdisappear")
-			print("ppoooooops")
-		elif wpn_to_remove.is_empty:
-			$Weapons.get_child(module_idx).remove_child(wpn_to_remove)
-		match module_idx:
-			1:
-				wpn_to_equip.set_scale(Vector2(-1,1))
-			2:
-				wpn_to_equip.set_scale(Vector2(-1,-1))
-			3:
-				wpn_to_equip.set_scale(Vector2(1,-1))
-		$Weapons.get_child(module_idx).add_child(wpn_to_equip)
-		equipped_weapon = wpn_to_equip
-		print(equipped_weapon)
+
+func remove_wpn_child():
+	var wpn_to_remove = equipped_weapon
+	
+	if not wpn_to_remove.is_empty:
+		var wpnanim = wpn_to_remove.get_node("AnimationPlayer")
+		wpnanim.play("rotdisappear")
+	else:
+		$Weapons.get_child(actual_module.get_index()).remove_child(wpn_to_remove)
+	
+func add_wpn_child():
+	var wpn_to_equip = weapons.front()
+	match actual_module.get_index():
+		1:
+			wpn_to_equip.set_scale(Vector2(-1,1))
+		2:
+			wpn_to_equip.set_scale(Vector2(-1,-1))
+		3:
+			wpn_to_equip.set_scale(Vector2(1,-1))
+	actual_module.add_child(wpn_to_equip)
+	equipped_weapon = wpn_to_equip
+	
+func _change_wpn_module(up:bool = true):
+	if !up:
+		modules.push_front(modules.back())
+		modules.pop_back()
+	else:
+		modules.push_back(modules.front())
+		modules.pop_front()
+	
+	actual_module = modules.front()
+	print(actual_module.get_index())
+
+
