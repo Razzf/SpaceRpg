@@ -13,8 +13,6 @@ var fixed_sens
 var can_swipe = false
 signal swiped(direction)
 
-var controllerapeared = true
-
 onready var wpn_icons = [$WeaponIcon/Sprite, $UpDownBtns2/DownButton/icon, $UpDownBtns/DownButton/icon,
 				$UpDownBtns/UpButton/icon, $UpDownBtns2/UpButton/icon]
 
@@ -24,7 +22,6 @@ func _ready():
 func initialize():
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
-	controllerapeared = true
 	$WeaponIcon.disabled = false
 	$NamePanel.show()
 	update_wpn_selector()
@@ -66,7 +63,6 @@ func _weaponSelector_outspreded():
 func _on_WeaponIcon_pressed():
 	
 	$WeaponIcon.disabled = true
-	controllerapeared = false
 	$anim.play_backwards("Appear")
 	yield($anim, "animation_finished")
 	battle_units.SpaceShip.attack(battle_units.Enemies.actual_enemy)
@@ -80,7 +76,6 @@ func _on_PassBtn_pressed():
 	$PassBtn.disabled = true
 	$RunBtn.disabled = true
 	$WeaponIcon.disabled = true
-	controllerapeared = false
 	$anim.play_backwards("Appear")
 	yield($anim, "animation_finished")
 	queue_free()

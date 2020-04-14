@@ -7,8 +7,6 @@ export(bool) var changeable_color
 export(Color) var custom_color
 export(float) var visibility
 export(int, "Linear", "Sine", "Quint", "Quart", "Quad", "expo", "Elastic", "Cubic", "Circ", "Bounce", "Back") var Trans_type
-#export(Color) var medium_bar 
-#export(Color) var quarter_bar
 export(String, "Hp", "Sp", "Ep") var value_type
 
 func _ready():

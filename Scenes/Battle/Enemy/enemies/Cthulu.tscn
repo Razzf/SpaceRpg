@@ -13,11 +13,6 @@ swipe_sensitiviy = 69.523
 offset = Vector2( 3, -1 )
 
 [node name="Bar" parent="Sprite" index="0"]
-position = Vector2( -36, -42 )
 Trans_type = 6
-
-[node name="TextureProgress" parent="Sprite/Bar" index="0"]
-tint_over = Color( 0.603922, 0.603922, 0.603922, 1 )
-tint_progress = Color( 1, 1, 1, 0.580392 )
 
 [editable path="Sprite/Bar"]
