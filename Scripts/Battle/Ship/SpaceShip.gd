@@ -133,11 +133,6 @@ func _ready():
 	
 	$Weapons/WpnPos1.add_child(equipped_weapon)
 	print($Weapons/WpnPos1.get_child(0)._name)
-	
-	
-
-
-
 
 	
 	$ShipUI/EnergyBar.initialize(max_energy)
@@ -174,6 +169,8 @@ func _on_WeaponSelector_weapon_Changed():
 		if not wpn_to_remove.is_empty:
 			var wpnanim = wpn_to_remove.get_node("AnimationPlayer")
 			wpnanim.play("rotdisappear")
+		else:
+			$Weapons.get_child(module_idx).remove_child(wpn_to_remove)
 		match module_idx:
 			1:
 				wpn_to_equip.set_scale(Vector2(-1,1))

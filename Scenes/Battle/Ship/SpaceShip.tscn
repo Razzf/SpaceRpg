@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Battle/Ship/SpaceShip.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Battle/Control/Bar.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Battle/Ship/Weapons/EmptyWpn.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/BlueSparks.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/Images/overbar.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Images/Sprites and designs/LasterWindowDesign.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Images/Frames Images/shieldappear.png" type="Texture" id=6]
@@ -11,6 +11,9 @@
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=9]
 [ext_resource path="res://Scenes/Battle/Control/WeaponSelector.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/Images/undershipbar.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/BurningLaser.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/ElectroCannon.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/LightningLaser.tscn" type="PackedScene" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Shakings"
@@ -49,7 +52,7 @@ __meta__ = {
 "_edit_vertical_guides_": [ 91.0 ]
 }
 usable_modules = 4
-default_wpn_scenes = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 3 ) ]
+default_wpn_scenes = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ]
 
 [node name="ShieldBarrier" type="Sprite" parent="."]
 self_modulate = Color( 1, 1, 1, 0.0784314 )
