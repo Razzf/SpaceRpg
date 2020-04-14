@@ -12,6 +12,7 @@ var swipe_length = Vector2.ZERO
 var fixed_sens
 var can_swipe = false
 signal swiped(direction)
+var can_rotate = false
 
 onready var wpn_icons = [$WeaponIcon/Sprite, $UpDownBtns2/DownButton/icon, $UpDownBtns/DownButton/icon,
 				$UpDownBtns/UpButton/icon, $UpDownBtns2/UpButton/icon]
@@ -19,13 +20,20 @@ onready var wpn_icons = [$WeaponIcon/Sprite, $UpDownBtns2/DownButton/icon, $UpDo
 func _ready():
 	fixed_sens = 101 - ((touch_sensitivity) * 100)
 
-func initialize():
+func appear():
 	$anim.play("Appear")
 	yield($anim,"animation_finished")
 	$WeaponIcon.disabled = false
-	$NamePanel.show()
+	can_rotate = true
 	update_wpn_selector()
+
+func disappear():
+	$WeaponIcon.disabled = true
+	can_rotate = false
+	$anim.play_backwards("Appear")
+	yield($anim,"animation_finished")
 	
+
 
 func rotate_weapons(right:bool = true) -> void:
 	var ship = battle_units.SpaceShip
@@ -61,24 +69,13 @@ func _weaponSelector_outspreded():
 		$RunBtn.show()
 
 func _on_WeaponIcon_pressed():
-	
-	$WeaponIcon.disabled = true
-	$anim.play_backwards("Appear")
-	yield($anim, "animation_finished")
+	disappear()
 	battle_units.SpaceShip.attack(battle_units.Enemies.actual_enemy)
-	yield(battle_units.SpaceShip.equipped_weapon, "on_used")
-	$anim.play("Appear")
-	yield($anim, "animation_finished")
-	$WeaponIcon.disabled = false
+	
 
 
 func _on_PassBtn_pressed():
-	$PassBtn.disabled = true
-	$RunBtn.disabled = true
-	$WeaponIcon.disabled = true
-	$anim.play_backwards("Appear")
-	yield($anim, "animation_finished")
-	queue_free()
+	pass
 
 
 func _on_RunBtn_pressed():
@@ -101,8 +98,24 @@ func _gui_input(event):
 		var equipped_wpn = battle_units.SpaceShip.equipped_weapon
 		var weapon_anim = equipped_wpn.find_node("AnimationPlayer", true, false)
 		
-		if weapon_anim != null:
-			if not weapon_anim.is_playing():
+		if can_rotate:
+			if weapon_anim != null:
+				if not weapon_anim.is_playing():
+					if swipe_length >= fixed_sens:
+						if reiterative:
+							init_vec = event.position
+						else:
+							can_swipe = false
+						emit_signal("swiped", swipe_direction)
+						if swipe_direction == Vector2.RIGHT:
+							rotate_weapons(false)
+							update_wpn_selector()
+							emit_signal("weapon_Changed")
+						elif swipe_direction == Vector2.LEFT:
+							rotate_weapons()
+							update_wpn_selector()
+							emit_signal("weapon_Changed")
+			else:
 				if swipe_length >= fixed_sens:
 					if reiterative:
 						init_vec = event.position
@@ -111,27 +124,12 @@ func _gui_input(event):
 					emit_signal("swiped", swipe_direction)
 					if swipe_direction == Vector2.RIGHT:
 						rotate_weapons(false)
-						update_wpn_selector()
 						emit_signal("weapon_Changed")
+						update_wpn_selector()
+						
 					elif swipe_direction == Vector2.LEFT:
 						rotate_weapons()
-						update_wpn_selector()
 						emit_signal("weapon_Changed")
-		else:
-			if swipe_length >= fixed_sens:
-				if reiterative:
-					init_vec = event.position
-				else:
-					can_swipe = false
-				emit_signal("swiped", swipe_direction)
-				if swipe_direction == Vector2.RIGHT:
-					rotate_weapons(false)
-					emit_signal("weapon_Changed")
-					update_wpn_selector()
-					
-				elif swipe_direction == Vector2.LEFT:
-					rotate_weapons()
-					emit_signal("weapon_Changed")
-					update_wpn_selector()
+						update_wpn_selector()
 					
 	

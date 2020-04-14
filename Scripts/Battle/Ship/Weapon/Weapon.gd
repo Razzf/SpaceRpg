@@ -73,7 +73,6 @@ func shoot_to(_enemy):
 				
 
 func disappear():
-	print("me disapear")
 	get_parent().remove_child(self)
 	
 func _enter_tree():

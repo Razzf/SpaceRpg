@@ -82,7 +82,6 @@ func attack_secuence():
 				change_actual_enemy()
 				yield(self, "change_finished")
 			else:
-				print("se emitio la senal del end_turn enemigo")
 				emit_signal("end_turn")
 	
 #func on_enemy_attacked():

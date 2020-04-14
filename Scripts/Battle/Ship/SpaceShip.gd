@@ -39,7 +39,7 @@ func _ready():
 	battle_units.SpaceShip = self
 	actual_module = modules.front()
 	initialize_default_weapons()
-	add_wpn_child()
+	
 	$ShipUI/EnergyBar.initialize(max_energy)
 	$ShipUI/ShieldBar.initialize(max_shield)
 	self.energy = max_energy
@@ -48,12 +48,20 @@ func _ready():
 
 func attack(_enemy) -> void:
 	if _enemy != null:
-		equipped_weapon.shoot_to(_enemy)
-		yield(equipped_weapon, "on_used")
-		remove_wpn_child()
-		yield(equipped_weapon, "tree_exited")
-		_change_wpn_module()
-		add_wpn_child()
+		
+			equipped_weapon.shoot_to(_enemy)
+			yield(equipped_weapon, "on_used")
+			remove_wpn_child()
+			yield(equipped_weapon, "tree_exited")
+			
+			if !(actual_module.get_index() < usable_modules -1 ):
+				emit_signal("end_turn")
+				_change_wpn_module()
+				return
+			_change_wpn_module()
+			add_wpn_child()
+			$ShipUI/WeaponSelector.appear()
+
 
 func take_damage(amount, hit_position):
 	if shield > 0:
@@ -66,10 +74,10 @@ func initialize_default_weapons():
 	for i in range(5):
 		var weapon_path = default_wpn_scenes[i]
 		weapons.append(weapon_path.instance())
-		print(weapons[i])
 
-func initialize_combat():
-	$ShipUI/WeaponSelector.initialize()
+func initialize_turn():
+	$ShipUI/WeaponSelector.appear()
+	add_wpn_child()
 
 func remove_wpn_child():
 	var wpn_to_remove = equipped_weapon
@@ -87,13 +95,13 @@ func add_wpn_child():
 			wpn_to_equip.set_scale(Vector2(1,1))
 		1:
 			wpn_to_equip.set_scale(Vector2(-1,1))
-			print("se giro")
+	
 		2:
 			wpn_to_equip.set_scale(Vector2(-1,-1))
-			print("se giro")
+	
 		3:
 			wpn_to_equip.set_scale(Vector2(1,-1))
-			print("se giro")
+
 	actual_module.add_child(wpn_to_equip)
 	equipped_weapon = wpn_to_equip
 	
