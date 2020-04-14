@@ -126,17 +126,20 @@ func take_damage(amount, hit_position):
 
 
 func _ready():
+	battle_units.SpaceShip = self
 	print("ready")
-	for i in range(5):
-		var weapon_path = default_wpn_scenes[i]
-		weapons.append(weapon_path.instance())
-		print(weapons[i])
+	initialize_default_weapons()
+	equipped_weapon = weapons.front()
+	
+	$Weapons/WpnPos1.add_child(equipped_weapon)
+	print($Weapons/WpnPos1.get_child(0)._name)
+	
 	
 
 
 
 
-	battle_units.SpaceShip = self
+	
 	$ShipUI/EnergyBar.initialize(max_energy)
 	$ShipUI/ShieldBar.initialize(max_shield)
 	self.energy = max_energy
@@ -151,9 +154,32 @@ func _exit_tree():
 
 
 func initialize_default_weapons():
-	pass
+	for i in range(5):
+		var weapon_path = default_wpn_scenes[i]
+		weapons.append(weapon_path.instance())
+		print(weapons[i])
 
 func initialize_combat():
 	$ShipUI/WeaponSelector.initialize()
 
 	
+
+
+func _on_WeaponSelector_weapon_Changed():
+	print("caca a CAMbiar")
+	if equipped_weapon != null:
+		var wpn_to_remove = equipped_weapon
+		var wpn_to_equip = weapons.front()
+		
+		if not wpn_to_remove.is_empty:
+			var wpnanim = wpn_to_remove.get_node("AnimationPlayer")
+			wpnanim.play("rotdisappear")
+		match module_idx:
+			1:
+				wpn_to_equip.set_scale(Vector2(-1,1))
+			2:
+				wpn_to_equip.set_scale(Vector2(-1,-1))
+			3:
+				wpn_to_equip.set_scale(Vector2(1,-1))
+		$Weapons.get_child(module_idx).add_child(wpn_to_equip)
+		equipped_weapon = wpn_to_equip

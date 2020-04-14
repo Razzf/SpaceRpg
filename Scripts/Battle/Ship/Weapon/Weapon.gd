@@ -68,6 +68,14 @@ func shoot_to(_enemy):
 			else:
 				yield(shot, "tree_exited")
 				emit_signal("on_used")
+				
+
+func disappear():
+	get_parent().remove_child(self)
+	
+func _enter_tree():
+	if not self.is_empty:
+		$AnimationPlayer.play("rotappear")
 		
 	
 

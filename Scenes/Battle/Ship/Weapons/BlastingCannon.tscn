@@ -15,8 +15,8 @@ precision = 0.669
 damage = 120
 shot_scenes = [ ExtResource( 4 ), ExtResource( 5 ) ]
 
-[node name="Sprite" parent="." index="0"]
-offset = Vector2( -32, -15 )
-
 [node name="NozzlePosition" parent="Sprite" index="0"]
 position = Vector2( -52.0001, -38.9999 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "rotappear"
