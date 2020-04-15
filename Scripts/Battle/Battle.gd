@@ -20,9 +20,13 @@ func Start_Ship_Turn() -> void:
 	
 func Start_Enemies_Turn() -> void:
 	print("inicio el turno del enemigo")
-#	battle_units.SpaceShip.find_node("WeaponSelector", true, false).disappear()
 	var enemies = battle_units.Enemies
 	if enemies != null:
-		enemies.attack_secuence()
+		if enemies.actual_enemy.hp <= 0:
+			yield(enemies, "inside_screen")
+			enemies.attack_secuence()
+			
+		else:
+			enemies.attack_secuence()
 		yield(enemies, "end_turn")
 		Start_Ship_Turn()

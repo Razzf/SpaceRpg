@@ -52,7 +52,6 @@ func attack(_enemy) -> void:
 		yield(equipped_weapon, "on_used")
 		remove_wpn_child()
 		yield(equipped_weapon, "tree_exited")
-		
 		if !(actual_module.get_index() < usable_modules -1 ):
 			emit_signal("end_turn")
 			$ShipUI/WeaponSelector.disappear()
@@ -115,9 +114,11 @@ func add_wpn_child():
 	actual_module.add_child(wpn_to_equip)
 	equipped_weapon = wpn_to_equip
 	var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
+	print("yeildienaod")
 	yield(wpnanim, "animation_finished")
 	emit_signal("weapon_updated")
 	$ShipUI/WeaponSelector.enable_use()
+	print("cacas")
 	
 func _change_wpn_module(up:bool = true):
 	if !up:

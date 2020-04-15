@@ -45,6 +45,11 @@ func shoot_to(_enemy):
 			var max_hip = sqrt(pow(max_x, 2) + pow(max_y, 2))
 			var accuracy = 1 - (hip / max_hip)
 			_enemy.take_damage(damage * accuracy)
+			print(_i)
+			if _enemy.hp <= 0:
+				yield(fire, "tree_exited")
+				emit_signal("on_used")
+				break
 			if _i < fire_rate -1:
 				yield(fire, "tree_exited")
 			else:
@@ -64,8 +69,11 @@ func shoot_to(_enemy):
 			trigger_counter = trigger_counter + 1
 			
 			_enemy.take_damage(damage)
+			if _enemy.hp <= 0:
+				yield(shot, "tree_exited")
+				emit_signal("on_used")
+				break
 			if _i < fire_rate -1:
-				#yield(shot, "almost_dead")
 				pass
 			else:
 				yield(shot, "tree_exited")

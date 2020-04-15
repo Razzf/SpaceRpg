@@ -10,9 +10,9 @@
 script = ExtResource( 2 )
 icon_texture = ExtResource( 3 )
 energy_cost = 30
-fire_rate = 6
+fire_rate = 12
 precision = 0.669
-damage = 120
+damage = 500
 shot_scenes = [ ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="NozzlePosition" parent="Sprite" index="0"]

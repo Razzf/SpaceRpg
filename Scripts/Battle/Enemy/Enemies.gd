@@ -91,7 +91,9 @@ func change_actual_enemy(direction:bool = RIGHT) -> void:
 
 
 func attack_secuence():
+	print("va a atacar")
 	can_idle = false
+	print(battle_units.SpaceShip.actual_module.get_index())
 	for i in range(enemy_instances.size()):
 		if actual_enemy != null:
 			print(actual_enemy.name, "atacando")
@@ -128,15 +130,13 @@ func _on_SwipeDetector_swiped(direction):
 			change_actual_enemy(LEFT)
 
 func _on_Enemy_dead(enemy):
-	print("se va a eliminar un emeny")
+	print("se murio")
 	enemy_instances.erase(enemy)
 	enemy.queue_free()
 	actual_enemy = null
 	if enemy_instances.size() > 0:
 		put_on_screen(RIGHT)
-		print("se agrego: ", actual_enemy.name)
 	else:
-		print("ganaste")
 		emit_signal("all_died")
 	
 
