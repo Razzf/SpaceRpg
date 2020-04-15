@@ -89,4 +89,3 @@ pointing/emulate_touch_from_mouse=true
 
 vram_compression/import_etc=true
 environment/default_clear_color=Color( 0.266667, 0.286275, 0.286275, 1 )
-environment/default_environment="res://default_env.tres"

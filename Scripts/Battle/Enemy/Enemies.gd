@@ -49,22 +49,25 @@ func change_actual_enemy(right:bool = true) -> void:
 			$EnemyPos.remove_child(actual_enemy)
 		enemy_instances.push_front(enemy_instances.back())
 		enemy_instances.pop_back()
-		$EnemyPos.add_child(enemy_instances.front())
-		actual_enemy = $EnemyPos.get_children().front()
+		var enemy_to_add = enemy_instances.front()
+		$EnemyPos.add_child(enemy_to_add)
+		actual_enemy = enemy_to_add
 		actual_enemy.get_node("AnimationPlayer").play_backwards("swiping_right")
 		yield(actual_enemy.animation, "animation_finished")
 		emit_signal("change_finished")
 		if can_idle:
 			actual_enemy.animation.play("Idle")
 	else:
+
 		if actual_enemy != null:
 			actual_enemy.animation.play("swiping_right")
 			yield(actual_enemy.animation, "animation_finished")
 			$EnemyPos.remove_child(actual_enemy)
 		enemy_instances.push_back(enemy_instances.front())
 		enemy_instances.pop_front()
-		$EnemyPos.add_child(enemy_instances.front())
-		actual_enemy = $EnemyPos.get_children().front()
+		var enemy_to_add = enemy_instances.front()
+		$EnemyPos.add_child(enemy_to_add)
+		actual_enemy = enemy_to_add
 		actual_enemy.get_node("AnimationPlayer").play_backwards("swiping_left")
 		yield(actual_enemy.animation, "animation_finished")
 		emit_signal("change_finished")
@@ -83,12 +86,6 @@ func attack_secuence():
 				yield(self, "change_finished")
 			else:
 				emit_signal("end_turn")
-	
-#func on_enemy_attacked():
-#	attacks_counter = attacks_counter + 1
-#	if attacks_counter == max_enemies:
-#		emit_signal("end_turn")
-#		attacks_counter = 0
 
 func list_files_in_directory(path):
 	var files = []
@@ -113,6 +110,20 @@ func _on_SwipeDetector_swiped(direction):
 			change_actual_enemy()
 		elif direction == Vector2.LEFT:
 			change_actual_enemy(false)
+
+func _on_Enemy_dead(enemy):
+	enemy_instances.erase(enemy)
+	enemy.queue_free()
+	actual_enemy = null
+	change_actual_enemy()
+	print(actual_enemy.name)
+
+
+func _get_enemy_names() -> String:
+	var names = ""
+	for enemy in enemy_instances:
+		names = names + " " + enemy.name
+	return names
 
 func _exit_tree():
 	battle_units.Enemies = null

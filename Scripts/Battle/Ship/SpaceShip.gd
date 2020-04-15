@@ -118,7 +118,6 @@ func add_wpn_child():
 	var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
 	yield(wpnanim, "animation_finished")
 	emit_signal("weapon_updated")
-	print("caca")
 	$ShipUI/WeaponSelector.enable_use()
 	
 func _change_wpn_module(up:bool = true):

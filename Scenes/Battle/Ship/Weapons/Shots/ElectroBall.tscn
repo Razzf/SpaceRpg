@@ -1,8 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/Battle/Ship/SparkParticles.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Battle/Ship/Weapons/Shots/SparkParticles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Resources/Images/Frames Images/thunderbolt (1).png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Battle/Ship/Weapon/Shots/ElectroBall.gd" type="Script" id=3]
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "charge"

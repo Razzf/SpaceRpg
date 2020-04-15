@@ -45,8 +45,7 @@ func take_damage(amount) -> void:
 			yield(animation,"animation_finished")
 		
 		yield($Sprite/Bar, "zero_hp")
-		emit_signal("dead")
-		queue_free()
+		emit_signal("dead", self)
 	else:
 		if animation.is_playing():
 			animation.stop()
@@ -106,9 +105,10 @@ func create_random_shaking(animPlayerObj, animName):
 
 
 func _ready():
-
 	$Sprite/Bar.initialize(max_hp)
 	self.hp = max_hp
+	if !self.is_connected("dead", get_parent().get_parent(), "_on_Enemy_dead"):
+		self.connect("dead", get_parent().get_parent(), "_on_Enemy_dead")
 
 func _enter_tree():
 	canchange = true
