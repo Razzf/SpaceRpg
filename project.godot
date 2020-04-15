@@ -48,6 +48,10 @@ config/name="SpaceRpg"
 run/main_scene="res://Scenes/Battle/Main(Battle).tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+singlecon="*res://Node2D.tscn"
+
 [display]
 
 window/size/width=180

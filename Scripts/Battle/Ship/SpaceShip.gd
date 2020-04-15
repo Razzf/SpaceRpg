@@ -48,7 +48,6 @@ func _ready():
 
 func attack(_enemy) -> void:
 	if _enemy != null:
-		print("caca con pan y leche")
 		equipped_weapon.shoot_to(_enemy)
 		yield(equipped_weapon, "on_used")
 		remove_wpn_child()

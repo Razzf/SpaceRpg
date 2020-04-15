@@ -198,7 +198,6 @@ margin_right = 72.0
 margin_bottom = 13.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
 playback_speed = 0.6
 anims/Attack = SubResource( 1 )
 anims/Idle = SubResource( 2 )

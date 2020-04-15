@@ -13,6 +13,7 @@ var init_posx
 export(float, 0.1, 100.00)  var swipe_sensitiviy
 var canchange
 var can_idle = true
+var is_ready = false
 
 
 onready var animation = $AnimationPlayer
@@ -57,13 +58,52 @@ func take_damage(amount) -> void:
 		can_idle = false
 		if animation.is_playing():
 			yield(animation, "animation_finished")
-			animation.play("Idle")
-			can_idle = true
+			play_idle()
 
 			
 func sethp(value):
 	hp = clamp(value, 0, max_hp)
 	emit_signal("hp_changed", hp)
+
+
+
+
+func _ready():
+	is_ready = true
+	print("ready")
+	$Sprite/Bar.initialize(max_hp)
+	self.hp = max_hp
+	if !self.is_connected("dead", get_parent().get_parent(), "_on_Enemy_dead"):
+		self.connect("dead", get_parent().get_parent(), "_on_Enemy_dead")
+
+func _enter_tree():
+	canchange = true
+
+	
+func _exit_tree():
+	print("enter treee")
+	pass
+
+func play_idle():
+	var anim = get_node("AnimationPlayer")
+	if anim.has_animation("Idle"):
+		anim.play("Idle")
+	
+
+
+func attack():
+	tackle(1)
+	
+				
+func ready_to_show():
+	if animation.get_playing_speed() == -1:
+		self.hide()
+	else:
+		self.show()
+
+func is_dead() -> bool:
+	return hp <= 0
+	
 
 func create_random_shaking(animPlayerObj, animName):
 	var animashion = Animation.new()
@@ -102,32 +142,4 @@ func create_random_shaking(animPlayerObj, animName):
 	animashion.track_insert_key(track_index, 0.2, Vector2(0, 0))
 
 	animashion = animPlayerObj.add_animation(animName, animashion)
-
-
-func _ready():
-	$Sprite/Bar.initialize(max_hp)
-	self.hp = max_hp
-	if !self.is_connected("dead", get_parent().get_parent(), "_on_Enemy_dead"):
-		self.connect("dead", get_parent().get_parent(), "_on_Enemy_dead")
-
-func _enter_tree():
-	canchange = true
-	
-func _exit_tree():
-	pass
-
-
-func attack():
-	tackle(1)
-	
-				
-func ready_to_show():
-	if animation.get_playing_speed() == -1:
-		self.hide()
-	else:
-		self.show()
-
-func is_dead() -> bool:
-	return hp <= 0
-			
 

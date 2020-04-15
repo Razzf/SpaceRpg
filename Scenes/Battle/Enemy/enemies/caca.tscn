@@ -4,11 +4,10 @@
 [ext_resource path="res://Resources/Images/Sprites and designs/caca.png" type="Texture" id=2]
 
 [node name="caca" instance=ExtResource( 1 )]
-max_hp = 12000
+max_hp = 3000
 physical_damage = 120
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-hframes = 1
 
 [editable path="Sprite/Bar"]
