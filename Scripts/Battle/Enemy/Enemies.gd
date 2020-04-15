@@ -6,8 +6,10 @@ var enemy_instances = []
 var can_idle
 var attacks_counter = 0
 export(int, 1, 5) var max_enemies
+enum {LEFT, RIGHT}
 
-signal change_finished
+signal inside_screen
+signal outside_screen
 signal end_turn
 signal enemy_died
 signal all_died
@@ -18,62 +20,75 @@ var actual_enemy = null
 
 func _ready():
 	battle_units.Enemies = self
-	
 	var enemy_names = list_files_in_directory(enemies_path)
-	
 	for _i in range(max_enemies):
 		randomize()
 		enemy_names.shuffle()
 		var enemy_path = enemies_path + enemy_names.front()
 		enemy_instances.append(load(enemy_path).instance())
-
 	yield(get_tree().create_timer(.5), "timeout")
-	
 	for _i in range(max_enemies):
-		change_actual_enemy()
-		yield(self, "change_finished")
+		change_actual_enemy(RIGHT)
+		yield(self, "inside_screen")
 		actual_enemy.animation.play("roar")
 		yield(actual_enemy.animation, "animation_finished")
 		if _i == max_enemies -1:
 			actual_enemy = $EnemyPos.get_child(0)
 			actual_enemy.animation.play("Idle")
 	can_idle = true
-	
 	emit_signal("all_appeared")
-
-func change_actual_enemy(right:bool = true) -> void:
-	if !right:
-		if actual_enemy != null:
-			actual_enemy.animation.play("swiping_left")
-			yield(actual_enemy.animation, "animation_finished")
-			$EnemyPos.remove_child(actual_enemy)
-		enemy_instances.push_front(enemy_instances.back())
-		enemy_instances.pop_back()
-		var enemy_to_add = enemy_instances.front()
-		$EnemyPos.add_child(enemy_to_add)
-		actual_enemy = enemy_to_add
-		actual_enemy.get_node("AnimationPlayer").play_backwards("swiping_right")
-		yield(actual_enemy.animation, "animation_finished")
-		emit_signal("change_finished")
-		if can_idle:
-			actual_enemy.animation.play("Idle")
-	else:
-
+	
+	
+func  take_off_screen(direction:bool = RIGHT):
+	if direction:
 		if actual_enemy != null:
 			actual_enemy.animation.play("swiping_right")
 			yield(actual_enemy.animation, "animation_finished")
 			$EnemyPos.remove_child(actual_enemy)
-		enemy_instances.push_back(enemy_instances.front())
-		enemy_instances.pop_front()
+	else:
+		if actual_enemy != null:
+			print("si hubo enemikk")
+			actual_enemy.animation.play("swiping_left")
+			yield(actual_enemy.animation, "animation_finished")
+			$EnemyPos.remove_child(actual_enemy)
+	emit_signal("outside_screen")
+	
+	
+func put_on_screen(direction:bool = RIGHT):
+	if direction:
 		var enemy_to_add = enemy_instances.front()
 		$EnemyPos.add_child(enemy_to_add)
 		actual_enemy = enemy_to_add
 		actual_enemy.get_node("AnimationPlayer").play_backwards("swiping_left")
 		yield(actual_enemy.animation, "animation_finished")
-		emit_signal("change_finished")
-		if can_idle:
+	else:
+		var enemy_to_add = enemy_instances.front()
+		$EnemyPos.add_child(enemy_to_add)
+		actual_enemy = enemy_to_add
+		actual_enemy.get_node("AnimationPlayer").play_backwards("swiping_right")
+		yield(actual_enemy.animation, "animation_finished")
+	if can_idle:
 			actual_enemy.animation.play("Idle")
-			
+	emit_signal("inside_screen")
+	
+	
+func rotate_enemies(direction:bool = RIGHT):
+	if direction:
+		enemy_instances.push_back(enemy_instances.front())
+		enemy_instances.pop_front()
+	else:
+		enemy_instances.push_front(enemy_instances.back())
+		enemy_instances.pop_back()
+		
+		
+func change_actual_enemy(direction:bool = RIGHT) -> void:
+	take_off_screen(direction)
+	if actual_enemy != null:
+		yield(self, "outside_screen")
+	rotate_enemies(direction)
+	put_on_screen(direction)
+
+
 func attack_secuence():
 	can_idle = false
 	for i in range(max_enemies):
@@ -83,7 +98,7 @@ func attack_secuence():
 			yield(actual_enemy, "attacked")
 			if i < max_enemies - 1:
 				change_actual_enemy()
-				yield(self, "change_finished")
+				yield(self, "inside_screen")
 			else:
 				emit_signal("end_turn")
 
@@ -107,15 +122,15 @@ func list_files_in_directory(path):
 func _on_SwipeDetector_swiped(direction):
 	if max_enemies > 1:
 		if direction == Vector2.RIGHT:
-			change_actual_enemy()
+			change_actual_enemy(RIGHT)
 		elif direction == Vector2.LEFT:
-			change_actual_enemy(false)
+			change_actual_enemy(LEFT)
 
 func _on_Enemy_dead(enemy):
 	enemy_instances.erase(enemy)
 	enemy.queue_free()
 	actual_enemy = null
-	change_actual_enemy()
+	put_on_screen(RIGHT)
 	print(actual_enemy.name)
 
 
