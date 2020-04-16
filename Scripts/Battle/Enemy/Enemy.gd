@@ -46,7 +46,14 @@ func take_damage(amount) -> void:
 			yield(animation,"animation_finished")
 		
 		yield($Sprite/Bar, "zero_hp")
-		emit_signal("dead", self)
+		animation.play("dead")
+		yield(animation, "animation_finished")
+		
+		while true:
+			yield(get_tree().create_timer(.01),"timeout")
+			if $deadparticles.emitting == false:
+				emit_signal("dead", self)
+				break
 	else:
 		if animation.is_playing():
 			animation.stop()
@@ -88,6 +95,9 @@ func play_idle():
 	var anim = get_node("AnimationPlayer")
 	if anim.has_animation("Idle"):
 		anim.play("Idle")
+		
+func almost_dead():
+	$deadparticles.emitting = true
 	
 
 

@@ -23,7 +23,8 @@ func initialize(max_value):
 
 func animate_value(start, end):
 	$Tween.interpolate_property(self, "value", start, end, 1, Trans_type, Tween.EASE_OUT)
-	$Tween.interpolate_method(self, "update_count_text", start, end, 1, Trans_type, Tween.EASE_OUT)
+	$Tween.interpolate_method(self, "update_count_text", start, end, .5
+	, Trans_type, Tween.EASE_OUT)
 	$Tween.start()
 	
 

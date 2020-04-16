@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Resources/Images/Frames Images/Cthulu1FRAME.piskel.0w (1).png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Battle/Control/Bar.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Battle/Enemy/Enemy.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Images/enemyprogbar.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Images/enemycoverbar.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Battle/Enemy/deadparticles.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.9
@@ -62,6 +63,37 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -4 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "dead"
+length = 0.4
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.025, 0.125, 0.225, 0.3, 0.35, 0.375, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.375 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "almost_dead"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -189,7 +221,6 @@ tint_over = Color( 0.572549, 0.572549, 0.572549, 1 )
 tint_progress = Color( 1, 1, 1, 0.298039 )
 changeable_color = true
 visibility = 0.5
-Trans_type = 3
 value_type = "Hp"
 
 [node name="Label" parent="Sprite/Bar" index="0"]
@@ -201,10 +232,13 @@ margin_bottom = 13.0
 playback_speed = 0.6
 anims/Attack = SubResource( 1 )
 anims/Idle = SubResource( 2 )
+anims/dead = SubResource( 7 )
 anims/prepare = SubResource( 3 )
 anims/roar = SubResource( 4 )
 anims/swiping_left = SubResource( 5 )
 anims/swiping_right = SubResource( 6 )
+
+[node name="deadparticles" parent="." instance=ExtResource( 6 )]
 [connection signal="hp_changed" from="." to="Sprite/Bar" method="_on_value_changed"]
 
 [editable path="Sprite/Bar"]

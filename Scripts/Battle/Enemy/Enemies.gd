@@ -4,6 +4,7 @@ const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres
 const enemies_path = "res://Scenes/Battle/Enemy/enemies/"
 var enemy_instances = []
 var can_idle
+var can_swipe = true
 export(int, 1, 5) var max_enemies
 enum {LEFT, RIGHT}
 
@@ -40,6 +41,7 @@ func _ready():
 	
 	
 func  take_off_screen(direction:bool = RIGHT):
+	can_swipe = false
 	if direction:
 		if actual_enemy != null:
 			actual_enemy.animation.play("swiping_right")
@@ -70,6 +72,7 @@ func put_on_screen(direction:bool = RIGHT):
 		yield(actual_enemy.animation, "animation_finished")
 	if can_idle:
 			actual_enemy.play_idle()
+	can_swipe = true
 	emit_signal("inside_screen")
 	
 	
@@ -123,7 +126,7 @@ func list_files_in_directory(path):
 
 
 func _on_SwipeDetector_swiped(direction):
-	if enemy_instances.size() > 1:
+	if enemy_instances.size() > 1 and can_swipe:
 		if direction == Vector2.RIGHT:
 			change_actual_enemy(RIGHT)
 		elif direction == Vector2.LEFT:

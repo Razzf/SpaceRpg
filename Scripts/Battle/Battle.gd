@@ -4,7 +4,6 @@ extends Node2D
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 
 func _ready():
-	#print("battle")
 	yield(battle_units.Enemies, "all_appeared")
 	Start_Ship_Turn()
 	

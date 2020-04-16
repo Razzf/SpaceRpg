@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+lifetime_randomness = 0.09
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -20, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.67
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 13.58
+damping_random = 0.57
+scale = 5.0
+scale_random = 1.0
+
+[node name="deadparticles" type="Particles2D"]
+emitting = false
+amount = 40
+explosiveness = 0.8
+randomness = 0.96
+process_material = SubResource( 1 )
