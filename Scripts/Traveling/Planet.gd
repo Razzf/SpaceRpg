@@ -10,3 +10,8 @@ func _ready():
 	$Sprite.self_modulate = Color(r, g, b, 1)
 	print(size_cord)
 	$Sprite.frame = int(size_cord)
+	$Area2D/CollisionShape2D.shape.radius = size_cord + 7
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	pass # Replace with function body.

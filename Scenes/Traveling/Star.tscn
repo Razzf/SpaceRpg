@@ -1,5 +1,9 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Traveling/Star.gd" type="Script" id=1]
 
 [node name="Star" type="Node2D"]
+script = ExtResource( 1 )
+planets_amount = 12
 
 [node name="Planets" type="Node2D" parent="."]
