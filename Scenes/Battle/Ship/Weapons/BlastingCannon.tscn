@@ -15,5 +15,8 @@ precision = 0.669
 damage = 500
 shot_scenes = [ ExtResource( 4 ), ExtResource( 5 ) ]
 
+[node name="Sprite" parent="." index="0"]
+rotation = 2.68781
+
 [node name="NozzlePosition" parent="Sprite" index="0"]
 position = Vector2( -52.0001, -38.9999 )

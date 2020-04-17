@@ -113,12 +113,15 @@ func add_wpn_child():
 
 	actual_module.add_child(wpn_to_equip)
 	equipped_weapon = wpn_to_equip
-	var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
-	print("yeildienaod")
-	yield(wpnanim, "animation_finished")
+	if not equipped_weapon.is_empty:
+		var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
+		yield(wpnanim, "animation_finished")
+	else:
+		print("perando")
+		yield(get_tree().create_timer(3), "timeout")
 	emit_signal("weapon_updated")
 	$ShipUI/WeaponSelector.enable_use()
-	print("cacas")
+
 	
 func _change_wpn_module(up:bool = true):
 	if !up:
