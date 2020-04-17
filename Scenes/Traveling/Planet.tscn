@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Images/Frames Images/planet_sizes.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Traveling/Planet.gd" type="Script" id=2]
+
+[sub_resource type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
 
 [node name="Planet" type="Node2D"]
+material = SubResource( 2 )
+position = Vector2( 65, 42 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
