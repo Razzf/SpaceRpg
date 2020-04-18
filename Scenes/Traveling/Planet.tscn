@@ -9,10 +9,12 @@
 shader = SubResource( 4 )
 
 [sub_resource type="CircleShape2D" id=3]
+resource_local_to_scene = true
 radius = 7.0
 
 [node name="Planet" type="Node2D"]
 material = SubResource( 2 )
+position = Vector2( 18, 15 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
