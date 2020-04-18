@@ -10,10 +10,10 @@ planets_amount = 12
 [node name="Planets" type="Node2D" parent="."]
 
 [node name="SwipeDetector" parent="." instance=ExtResource( 2 )]
-margin_left = 10.0
-margin_top = 77.0
-margin_right = 177.0
-margin_bottom = 150.0
+margin_left = 13.0
+margin_top = 78.0
+margin_right = 167.0
+margin_bottom = 213.0
 touch_sensitivity = 1.0
 reiterative = true
 [connection signal="swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped"]
