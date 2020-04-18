@@ -44,7 +44,7 @@ func _ready():
 	$ShipUI/ShieldBar.initialize(max_shield)
 	self.energy = max_energy
 	self.shield = max_shield
-	animation.play("Shield appear")
+	#animation.play("Shield appear")
 
 func attack(_enemy) -> void:
 	if _enemy != null:

@@ -6,9 +6,7 @@
 [node name="Star" type="Node2D"]
 script = ExtResource( 1 )
 planets_amount = 10
-min_separation = 35.642
-
-[node name="Planets" type="Node2D" parent="."]
+min_separation = 44.619
 
 [node name="SwipeDetector" parent="." instance=ExtResource( 2 )]
 margin_left = 13.0
@@ -18,4 +16,6 @@ margin_bottom = 213.0
 editor_only = true
 touch_sensitivity = 1.0
 reiterative = true
+
+[node name="Planets" type="Node2D" parent="."]
 [connection signal="swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped"]
