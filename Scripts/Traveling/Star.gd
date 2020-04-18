@@ -10,7 +10,6 @@ func _ready():
 		$Planets.add_child(planet_to_add, true)
 		var sep_pos = create_separate_pos($Planets.get_children())
 		planet_to_add.global_position = sep_pos
-		
 
 
 func create_separate_pos(prev_planets:Array) -> Vector2:
@@ -37,7 +36,9 @@ func add_planet():
 	var planet_to_add = planet_scene.instance()
 	$Planets.add_child(planet_to_add)
 
-func _on_SwipeDetector_swiped(direction):
+
+func _on_Area2DSwipeDetector_swiped(direction):
+	print("cacacac")
 	if direction == Vector2.RIGHT:
 		$Planets.position.x = $Planets.position.x + 3
 		pass
