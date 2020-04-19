@@ -8,6 +8,7 @@ var swipe_length = Vector2.ZERO
 var fixed_sens
 var can_swipe = false
 signal swiped(direction)
+signal released
 
 func _ready():
 	fixed_sens = 101 - ((touch_sensitivity) * 100)
@@ -19,6 +20,7 @@ func _on_Area2DSwipeDetector_input_event(viewport, event, shape_idx):
 			can_swipe = true
 		else:
 			can_swipe = false
+			emit_signal("released")
 		
 	if event is InputEventScreenDrag and can_swipe:
 		

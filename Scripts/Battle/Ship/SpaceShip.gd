@@ -38,7 +38,7 @@ func setEnergy(value):
 func _ready():
 	battle_units.SpaceShip = self
 	actual_module = modules.front()
-	initialize_default_weapons()
+	#initialize_default_weapons()
 	
 	$ShipUI/EnergyBar.initialize(max_energy)
 	$ShipUI/ShieldBar.initialize(max_shield)

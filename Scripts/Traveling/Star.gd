@@ -3,6 +3,7 @@ extends Node2D
 const planet_scene = preload("res://Scenes/Traveling/Planet.tscn")
 export(int) var planets_amount 
 export(float, 1, 80) var min_separation
+var last_direction
 
 func _ready():
 	for i in range(planets_amount):
@@ -40,8 +41,12 @@ func add_planet():
 func _on_Area2DSwipeDetector_swiped(direction):
 	print("cacacac")
 	if direction == Vector2.RIGHT:
+		last_direction = direction
 		$Planets.position.x = $Planets.position.x + 3
 		pass
 	elif direction == Vector2.LEFT:
+		last_direction = direction
 		$Planets.position.x = $Planets.position.x - 3
 		pass
+
+
