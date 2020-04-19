@@ -1,11 +1,7 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Images/Frames Images/stars.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Battle/Ship/SpaceShip.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Traveling/Star.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Resources/Styles/DefaultTheme.tres" type="Theme" id=4]
 [ext_resource path="res://Scripts/Space.gd" type="Script" id=5]
-[ext_resource path="res://Resources/Images/BlackSpace.png" type="Texture" id=6]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.606557, 1 )
@@ -38,36 +34,6 @@ scale_curve = SubResource( 5 )
 anim_offset = 1.0
 anim_offset_random = 1.0
 
-[sub_resource type="Animation" id=7]
-resource_name = "fade"
-length = 1.2
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite2:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 0.6, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "on_full_fade"
-} ]
-}
-
 [node name="Space" type="Node2D"]
 script = ExtResource( 5 )
 __meta__ = {
@@ -88,30 +54,3 @@ amount = 70
 lifetime = 5.0
 process_material = SubResource( 6 )
 texture = ExtResource( 1 )
-
-[node name="Star" parent="." instance=ExtResource( 3 )]
-
-[node name="SpaceShip" parent="." instance=ExtResource( 2 )]
-
-[node name="Button" type="Button" parent="."]
-margin_left = 49.0
-margin_top = 250.0
-margin_right = 130.0
-margin_bottom = 282.0
-theme = ExtResource( 4 )
-text = "Change Actual Star"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite2" type="Sprite" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 101, 147 )
-scale = Vector2( 2.08333, 1.70313 )
-texture = ExtResource( 6 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/fade = SubResource( 7 )
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
-
-[editable path="SpaceShip"]

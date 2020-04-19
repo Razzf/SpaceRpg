@@ -1,11 +1,18 @@
 extends Node2D
 
 const planet_scene = preload("res://Scenes/Traveling/Planet.tscn")
+const enemies_scene = preload("res://Scenes/Battle/Enemy/Enemies.tscn")
+
 export(int) var planets_amount 
 export(float, 1, 80) var min_separation
 var last_direction
 
 func _ready():
+	randomize()
+	var bit = int(rand_range(0,1))
+	
+	if bit:
+		add_child(enemies_scene.instance())
 	for i in range(planets_amount):
 		var planet_to_add = planet_scene.instance()
 		$Planets.add_child(planet_to_add, true)
