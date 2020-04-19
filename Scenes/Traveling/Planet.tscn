@@ -28,12 +28,13 @@ shape = SubResource( 3 )
 
 [node name="Satelites" type="Node2D" parent="."]
 
-[node name="AcceptDialog" type="AcceptDialog" parent="."]
+[node name="AcceptDialog" type="ConfirmationDialog" parent="."]
 visible = true
-margin_left = 24.0
-margin_top = 69.0
-margin_right = 107.0
-margin_bottom = 127.0
+margin_left = 42.0
+margin_top = 107.0
+margin_right = 142.0
+margin_bottom = 177.0
+rect_min_size = Vector2( 100, 70 )
 theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

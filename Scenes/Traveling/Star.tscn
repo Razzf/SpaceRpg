@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Traveling/Star.gd" type="Script" id=1]
 [ext_resource path="res://Area2DSwipeDetector.tscn" type="PackedScene" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 79, 69 )
 
 [node name="Star" type="Node2D"]
 script = ExtResource( 1 )
@@ -14,6 +17,9 @@ min_separation = 44.619
 position = Vector2( 90, 147 )
 touch_sensitivity = 1.0
 reiterative = true
+
+[node name="CollisionShape2D" parent="Area2DSwipeDetector" index="0"]
+shape = SubResource( 1 )
 [connection signal="swiped" from="Area2DSwipeDetector" to="." method="_on_Area2DSwipeDetector_swiped"]
 
 [editable path="Area2DSwipeDetector"]

@@ -14,6 +14,7 @@ var planet_names = ["Titan", "Osiris", "Dimidium", "Saffar",
 func _ready():
 	$AcceptDialog.get_ok().text = "Colonize"
 	$AcceptDialog.get_ok().rect_size = Vector2(20,10)
+	#$AcceptDialog.get_ok().set
 	planet_name = rand_name()
 	randomize()
 	var r = rand_range(0, 1)
