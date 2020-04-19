@@ -45,7 +45,9 @@ func set_state(state):
 	pass
 
 func combat_state():
-	pass
+	battle_units.Enemies.create()
+	yield(battle_units.Enemies, "all_appeared")
+	Start_Ship_Turn()
 
 func traveling_state():
 	pass

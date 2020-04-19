@@ -9,10 +9,17 @@ var last_direction
 
 func _ready():
 	randomize()
-	var bit = int(rand_range(0,1))
+	randomize()
+	var rand = rand_range(0, 1)
+	print(rand)
+	var bit = int(round(rand))
+	print(bit)
+	if true:
+		print("bit")
+		$EnemiesPos.add_child(enemies_scene.instance())
+		get_parent().get_parent().combat_state()
 	
-	if bit:
-		add_child(enemies_scene.instance())
+	print("voeagregarplanetssss")
 	for i in range(planets_amount):
 		var planet_to_add = planet_scene.instance()
 		$Planets.add_child(planet_to_add, true)

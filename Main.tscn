@@ -9,6 +9,13 @@
 script = ExtResource( 4 )
 
 [node name="Space" parent="." instance=ExtResource( 2 )]
+z_index = -9
+
+[node name="DarkSpace" parent="Space" index="0"]
+z_index = -5
+
+[node name="Stars" parent="Space" index="1"]
+z_index = -5
 
 [node name="ActualStar" parent="Space" instance=ExtResource( 1 )]
 

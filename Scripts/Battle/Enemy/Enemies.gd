@@ -19,8 +19,11 @@ var actual_enemy = null
 
 
 func _ready():
-	#print("enemies")
 	battle_units.Enemies = self
+	
+	
+
+func create():
 	var enemy_names = list_files_in_directory(enemies_path)
 	for _i in range(max_enemies):
 		randomize()

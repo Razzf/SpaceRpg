@@ -35,6 +35,7 @@ anim_offset = 1.0
 anim_offset_random = 1.0
 
 [node name="Space" type="Node2D"]
+z_index = -5
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_vertical_guides_": [ 91.0 ]
