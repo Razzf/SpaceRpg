@@ -106,47 +106,19 @@ func _gui_input(event):
 		
 		var equipped_wpn = battle_units.SpaceShip.equipped_weapon
 		var weapon_anim = equipped_wpn.find_node("AnimationPlayer", true, false)
-		
 		if can_rotate:
-			if weapon_anim != null:
-				print("hay wpn anim")
-				weapon_anim.stop()
-				if not weapon_anim.is_playing():
-					print("no esta pleyadando")
-					if swipe_length >= fixed_sens:
-						if reiterative:
-							init_vec = event.position
-						else:
-							can_swipe = false
-						emit_signal("swiped", swipe_direction)
-						print("swipeao")
-						if swipe_direction == Vector2.RIGHT:
-							rotate_weapons(false)
-							update_wpn_selector()
-							emit_signal("weapon_Changed")
-						elif swipe_direction == Vector2.LEFT:
-							rotate_weapons()
-							update_wpn_selector()
-							emit_signal("weapon_Changed")
-			else:
-				print("no hay wpn anim")
+			if not equipped_wpn.playing_anim:
 				if swipe_length >= fixed_sens:
 					if reiterative:
 						init_vec = event.position
 					else:
 						can_swipe = false
-					emit_signal("swiped", swipe_direction)
-					print("swipeao")
 					if swipe_direction == Vector2.RIGHT:
 						rotate_weapons(false)
-						emit_signal("weapon_Changed")
 						update_wpn_selector()
-						
+						emit_signal("weapon_Changed")
 					elif swipe_direction == Vector2.LEFT:
 						rotate_weapons()
-						emit_signal("weapon_Changed")
 						update_wpn_selector()
-
-
-					
-	
+						emit_signal("weapon_Changed")
+					emit_signal("swiped", swipe_direction)

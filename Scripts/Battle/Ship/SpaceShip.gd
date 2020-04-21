@@ -111,42 +111,21 @@ func add_wpn_child():
 		3:
 			wpn_to_equip.set_scale(Vector2(1,-1))
 	
-	if equipped_weapon != null:
-		print("si habia")
-		if equipped_weapon.find_node("AnimationPlayer", true, false).is_playing():
-			print("no estaba playeando")
-#			actual_module.add_child(wpn_to_equip)
-#			equipped_weapon = wpn_to_equip
-#			emit_signal("weapon_updated")
-#			$ShipUI/WeaponSelector.enable_use()
-#		if not equipped_weapon.find_node("AnimationPlayer", true, false).is_playing():
-#			print("no estaba playeando")
-#			actual_module.add_child(wpn_to_equip)
-#			equipped_weapon = wpn_to_equip
-#			if not equipped_weapon.is_empty:
-#				var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
-#				yield(wpnanim, "animation_finished")
-#			else:
-#				print("perando")
-#				yield(get_tree().create_timer(3), "timeout")
-#			emit_signal("weapon_updated")
-#			$ShipUI/WeaponSelector.enable_use()
+
+	actual_module.add_child(wpn_to_equip)
+	equipped_weapon = wpn_to_equip
+	if not equipped_weapon.is_empty:
+		print("no ta vacia")
+		var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
+		if wpnanim.is_playing():
+			yield(wpnanim, "animation_finished")
 	else:
-		print("no habia weapon")
-		actual_module.add_child(wpn_to_equip)
-		equipped_weapon = wpn_to_equip
-		if not equipped_weapon.is_empty:
-			print("no ta vacia")
-			var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
-			if wpnanim.is_playing():
-				yield(wpnanim, "animation_finished")
-		else:
-			print("perando")
-			yield(get_tree().create_timer(3), "timeout")
-		print("udateed")
-		emit_signal("weapon_updated")
-		$ShipUI/WeaponSelector.enable_use()
-		
+		print("perando")
+		yield(get_tree().create_timer(3), "timeout")
+	print("udateed")
+	emit_signal("weapon_updated")
+	$ShipUI/WeaponSelector.enable_use()
+	
 		
 	
 	

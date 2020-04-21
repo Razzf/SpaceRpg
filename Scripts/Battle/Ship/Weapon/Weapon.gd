@@ -9,6 +9,7 @@ export(int) var fire_rate
 export(float, 0, 1) var precision
 export(int) var damage
 export(bool) var is_empty = false
+var playing_anim
 
 var trigger_counter = 0
 
@@ -20,7 +21,12 @@ export(Array, PackedScene) var shot_scenes
 #func _ready():
 #	name = "Weapon"
 #
-	
+
+func _process(delta):
+	if $AnimationPlayer.is_playing():
+		playing_anim = true
+	else:
+		playing_anim = false
 
 func shoot_to(_enemy):
 	if weapon_type == TRIGGER_TYPE:
