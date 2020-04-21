@@ -47,6 +47,7 @@ func set_state(state):
 func combat_state():
 	battle_units.Enemies.create()
 	yield(battle_units.Enemies, "all_appeared")
+	battle_units.SpaceShip
 	Start_Ship_Turn()
 
 func traveling_state():

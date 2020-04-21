@@ -39,7 +39,6 @@ func _ready():
 	battle_units.SpaceShip = self
 	actual_module = modules.front()
 	initialize_default_weapons()
-	
 	$ShipUI/EnergyBar.initialize(max_energy)
 	$ShipUI/ShieldBar.initialize(max_shield)
 	self.energy = max_energy
@@ -97,6 +96,7 @@ func remove_wpn_child():
 		$Weapons.get_child(actual_module.get_index()).remove_child(wpn_to_remove)
 	
 func add_wpn_child():
+	print("voy a cambiar")
 	var wpn_to_equip = weapons.front()
 	
 	match actual_module.get_index():
@@ -110,17 +110,46 @@ func add_wpn_child():
 	
 		3:
 			wpn_to_equip.set_scale(Vector2(1,-1))
-
-	actual_module.add_child(wpn_to_equip)
-	equipped_weapon = wpn_to_equip
-	if not equipped_weapon.is_empty:
-		var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
-		yield(wpnanim, "animation_finished")
+	
+	if equipped_weapon != null:
+		print("si habia")
+		if equipped_weapon.find_node("AnimationPlayer", true, false).is_playing():
+			print("no estaba playeando")
+#			actual_module.add_child(wpn_to_equip)
+#			equipped_weapon = wpn_to_equip
+#			emit_signal("weapon_updated")
+#			$ShipUI/WeaponSelector.enable_use()
+#		if not equipped_weapon.find_node("AnimationPlayer", true, false).is_playing():
+#			print("no estaba playeando")
+#			actual_module.add_child(wpn_to_equip)
+#			equipped_weapon = wpn_to_equip
+#			if not equipped_weapon.is_empty:
+#				var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
+#				yield(wpnanim, "animation_finished")
+#			else:
+#				print("perando")
+#				yield(get_tree().create_timer(3), "timeout")
+#			emit_signal("weapon_updated")
+#			$ShipUI/WeaponSelector.enable_use()
 	else:
-		print("perando")
-		yield(get_tree().create_timer(3), "timeout")
-	emit_signal("weapon_updated")
-	$ShipUI/WeaponSelector.enable_use()
+		print("no habia weapon")
+		actual_module.add_child(wpn_to_equip)
+		equipped_weapon = wpn_to_equip
+		if not equipped_weapon.is_empty:
+			print("no ta vacia")
+			var wpnanim = equipped_weapon.find_node("AnimationPlayer", true, false)
+			if wpnanim.is_playing():
+				yield(wpnanim, "animation_finished")
+		else:
+			print("perando")
+			yield(get_tree().create_timer(3), "timeout")
+		print("udateed")
+		emit_signal("weapon_updated")
+		$ShipUI/WeaponSelector.enable_use()
+		
+		
+	
+	
 
 	
 func _change_wpn_module(up:bool = true):
@@ -133,6 +162,7 @@ func _change_wpn_module(up:bool = true):
 	actual_module = modules.front()
 
 func _on_WeaponSelector_weapon_Changed():
+	print("oieeeee")
 	remove_wpn_child()
 	add_wpn_child()
 	print(actual_module.get_index())

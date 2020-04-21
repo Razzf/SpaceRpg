@@ -5,7 +5,7 @@
 
 [node name="Enemies" type="Node2D"]
 script = ExtResource( 1 )
-max_enemies = 3
+max_enemies = 1
 
 [node name="EnemyPos" type="Position2D" parent="."]
 

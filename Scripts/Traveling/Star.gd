@@ -9,11 +9,8 @@ var last_direction
 
 func _ready():
 	randomize()
-	randomize()
 	var rand = rand_range(0, 1)
-	print(rand)
 	var bit = int(round(rand))
-	print(bit)
 	if true:
 		print("bit")
 		$EnemiesPos.add_child(enemies_scene.instance())
