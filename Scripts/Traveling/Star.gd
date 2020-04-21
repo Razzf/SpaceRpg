@@ -11,7 +11,7 @@ func _ready():
 	randomize()
 	var rand = rand_range(0, 1)
 	var bit = int(round(rand))
-	if true:
+	if false:
 		print("bit")
 		add_child(enemies_scene.instance())
 		get_parent().get_parent().combat_state()

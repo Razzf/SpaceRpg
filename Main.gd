@@ -9,7 +9,7 @@ enum {
 var state = TRAVELING
 
 func _ready():
-	pass
+	battle_units.main = self
 
 
 
@@ -52,3 +52,5 @@ func combat_state():
 
 func traveling_state():
 	pass
+
+

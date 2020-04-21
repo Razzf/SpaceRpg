@@ -9,7 +9,7 @@
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/BlastingCannon.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Images/shipbar.png" type="Texture" id=8]
 [ext_resource path="res://Resources/Styles/normalbutton.tres" type="StyleBox" id=9]
-[ext_resource path="res://Scenes/Battle/Control/WeaponSelector.tscn" type="PackedScene" id=10]
+[ext_resource path="res://TravelingController.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Resources/Images/undershipbar.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Battle/Ship/Weapons/ElectroCannon.tscn" type="PackedScene" id=12]
 
@@ -134,13 +134,10 @@ visibility = 0.5
 Trans_type = 4
 value_type = "Sp"
 
-[node name="WeaponSelector" parent="ShipUI" instance=ExtResource( 10 )]
+[node name="Position2D" parent="ShipUI" instance=ExtResource( 10 )]
 [connection signal="Energy_changed" from="." to="ShipUI/EnergyBar" method="_on_value_changed"]
 [connection signal="Shield_changed" from="." to="ShipUI/ShieldBar" method="_on_value_changed"]
-[connection signal="weapon_Changed" from="ShipUI/WeaponSelector" to="." method="_on_WeaponSelector_weapon_Changed"]
 
 [editable path="ShipUI/EnergyBar"]
 
 [editable path="ShipUI/ShieldBar"]
-
-[editable path="ShipUI/WeaponSelector"]
