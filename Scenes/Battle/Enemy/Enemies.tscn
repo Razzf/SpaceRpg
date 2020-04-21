@@ -8,11 +8,12 @@ script = ExtResource( 1 )
 max_enemies = 1
 
 [node name="EnemyPos" type="Position2D" parent="."]
+position = Vector2( 90, 150 )
 
 [node name="SwipeDetector" parent="." instance=ExtResource( 2 )]
-margin_left = -70.0
-margin_top = -60.0
-margin_right = 70.0
-margin_bottom = 60.0
+margin_left = 22.0
+margin_top = 90.0
+margin_right = 162.0
+margin_bottom = 210.0
 editor_only = true
 [connection signal="swiped" from="SwipeDetector" to="." method="_on_SwipeDetector_swiped"]

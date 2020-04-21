@@ -21,9 +21,6 @@ reiterative = true
 
 [node name="CollisionShape2D" parent="Area2DSwipeDetector" index="0"]
 shape = SubResource( 1 )
-
-[node name="EnemiesPos" type="Position2D" parent="."]
-position = Vector2( 90, 150 )
 [connection signal="swiped" from="Area2DSwipeDetector" to="." method="_on_Area2DSwipeDetector_swiped"]
 
 [editable path="Area2DSwipeDetector"]

@@ -144,6 +144,7 @@ func _on_Enemy_dead(enemy):
 		put_on_screen(RIGHT)
 	else:
 		emit_signal("all_died")
+		queue_free()
 	
 
 func _get_enemy_names() -> String:

@@ -13,7 +13,7 @@ func _ready():
 	var bit = int(round(rand))
 	if true:
 		print("bit")
-		$EnemiesPos.add_child(enemies_scene.instance())
+		add_child(enemies_scene.instance())
 		get_parent().get_parent().combat_state()
 	
 	print("voeagregarplanetssss")
