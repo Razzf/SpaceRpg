@@ -144,6 +144,7 @@ func _on_Enemy_dead(enemy):
 		put_on_screen(RIGHT)
 	else:
 		print("todos murieron")
+		battle_units.main.traveling_state()
 		emit_signal("all_died")
 		emit_signal("end_turn")
 		queue_free()

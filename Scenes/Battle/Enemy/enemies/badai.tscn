@@ -4,7 +4,7 @@
 [ext_resource path="res://Resources/Images/Frames Images/badaias.png" type="Texture" id=2]
 
 [node name="badai" instance=ExtResource( 1 )]
-max_hp = 5000
+max_hp = 2500
 physical_damage = 80
 
 [node name="Sprite" parent="." index="0"]
