@@ -15,12 +15,17 @@ func _ready():
 
 
 func Start_Ship_Turn() -> void:
-	print("inicio tu turno")
-	battle_units.SpaceShip.initialize_turn()
-	var ship = battle_units.SpaceShip
-	if ship != null:
-		yield(ship, "end_turn")
-		Start_Enemies_Turn()
+	print("inicio tu turnoOOOOOO")
+	if battle_units.Enemies != null:
+		
+		battle_units.SpaceShip.initialize_turn()
+		var ship = battle_units.SpaceShip
+		if ship != null:
+			yield(ship, "end_turn")
+			Start_Enemies_Turn()
+	else:
+		print("travelingstate")
+		traveling_state()
 	
 	
 func Start_Enemies_Turn() -> void:
@@ -33,6 +38,7 @@ func Start_Enemies_Turn() -> void:
 		else:
 			enemies.attack_secuence()
 		yield(enemies, "end_turn")
+		
 		Start_Ship_Turn()
 
 
@@ -47,10 +53,11 @@ func set_state(state):
 func combat_state():
 	battle_units.Enemies.create()
 	yield(battle_units.Enemies, "all_appeared")
-	battle_units.SpaceShip
+	battle_units.SpaceShip.combat_mode()
 	Start_Ship_Turn()
 
 func traveling_state():
+	battle_units.SpaceShip.traveling_mode()
 	pass
 
 

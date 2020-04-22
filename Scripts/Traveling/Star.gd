@@ -11,7 +11,7 @@ func _ready():
 	randomize()
 	var rand = rand_range(0, 1)
 	var bit = int(round(rand))
-	if false:
+	if true:
 		print("bit")
 		add_child(enemies_scene.instance())
 		get_parent().get_parent().combat_state()
@@ -30,11 +30,11 @@ func _ready():
 
 
 func create_separate_pos(prev_planets:Array) -> Vector2:
-	var new_vec = get_rand_vector(-180, 180,-45 , 45)
+	var new_vec = get_rand_vector(-220, 220,-80 , 80)
 	var fit = false
 	while not fit:
 		#print("crando")
-		new_vec = get_rand_vector(-180, 180,-45 , 45)
+		new_vec = get_rand_vector(-220, 220,-80 , 80)
 		for i in range(prev_planets.size()):
 			var prev_pos = prev_planets[i].final_pos
 			var diff = new_vec.distance_to(prev_pos)
@@ -61,6 +61,9 @@ func queue_planets():
 		var planet = planets[i]
 		planet.create_random_disappear("caca2")
 		planet.get_node("AnimationPlayer").play("caca2")
+		if i == $Planets.get_children().size() -1:
+			yield(planet.get_node("AnimationPlayer"), "animation_finished")
+			queue_free()
 
 
 

@@ -2,10 +2,14 @@ extends Node2D
 
 const battle_units = preload("res://Resources/ScriptableClasses/BattleUnits.tres")
 const hit_on_shield_resource = preload("res://Scenes/Battle/Ship/ShieldHitted.tscn")
+const combat_controller = preload("res://Scenes/Battle/Control/WeaponSelector.tscn")
+const traveling_controller = preload("res://TravelingController.tscn")
 
 onready var animation : AnimationPlayer = $AnimationPlayer
 onready var shield_barrier = $ShieldBarrier
 onready var modules = $Weapons.get_children()
+
+var actual_controller
 
 export(int, 1 ,4) var usable_modules
 export(Array, PackedScene) var default_wpn_scenes
@@ -43,6 +47,7 @@ func _ready():
 	$ShipUI/ShieldBar.initialize(max_shield)
 	self.energy = max_energy
 	self.shield = max_shield
+	traveling_mode()
 	#animation.play("Shield appear")
 
 func attack(_enemy) -> void:
@@ -122,6 +127,25 @@ func add_wpn_child():
 	
 		
 	
+func combat_mode():
+	if $ShipUI.get_children().size() > 2:
+		actual_controller = $ShipUI.get_child(2)
+		print("poniendo actualcontroller: ", actual_controller.name)
+	if actual_controller != null:
+		actual_controller.free()
+		print("queueufreando")
+		
+	$ShipUI.add_child(combat_controller.instance())
+	$ShipUI.get_child(2).appear()
+
+func traveling_mode():
+	if $ShipUI.get_children().size() > 2:
+		actual_controller = $ShipUI.get_child(2)
+	if actual_controller != null:
+		actual_controller.queue_free()
+		
+	$ShipUI.add_child(traveling_controller.instance())
+	#$ShipUI.get_child(2).appear()
 	
 
 	
@@ -135,7 +159,6 @@ func _change_wpn_module(up:bool = true):
 	actual_module = modules.front()
 
 func _on_WeaponSelector_weapon_Changed():
-	print("oieeeee")
 	remove_wpn_child()
 	add_wpn_child()
 	print(actual_module.get_index())

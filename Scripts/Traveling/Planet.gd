@@ -101,14 +101,14 @@ func create_random_disappear(animName):
 
 	#scale track
 	animashion.track_insert_key(track_index2, 0.0, Vector2(1, 1))
-	animashion.track_insert_key(track_index2, .40, Vector2(2, 2))
+	animashion.track_insert_key(track_index2, .40, Vector2(3, 3))
 	
 	animashion.track_insert_key(mtd_trac_index, 0.40,
 	 {"method": "queue_free", "args": []})
 	
 	#position track
 	animashion.track_insert_key(track_index, 0.0, position)
-	var final_poss = position * 2
+	var final_poss = position * 5
 	
 	
 	

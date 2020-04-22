@@ -18,6 +18,7 @@ onready var wpn_icons = [$WeaponIcon/Sprite, $UpDownBtns2/DownButton/icon, $UpDo
 				$UpDownBtns/UpButton/icon, $UpDownBtns2/UpButton/icon]
 
 func _ready():
+	self.connect("weapon_Changed", battle_units.SpaceShip, "_on_WeaponSelector_weapon_Changed")
 	fixed_sens = 101 - ((touch_sensitivity) * 100)
 
 func appear():
@@ -122,3 +123,4 @@ func _gui_input(event):
 						update_wpn_selector()
 						emit_signal("weapon_Changed")
 					emit_signal("swiped", swipe_direction)
+					print("swipeado")

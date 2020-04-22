@@ -143,7 +143,9 @@ func _on_Enemy_dead(enemy):
 	if enemy_instances.size() > 0:
 		put_on_screen(RIGHT)
 	else:
+		print("todos murieron")
 		emit_signal("all_died")
+		emit_signal("end_turn")
 		queue_free()
 	
 
