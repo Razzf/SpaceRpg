@@ -8,10 +8,12 @@ func _ready():
 func move_stars(segs:int):
 	$Stars.process_material.emission_box_extents = Vector3(9,16,1)
 	$Stars.process_material.radial_accel = 100
+	get_child(2).queue_planets()
+	
 	yield(get_tree().create_timer(segs), "timeout")
 	$Stars.process_material.emission_box_extents = Vector3(90,160,1)
 	$Stars.process_material.radial_accel = 0
-	get_child(2).queue_free()
+	
 	var star_to_add = star_scene.instance()
 	add_child(star_to_add)
 	move_child(star_to_add, 2)

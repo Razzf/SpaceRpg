@@ -5,6 +5,7 @@ var gravity
 var temperature
 var water
 var planet_name
+var final_pos = Vector2.ZERO
 
 var planet_names = ["Titan", "Osiris", "Dimidium", "Saffar",
 					"Galileo", "Brahe", "Arion", "Harriot", "Dagon", "Hypatia" ]
@@ -49,3 +50,90 @@ func rand_name() -> String:
 	name = name + "-" + str(int(rand_range(0,10000)))
 	return name
 	pass
+
+func create_random_appear(animPlayerObj, animName, final_poss):
+	var animashion = Animation.new()
+	var track_index = animashion.add_track(Animation.TYPE_VALUE)
+	var track_index2 = animashion.add_track(Animation.TYPE_VALUE)
+	var init_pos = Vector2.ZERO
+	animashion.length = 0.40
+	animashion.step = 0
+	
+	animashion.track_set_path(track_index, ".:position")
+	animashion.track_set_path(track_index2, ".:scale")
+	
+	animashion.value_track_set_update_mode(track_index,animashion.UPDATE_CONTINUOUS )
+	animashion.track_set_interpolation_type(track_index,animashion.INTERPOLATION_LINEAR)
+	
+	animashion.value_track_set_update_mode(track_index2,animashion.UPDATE_CONTINUOUS )
+	animashion.track_set_interpolation_type(track_index2,animashion.INTERPOLATION_LINEAR)
+
+	#scale track
+	animashion.track_insert_key(track_index2, 0.0, Vector2(.01, .01))
+	animashion.track_insert_key(track_index2, .40, Vector2(1, 1))
+	
+	#position track
+	animashion.track_insert_key(track_index, 0.0, init_pos)
+	final_pos = final_poss
+	
+	animashion.track_insert_key(track_index, .40, final_pos)
+	
+	animashion = animPlayerObj.add_animation(animName, animashion)
+
+func create_random_disappear(animName):
+	var animashion = Animation.new()
+	var track_index = animashion.add_track(Animation.TYPE_VALUE)
+	var track_index2 = animashion.add_track(Animation.TYPE_VALUE)
+	var mtd_trac_index = animashion.add_track(Animation.TYPE_METHOD)
+	var init_pos = Vector2(90, 150)
+	animashion.length = 0.40
+	animashion.step = 0
+	
+	animashion.track_set_path(mtd_trac_index, ".")
+	animashion.track_set_path(track_index, ".:position")
+	animashion.track_set_path(track_index2, ".:scale")
+	
+	animashion.value_track_set_update_mode(track_index,animashion.UPDATE_CONTINUOUS )
+	animashion.track_set_interpolation_type(track_index,animashion.INTERPOLATION_LINEAR)
+	
+	animashion.value_track_set_update_mode(track_index2,animashion.UPDATE_CONTINUOUS )
+	animashion.track_set_interpolation_type(track_index2,animashion.INTERPOLATION_LINEAR)
+
+	#scale track
+	animashion.track_insert_key(track_index2, 0.0, Vector2(1, 1))
+	animashion.track_insert_key(track_index2, .40, Vector2(2, 2))
+	
+	animashion.track_insert_key(mtd_trac_index, 0.40,
+	 {"method": "queue_free", "args": []})
+	
+	#position track
+	animashion.track_insert_key(track_index, 0.0, position)
+	var final_poss = position * 2
+	
+	
+	
+	animashion.track_insert_key(track_index, .40, final_poss)
+	
+	animashion = $AnimationPlayer.add_animation(animName, animashion)
+	pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

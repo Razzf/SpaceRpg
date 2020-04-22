@@ -21,16 +21,22 @@ func _ready():
 		var planet_to_add = planet_scene.instance()
 		$Planets.add_child(planet_to_add, true)
 		var sep_pos = create_separate_pos($Planets.get_children())
-		planet_to_add.global_position = sep_pos
+		
+		var planet_anim = planet_to_add.get_node("AnimationPlayer")
+		planet_to_add.create_random_appear(planet_anim, "caca", sep_pos)
+		planet_anim.play("caca")
+
+#		planet_to_add.global_position = sep_pos
 
 
 func create_separate_pos(prev_planets:Array) -> Vector2:
-	var new_vec = get_rand_vector(-180, 360, 80, 200)
+	var new_vec = get_rand_vector(-180, 180,-45 , 45)
 	var fit = false
 	while not fit:
-		new_vec = get_rand_vector(-180, 360, 80, 200)
+		#print("crando")
+		new_vec = get_rand_vector(-180, 180,-45 , 45)
 		for i in range(prev_planets.size()):
-			var prev_pos = prev_planets[i].global_position
+			var prev_pos = prev_planets[i].final_pos
 			var diff = new_vec.distance_to(prev_pos)
 			if diff < min_separation:
 				break
@@ -48,16 +54,27 @@ func add_planet():
 	var planet_to_add = planet_scene.instance()
 	$Planets.add_child(planet_to_add)
 
+func queue_planets():
+	print("haciendo caca")
+	for i in range($Planets.get_children().size()):
+		var planets = $Planets.get_children()
+		var planet = planets[i]
+		planet.create_random_disappear("caca2")
+		planet.get_node("AnimationPlayer").play("caca2")
+
+
 
 func _on_Area2DSwipeDetector_swiped(direction):
-	print("cacacac")
 	if direction == Vector2.RIGHT:
 		last_direction = direction
-		$Planets.position.x = $Planets.position.x + 3
+		for planet in $Planets.get_children():
+			planet.position.x = planet.position.x + 3
 		pass
 	elif direction == Vector2.LEFT:
 		last_direction = direction
-		$Planets.position.x = $Planets.position.x - 3
+		for planet in $Planets.get_children():
+			planet.position.x = planet.position.x - 3
 		pass
+
 
 

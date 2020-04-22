@@ -16,4 +16,4 @@ func _on_PlanetsBtn_pressed():
 
 
 func _on_StarsBtn_pressed():
-	battle_units.main.get_node("Space").move_stars(5)
+	battle_units.main.get_node("Space").move_stars(2)
